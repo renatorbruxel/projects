@@ -1,0 +1,12 @@
+# Whitelist approach — only track README files and folder structure
+# Everything else (real project files) stays local only
+
+# Exclude everything
+*
+
+# Allow directories to be traversed
+!*/
+
+# Allow only these files
+!.gitignore
+!README.md
