@@ -39,7 +39,7 @@ table 'Pipeline_Snapshot'
 		summarizeBy: none
 		sourceColumn: AKey
 
-	partition Pipeline_Snapshot = m
+	partition Pipeline_Snapshot
 		mode: import
 		source =
 			let

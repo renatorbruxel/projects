@@ -39,7 +39,7 @@ table Sales_Team
 		summarizeBy: sum
 		sourceColumn: Annual_Quota_USD
 
-	partition Sales_Team = m
+	partition Sales_Team
 		mode: import
 		source
 			let

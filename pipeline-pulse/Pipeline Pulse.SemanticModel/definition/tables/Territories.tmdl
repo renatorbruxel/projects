@@ -39,7 +39,7 @@ table 'Territories'
 		sourceColumn: AOP_ARR
 		formatString: $#,0
 
-	partition Territories = m
+	partition Territories
 		mode: import
 		source =
 			let

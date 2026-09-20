@@ -114,7 +114,7 @@ table 'Pipeline'
 		sourceColumn: AKey
 
 
-	partition Pipeline = m
+	partition Pipeline
 		mode: import
 		source =
 			let

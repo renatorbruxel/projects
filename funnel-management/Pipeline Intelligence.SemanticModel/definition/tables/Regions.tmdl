@@ -31,7 +31,7 @@ table 'Regions'
 		summarizeBy: none
 		sourceColumn: Sub_Region_Sort
 
-	partition Regions = m
+	partition Regions
 		mode: import
 		source =
 			let

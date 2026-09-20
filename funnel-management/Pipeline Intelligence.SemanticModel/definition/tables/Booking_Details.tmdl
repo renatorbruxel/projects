@@ -45,7 +45,7 @@ table 'Booking_Details'
 		summarizeBy: none
 		sourceColumn: Is_Renewal
 
-	partition Booking_Details = m
+	partition Booking_Details
 		mode: import
 		source =
 			let

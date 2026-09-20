@@ -58,7 +58,7 @@ table 'Activity_Log'
 		summarizeBy: none
 		sourceColumn: Is_Closed
 
-	partition Activity_Log = m
+	partition Activity_Log
 		mode: import
 		source =
 			let

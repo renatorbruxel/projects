@@ -26,7 +26,7 @@ table Product_Lines
 		summarizeBy: none
 		sourceColumn: Category
 
-	partition Product_Lines = m
+	partition Product_Lines
 		mode: import
 		source
 			let

@@ -28,7 +28,7 @@ table 'Weekly_Targets'
 		sourceColumn: Weekly_Pipeline_Target
 		formatString: $#,0
 
-	partition Weekly_Targets = m
+	partition Weekly_Targets
 		mode: import
 		source =
 			let

@@ -33,7 +33,7 @@ table 'Forecast_Categories'
 		summarizeBy: none
 		sourceColumn: Include_in_Forecast
 
-	partition Forecast_Categories = m
+	partition Forecast_Categories
 		mode: import
 		source =
 			let

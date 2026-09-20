@@ -34,7 +34,7 @@ table 'Win_Rate_Config'
 		sourceColumn: Coverage_Multiplier
 		formatString: 0.0x
 
-	partition Win_Rate_Config = m
+	partition Win_Rate_Config
 		mode: import
 		source =
 			let

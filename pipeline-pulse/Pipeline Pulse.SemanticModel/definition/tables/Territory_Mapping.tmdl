@@ -51,7 +51,7 @@ table 'Territory_Mapping'
 		sourceColumn: AOP_Territory_ARR
 		formatString: $#,0
 
-	partition Territory_Mapping = m
+	partition Territory_Mapping
 		mode: import
 		source =
 			let

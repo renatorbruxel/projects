@@ -59,7 +59,7 @@ table 'Pipeline_PullIn'
 		sourceColumn: Days_Pulled
 
 
-	partition Pipeline_PullIn = m
+	partition Pipeline_PullIn
 		mode: import
 		source =
 			let

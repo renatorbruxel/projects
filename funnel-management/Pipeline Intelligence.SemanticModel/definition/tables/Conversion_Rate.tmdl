@@ -32,7 +32,7 @@ table 'Conversion_Rate'
 		summarizeBy: none
 		sourceColumn: Stage_Sort
 
-	partition Conversion_Rate = m
+	partition Conversion_Rate
 		mode: import
 		source =
 			let

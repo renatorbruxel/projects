@@ -87,7 +87,7 @@ table 'Pipeline_PriorDay'
 		summarizeBy: none
 		sourceColumn: AKey
 
-	partition Pipeline_PriorDay = m
+	partition Pipeline_PriorDay
 		mode: import
 		source =
 			let

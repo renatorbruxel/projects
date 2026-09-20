@@ -173,7 +173,7 @@ table 'Pipeline'
 					)
 				)
 
-	partition Pipeline = m
+	partition Pipeline
 		mode: import
 		source =
 			let

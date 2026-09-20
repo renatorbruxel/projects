@@ -39,7 +39,7 @@ table Calendar
 		summarizeBy: none
 		sourceColumn: [WeekNum]
 
-	partition Calendar = calculated
+	partition Calendar
 		mode: import
 		source =
 			ADDCOLUMNS(

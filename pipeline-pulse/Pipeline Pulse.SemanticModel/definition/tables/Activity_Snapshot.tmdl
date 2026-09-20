@@ -38,7 +38,7 @@ table 'Activity_Snapshot'
 		summarizeBy: sum
 		sourceColumn: Opps_Touched
 
-	partition Activity_Snapshot = m
+	partition Activity_Snapshot
 		mode: import
 		source =
 			let

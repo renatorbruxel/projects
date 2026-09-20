@@ -38,7 +38,7 @@ table Account_History
 		summarizeBy: none
 		sourceColumn: Classification_Result
 
-	partition Account_History = m
+	partition Account_History
 		mode: import
 		source
 			let

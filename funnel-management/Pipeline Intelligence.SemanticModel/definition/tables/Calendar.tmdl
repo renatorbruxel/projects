@@ -51,7 +51,7 @@ table 'Calendar'
 		summarizeBy: none
 		sourceColumn: [Quarter_Label]
 
-	partition Calendar = calculated
+	partition Calendar
 		mode: import
 		source =
 			ADDCOLUMNS(

@@ -31,7 +31,7 @@ table 'Product_Lines'
 		summarizeBy: none
 		sourceColumn: Product_Sort
 
-	partition Product_Lines = m
+	partition Product_Lines
 		mode: import
 		source =
 			let
