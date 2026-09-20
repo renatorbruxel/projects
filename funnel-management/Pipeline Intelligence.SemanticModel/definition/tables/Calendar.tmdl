@@ -6,70 +6,53 @@ table 'Calendar'
 		isHidden
 		lineageTag: 8f784d28-d999-06eb-57a2-bfee7d88631d
 		summarizeBy: none
-		sourceColumn: [Date]
+		sourceColumn: Date
 
 	column Year
 		dataType: int64
 		lineageTag: 26d3320d-a690-55e3-3e23-09040f069ce6
 		summarizeBy: none
-		sourceColumn: [Year]
+		sourceColumn: Year
 
 	column Quarter
 		dataType: string
 		lineageTag: 6d5bf4fa-6758-9b52-7641-3d364d1b707a
 		summarizeBy: none
-		sourceColumn: [Quarter]
+		sourceColumn: Quarter
 
 	column Month
 		dataType: int64
 		lineageTag: 4a3b2c1d-e5f6-7890-abcd-ef1234567801
 		summarizeBy: none
-		sourceColumn: [Month]
+		sourceColumn: Month
 
 	column MonthName
 		dataType: string
 		lineageTag: 5b4c3d2e-f6a7-8901-bcde-fa2345678902
 		summarizeBy: none
 		sortByColumn: Month
-		sourceColumn: [MonthName]
+		sourceColumn: MonthName
 
 	column WeekNum
 		dataType: int64
 		lineageTag: fe5263d0-d206-3aa0-f798-38618326edf3
 		summarizeBy: none
-		sourceColumn: [WeekNum]
-
-	column Days_Remaining_in_Quarter
-		dataType: int64
-		lineageTag: 170502fb-1d9d-4e54-b7b6-09f20efa0ac7
-		summarizeBy: none
-		sourceColumn: [Days_Remaining_in_Quarter]
-
-	column Quarter_Label
-		dataType: string
-		lineageTag: 7c6d5e4f-a8b9-0123-cdef-ab3456789003
-		summarizeBy: none
-		sourceColumn: [Quarter_Label]
+		sourceColumn: WeekNum
 
 	partition Calendar
 		mode: import
 		source =
-			ADDCOLUMNS(
-			    CALENDAR(DATE(2025, 1, 1), DATE(2027, 12, 31)),
-			    "Year", YEAR([Date]),
-			    "Quarter", "Q" & FORMAT(CEILING(MONTH([Date]) / 3, 1), "0"),
-			    "Month", MONTH([Date]),
-			    "MonthName", FORMAT([Date], "MMM"),
-			    "WeekNum", WEEKNUM([Date], 2),
-			    "Days_Remaining_in_Quarter",
-			        VAR qEnd =
-			            SWITCH(
-			                QUARTER([Date]),
-			                1, DATE(YEAR([Date]), 3, 31),
-			                2, DATE(YEAR([Date]), 6, 30),
-			                3, DATE(YEAR([Date]), 9, 30),
-			                DATE(YEAR([Date]), 12, 31)
-			            )
-			        RETURN MAX(0, INT(qEnd - TODAY())),
-			    "Quarter_Label", "Q" & FORMAT(CEILING(MONTH([Date]) / 3, 1), "0") & " " & YEAR([Date])
-			)
+			let
+			    StartDate = #date(2025, 1, 1),
+			    EndDate = #date(2027, 12, 31),
+			    DayCount = Duration.Days(EndDate - StartDate) + 1,
+			    Dates = List.Dates(StartDate, DayCount, #duration(1, 0, 0, 0)),
+			    DateTable = Table.FromList(Dates, Splitter.SplitByNothing(), {"Date"}),
+			    Typed = Table.TransformColumnTypes(DateTable, {{"Date", type date}}),
+			    AddYear = Table.AddColumn(Typed, "Year", each Date.Year([Date]), Int64.Type),
+			    AddMonth = Table.AddColumn(AddYear, "Month", each Date.Month([Date]), Int64.Type),
+			    AddQuarter = Table.AddColumn(AddMonth, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+			    AddMonthName = Table.AddColumn(AddQuarter, "MonthName", each Date.ToText([Date], "MMM"), type text),
+			    AddWeekNum = Table.AddColumn(AddMonthName, "WeekNum", each Date.WeekOfYear([Date], Day.Monday), Int64.Type)
+			in
+			    AddWeekNum

@@ -6,47 +6,53 @@ table Calendar
 		isHidden
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456790
 		summarizeBy: none
-		sourceColumn: [Date]
+		sourceColumn: Date
 
 	column Year
 		dataType: int64
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456791
 		summarizeBy: none
-		sourceColumn: [Year]
+		sourceColumn: Year
 
 	column Quarter
 		dataType: string
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456792
 		summarizeBy: none
-		sourceColumn: [Quarter]
+		sourceColumn: Quarter
 
 	column Month
 		dataType: int64
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456793
 		summarizeBy: none
-		sourceColumn: [Month]
+		sourceColumn: Month
 
 	column MonthName
 		dataType: string
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456794
 		summarizeBy: none
 		sortByColumn: Month
-		sourceColumn: [MonthName]
+		sourceColumn: MonthName
 
 	column WeekNum
 		dataType: int64
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456795
 		summarizeBy: none
-		sourceColumn: [WeekNum]
+		sourceColumn: WeekNum
 
 	partition Calendar
 		mode: import
 		source =
-			ADDCOLUMNS(
-			    CALENDAR(DATE(2025, 1, 1), DATE(2027, 12, 31)),
-			    "Year", YEAR([Date]),
-			    "Quarter", "Q" & FORMAT(CEILING(MONTH([Date]) / 3, 1), "0"),
-			    "Month", MONTH([Date]),
-			    "MonthName", FORMAT([Date], "MMM"),
-			    "WeekNum", WEEKNUM([Date], 2)
-			)
+			let
+			    StartDate = #date(2025, 1, 1),
+			    EndDate = #date(2027, 12, 31),
+			    DayCount = Duration.Days(EndDate - StartDate) + 1,
+			    Dates = List.Dates(StartDate, DayCount, #duration(1, 0, 0, 0)),
+			    DateTable = Table.FromList(Dates, Splitter.SplitByNothing(), {"Date"}),
+			    Typed = Table.TransformColumnTypes(DateTable, {{"Date", type date}}),
+			    AddYear = Table.AddColumn(Typed, "Year", each Date.Year([Date]), Int64.Type),
+			    AddMonth = Table.AddColumn(AddYear, "Month", each Date.Month([Date]), Int64.Type),
+			    AddQuarter = Table.AddColumn(AddMonth, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+			    AddMonthName = Table.AddColumn(AddQuarter, "MonthName", each Date.ToText([Date], "MMM"), type text),
+			    AddWeekNum = Table.AddColumn(AddMonthName, "WeekNum", each Date.WeekOfYear([Date], Day.Monday), Int64.Type)
+			in
+			    AddWeekNum
