@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Pipeline Intelligence"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9d0d7c0a-8d53-41cb-bb74-84dd1c390b4e"
+  }
+}

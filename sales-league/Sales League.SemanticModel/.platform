@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Sales League"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c62a2727-7f0d-4f0f-9940-ec30ba993e31"
+  }
+}
