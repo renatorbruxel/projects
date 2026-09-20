@@ -1,72 +1,35 @@
-relationship 'Pipeline_AKey_to_DimKey'
-	fromTable: 'Pipeline'
-	fromColumn: AKey
-	toTable: 'Dimension_Key'
-	toColumn: AKey
-	isActive: true
-	crossFilteringBehavior: oneDirection
+relationship rel_001
+	fromColumn: Pipeline.AKey
+	toColumn: Dimension_Key.AKey
 
-relationship 'BookingsActuals_AKey_to_DimKey'
-	fromTable: 'Bookings_Actuals'
-	fromColumn: AKey
-	toTable: 'Dimension_Key'
-	toColumn: AKey
-	isActive: true
-	crossFilteringBehavior: oneDirection
+relationship rel_002
+	fromColumn: Bookings_Actuals.AKey
+	toColumn: Dimension_Key.AKey
 
-relationship 'Pipeline_CloseDate_to_Calendar'
-	fromTable: 'Pipeline'
-	fromColumn: Close_Date
-	toTable: 'Calendar'
-	toColumn: Date
-	isActive: true
-	crossFilteringBehavior: oneDirection
+relationship rel_003
+	fromColumn: Pipeline.Close_Date
+	toColumn: Calendar.Date
 
-relationship 'Pipeline_ForecastCat_to_ForecastCategories'
-	fromTable: 'Pipeline'
-	fromColumn: Forecast_Category
-	toTable: 'Forecast_Categories'
-	toColumn: Forecast_Category
-	isActive: true
-	crossFilteringBehavior: oneDirection
+relationship rel_004
+	fromColumn: Pipeline.Forecast_Category
+	toColumn: Forecast_Categories.Forecast_Category
 
-relationship 'Pipeline_Territory_to_TerritoryMapping'
-	fromTable: 'Pipeline'
-	fromColumn: Territory
-	toTable: 'Territory_Mapping'
-	toColumn: Territory
-	isActive: true
-	crossFilteringBehavior: oneDirection
+relationship rel_005
+	fromColumn: Pipeline.Territory
+	toColumn: Territory_Mapping.Territory
 
-relationship 'PipelinePriorDay_CloseDate_to_Calendar'
-	fromTable: 'Pipeline_PriorDay'
-	fromColumn: Close_Date
-	toTable: 'Calendar'
-	toColumn: Date
-	isActive: true
-	crossFilteringBehavior: oneDirection
+relationship rel_006
+	fromColumn: Pipeline_PriorDay.Close_Date
+	toColumn: Calendar.Date
 
-relationship 'PipelineSnapshot_SnapshotDate_to_CalendarFull'
-	fromTable: 'Pipeline_Snapshot'
-	fromColumn: Snapshot_Date
-	toTable: 'Calendar_Full'
-	toColumn: Date
-	isActive: true
-	crossFilteringBehavior: oneDirection
+relationship rel_007
+	fromColumn: Pipeline_Snapshot.Snapshot_Date
+	toColumn: Calendar_Full.Date
 
-relationship 'TerritoryMappingSnapshot_Territory_to_PipelineSnapshot'
-	fromTable: 'Territory_Mapping_Snapshot'
-	fromColumn: Territory
-	toTable: 'Pipeline_Snapshot'
-	toColumn: Territory
-	isActive: true
-	crossFilteringBehavior: oneDirection
+relationship rel_008
+	fromColumn: Territory_Mapping_Snapshot.Territory
+	toColumn: Pipeline_Snapshot.Territory
 
-relationship 'ActivityLog_OppID_to_Pipeline'
-	fromTable: 'Activity_Log'
-	fromColumn: Opportunity_ID
-	toTable: 'Pipeline'
-	toColumn: Opportunity_ID
-	isActive: true
-	crossFilteringBehavior: bothDirections
-	cardinality: manyToMany
+relationship rel_009
+	fromColumn: Activity_Log.Opportunity_ID
+	toColumn: Pipeline.Opportunity_ID

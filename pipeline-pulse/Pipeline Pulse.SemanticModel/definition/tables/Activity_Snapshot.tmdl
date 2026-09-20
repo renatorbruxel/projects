@@ -1,40 +1,40 @@
 table 'Activity_Snapshot'
-	lineageTag: acs-001
+	lineageTag: 4dbade8f-80d3-46a6-2f74-dea6d778bddd
 
 	column 'Snapshot_Date'
 		dataType: dateTime
-		lineageTag: acs-002
+		lineageTag: fbdcacb4-baed-d737-ba3f-d69b851f98a9
 		summarizeBy: none
 		sourceColumn: Snapshot_Date
 		formatString: yyyy-MM-dd
 
 	column 'Region'
 		dataType: string
-		lineageTag: acs-003
+		lineageTag: 29891187-5fbf-4b95-9adc-4cc8ed786d41
 		summarizeBy: none
 		sourceColumn: Region
 
 	column 'Seller_Email'
 		dataType: string
-		lineageTag: acs-004
+		lineageTag: 136a4cf9-e7d3-e7e5-4305-a40040db0620
 		summarizeBy: none
 		sourceColumn: Seller_Email
 
 	column 'Activity_Type'
 		dataType: string
-		lineageTag: acs-005
+		lineageTag: 05698654-bd5f-949f-4982-61d3916466ac
 		summarizeBy: none
 		sourceColumn: Activity_Type
 
 	column 'Activity_Count'
 		dataType: int64
-		lineageTag: acs-006
+		lineageTag: c7cccc7b-c8ce-875b-1693-7adfe64be58e
 		summarizeBy: sum
 		sourceColumn: Activity_Count
 
 	column 'Opps_Touched'
 		dataType: int64
-		lineageTag: acs-007
+		lineageTag: 441d188b-e00e-085c-13b7-aad27c646b4b
 		summarizeBy: sum
 		sourceColumn: Opps_Touched
 

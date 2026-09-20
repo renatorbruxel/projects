@@ -1,9 +1,9 @@
 table 'Calendar_Full'
-	lineageTag: clf-001
+	lineageTag: 8e0f2a20-5140-87d9-b47b-eccdc6d4e524
 
 	column 'Date'
 		dataType: dateTime
-		lineageTag: clf-002
+		lineageTag: b22f5137-58b4-4493-6c3e-62ffdfa18325
 		summarizeBy: none
 		isKey
 		sourceColumn: Date
@@ -11,44 +11,44 @@ table 'Calendar_Full'
 
 	calculatedColumn 'Year'
 		dataType: int64
-		lineageTag: clf-003
+		lineageTag: d02c7720-7e3b-2ef0-b8f9-c8235f944dfc
 		summarizeBy: none
 		expression = YEAR([Date])
 
 	calculatedColumn 'Quarter'
 		dataType: int64
-		lineageTag: clf-004
+		lineageTag: 7fc299e2-0460-92d0-8582-8e165da6e7cf
 		summarizeBy: none
 		expression = QUARTER([Date])
 
 	calculatedColumn 'Month'
 		dataType: int64
-		lineageTag: clf-005
+		lineageTag: 5d1d7a86-b99d-afbd-8bf7-4297c30f0f30
 		summarizeBy: none
 		expression = MONTH([Date])
 
 	calculatedColumn 'MonthName'
 		dataType: string
-		lineageTag: clf-006
+		lineageTag: 2abf1e1c-41e4-b931-b67e-2f0cff04b554
 		summarizeBy: none
 		sortByColumn: Month
 		expression = FORMAT([Date], "MMM")
 
 	calculatedColumn 'WeekNum'
 		dataType: int64
-		lineageTag: clf-007
+		lineageTag: 54385171-7c35-0d46-5f79-289d09903de2
 		summarizeBy: none
 		expression = WEEKNUM([Date], 2)
 
 	calculatedColumn 'Quarter_Label'
 		dataType: string
-		lineageTag: clf-008
+		lineageTag: c0556975-5aa2-26af-a58c-9045fb1f3c4e
 		summarizeBy: none
 		expression = "Q" & QUARTER([Date]) & " " & YEAR([Date])
 
 	calculatedColumn 'Is_Snapshot_Week'
 		dataType: boolean
-		lineageTag: clf-009
+		lineageTag: 9be913d7-628f-f8c5-2bd5-d65c3e667c76
 		summarizeBy: none
 		expression = WEEKDAY([Date], 2) = 6
 

@@ -1,66 +1,39 @@
-relationship 'Main_to_Quota_Seller_Info'
-	fromColumn: 'Main'[Seller_Email]
-	toColumn: 'Quota_Seller_Info'[Seller_Email]
-	toCardinality: one
-	isActive: true
+relationship rel_001
+	fromColumn: Main.Seller_Email
+	toColumn: Quota_Seller_Info.Seller_Email
 
-relationship 'Gamification_to_Quota_Seller_Info'
-	fromColumn: 'Gamification'[Email]
-	toColumn: 'Quota_Seller_Info'[Seller_Email]
-	toCardinality: one
-	isActive: true
+relationship rel_002
+	fromColumn: Gamification.Email
+	toColumn: Quota_Seller_Info.Seller_Email
 
-relationship 'Quota_to_Quota_Seller_Info'
-	fromColumn: 'Quota'[Seller_Email]
-	toColumn: 'Quota_Seller_Info'[Seller_Email]
-	toCardinality: one
-	isActive: true
+relationship rel_003
+	fromColumn: Quota.Seller_Email
+	toColumn: Quota_Seller_Info.Seller_Email
 
-relationship 'Main_to_BU_Leaders'
-	fromColumn: 'Main'[Business_Group]
-	toColumn: 'BU_Leaders'[Business_Group]
-	toCardinality: one
-	isActive: true
+relationship rel_004
+	fromColumn: Main.Business_Group
+	toColumn: BU_Leaders.Business_Group
 
-relationship 'Main_to_Region_Leaders'
-	fromColumn: 'Main'[Region_Key]
-	toColumn: 'Region_Leaders'[Region_Key]
-	fromCardinality: many
-	toCardinality: many
-	crossFilteringBehavior: bothDirections
-	isActive: true
+relationship rel_005
+	fromColumn: Main.Region_Key
+	toColumn: Region_Leaders.Region_Key
 
-relationship 'Main_to_Quote_Mapping'
-	fromColumn: 'Main'[Opportunity_ID]
-	toColumn: 'Quote_Mapping'[Opportunity_ID]
-	fromCardinality: many
-	toCardinality: many
-	crossFilteringBehavior: bothDirections
-	isActive: true
+relationship rel_006
+	fromColumn: Main.Opportunity_ID
+	toColumn: Quote_Mapping.Opportunity_ID
 
-relationship 'Quota_Seller_Info_to_Global_Bookings'
-	fromColumn: 'Quota_Seller_Info'[Quota_Seller_Key]
-	toColumn: 'Global_Bookings'[Global_Key]
-	toCardinality: one
-	crossFilteringBehavior: bothDirections
-	securityFilteringBehavior: bothDirections
-	isActive: true
+relationship rel_007
+	fromColumn: Quota_Seller_Info.Quota_Seller_Key
+	toColumn: Global_Bookings.Global_Key
 
-relationship 'Peers_Fact_No_RLS_to_Quota_Seller_Info'
-	fromColumn: 'Peers_Fact_No_RLS'[Seller_Email]
-	toColumn: 'Quota_Seller_Info'[Seller_Email]
-	toCardinality: one
-	isActive: true
+relationship rel_008
+	fromColumn: Peers_Fact_No_RLS.Seller_Email
+	toColumn: Quota_Seller_Info.Seller_Email
 
-relationship 'Peers_Quota_No_RLS_to_Quota_Seller_Info'
-	fromColumn: 'Peers_Quota_No_RLS'[Seller_Email]
-	toColumn: 'Quota_Seller_Info'[Seller_Email]
-	fromCardinality: one
-	toCardinality: one
-	isActive: true
+relationship rel_009
+	fromColumn: Peers_Quota_No_RLS.Seller_Email
+	toColumn: Quota_Seller_Info.Seller_Email
 
-relationship 'Active_Player_Consent_to_Calendar'
-	fromColumn: 'Active_Player_Consent'[Date_Read]
-	toColumn: 'Calendar'[Date]
-	toCardinality: one
-	isActive: true
+relationship rel_010
+	fromColumn: Active_Player_Consent.Date_Read
+	toColumn: Calendar.Date

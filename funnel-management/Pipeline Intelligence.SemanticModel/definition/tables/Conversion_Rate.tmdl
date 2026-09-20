@@ -1,34 +1,34 @@
 table 'Conversion_Rate'
-	lineageTag: cvr-001
+	lineageTag: 0b0ff5cf-bcff-e3d1-ae36-dec0bf4e9f78
 
 	column From_Stage
 		dataType: string
-		lineageTag: cvr-c-001
+		lineageTag: 47b17cd2-c1bf-09be-d905-91fcf33f4552
 		summarizeBy: none
 		sourceColumn: From_Stage
 
 	column To_Stage
 		dataType: string
-		lineageTag: cvr-c-002
+		lineageTag: 7f0fedf2-4c71-2b98-b511-725b287c40ce
 		summarizeBy: none
 		sourceColumn: To_Stage
 
 	column Avg_Conv_Rate
 		dataType: double
-		lineageTag: cvr-c-003
+		lineageTag: f8e925df-3d20-4726-3753-63b2c15334a0
 		summarizeBy: average
 		sourceColumn: Avg_Conv_Rate
 		formatString: 0.0%
 
 	column Avg_Days_in_Stage
 		dataType: int64
-		lineageTag: cvr-c-004
+		lineageTag: a7092e1f-ba54-7966-9832-15ad1b92d726
 		summarizeBy: average
 		sourceColumn: Avg_Days_in_Stage
 
 	column Stage_Sort
 		dataType: int64
-		lineageTag: cvr-c-005
+		lineageTag: 37d4cead-c74e-21d7-453e-121a7e302521
 		summarizeBy: none
 		sourceColumn: Stage_Sort
 

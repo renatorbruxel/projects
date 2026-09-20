@@ -1,33 +1,33 @@
 table 'Regions'
-	lineageTag: reg-001
+	lineageTag: 4c4dc85c-6e05-4d89-48ed-2e7dbaa689da
 
 	column Region
 		dataType: string
-		lineageTag: reg-c-001
+		lineageTag: af910a46-5a80-3f71-6e66-df80bf85e66e
 		summarizeBy: none
 		sourceColumn: Region
 
 	column Sub_Region
 		dataType: string
-		lineageTag: reg-c-002
+		lineageTag: d15d8cc0-c6c6-2b33-52a5-47b1dd445bce
 		summarizeBy: none
 		sourceColumn: Sub_Region
 
 	column Region_Lead
 		dataType: string
-		lineageTag: reg-c-003
+		lineageTag: 27632067-7a80-6a43-faf4-4de628b2a16f
 		summarizeBy: none
 		sourceColumn: Region_Lead
 
 	column Region_Sort
 		dataType: int64
-		lineageTag: reg-c-004
+		lineageTag: a1a296c2-d97f-af31-ff19-aa18ef60e438
 		summarizeBy: none
 		sourceColumn: Region_Sort
 
 	column Sub_Region_Sort
 		dataType: int64
-		lineageTag: reg-c-005
+		lineageTag: 448e329a-35ec-6af9-f131-d13384546845
 		summarizeBy: none
 		sourceColumn: Sub_Region_Sort
 

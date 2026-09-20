@@ -1,35 +1,35 @@
 table 'Win_Rate_Config'
-	lineageTag: wnr-001
+	lineageTag: 39c0cab7-197f-191f-3296-39b763eb1444
 
 	column Region
 		dataType: string
-		lineageTag: wnr-c-001
+		lineageTag: 6cff1af0-1598-6c0b-bcfc-e6c56c14e291
 		summarizeBy: none
 		sourceColumn: Region
 
 	column Product_Line
 		dataType: string
-		lineageTag: wnr-c-002
+		lineageTag: 917c4412-65ff-61c1-f110-9349ab8589d3
 		summarizeBy: none
 		sourceColumn: Product_Line
 
 	column Target_Win_Rate
 		dataType: double
-		lineageTag: wnr-c-003
+		lineageTag: aea1b754-092f-898b-7213-eaa32d34e28a
 		summarizeBy: average
 		sourceColumn: Target_Win_Rate
 		formatString: 0.0%
 
 	column Stretch_Win_Rate
 		dataType: double
-		lineageTag: wnr-c-004
+		lineageTag: 4e693f20-22b7-f192-3445-db7b13dea52c
 		summarizeBy: average
 		sourceColumn: Stretch_Win_Rate
 		formatString: 0.0%
 
 	column Coverage_Multiplier
 		dataType: double
-		lineageTag: wnr-c-005
+		lineageTag: 44263210-bf49-36e5-da86-2defdac4053e
 		summarizeBy: average
 		sourceColumn: Coverage_Multiplier
 		formatString: 0.0x

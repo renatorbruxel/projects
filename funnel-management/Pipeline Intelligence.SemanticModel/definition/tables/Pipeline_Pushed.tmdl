@@ -1,60 +1,60 @@
 table 'Pipeline_Pushed'
-	lineageTag: ppush-001
+	lineageTag: 8ff8eb0c-0217-1230-eff8-0cfabe06dff2
 
 	column Opportunity_ID
 		dataType: string
-		lineageTag: ppush-c-001
+		lineageTag: 8a3970a0-1c5f-c770-603e-75876dd0f2f8
 		summarizeBy: none
 		sourceColumn: Opportunity_ID
 
 	column Opportunity_Name
 		dataType: string
-		lineageTag: ppush-c-002
+		lineageTag: fd08422f-4127-0420-aa8f-e01ace3705ac
 		summarizeBy: none
 		sourceColumn: Opportunity_Name
 
 	column Seller_Name
 		dataType: string
-		lineageTag: ppush-c-003
+		lineageTag: 11ec2cce-c8d4-51b6-e755-6bca25ac43db
 		summarizeBy: none
 		sourceColumn: Seller_Name
 
 	column ARR_USD
 		dataType: double
-		lineageTag: ppush-c-004
+		lineageTag: b3c0dbec-e313-728e-8134-2639fdb4182e
 		summarizeBy: sum
 		sourceColumn: ARR_USD
 		formatString: $#,0
 
 	column Original_Close_Date
 		dataType: dateTime
-		lineageTag: ppush-c-005
+		lineageTag: 084ed7ce-f506-30bd-b16c-1881de3b35bd
 		summarizeBy: none
 		sourceColumn: Original_Close_Date
 		formatString: yyyy-MM-dd
 
 	column New_Close_Date
 		dataType: dateTime
-		lineageTag: ppush-c-006
+		lineageTag: 63f5ff74-4928-2d8c-5238-4f54b847efd8
 		summarizeBy: none
 		sourceColumn: New_Close_Date
 		formatString: yyyy-MM-dd
 
 	column Push_Reason
 		dataType: string
-		lineageTag: ppush-c-007
+		lineageTag: e9d9b1b7-cdf5-1aa1-3ee7-4a28387baf06
 		summarizeBy: none
 		sourceColumn: Push_Reason
 
 	column AKey
 		dataType: string
-		lineageTag: ppush-c-008
+		lineageTag: f11ee69f-00b7-1e70-dc4e-11518e33529f
 		summarizeBy: none
 		sourceColumn: AKey
 
 	column Days_Pushed
 		dataType: int64
-		lineageTag: ppush-c-009
+		lineageTag: d0b24bca-49b8-2c74-b531-c8f0e3cc1a28
 		summarizeBy: sum
 		expression = INT([New_Close_Date] - [Original_Close_Date])
 

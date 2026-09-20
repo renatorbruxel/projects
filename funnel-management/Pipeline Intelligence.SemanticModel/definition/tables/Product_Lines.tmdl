@@ -1,33 +1,33 @@
 table 'Product_Lines'
-	lineageTag: prdl-001
+	lineageTag: 24d3e986-bce3-2965-87b0-b08075e9fcd7
 
 	column Product_Line
 		dataType: string
-		lineageTag: prdl-c-001
+		lineageTag: 5a17dbcf-4375-9de6-20bb-19a5d62d3179
 		summarizeBy: none
 		sourceColumn: Product_Line
 
 	column Product_Category
 		dataType: string
-		lineageTag: prdl-c-002
+		lineageTag: 7c5e9be9-6abc-fd2b-82b2-575df560cf82
 		summarizeBy: none
 		sourceColumn: Product_Category
 
 	column ARR_Tier
 		dataType: string
-		lineageTag: prdl-c-003
+		lineageTag: 37da4b4d-4cfa-0812-b69b-874d0822234a
 		summarizeBy: none
 		sourceColumn: ARR_Tier
 
 	column Typical_Sales_Cycle_Days
 		dataType: int64
-		lineageTag: prdl-c-004
+		lineageTag: 8509fd14-7af7-371d-fd76-5e74c1a65151
 		summarizeBy: average
 		sourceColumn: Typical_Sales_Cycle_Days
 
 	column Product_Sort
 		dataType: int64
-		lineageTag: prdl-c-005
+		lineageTag: 2e0620ab-d6d6-095b-3007-39d57cba74aa
 		summarizeBy: none
 		sourceColumn: Product_Sort
 

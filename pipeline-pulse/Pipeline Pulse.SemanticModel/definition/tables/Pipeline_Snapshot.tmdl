@@ -1,71 +1,71 @@
 table 'Pipeline_Snapshot'
-	lineageTag: pss-001
+	lineageTag: 1f29afd4-7683-0307-b067-c2b87c32707c
 
 	column 'Snapshot_Date'
 		dataType: dateTime
-		lineageTag: pss-002
+		lineageTag: 2c84ae15-00d5-da88-d5e0-3c3d7eb7f404
 		summarizeBy: none
 		sourceColumn: Snapshot_Date
 		formatString: yyyy-MM-dd
 
 	column 'Region'
 		dataType: string
-		lineageTag: pss-003
+		lineageTag: e32f9ef6-572b-318e-1087-b222cd050d07
 		summarizeBy: none
 		sourceColumn: Region
 
 	column 'Sub_Region'
 		dataType: string
-		lineageTag: pss-004
+		lineageTag: b7095378-6c4b-676f-d5e1-5a50a8eae71e
 		summarizeBy: none
 		sourceColumn: Sub_Region
 
 	column 'Product_Line'
 		dataType: string
-		lineageTag: pss-005
+		lineageTag: decca47a-43b3-09fe-7bcb-eb0c26e2886a
 		summarizeBy: none
 		sourceColumn: Product_Line
 
 	column 'Forecast_Category'
 		dataType: string
-		lineageTag: pss-006
+		lineageTag: 7605cb94-1b65-e21c-9680-e298c2af66af
 		summarizeBy: none
 		sourceColumn: Forecast_Category
 
 	column 'Stage'
 		dataType: string
-		lineageTag: pss-007
+		lineageTag: db138426-ad52-642f-c087-75a0c82f45ea
 		summarizeBy: none
 		sourceColumn: Stage
 
 	column 'Quarter'
 		dataType: string
-		lineageTag: pss-008
+		lineageTag: 78aefc2a-09f7-7d5d-e83b-40bece77e529
 		summarizeBy: none
 		sourceColumn: Quarter
 
 	column 'Year'
 		dataType: int64
-		lineageTag: pss-009
+		lineageTag: e8186cca-8c4f-668b-6e6c-ff58e47b89e5
 		summarizeBy: none
 		sourceColumn: Year
 
 	column 'Total_ARR'
 		dataType: double
-		lineageTag: pss-010
+		lineageTag: 332bcd18-5a0e-4c3d-b4ae-e6a90ff79b96
 		summarizeBy: sum
 		sourceColumn: Total_ARR
 		formatString: $#,0
 
 	column 'Opportunity_Count'
 		dataType: int64
-		lineageTag: pss-011
+		lineageTag: 0f1f64f5-2c47-94d6-43c5-33db4fb3e92d
 		summarizeBy: sum
 		sourceColumn: Opportunity_Count
 
 	column 'Territory'
 		dataType: string
-		lineageTag: pss-012
+		lineageTag: 282f52eb-0684-3391-02a2-e3240ba9070a
 		summarizeBy: none
 		sourceColumn: Territory
 

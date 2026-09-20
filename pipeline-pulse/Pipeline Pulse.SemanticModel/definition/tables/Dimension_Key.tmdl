@@ -1,34 +1,34 @@
 table 'Dimension_Key'
-	lineageTag: dky-001
+	lineageTag: 23269b79-9f91-f63e-7366-33685a051050
 
 	column 'AKey'
 		dataType: string
-		lineageTag: dky-002
+		lineageTag: b733f343-92eb-764d-f7a3-cd9b1a54b9a3
 		summarizeBy: none
 		isKey
 		sourceColumn: AKey
 
 	column 'Region'
 		dataType: string
-		lineageTag: dky-003
+		lineageTag: 8b556971-d2e9-45b5-af06-56eadadfd468
 		summarizeBy: none
 		sourceColumn: Region
 
 	column 'Sub_Region'
 		dataType: string
-		lineageTag: dky-004
+		lineageTag: 7aca43c1-a1c3-c1fa-b899-ef00790e3b6c
 		summarizeBy: none
 		sourceColumn: Sub_Region
 
 	column 'Product_Line'
 		dataType: string
-		lineageTag: dky-005
+		lineageTag: 55fd3802-b4b7-517a-9213-02a501d49544
 		summarizeBy: none
 		sourceColumn: Product_Line
 
 	column 'Market'
 		dataType: string
-		lineageTag: dky-006
+		lineageTag: 76a0b436-a7a7-e995-c4cd-8a579f4baffd
 		summarizeBy: none
 		sourceColumn: Market
 

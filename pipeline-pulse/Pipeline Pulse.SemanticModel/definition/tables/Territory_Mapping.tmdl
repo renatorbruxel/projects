@@ -1,52 +1,52 @@
 table 'Territory_Mapping'
-	lineageTag: trm-001
+	lineageTag: f749dd9f-4e5e-c7d8-0e85-0a9d57b6d01e
 
 	column 'Territory'
 		dataType: string
-		lineageTag: trm-002
+		lineageTag: ab30772f-d1b9-0c60-ea83-73f5f00d1889
 		summarizeBy: none
 		isKey
 		sourceColumn: Territory
 
 	column 'Seller_Email'
 		dataType: string
-		lineageTag: trm-003
+		lineageTag: c5a05639-9a16-7071-c1c1-ce1add0520e1
 		summarizeBy: none
 		sourceColumn: Seller_Email
 
 	column 'Seller_Name'
 		dataType: string
-		lineageTag: trm-004
+		lineageTag: 3cd42851-4449-69fe-9f68-623121d9c444
 		summarizeBy: none
 		sourceColumn: Seller_Name
 
 	column 'Region'
 		dataType: string
-		lineageTag: trm-005
+		lineageTag: 4cbd038d-596f-f6b5-0a7e-6ba3788bd015
 		summarizeBy: none
 		sourceColumn: Region
 
 	column 'Sub_Region'
 		dataType: string
-		lineageTag: trm-006
+		lineageTag: 64d304ae-4284-35ea-a039-e56bfafae49b
 		summarizeBy: none
 		sourceColumn: Sub_Region
 
 	column 'Market'
 		dataType: string
-		lineageTag: trm-007
+		lineageTag: ed554a09-cf89-6d80-f906-dabd01d973e1
 		summarizeBy: none
 		sourceColumn: Market
 
 	column 'Account_Segment'
 		dataType: string
-		lineageTag: trm-008
+		lineageTag: 9b754b8c-5161-5f2d-7de3-c9581358c88e
 		summarizeBy: none
 		sourceColumn: Account_Segment
 
 	column 'AOP_Territory_ARR'
 		dataType: double
-		lineageTag: trm-009
+		lineageTag: cbac12cf-e68f-4291-835d-c9f8147952b4
 		summarizeBy: sum
 		sourceColumn: AOP_Territory_ARR
 		formatString: $#,0

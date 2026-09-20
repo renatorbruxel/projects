@@ -1,40 +1,40 @@
 table 'Conversion_Rate'
-	lineageTag: cvr-001
+	lineageTag: af325b71-a97f-4d60-9f5e-2cd0c3022b5a
 
 	column 'From_Stage'
 		dataType: string
-		lineageTag: cvr-002
+		lineageTag: e9310b7a-6185-aa51-0ca9-36bf702cc97e
 		summarizeBy: none
 		sourceColumn: From_Stage
 
 	column 'To_Stage'
 		dataType: string
-		lineageTag: cvr-003
+		lineageTag: fd75f8a0-b315-1eaf-d1ef-b82da5d02911
 		summarizeBy: none
 		sourceColumn: To_Stage
 
 	column 'Product_Line'
 		dataType: string
-		lineageTag: cvr-004
+		lineageTag: 84216369-5361-e6da-5842-934bab2a96aa
 		summarizeBy: none
 		sourceColumn: Product_Line
 
 	column 'Market'
 		dataType: string
-		lineageTag: cvr-005
+		lineageTag: 520d6a26-cacb-1641-a185-5f682e17dd77
 		summarizeBy: none
 		sourceColumn: Market
 
 	column 'Conversion_%'
 		dataType: double
-		lineageTag: cvr-006
+		lineageTag: 66c068ae-f5b3-bfb6-257c-af5952268fe2
 		summarizeBy: average
 		sourceColumn: Conversion_%
 		formatString: 0.0%
 
 	column 'Avg_Days_in_Stage'
 		dataType: int64
-		lineageTag: cvr-007
+		lineageTag: 913f2a39-b47f-c366-040e-bd97e80f5729
 		summarizeBy: average
 		sourceColumn: Avg_Days_in_Stage
 

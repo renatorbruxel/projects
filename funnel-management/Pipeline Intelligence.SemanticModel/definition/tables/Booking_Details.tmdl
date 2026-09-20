@@ -1,47 +1,47 @@
 table 'Booking_Details'
-	lineageTag: bkd-001
+	lineageTag: 3eb22ff4-01a3-a78d-2f3f-3de72eb6dc26
 
 	column Booking_Detail_ID
 		dataType: string
-		lineageTag: bkd-c-001
+		lineageTag: a0e50034-72c8-da18-69a1-91b41ceff893
 		summarizeBy: none
 		sourceColumn: Booking_Detail_ID
 
 	column Opportunity_ID
 		dataType: string
-		lineageTag: bkd-c-002
+		lineageTag: ab132676-42d5-c38b-9507-873b0e421b93
 		summarizeBy: none
 		sourceColumn: Opportunity_ID
 
 	column Booking_Date
 		dataType: dateTime
-		lineageTag: bkd-c-003
+		lineageTag: 3e5c594f-bec9-0558-321a-89e7a2043957
 		summarizeBy: none
 		sourceColumn: Booking_Date
 		formatString: yyyy-MM-dd
 
 	column Booking_ARR
 		dataType: double
-		lineageTag: bkd-c-004
+		lineageTag: 13169170-1b93-2598-8e19-349aa47e7f67
 		summarizeBy: sum
 		sourceColumn: Booking_ARR
 		formatString: $#,0
 
 	column Booking_Type
 		dataType: string
-		lineageTag: bkd-c-005
+		lineageTag: e41b2c36-1272-49ba-5e52-84f69e56a429
 		summarizeBy: none
 		sourceColumn: Booking_Type
 
 	column Product_Line
 		dataType: string
-		lineageTag: bkd-c-006
+		lineageTag: 8dd3c3fc-d067-f4d6-ff18-2f5b44b431bc
 		summarizeBy: none
 		sourceColumn: Product_Line
 
 	column Is_Renewal
 		dataType: boolean
-		lineageTag: bkd-c-007
+		lineageTag: 89760542-3c08-f93c-7251-673c3fe8a062
 		summarizeBy: none
 		sourceColumn: Is_Renewal
 

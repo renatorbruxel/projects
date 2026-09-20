@@ -1,35 +1,35 @@
 table 'Forecast_Categories'
-	lineageTag: fct-001
+	lineageTag: 39162085-55aa-c1c4-77fe-79c5f727e911
 
 	column 'Forecast_Category'
 		dataType: string
-		lineageTag: fct-002
+		lineageTag: 1695232b-c64c-6657-16d9-48f24ce7aedc
 		summarizeBy: none
 		isKey
 		sourceColumn: Forecast_Category
 
 	column 'Display_Name'
 		dataType: string
-		lineageTag: fct-003
+		lineageTag: 90789ce1-86f9-e65e-0475-cb94a6a8d50f
 		summarizeBy: none
 		sourceColumn: Display_Name
 
 	column 'Probability_%'
 		dataType: double
-		lineageTag: fct-004
+		lineageTag: 8e7f962d-fd03-e002-2b4d-e996a531227d
 		summarizeBy: none
 		sourceColumn: Probability_%
 		formatString: 0%
 
 	column 'Order'
 		dataType: int64
-		lineageTag: fct-005
+		lineageTag: 6146b775-c9cb-4d79-dc1a-88a31e8ab36c
 		summarizeBy: none
 		sourceColumn: Order
 
 	column 'Include_in_Forecast'
 		dataType: boolean
-		lineageTag: fct-006
+		lineageTag: 814f0da0-ecf8-090f-15b4-849f589c47a5
 		summarizeBy: none
 		sourceColumn: Include_in_Forecast
 

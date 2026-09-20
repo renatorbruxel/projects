@@ -1,9 +1,9 @@
 table 'Calendar'
-	lineageTag: cal-001
+	lineageTag: 5a87a4ce-a285-ee7f-543e-771571fd79f3
 
 	column 'Date'
 		dataType: dateTime
-		lineageTag: cal-002
+		lineageTag: a7e0e13f-0540-6533-7106-a766bda9fd52
 		summarizeBy: none
 		isKey
 		sourceColumn: Date
@@ -11,38 +11,38 @@ table 'Calendar'
 
 	calculatedColumn 'Year'
 		dataType: int64
-		lineageTag: cal-003
+		lineageTag: dd8318a2-334d-948d-9247-95c701b6d356
 		summarizeBy: none
 		expression = YEAR([Date])
 
 	calculatedColumn 'Quarter'
 		dataType: int64
-		lineageTag: cal-004
+		lineageTag: b0758b7c-3a9c-36bd-2463-46c6dfab789c
 		summarizeBy: none
 		expression = QUARTER([Date])
 
 	calculatedColumn 'Month'
 		dataType: int64
-		lineageTag: cal-005
+		lineageTag: a3871708-2ca9-26ee-7581-87eda38de2a0
 		summarizeBy: none
 		expression = MONTH([Date])
 
 	calculatedColumn 'MonthName'
 		dataType: string
-		lineageTag: cal-006
+		lineageTag: 6f8f43ec-e063-e6ca-a0f4-295d7e072663
 		summarizeBy: none
 		sortByColumn: Month
 		expression = FORMAT([Date], "MMM")
 
 	calculatedColumn 'WeekNum'
 		dataType: int64
-		lineageTag: cal-007
+		lineageTag: 7b33ae03-a3ad-dbba-a9cc-a945a30798a6
 		summarizeBy: none
 		expression = WEEKNUM([Date], 2)
 
 	calculatedColumn 'Is_Current_Quarter'
 		dataType: boolean
-		lineageTag: cal-008
+		lineageTag: 16287342-4889-ea00-1b74-ec8194e686a6
 		summarizeBy: none
 		expression =
 				QUARTER([Date]) = QUARTER(TODAY())
@@ -50,7 +50,7 @@ table 'Calendar'
 
 	calculatedColumn 'Days_Remaining_in_Quarter'
 		dataType: int64
-		lineageTag: cal-009
+		lineageTag: 07f9db9e-383c-6409-6478-c50a76d00876
 		summarizeBy: none
 		expression =
 				VAR _qEnd =
@@ -66,13 +66,13 @@ table 'Calendar'
 
 	calculatedColumn 'Quarter_Label'
 		dataType: string
-		lineageTag: cal-010
+		lineageTag: 76ea40de-f3b9-7323-fc84-c7b89d6055de
 		summarizeBy: none
 		expression = "Q" & QUARTER([Date]) & " " & YEAR([Date])
 
 	calculatedColumn 'Month_Label'
 		dataType: string
-		lineageTag: cal-011
+		lineageTag: e84d14c1-066b-da18-af0b-709cd5c31650
 		summarizeBy: none
 		expression = FORMAT([Date], "MMM YY")
 

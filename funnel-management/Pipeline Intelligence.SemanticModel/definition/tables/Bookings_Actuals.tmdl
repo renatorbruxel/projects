@@ -1,82 +1,82 @@
 table 'Bookings_Actuals'
-	lineageTag: bka-001
+	lineageTag: 0864185a-0304-7bfe-b335-297dcb421b80
 
 	column Region
 		dataType: string
-		lineageTag: bka-c-001
+		lineageTag: 25df00f3-721c-668f-e223-a4fd5474b66a
 		summarizeBy: none
 		sourceColumn: Region
 
 	column Sub_Region
 		dataType: string
-		lineageTag: bka-c-002
+		lineageTag: 2e043101-b95a-b766-9e03-46dbe8ca6f28
 		summarizeBy: none
 		sourceColumn: Sub_Region
 
 	column Product_Line
 		dataType: string
-		lineageTag: bka-c-003
+		lineageTag: 8883122b-0a57-5b86-76c8-3da85a37c4bc
 		summarizeBy: none
 		sourceColumn: Product_Line
 
 	column Market
 		dataType: string
-		lineageTag: bka-c-004
+		lineageTag: be4c2ba3-cd86-a051-02ca-b06604a73b16
 		summarizeBy: none
 		sourceColumn: Market
 
 	column Booking_Date
 		dataType: dateTime
-		lineageTag: bka-c-005
+		lineageTag: 54fde999-aedc-7665-2306-d1a67d47a62b
 		summarizeBy: none
 		sourceColumn: Booking_Date
 		formatString: yyyy-MM-dd
 
 	column AOP_Bookings
 		dataType: double
-		lineageTag: bka-c-006
+		lineageTag: ed6f2fb6-6b91-e5db-acb3-06b93bcad981
 		summarizeBy: sum
 		sourceColumn: AOP_Bookings
 		formatString: $#,0
 
 	column Q1FC_Bookings
 		dataType: double
-		lineageTag: bka-c-007
+		lineageTag: 42394b62-d168-05f5-ff0e-553d920b4ca1
 		summarizeBy: sum
 		sourceColumn: Q1FC_Bookings
 		formatString: $#,0
 
 	column Q2FC_Bookings
 		dataType: double
-		lineageTag: bka-c-008
+		lineageTag: e8fb1062-02c7-f79a-7a38-8643c94de0f6
 		summarizeBy: sum
 		sourceColumn: Q2FC_Bookings
 		formatString: $#,0
 
 	column Q3FC_Bookings
 		dataType: double
-		lineageTag: bka-c-009
+		lineageTag: 6ecaaf23-2988-6afe-7a5e-d534f4a4df1f
 		summarizeBy: sum
 		sourceColumn: Q3FC_Bookings
 		formatString: $#,0
 
 	column Q4FC_Bookings
 		dataType: double
-		lineageTag: bka-c-010
+		lineageTag: bb22f3dd-6d04-420b-589a-0a73590f4714
 		summarizeBy: sum
 		sourceColumn: Q4FC_Bookings
 		formatString: $#,0
 
 	column Actual_Bookings
 		dataType: double
-		lineageTag: bka-c-011
+		lineageTag: 2d982f2b-f570-8b4b-f045-20831cd72c9f
 		summarizeBy: sum
 		sourceColumn: Actual_Bookings
 		formatString: $#,0
 
 	column AKey
 		dataType: string
-		lineageTag: bka-c-012
+		lineageTag: aa09123e-ba82-587c-d1d3-a1195a965b6a
 		summarizeBy: none
 		sourceColumn: AKey
 

@@ -1,164 +1,164 @@
 table 'Pipeline'
-	lineageTag: pip-001
+	lineageTag: 7933ade9-4c52-2bb0-071b-79d3d09698a7
 
 	column 'Opportunity_ID'
 		dataType: string
-		lineageTag: pip-002
+		lineageTag: 4992a6c6-4be9-4d8a-b808-f251755779e2
 		summarizeBy: none
 		sourceColumn: Opportunity_ID
 
 	column 'Opportunity_Name'
 		dataType: string
-		lineageTag: pip-003
+		lineageTag: 514d081c-349c-93f2-2e93-e9bb113a7f22
 		summarizeBy: none
 		sourceColumn: Opportunity_Name
 
 	column 'Account_Name'
 		dataType: string
-		lineageTag: pip-004
+		lineageTag: 0df6ad8a-19b6-abdb-c77c-5586f7f3e859
 		summarizeBy: none
 		sourceColumn: Account_Name
 
 	column 'Seller_Name'
 		dataType: string
-		lineageTag: pip-005
+		lineageTag: 24b0eb43-3dc3-d305-99c3-2416697cdc47
 		summarizeBy: none
 		sourceColumn: Seller_Name
 
 	column 'Seller_Email'
 		dataType: string
-		lineageTag: pip-006
+		lineageTag: 97d1957c-c350-9eb0-dba7-ccddb86c9a82
 		summarizeBy: none
 		sourceColumn: Seller_Email
 
 	column 'Manager_Email'
 		dataType: string
-		lineageTag: pip-007
+		lineageTag: a65119e4-7ff2-6450-7709-d5d5209792cf
 		summarizeBy: none
 		sourceColumn: Manager_Email
 
 	column 'Region'
 		dataType: string
-		lineageTag: pip-008
+		lineageTag: 5135587b-dac4-6794-e0c3-0bced6a9e802
 		summarizeBy: none
 		sourceColumn: Region
 
 	column 'Sub_Region'
 		dataType: string
-		lineageTag: pip-009
+		lineageTag: 3fdeb9e6-f93c-7df4-d0b9-fc55c9dcb70a
 		summarizeBy: none
 		sourceColumn: Sub_Region
 
 	column 'Market'
 		dataType: string
-		lineageTag: pip-010
+		lineageTag: e9a035f6-21df-7705-23b5-5543fdd0cf31
 		summarizeBy: none
 		sourceColumn: Market
 
 	column 'Product_Line'
 		dataType: string
-		lineageTag: pip-011
+		lineageTag: 3dea8a0a-b1a0-6f9f-6877-4dc23d089341
 		summarizeBy: none
 		sourceColumn: Product_Line
 
 	column 'Territory'
 		dataType: string
-		lineageTag: pip-012
+		lineageTag: 4c19fb34-07ba-93dc-7cda-e3f3361dddca
 		summarizeBy: none
 		sourceColumn: Territory
 
 	column 'Stage'
 		dataType: string
-		lineageTag: pip-013
+		lineageTag: 745d7a48-b6ed-7baa-3f54-c3a2049d89fe
 		summarizeBy: none
 		sourceColumn: Stage
 
 	column 'Forecast_Category'
 		dataType: string
-		lineageTag: pip-014
+		lineageTag: f2ec3d62-364d-b1a0-5b7a-65e96d50141e
 		summarizeBy: none
 		sourceColumn: Forecast_Category
 
 	column 'Is_Won_Loss_Open'
 		dataType: string
-		lineageTag: pip-015
+		lineageTag: c88beb1d-0819-5e88-af53-f8ca196567bb
 		summarizeBy: none
 		sourceColumn: Is_Won_Loss_Open
 
 	column 'ARR_USD'
 		dataType: double
-		lineageTag: pip-016
+		lineageTag: f51b055f-824f-1dd0-b0cd-aa81a4457563
 		summarizeBy: sum
 		sourceColumn: ARR_USD
 		formatString: $#,0
 
 	column 'Close_Date'
 		dataType: dateTime
-		lineageTag: pip-017
+		lineageTag: 048ffc53-6aae-ae15-287f-e2e8d269e90f
 		summarizeBy: none
 		sourceColumn: Close_Date
 		formatString: yyyy-MM-dd
 
 	column 'Created_Date'
 		dataType: dateTime
-		lineageTag: pip-018
+		lineageTag: 4d719f11-d68a-e7c5-c071-f2b67219ec7c
 		summarizeBy: none
 		sourceColumn: Created_Date
 		formatString: yyyy-MM-dd
 
 	column 'Last_Modified_Date'
 		dataType: dateTime
-		lineageTag: pip-019
+		lineageTag: 5fd5ce71-2f02-f8b0-fc12-8bafe71a98e9
 		summarizeBy: none
 		sourceColumn: Last_Modified_Date
 		formatString: yyyy-MM-dd
 
 	column 'Last_Activity_Date'
 		dataType: dateTime
-		lineageTag: pip-020
+		lineageTag: e075d969-6184-fa0d-7a91-615f501a8bf5
 		summarizeBy: none
 		sourceColumn: Last_Activity_Date
 		formatString: yyyy-MM-dd
 
 	column 'Days_Since_Last_Activity'
 		dataType: int64
-		lineageTag: pip-021
+		lineageTag: c491b814-ccec-4869-8abb-f24ea64e112b
 		summarizeBy: average
 		sourceColumn: Days_Since_Last_Activity
 
 	column 'Is_Overdue'
 		dataType: boolean
-		lineageTag: pip-022
+		lineageTag: 777c712a-8b93-2cc0-830f-c78a8a07c1a5
 		summarizeBy: none
 		sourceColumn: Is_Overdue
 
 	column 'Is_Healthy'
 		dataType: boolean
-		lineageTag: pip-023
+		lineageTag: 5c982c6f-93ab-52b8-d6a1-8c3d86fed8f0
 		summarizeBy: none
 		sourceColumn: Is_Healthy
 
 	column 'Is_Net_New'
 		dataType: boolean
-		lineageTag: pip-024
+		lineageTag: fb3a8790-bc8a-bf43-0b58-cc3a1045e975
 		summarizeBy: none
 		sourceColumn: Is_Net_New
 
 	column 'Is_Push_Out'
 		dataType: boolean
-		lineageTag: pip-025
+		lineageTag: 8f52a5c4-faa5-e0d1-f706-454802a81aba
 		summarizeBy: none
 		sourceColumn: Is_Push_Out
 
 	column 'AKey'
 		dataType: string
-		lineageTag: pip-026
+		lineageTag: 7acb915c-b3df-260e-74ad-56b6845274d2
 		summarizeBy: none
 		sourceColumn: AKey
 
 	calculatedColumn 'Quarter_Bucket'
 		dataType: string
-		lineageTag: pip-027
+		lineageTag: 609f53a0-2f71-17dc-24cb-fd320063dca4
 		summarizeBy: none
 		expression =
 				IF(

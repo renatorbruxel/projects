@@ -1,115 +1,115 @@
 table 'Pipeline'
-	lineageTag: pip-001
+	lineageTag: b1e61f50-85f6-a4f1-75a1-6d84088135a6
 
 	column Opportunity_ID
 		dataType: string
-		lineageTag: pip-c-001
+		lineageTag: 445aebe9-0bf3-2843-74c4-02f7e9493c5f
 		summarizeBy: none
 		sourceColumn: Opportunity_ID
 
 	column Opportunity_Name
 		dataType: string
-		lineageTag: pip-c-002
+		lineageTag: fe4eae80-eaea-f58f-af50-5fc3967689e9
 		summarizeBy: none
 		sourceColumn: Opportunity_Name
 
 	column Seller_Name
 		dataType: string
-		lineageTag: pip-c-003
+		lineageTag: 34a94878-b357-fc53-05c8-acd9dca5f380
 		summarizeBy: none
 		sourceColumn: Seller_Name
 
 	column Region
 		dataType: string
-		lineageTag: pip-c-004
+		lineageTag: c7804d1d-edc4-531a-3eb2-60b0f00fcad9
 		summarizeBy: none
 		sourceColumn: Region
 
 	column Sub_Region
 		dataType: string
-		lineageTag: pip-c-005
+		lineageTag: d7a245ac-3624-ef26-6066-7587e30bd5d2
 		summarizeBy: none
 		sourceColumn: Sub_Region
 
 	column Product_Line
 		dataType: string
-		lineageTag: pip-c-006
+		lineageTag: 61f3e0e3-dec8-3ddd-0f51-db20c8cd1e00
 		summarizeBy: none
 		sourceColumn: Product_Line
 
 	column Market
 		dataType: string
-		lineageTag: pip-c-007
+		lineageTag: d6691667-cdfe-dadb-8136-78924eaff497
 		summarizeBy: none
 		sourceColumn: Market
 
 	column Country
 		dataType: string
-		lineageTag: pip-c-008
+		lineageTag: 6b45251a-c282-7dc8-9cf1-ec58df7d683b
 		summarizeBy: none
 		sourceColumn: Country
 
 	column Stage
 		dataType: string
-		lineageTag: pip-c-009
+		lineageTag: 6930642e-39a6-e3df-d412-f2d096a137b5
 		summarizeBy: none
 		sourceColumn: Stage
 
 	column Forecast_Category
 		dataType: string
-		lineageTag: pip-c-010
+		lineageTag: 3b8cbe53-f30b-809f-b5e8-726140351fd0
 		summarizeBy: none
 		sourceColumn: Forecast_Category
 
 	column ARR_USD
 		dataType: double
-		lineageTag: pip-c-011
+		lineageTag: cf001979-4fde-dabb-8c9a-d89855abe62f
 		summarizeBy: sum
 		sourceColumn: ARR_USD
 		formatString: $#,0
 
 	column Close_Date
 		dataType: dateTime
-		lineageTag: pip-c-012
+		lineageTag: 550400fc-d32c-abcf-4666-3caca3396d58
 		summarizeBy: none
 		sourceColumn: Close_Date
 		formatString: yyyy-MM-dd
 
 	column Created_Date
 		dataType: dateTime
-		lineageTag: pip-c-013
+		lineageTag: 25094d13-f73b-b454-2a1e-3df59d7a5cd5
 		summarizeBy: none
 		sourceColumn: Created_Date
 		formatString: yyyy-MM-dd
 
 	column Last_Modified_Date
 		dataType: dateTime
-		lineageTag: pip-c-014
+		lineageTag: f55c4b72-3fad-00a4-4b44-3f47fc2ddd9c
 		summarizeBy: none
 		sourceColumn: Last_Modified_Date
 		formatString: yyyy-MM-dd
 
 	column Is_Overdue
 		dataType: boolean
-		lineageTag: pip-c-015
+		lineageTag: 9ddab8b2-260c-8f74-fc3b-cfee9d1b6e1a
 		summarizeBy: none
 		sourceColumn: Is_Overdue
 
 	column Is_Won
 		dataType: boolean
-		lineageTag: pip-c-016
+		lineageTag: 1d50952f-91b0-e125-ab3f-ef7a89f89266
 		summarizeBy: none
 		sourceColumn: Is_Won
 
 	column Is_Net_New
 		dataType: boolean
-		lineageTag: pip-c-017
+		lineageTag: f6134214-17b3-e81d-3d07-02a794a54c01
 		summarizeBy: none
 		sourceColumn: Is_Net_New
 
 	column AKey
 		dataType: string
-		lineageTag: pip-c-018
+		lineageTag: 972592f9-16a0-059a-e03c-800cee6e7575
 		summarizeBy: none
 		type: calculated
 		expression = [Region] & [Sub_Region] & [Product_Line] & [Market]

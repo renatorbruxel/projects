@@ -1,41 +1,41 @@
 table 'Pipeline_Snapshot'
-	lineageTag: psnap-001
+	lineageTag: fc9924ba-9841-4951-ed3b-d1eb0bd88b2f
 
 	column Snapshot_Date
 		dataType: dateTime
-		lineageTag: psnap-c-001
+		lineageTag: fb189e60-78bc-9ddb-c5b8-fc145a06fc0e
 		summarizeBy: none
 		sourceColumn: Snapshot_Date
 		formatString: yyyy-MM-dd
 
 	column Region
 		dataType: string
-		lineageTag: psnap-c-002
+		lineageTag: 98411db6-983b-c7e7-3c3d-bbc3ea156dee
 		summarizeBy: none
 		sourceColumn: Region
 
 	column Stage
 		dataType: string
-		lineageTag: psnap-c-003
+		lineageTag: 5be9fb82-eaef-f51a-9313-06567686da7d
 		summarizeBy: none
 		sourceColumn: Stage
 
 	column Pipeline_ARR
 		dataType: double
-		lineageTag: psnap-c-004
+		lineageTag: d03197c8-b28c-a181-1744-a8bc02d06e22
 		summarizeBy: sum
 		sourceColumn: Pipeline_ARR
 		formatString: $#,0
 
 	column Opportunity_Count
 		dataType: int64
-		lineageTag: psnap-c-005
+		lineageTag: c879d564-c748-fff8-8451-8db3dc30b239
 		summarizeBy: sum
 		sourceColumn: Opportunity_Count
 
 	column AKey
 		dataType: string
-		lineageTag: psnap-c-006
+		lineageTag: bc8f5f93-a723-8d01-093c-77fdd8faf245
 		summarizeBy: none
 		sourceColumn: AKey
 

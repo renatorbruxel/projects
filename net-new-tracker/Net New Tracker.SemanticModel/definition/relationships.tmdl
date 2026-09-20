@@ -1,25 +1,15 @@
-relationship 'b1a2c3d4-e5f6-7890-abcd-ef1234567801'
-	fromTable: Net_New_Transactions
-	fromColumn: Market
-	toTable: Regions
-	toColumn: Market
+relationship rel_001
+	fromColumn: Net_New_Transactions.Market
+	toColumn: Regions.Market
 
-relationship 'b1a2c3d4-e5f6-7890-abcd-ef1234567802'
-	fromTable: Net_New_Transactions
-	fromColumn: Product_Line_Code
-	toTable: Product_Lines
-	toColumn: Code
+relationship rel_002
+	fromColumn: Net_New_Transactions.Product_Line_Code
+	toColumn: Product_Lines.Code
 
-relationship 'b1a2c3d4-e5f6-7890-abcd-ef1234567803'
-	fromTable: Net_New_Transactions
-	fromColumn: Opportunity_ID
-	toTable: Opportunity_Pipeline
-	toColumn: Opportunity_ID
-	crossFilteringBehavior: bothDirections
-	joinOnDateBehavior: datePartOnly
+relationship rel_003
+	fromColumn: Net_New_Transactions.Opportunity_ID
+	toColumn: Opportunity_Pipeline.Opportunity_ID
 
-relationship 'b1a2c3d4-e5f6-7890-abcd-ef1234567804'
-	fromTable: Net_New_Transactions
-	fromColumn: Transaction_Date
-	toTable: Calendar
-	toColumn: Date
+relationship rel_004
+	fromColumn: Net_New_Transactions.Transaction_Date
+	toColumn: Calendar.Date

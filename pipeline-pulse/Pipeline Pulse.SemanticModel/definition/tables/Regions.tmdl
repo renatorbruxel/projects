@@ -1,40 +1,40 @@
 table 'Regions'
-	lineageTag: rgn-001
+	lineageTag: 201035bd-bc53-fa3c-6bca-75de748f5cb4
 
 	column 'Region'
 		dataType: string
-		lineageTag: rgn-002
+		lineageTag: 07317175-edfa-9c45-d320-000a3c6325ec
 		summarizeBy: none
 		isKey
 		sourceColumn: Region
 
 	column 'Sub_Region'
 		dataType: string
-		lineageTag: rgn-003
+		lineageTag: 8fb1ab89-7d35-09be-a143-d376cfc7a5c9
 		summarizeBy: none
 		sourceColumn: Sub_Region
 
 	column 'Region_Head'
 		dataType: string
-		lineageTag: rgn-004
+		lineageTag: 7eec0127-6028-c79f-abc7-96138b3ed26a
 		summarizeBy: none
 		sourceColumn: Region_Head
 
 	column 'Region_Head_Email'
 		dataType: string
-		lineageTag: rgn-005
+		lineageTag: cdf64de7-bf1d-0514-143f-849c783c238f
 		summarizeBy: none
 		sourceColumn: Region_Head_Email
 
 	column 'Geo'
 		dataType: string
-		lineageTag: rgn-006
+		lineageTag: 55e777ff-da70-cebe-cfe0-9d433d6e6fa1
 		summarizeBy: none
 		sourceColumn: Geo
 
 	column 'FY26_ARR_Target'
 		dataType: double
-		lineageTag: rgn-007
+		lineageTag: 0190a375-d8a1-5aff-f52e-c564a1e96334
 		summarizeBy: sum
 		sourceColumn: FY26_ARR_Target
 		formatString: $#,0,,\M

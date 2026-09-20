@@ -1,40 +1,40 @@
 table 'Territories'
-	lineageTag: ter-001
+	lineageTag: 0eeb0ad3-5b6d-75b6-b73d-2138cc3788f1
 
 	column 'Territory'
 		dataType: string
-		lineageTag: ter-002
+		lineageTag: 18560df1-7bb5-f68a-8eff-fe84df7e3012
 		summarizeBy: none
 		isKey
 		sourceColumn: Territory
 
 	column 'Territory_Name'
 		dataType: string
-		lineageTag: ter-003
+		lineageTag: 51e98614-10b0-82e1-ea1e-f06dc3ba9733
 		summarizeBy: none
 		sourceColumn: Territory_Name
 
 	column 'Region'
 		dataType: string
-		lineageTag: ter-004
+		lineageTag: 417eefc5-a3a1-90f1-e77c-24a7c852c035
 		summarizeBy: none
 		sourceColumn: Region
 
 	column 'Sub_Region'
 		dataType: string
-		lineageTag: ter-005
+		lineageTag: 08b92bc3-7359-61b3-04de-a9f2f646e3a2
 		summarizeBy: none
 		sourceColumn: Sub_Region
 
 	column 'Account_Segment'
 		dataType: string
-		lineageTag: ter-006
+		lineageTag: 4b6237ab-6a22-f9c8-4ba4-503f23bdf313
 		summarizeBy: none
 		sourceColumn: Account_Segment
 
 	column 'AOP_ARR'
 		dataType: double
-		lineageTag: ter-007
+		lineageTag: f0a9bc2d-61e2-0737-2e27-215166ee9993
 		summarizeBy: sum
 		sourceColumn: AOP_ARR
 		formatString: $#,0

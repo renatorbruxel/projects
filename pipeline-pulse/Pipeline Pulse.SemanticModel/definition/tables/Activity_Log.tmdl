@@ -1,60 +1,60 @@
 table 'Activity_Log'
-	lineageTag: act-001
+	lineageTag: 5eaf6524-f157-e17c-0d4a-96bebf8253b6
 
 	column 'Activity_ID'
 		dataType: string
-		lineageTag: act-002
+		lineageTag: 5accfac1-689a-6e09-2cab-de55d99961e5
 		summarizeBy: none
 		isKey
 		sourceColumn: Activity_ID
 
 	column 'Opportunity_ID'
 		dataType: string
-		lineageTag: act-003
+		lineageTag: c4e469dc-0844-c2d6-fe67-78bee8e78bf5
 		summarizeBy: none
 		sourceColumn: Opportunity_ID
 
 	column 'Seller_Email'
 		dataType: string
-		lineageTag: act-004
+		lineageTag: 207f4063-13c1-46ea-e19d-a73c9cf14144
 		summarizeBy: none
 		sourceColumn: Seller_Email
 
 	column 'Subject'
 		dataType: string
-		lineageTag: act-005
+		lineageTag: c9c7f925-40f3-b799-98c3-f46ac3078bd7
 		summarizeBy: none
 		sourceColumn: Subject
 
 	column 'Activity_Type'
 		dataType: string
-		lineageTag: act-006
+		lineageTag: 19ea4b50-25f4-dec1-cf36-2b8b3944f4d6
 		summarizeBy: none
 		sourceColumn: Activity_Type
 
 	column 'Activity_Date'
 		dataType: dateTime
-		lineageTag: act-007
+		lineageTag: 11f34f3d-b1ab-d5a3-ce3f-1efe0a9acf92
 		summarizeBy: none
 		sourceColumn: Activity_Date
 		formatString: yyyy-MM-dd
 
 	column 'Created_Date'
 		dataType: dateTime
-		lineageTag: act-008
+		lineageTag: cc46ddb1-26f7-e4bd-6c08-6cd4d896faf2
 		summarizeBy: none
 		sourceColumn: Created_Date
 		formatString: yyyy-MM-dd
 
 	column 'Status'
 		dataType: string
-		lineageTag: act-009
+		lineageTag: cc3e7e70-6aa4-c074-92ba-22a0c1fb5068
 		summarizeBy: none
 		sourceColumn: Status
 
 	column 'Is_Closed'
 		dataType: boolean
-		lineageTag: act-010
+		lineageTag: 7e33a7f6-2493-4f31-fe5d-7acf56a2ee29
 		summarizeBy: none
 		sourceColumn: Is_Closed
 

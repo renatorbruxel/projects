@@ -1,40 +1,40 @@
 table 'Cockpit_Manual_Input'
-	lineageTag: cmi-001
+	lineageTag: f0070d9b-3381-2fac-bdc2-ae4020cf992a
 
 	column 'Region'
 		dataType: string
-		lineageTag: cmi-002
+		lineageTag: d0549c25-db3d-d2d5-68a9-6be54da83994
 		summarizeBy: none
 		sourceColumn: Region
 
 	column 'Quarter'
 		dataType: string
-		lineageTag: cmi-003
+		lineageTag: b082eeee-0ad7-0cad-a63f-26ee8ff0aeb1
 		summarizeBy: none
 		sourceColumn: Quarter
 
 	column 'Adjustment_ARR'
 		dataType: double
-		lineageTag: cmi-004
+		lineageTag: d6ebb6ea-1655-e856-f23d-8e5a82ded8d9
 		summarizeBy: sum
 		sourceColumn: Adjustment_ARR
 		formatString: $#,0
 
 	column 'Reason'
 		dataType: string
-		lineageTag: cmi-005
+		lineageTag: f59b3323-be90-3ccc-9b9c-02235c3b91d0
 		summarizeBy: none
 		sourceColumn: Reason
 
 	column 'Updated_By'
 		dataType: string
-		lineageTag: cmi-006
+		lineageTag: a2fb2c8d-7232-2495-a518-51bd6e644819
 		summarizeBy: none
 		sourceColumn: Updated_By
 
 	column 'Updated_Date'
 		dataType: dateTime
-		lineageTag: cmi-007
+		lineageTag: 01d4d199-737c-adc7-f2f2-5a8e09a81920
 		summarizeBy: none
 		sourceColumn: Updated_Date
 		formatString: yyyy-MM-dd

@@ -1,53 +1,53 @@
 table 'Territory_Mapping_Snapshot'
-	lineageTag: tms-001
+	lineageTag: d2a65755-de1e-dc75-37a0-b1c17221eb1d
 
 	column 'Territory'
 		dataType: string
-		lineageTag: tms-002
+		lineageTag: 3822f33c-5ba9-7ae5-e419-aaf5872a0405
 		summarizeBy: none
 		sourceColumn: Territory
 
 	column 'Seller_Email'
 		dataType: string
-		lineageTag: tms-003
+		lineageTag: 416d9abd-4545-7ec8-206b-74c661ffa656
 		summarizeBy: none
 		sourceColumn: Seller_Email
 
 	column 'Seller_Name'
 		dataType: string
-		lineageTag: tms-004
+		lineageTag: b3ebc59f-2829-c3dc-8028-fc5fcbc36966
 		summarizeBy: none
 		sourceColumn: Seller_Name
 
 	column 'Region'
 		dataType: string
-		lineageTag: tms-005
+		lineageTag: 765871e2-1aef-e4eb-d0cf-9a9f4ce833c5
 		summarizeBy: none
 		sourceColumn: Region
 
 	column 'Sub_Region'
 		dataType: string
-		lineageTag: tms-006
+		lineageTag: 1479b784-1acd-22b7-f1ca-5cdb768b1f2f
 		summarizeBy: none
 		sourceColumn: Sub_Region
 
 	column 'Effective_From'
 		dataType: dateTime
-		lineageTag: tms-007
+		lineageTag: 815f15a4-fa1b-c75f-f2de-2c169b3845b0
 		summarizeBy: none
 		sourceColumn: Effective_From
 		formatString: yyyy-MM-dd
 
 	column 'Effective_To'
 		dataType: dateTime
-		lineageTag: tms-008
+		lineageTag: 802de941-71fb-123d-7822-143a2026d8d8
 		summarizeBy: none
 		sourceColumn: Effective_To
 		formatString: yyyy-MM-dd
 
 	column 'AOP_Territory_ARR'
 		dataType: double
-		lineageTag: tms-009
+		lineageTag: fa2ffc16-5dc4-94ed-17c2-6646a7f6c5db
 		summarizeBy: sum
 		sourceColumn: AOP_Territory_ARR
 		formatString: $#,0

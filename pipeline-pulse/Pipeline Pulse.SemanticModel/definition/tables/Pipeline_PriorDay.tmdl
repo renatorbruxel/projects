@@ -1,89 +1,89 @@
 table 'Pipeline_PriorDay'
-	lineageTag: ppd-001
+	lineageTag: bb065a65-50dd-0690-e00e-41ab8a5b39c3
 
 	column 'Opportunity_ID'
 		dataType: string
-		lineageTag: ppd-002
+		lineageTag: 4800e148-480a-5910-e464-ab084d1253c8
 		summarizeBy: none
 		sourceColumn: Opportunity_ID
 
 	column 'Opportunity_Name'
 		dataType: string
-		lineageTag: ppd-003
+		lineageTag: b3242ec3-aff5-a5cb-389a-c2f1f0779561
 		summarizeBy: none
 		sourceColumn: Opportunity_Name
 
 	column 'Account_Name'
 		dataType: string
-		lineageTag: ppd-004
+		lineageTag: 03c51089-97ce-39a5-56c1-4e0329070d35
 		summarizeBy: none
 		sourceColumn: Account_Name
 
 	column 'Seller_Email'
 		dataType: string
-		lineageTag: ppd-005
+		lineageTag: 8dab828b-cdc8-ff60-22ff-5e492f1bca53
 		summarizeBy: none
 		sourceColumn: Seller_Email
 
 	column 'Region'
 		dataType: string
-		lineageTag: ppd-006
+		lineageTag: 00fadda4-6ae3-bb18-b17e-bd3c9b8819b0
 		summarizeBy: none
 		sourceColumn: Region
 
 	column 'Sub_Region'
 		dataType: string
-		lineageTag: ppd-007
+		lineageTag: 3dec1615-b742-d2c7-b40f-916c27935b0b
 		summarizeBy: none
 		sourceColumn: Sub_Region
 
 	column 'Product_Line'
 		dataType: string
-		lineageTag: ppd-008
+		lineageTag: bff9c919-bb11-d827-1d75-5e7d9e01dd31
 		summarizeBy: none
 		sourceColumn: Product_Line
 
 	column 'Territory'
 		dataType: string
-		lineageTag: ppd-009
+		lineageTag: 3161f54a-a88e-3cce-f927-5674dcb71e5e
 		summarizeBy: none
 		sourceColumn: Territory
 
 	column 'Stage'
 		dataType: string
-		lineageTag: ppd-010
+		lineageTag: f2adcfe3-d144-23d8-69ce-5ae7a4c8619b
 		summarizeBy: none
 		sourceColumn: Stage
 
 	column 'Forecast_Category'
 		dataType: string
-		lineageTag: ppd-011
+		lineageTag: ecbd2654-789e-2fc6-1084-40c9b4576952
 		summarizeBy: none
 		sourceColumn: Forecast_Category
 
 	column 'Is_Won_Loss_Open'
 		dataType: string
-		lineageTag: ppd-012
+		lineageTag: 1cb3b9a0-6e8b-614a-df07-d1f880475c5e
 		summarizeBy: none
 		sourceColumn: Is_Won_Loss_Open
 
 	column 'ARR_USD'
 		dataType: double
-		lineageTag: ppd-013
+		lineageTag: 6b6d7421-1550-924c-bf20-5044f53a4cab
 		summarizeBy: sum
 		sourceColumn: ARR_USD
 		formatString: $#,0
 
 	column 'Close_Date'
 		dataType: dateTime
-		lineageTag: ppd-014
+		lineageTag: 06425642-6e4d-3234-1fb3-22876749163a
 		summarizeBy: none
 		sourceColumn: Close_Date
 		formatString: yyyy-MM-dd
 
 	column 'AKey'
 		dataType: string
-		lineageTag: ppd-015
+		lineageTag: 5f736d7b-5105-a0d3-8871-d0384e2d5563
 		summarizeBy: none
 		sourceColumn: AKey
 

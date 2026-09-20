@@ -1,29 +1,29 @@
 table 'Weekly_Targets'
-	lineageTag: wkt-001
+	lineageTag: 651520d4-fdfe-652a-feb1-9120ed7e41f9
 
 	column Week_Start
 		dataType: dateTime
-		lineageTag: wkt-c-001
+		lineageTag: b4143d4f-c756-6dc7-88db-4378601dd634
 		summarizeBy: none
 		sourceColumn: Week_Start
 		formatString: yyyy-MM-dd
 
 	column Region
 		dataType: string
-		lineageTag: wkt-c-002
+		lineageTag: beb15f32-98fd-9742-da9c-dc7f4a6438a1
 		summarizeBy: none
 		sourceColumn: Region
 
 	column Weekly_Booking_Target
 		dataType: double
-		lineageTag: wkt-c-003
+		lineageTag: 64cfab9f-1ef3-b3c7-2516-6d39d0ff5a5b
 		summarizeBy: sum
 		sourceColumn: Weekly_Booking_Target
 		formatString: $#,0
 
 	column Weekly_Pipeline_Target
 		dataType: double
-		lineageTag: wkt-c-004
+		lineageTag: 0604f6e3-0ab7-1b2c-ea5e-d196fdc7038a
 		summarizeBy: sum
 		sourceColumn: Weekly_Pipeline_Target
 		formatString: $#,0

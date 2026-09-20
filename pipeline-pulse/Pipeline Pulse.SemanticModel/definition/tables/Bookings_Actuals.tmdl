@@ -1,82 +1,82 @@
 table 'Bookings_Actuals'
-	lineageTag: bok-001
+	lineageTag: 610fed8c-f56f-d067-3e04-53f565e75368
 
 	column 'Region'
 		dataType: string
-		lineageTag: bok-002
+		lineageTag: 0946f910-a6cf-354e-56a0-9092727ea9ff
 		summarizeBy: none
 		sourceColumn: Region
 
 	column 'Sub_Region'
 		dataType: string
-		lineageTag: bok-003
+		lineageTag: 77d31b62-5be3-140a-5fbd-d8a9410f01d4
 		summarizeBy: none
 		sourceColumn: Sub_Region
 
 	column 'Product_Line'
 		dataType: string
-		lineageTag: bok-004
+		lineageTag: cc762cc2-01d6-4c0d-679e-13f1e986bcec
 		summarizeBy: none
 		sourceColumn: Product_Line
 
 	column 'Market'
 		dataType: string
-		lineageTag: bok-005
+		lineageTag: af8399db-b567-4f2e-b897-f8dea6a38d4e
 		summarizeBy: none
 		sourceColumn: Market
 
 	column 'Booking_Date'
 		dataType: dateTime
-		lineageTag: bok-006
+		lineageTag: 090f02e7-d487-3dc5-33be-6d6385eed3de
 		summarizeBy: none
 		sourceColumn: Booking_Date
 		formatString: yyyy-MM-dd
 
 	column 'AOP_Bookings'
 		dataType: double
-		lineageTag: bok-007
+		lineageTag: 1b5c069d-f579-0299-32c9-3bc2bf08dc14
 		summarizeBy: sum
 		sourceColumn: AOP_Bookings
 		formatString: $#,0
 
 	column 'Q1FC_Bookings'
 		dataType: double
-		lineageTag: bok-008
+		lineageTag: 813154c6-8595-d098-d694-a382a352c3ef
 		summarizeBy: sum
 		sourceColumn: Q1FC_Bookings
 		formatString: $#,0
 
 	column 'Q2FC_Bookings'
 		dataType: double
-		lineageTag: bok-009
+		lineageTag: 659f3ce0-280a-3690-cc9e-6ea39abddb72
 		summarizeBy: sum
 		sourceColumn: Q2FC_Bookings
 		formatString: $#,0
 
 	column 'Q3FC_Bookings'
 		dataType: double
-		lineageTag: bok-010
+		lineageTag: 4764d298-dbad-c0ea-fd8a-961f0570fd63
 		summarizeBy: sum
 		sourceColumn: Q3FC_Bookings
 		formatString: $#,0
 
 	column 'Q4FC_Bookings'
 		dataType: double
-		lineageTag: bok-011
+		lineageTag: 8e0e78cd-cfad-d9e4-8e89-57e56293ac65
 		summarizeBy: sum
 		sourceColumn: Q4FC_Bookings
 		formatString: $#,0
 
 	column 'Actual_Bookings'
 		dataType: double
-		lineageTag: bok-012
+		lineageTag: 57529bdc-7b33-73b5-e289-fd6fe18dd200
 		summarizeBy: sum
 		sourceColumn: Actual_Bookings
 		formatString: $#,0
 
 	column 'AKey'
 		dataType: string
-		lineageTag: bok-013
+		lineageTag: dc4cd61d-f0d8-b240-ad75-a96bc1995462
 		summarizeBy: none
 		sourceColumn: AKey
 
