@@ -1257,11 +1257,11 @@ const SD = {
 function gaugesvg(att, tier) {
   const cx=150, cy=138, r=100, maxD=150;
   const cap = Math.min(att, maxD);
-  const bg = `M ${cx-r},${cy} A ${r},${r} 0 0,0 ${cx+r},${cy}`;
+  const bg = `M ${cx-r},${cy} A ${r},${r} 0 0,1 ${cx+r},${cy}`;
   const theta = (180 - (cap/maxD)*180) * Math.PI / 180;
   const ex = (cx + r * Math.cos(theta)).toFixed(1);
   const ey = (cy - r * Math.sin(theta)).toFixed(1);
-  const fg = cap > 0 ? `M ${cx-r},${cy} A ${r},${r} 0 0,0 ${ex},${ey}` : '';
+  const fg = cap > 0 ? `M ${cx-r},${cy} A ${r},${r} 0 0,1 ${ex},${ey}` : '';
   const cols = { Platinum:'#0f4c5c', Gold:'#c8860a', Silver:'#777', Bronze:'#cd7f32' };
   const c = cols[tier] || '#c62828';
   const tierLabel = tier === 'Bronze' && att < 80 ? 'BRONZE' : tier.toUpperCase();

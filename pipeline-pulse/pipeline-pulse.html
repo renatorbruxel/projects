@@ -935,8 +935,8 @@ function arcPath(cx, cy, r, fromDeg, toDeg) {
   // For a semicircle (span=180), use la=0 with a slight adjustment
   const span = Math.abs(fromDeg - toDeg);
   const la = span > 180 ? 1 : 0;
-  // sweep=0 → CCW in SVG (from left, going up and over to end point)
-  return `M ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 ${la} 0 ${x2.toFixed(2)} ${y2.toFixed(2)}`;
+  // sweep=1 → CW in SVG = draws upward through top, stays inside viewBox
+  return `M ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 ${la} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}`;
 }
 
 function gaugeColor(val) {
