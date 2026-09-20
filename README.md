@@ -8,13 +8,13 @@ All tools were designed for **Vantara Sales**, a fictional ~$800M ARR enterprise
 
 ## Projects
 
-| # | Project | Description | Stack |
-|---|---------|-------------|-------|
-| 1 | [Weekly Check-In Portal](./weekly-checkin-portal/) | AI-assisted forecast submission and narrative generation for regional sales leaders | HTML · CSS · Vanilla JS · AWS |
-| 2 | [Funnel Management](./funnel-management/) | Pipeline push/pull dynamics, actuals weekly pacing, and overdue opportunity governance | Power BI · DAX · TMDL |
-| 3 | [Net New Tracker](./net-new-tracker/) | Net-new revenue classification engine for incentive compensation accuracy | Power BI · DAX |
-| 4 | [Pipeline Pulse](./pipeline-pulse/) | Pipeline sufficiency (3x coverage), WoW delta tracking, funnel hygiene, and Q/FY views | Power BI · DAX · TMDL |
-| 5 | [Sales League](./sales-league/) | Gamified seller leaderboard with RLS, individual scorecards, and recovery planning | Power BI · DAX · Row-Level Security |
+| # | Project | Live Demo | Description | Stack |
+|---|---------|-----------|-------------|-------|
+| 1 | [Weekly Check-In Portal](./weekly-checkin-portal/) | [▶ weekly-checkin-portal.html](./weekly-checkin-portal/weekly-checkin-portal.html) | AI-assisted forecast submission and narrative generation for regional sales leaders | HTML · CSS · Vanilla JS · AWS |
+| 2 | [Pipeline Intelligence](./funnel-management/) | [▶ pipeline-intelligence.html](./funnel-management/pipeline-intelligence.html) | Pipeline push/pull dynamics, actuals weekly pacing, and overdue opportunity governance | HTML · SVG · Power BI · TMDL |
+| 3 | [Net New Tracker](./net-new-tracker/) | [▶ net-new-tracker.html](./net-new-tracker/net-new-tracker.html) | Net-new revenue classification engine for incentive compensation accuracy | HTML · SVG · Power BI · TMDL |
+| 4 | [Pipeline Pulse](./pipeline-pulse/) | [▶ pipeline-pulse.html](./pipeline-pulse/pipeline-pulse.html) | Pipeline sufficiency (3x coverage), WoW delta tracking, funnel hygiene, and Q/FY views | HTML · SVG · Power BI · TMDL |
+| 5 | [Sales League](./sales-league/) | [▶ sales-league.html](./sales-league/sales-league.html) | Gamified seller leaderboard with RLS, individual scorecards, and recovery planning | HTML · SVG · Power BI · TMDL |
 
 ---
 
