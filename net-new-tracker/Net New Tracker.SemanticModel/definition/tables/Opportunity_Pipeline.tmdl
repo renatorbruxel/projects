@@ -5,7 +5,7 @@ table Opportunity_Pipeline
 		dataType: string
 		lineageTag: a0000007-0000-0000-0000-000000000002
 		summarizeBy: none
-		isKey: true
+		isKey
 		sourceColumn: Opportunity_ID
 
 	column Account_Name

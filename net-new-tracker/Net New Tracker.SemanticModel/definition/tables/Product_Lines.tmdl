@@ -5,7 +5,7 @@ table Product_Lines
 		dataType: string
 		lineageTag: a0000006-0000-0000-0000-000000000002
 		summarizeBy: none
-		isKey: true
+		isKey
 		sourceColumn: Code
 
 	column Product_Line

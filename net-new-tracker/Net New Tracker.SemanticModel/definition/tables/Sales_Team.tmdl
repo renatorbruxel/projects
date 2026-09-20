@@ -5,7 +5,7 @@ table Sales_Team
 		dataType: string
 		lineageTag: a0000008-0000-0000-0000-000000000002
 		summarizeBy: none
-		isKey: true
+		isKey
 		sourceColumn: Seller_ID
 
 	column Seller_Name

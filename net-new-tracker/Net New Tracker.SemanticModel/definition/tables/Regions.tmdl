@@ -17,7 +17,7 @@ table Regions
 		dataType: string
 		lineageTag: a0000005-0000-0000-0000-000000000004
 		summarizeBy: none
-		isKey: true
+		isKey
 		sourceColumn: Market
 
 	column Market_ID

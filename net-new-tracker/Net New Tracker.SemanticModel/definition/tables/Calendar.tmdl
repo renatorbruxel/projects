@@ -6,7 +6,7 @@ table Calendar
 		lineageTag: a0000004-0000-0000-0000-000000000002
 		formatString: yyyy-MM-dd
 		summarizeBy: none
-		isKey: true
+		isKey
 		sourceColumn: [Date]
 
 	column Year
