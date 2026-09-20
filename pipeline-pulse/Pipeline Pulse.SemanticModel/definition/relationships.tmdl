@@ -1,5 +1,4 @@
 relationship 'Pipeline_AKey_to_DimKey'
-	lineageTag: rel-001
 	fromTable: 'Pipeline'
 	fromColumn: AKey
 	toTable: 'Dimension_Key'
@@ -8,7 +7,6 @@ relationship 'Pipeline_AKey_to_DimKey'
 	crossFilteringBehavior: oneDirection
 
 relationship 'BookingsActuals_AKey_to_DimKey'
-	lineageTag: rel-002
 	fromTable: 'Bookings_Actuals'
 	fromColumn: AKey
 	toTable: 'Dimension_Key'
@@ -17,7 +15,6 @@ relationship 'BookingsActuals_AKey_to_DimKey'
 	crossFilteringBehavior: oneDirection
 
 relationship 'Pipeline_CloseDate_to_Calendar'
-	lineageTag: rel-003
 	fromTable: 'Pipeline'
 	fromColumn: Close_Date
 	toTable: 'Calendar'
@@ -26,7 +23,6 @@ relationship 'Pipeline_CloseDate_to_Calendar'
 	crossFilteringBehavior: oneDirection
 
 relationship 'Pipeline_ForecastCat_to_ForecastCategories'
-	lineageTag: rel-004
 	fromTable: 'Pipeline'
 	fromColumn: Forecast_Category
 	toTable: 'Forecast_Categories'
@@ -35,7 +31,6 @@ relationship 'Pipeline_ForecastCat_to_ForecastCategories'
 	crossFilteringBehavior: oneDirection
 
 relationship 'Pipeline_Territory_to_TerritoryMapping'
-	lineageTag: rel-005
 	fromTable: 'Pipeline'
 	fromColumn: Territory
 	toTable: 'Territory_Mapping'
@@ -44,7 +39,6 @@ relationship 'Pipeline_Territory_to_TerritoryMapping'
 	crossFilteringBehavior: oneDirection
 
 relationship 'PipelinePriorDay_CloseDate_to_Calendar'
-	lineageTag: rel-006
 	fromTable: 'Pipeline_PriorDay'
 	fromColumn: Close_Date
 	toTable: 'Calendar'
@@ -53,7 +47,6 @@ relationship 'PipelinePriorDay_CloseDate_to_Calendar'
 	crossFilteringBehavior: oneDirection
 
 relationship 'PipelineSnapshot_SnapshotDate_to_CalendarFull'
-	lineageTag: rel-007
 	fromTable: 'Pipeline_Snapshot'
 	fromColumn: Snapshot_Date
 	toTable: 'Calendar_Full'
@@ -62,7 +55,6 @@ relationship 'PipelineSnapshot_SnapshotDate_to_CalendarFull'
 	crossFilteringBehavior: oneDirection
 
 relationship 'TerritoryMappingSnapshot_Territory_to_PipelineSnapshot'
-	lineageTag: rel-008
 	fromTable: 'Territory_Mapping_Snapshot'
 	fromColumn: Territory
 	toTable: 'Pipeline_Snapshot'
@@ -71,7 +63,6 @@ relationship 'TerritoryMappingSnapshot_Territory_to_PipelineSnapshot'
 	crossFilteringBehavior: oneDirection
 
 relationship 'ActivityLog_OppID_to_Pipeline'
-	lineageTag: rel-009
 	fromTable: 'Activity_Log'
 	fromColumn: Opportunity_ID
 	toTable: 'Pipeline'
