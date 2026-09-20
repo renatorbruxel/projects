@@ -12,34 +12,41 @@ table Calendar
 		dataType: int64
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456791
 		summarizeBy: none
-		expression = YEAR([Date])
+		sourceColumn: [Year]
 
 	column Quarter
 		dataType: string
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456792
 		summarizeBy: none
-		expression = "Q" & QUARTER([Date])
+		sourceColumn: [Quarter]
 
 	column Month
 		dataType: int64
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456793
 		summarizeBy: none
-		expression = MONTH([Date])
+		sourceColumn: [Month]
 
 	column MonthName
 		dataType: string
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456794
 		summarizeBy: none
 		sortByColumn: Month
-		expression = FORMAT([Date], "MMM")
+		sourceColumn: [MonthName]
 
 	column WeekNum
 		dataType: int64
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456795
 		summarizeBy: none
-		expression = WEEKNUM([Date], 2)
+		sourceColumn: [WeekNum]
 
 	partition Calendar = calculated
 		mode: import
 		source =
-			CALENDAR(DATE(2025, 1, 1), DATE(2027, 12, 31))
+			ADDCOLUMNS(
+			    CALENDAR(DATE(2025, 1, 1), DATE(2027, 12, 31)),
+			    "Year", YEAR([Date]),
+			    "Quarter", "Q" & FORMAT(CEILING(MONTH([Date]) / 3, 1), "0"),
+			    "Month", MONTH([Date]),
+			    "MonthName", FORMAT([Date], "MMM"),
+			    "WeekNum", WEEKNUM([Date], 2)
+			)

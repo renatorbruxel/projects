@@ -56,7 +56,8 @@ table 'Pipeline_PullIn'
 		dataType: int64
 		lineageTag: 2ffa96cd-e608-b9ab-d63c-d617b0067f7c
 		summarizeBy: sum
-		expression = INT([Original_Close_Date] - [New_Close_Date])
+		sourceColumn: Days_Pulled
+
 
 	partition Pipeline_PullIn = m
 		mode: import

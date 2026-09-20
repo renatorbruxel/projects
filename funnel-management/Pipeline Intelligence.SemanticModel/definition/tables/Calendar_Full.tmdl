@@ -1,44 +1,51 @@
 table 'Calendar_Full'
-	lineageTag: d8a831f6-7b39-deeb-4692-79877c6fec12
+	lineageTag: 8e0f2a20-5140-87d9-b47b-eccdc6d4e524
 
 	column Date
 		dataType: dateTime
 		isHidden
-		lineageTag: 711ef957-08d6-5bac-ba67-437a2f0c491f
+		lineageTag: b22f5137-58b4-4493-6c3e-62ffdfa18325
 		summarizeBy: none
 		sourceColumn: [Date]
 
 	column Year
 		dataType: int64
-		lineageTag: 237c0c2d-9e44-75dc-5d7f-70e6e1c00251
+		lineageTag: d02c7720-7e3b-2ef0-b8f9-c8235f944dfc
 		summarizeBy: none
-		expression = YEAR([Date])
+		sourceColumn: [Year]
 
 	column Quarter
-		dataType: string
-		lineageTag: ce1a5555-ea44-e853-f5a5-cb84cc43acb4
+		dataType: int64
+		lineageTag: 7fc299e2-0460-92d0-8582-8e165da6e7cf
 		summarizeBy: none
-		expression = "Q" & FORMAT(QUARTER([Date]), "0") & " FY" & RIGHT(TEXT(YEAR([Date]), "0000"), 2)
+		sourceColumn: [Quarter]
 
 	column Month
 		dataType: int64
-		lineageTag: c51048d3-c4e6-a07a-db72-361a2429d066
+		lineageTag: 5d1d7a86-b99d-afbd-8bf7-4297c30f0f30
 		summarizeBy: none
-		expression = MONTH([Date])
+		sourceColumn: [Month]
 
 	column WeekNum
 		dataType: int64
-		lineageTag: a005e3a8-2c94-6145-1db7-7066ebed516b
+		lineageTag: 54385171-7c35-0d46-5f79-289d09903de2
 		summarizeBy: none
-		expression = WEEKNUM([Date], 2)
+		sourceColumn: [WeekNum]
 
-	column ISO_Week_Label
+	column Quarter_Label
 		dataType: string
-		lineageTag: a88839d3-5b47-82bd-6bd1-8dd1663fa485
+		lineageTag: c0556975-5aa2-26af-a58c-9045fb1f3c4e
 		summarizeBy: none
-		expression = "W" & FORMAT(WEEKNUM([Date], 2), "00") & "-" & FORMAT(YEAR([Date]), "0000")
+		sourceColumn: [Quarter_Label]
 
 	partition Calendar_Full = calculated
 		mode: import
 		source =
-			CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))
+			ADDCOLUMNS(
+			    CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31)),
+			    "Year", YEAR([Date]),
+			    "Quarter", QUARTER([Date]),
+			    "Month", MONTH([Date]),
+			    "WeekNum", WEEKNUM([Date], 2),
+			    "Quarter_Label", "Q" & FORMAT(CEILING(MONTH([Date]) / 3, 1), "0") & " " & YEAR([Date])
+			)

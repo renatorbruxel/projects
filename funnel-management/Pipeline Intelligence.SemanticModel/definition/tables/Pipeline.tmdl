@@ -111,8 +111,8 @@ table 'Pipeline'
 		dataType: string
 		lineageTag: 972592f9-16a0-059a-e03c-800cee6e7575
 		summarizeBy: none
-		type: calculated
-		expression = [Region] & [Sub_Region] & [Product_Line] & [Market]
+		sourceColumn: AKey
+
 
 	partition Pipeline = m
 		mode: import

@@ -12,63 +12,48 @@ table 'Calendar'
 		dataType: int64
 		lineageTag: dd8318a2-334d-948d-9247-95c701b6d356
 		summarizeBy: none
-		expression = YEAR([Date])
+		sourceColumn: [Year]
 
 	column Quarter
 		dataType: string
 		lineageTag: b0758b7c-3a9c-36bd-2463-46c6dfab789c
 		summarizeBy: none
-		expression = "Q" & QUARTER([Date])
+		sourceColumn: [Quarter]
 
 	column Month
 		dataType: int64
 		lineageTag: a3871708-2ca9-26ee-7581-87eda38de2a0
 		summarizeBy: none
-		expression = MONTH([Date])
+		sourceColumn: [Month]
 
 	column MonthName
 		dataType: string
 		lineageTag: 6f8f43ec-e063-e6ca-a0f4-295d7e072663
 		summarizeBy: none
 		sortByColumn: Month
-		expression = FORMAT([Date], "MMM")
+		sourceColumn: [MonthName]
 
 	column WeekNum
 		dataType: int64
 		lineageTag: 7b33ae03-a3ad-dbba-a9cc-a945a30798a6
 		summarizeBy: none
-		expression = WEEKNUM([Date], 2)
-
-	column Is_Current_Quarter
-		dataType: boolean
-		lineageTag: 16287342-4889-ea00-1b74-ec8194e686a6
-		summarizeBy: none
-		expression =
-			QUARTER([Date]) = QUARTER(TODAY())
-				&& YEAR([Date]) = YEAR(TODAY())
-
-	column Days_Remaining_in_Quarter
-		dataType: int64
-		lineageTag: 07f9db9e-383c-6409-6478-c50a76d00876
-		summarizeBy: none
-		expression =
-			var qEnd =
-				SWITCH(
-					QUARTER([Date]),
-					1, DATE(YEAR([Date]), 3, 31),
-					2, DATE(YEAR([Date]), 6, 30),
-					3, DATE(YEAR([Date]), 9, 30),
-					DATE(YEAR([Date]), 12, 31)
-				)
-			return MAX(0, INT(qEnd - TODAY()))
+		sourceColumn: [WeekNum]
 
 	column Quarter_Label
 		dataType: string
 		lineageTag: 76ea40de-f3b9-7323-fc84-c7b89d6055de
 		summarizeBy: none
-		expression = "Q" & QUARTER([Date]) & " " & YEAR([Date])
+		sourceColumn: [Quarter_Label]
 
 	partition Calendar = calculated
 		mode: import
 		source =
-			CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))
+			ADDCOLUMNS(
+			    CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31)),
+			    "Year", YEAR([Date]),
+			    "Quarter", "Q" & FORMAT(CEILING(MONTH([Date]) / 3, 1), "0"),
+			    "Month", MONTH([Date]),
+			    "MonthName", FORMAT([Date], "MMM"),
+			    "WeekNum", WEEKNUM([Date], 2),
+			    "Quarter_Label", "Q" & FORMAT(CEILING(MONTH([Date]) / 3, 1), "0") & " " & YEAR([Date])
+			)

@@ -12,39 +12,40 @@ table 'Calendar_Full'
 		dataType: int64
 		lineageTag: d02c7720-7e3b-2ef0-b8f9-c8235f944dfc
 		summarizeBy: none
-		expression = YEAR([Date])
+		sourceColumn: [Year]
 
 	column Quarter
 		dataType: int64
 		lineageTag: 7fc299e2-0460-92d0-8582-8e165da6e7cf
 		summarizeBy: none
-		expression = QUARTER([Date])
+		sourceColumn: [Quarter]
 
 	column Month
 		dataType: int64
 		lineageTag: 5d1d7a86-b99d-afbd-8bf7-4297c30f0f30
 		summarizeBy: none
-		expression = MONTH([Date])
+		sourceColumn: [Month]
 
 	column WeekNum
 		dataType: int64
 		lineageTag: 54385171-7c35-0d46-5f79-289d09903de2
 		summarizeBy: none
-		expression = WEEKNUM([Date], 2)
+		sourceColumn: [WeekNum]
 
 	column Quarter_Label
 		dataType: string
 		lineageTag: c0556975-5aa2-26af-a58c-9045fb1f3c4e
 		summarizeBy: none
-		expression = "Q" & QUARTER([Date]) & " " & YEAR([Date])
-
-	column Is_Snapshot_Week
-		dataType: boolean
-		lineageTag: 9be913d7-628f-f8c5-2bd5-d65c3e667c76
-		summarizeBy: none
-		expression = WEEKDAY([Date], 2) = 6
+		sourceColumn: [Quarter_Label]
 
 	partition Calendar_Full = calculated
 		mode: import
 		source =
-			CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))
+			ADDCOLUMNS(
+			    CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31)),
+			    "Year", YEAR([Date]),
+			    "Quarter", QUARTER([Date]),
+			    "Month", MONTH([Date]),
+			    "WeekNum", WEEKNUM([Date], 2),
+			    "Quarter_Label", "Q" & FORMAT(CEILING(MONTH([Date]) / 3, 1), "0") & " " & YEAR([Date])
+			)
