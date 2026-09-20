@@ -10,6 +10,7 @@
 # Always allow
 !.gitignore
 !README.md
+!index.html
 
 # Allow all content inside the 5 portfolio project subfolders
 !weekly-checkin-portal/**

@@ -4,6 +4,9 @@ A collection of enterprise data products built to support a global B2B SaaS comm
 
 All tools were designed for **Vantara Sales**, a fictional ~$800M ARR enterprise software company with GTM teams across Americas, EMEA, and APJ.
 
+> **Live demos** — open directly in browser, no installation required:
+> [`weekly-checkin-portal`](https://renatorbruxel.github.io/projects/weekly-checkin-portal/weekly-checkin-portal.html) · [`pipeline-intelligence`](https://renatorbruxel.github.io/projects/funnel-management/pipeline-intelligence.html) · [`net-new-tracker`](https://renatorbruxel.github.io/projects/net-new-tracker/net-new-tracker.html) · [`pipeline-pulse`](https://renatorbruxel.github.io/projects/pipeline-pulse/pipeline-pulse.html) · [`sales-league`](https://renatorbruxel.github.io/projects/sales-league/sales-league.html)
+
 ---
 
 ## Projects

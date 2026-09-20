@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GTM Analytics & Revenue Operations | Renato Bruxel</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fa;color:#1a1a2e}
+.header{background:linear-gradient(135deg,#0a3340,#0f4c5c,#1a6a80);color:#fff;padding:48px 32px;text-align:center}
+.header h1{font-size:32px;font-weight:900;letter-spacing:-.5px;margin-bottom:8px}
+.header p{font-size:15px;opacity:.8;max-width:600px;margin:0 auto 20px}
+.tag{display:inline-block;background:rgba(244,162,97,.2);border:1px solid rgba(244,162,97,.5);color:#f4a261;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;margin:4px}
+.main{max-width:1100px;margin:0 auto;padding:40px 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;margin-top:8px}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.08);overflow:hidden;transition:transform .2s,box-shadow .2s;border:1px solid #e5e7eb}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,.14)}
+.card-header{background:#0f4c5c;padding:18px 20px;display:flex;align-items:center;gap:12px}
+.card-icon{font-size:28px}
+.card-title{color:#fff;font-size:16px;font-weight:800}
+.card-subtitle{color:rgba(255,255,255,.65);font-size:12px;margin-top:2px}
+.card-body{padding:18px 20px}
+.card-desc{font-size:13px;color:#4b5563;line-height:1.6;margin-bottom:14px}
+.tabs-preview{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px}
+.tab-chip{background:#f3f4f6;color:#374151;font-size:11px;padding:3px 9px;border-radius:10px;font-weight:600}
+.stack{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tech{background:#e0f2fe;color:#0369a1;font-size:11px;padding:2px 8px;border-radius:8px;font-weight:700}
+.btn-demo{display:block;background:#0f4c5c;color:#fff;text-align:center;padding:10px 16px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:background .15s}
+.btn-demo:hover{background:#0a3340}
+.section-title{font-size:22px;font-weight:800;color:#0f4c5c;margin-bottom:6px}
+.section-sub{font-size:14px;color:#6b7280;margin-bottom:28px}
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:32px}
+.skill-card{background:#fff;border-radius:10px;padding:16px 18px;border:1px solid #e5e7eb;border-left:4px solid #0f4c5c}
+.skill-title{font-size:13px;font-weight:800;color:#0f4c5c;margin-bottom:6px}
+.skill-list{font-size:12px;color:#6b7280;line-height:1.7}
+footer{background:#0f4c5c;color:rgba(255,255,255,.6);text-align:center;padding:20px;font-size:12px;margin-top:48px}
+footer a{color:#f4a261;text-decoration:none}
+@media(max-width:600px){.header h1{font-size:24px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>GTM Analytics & Revenue Operations</h1>
+  <p>Enterprise data products for B2B SaaS commercial operations — pipeline intelligence, seller performance, forecast governance.</p>
+  <div>
+    <span class="tag">Power BI · TMDL · DAX</span>
+    <span class="tag">HTML · SVG · Vanilla JS</span>
+    <span class="tag">RevOps · GTM Strategy</span>
+    <span class="tag">Vantara Sales (fictional)</span>
+  </div>
+</div>
+
+<div class="main">
+  <p class="section-title">Live Dashboards</p>
+  <p class="section-sub">All self-contained — open in any browser, no installation required. Data is entirely fictional.</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📋</div>
+        <div>
+          <div class="card-title">Weekly Check-In Portal</div>
+          <div class="card-subtitle">Forecast submission & governance · V83.2</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Regional leaders submit weekly bookings and revenue forecasts, generate AI-assisted narratives, and track submission status across Americas, EMEA, and APJ.</p>
+        <div class="tabs-preview">
+          <span class="tab-chip">Dashboard</span><span class="tab-chip">Submit Bookings</span><span class="tab-chip">Submit Revenue</span><span class="tab-chip">B&B Plan</span><span class="tab-chip">Narratives ✨</span><span class="tab-chip">Final Submit</span><span class="tab-chip">RACI</span>
+        </div>
+        <div class="stack"><span class="tech">HTML</span><span class="tech">Vanilla JS</span><span class="tech">SVG</span><span class="tech">AWS</span></div>
+        <a href="weekly-checkin-portal/weekly-checkin-portal.html" class="btn-demo">▶ Open Dashboard</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📊</div>
+        <div>
+          <div class="card-title">Pipeline Intelligence</div>
+          <div class="card-subtitle">Funnel management & push/pull dynamics</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Tracks pipeline movement dynamics — push-outs, pull-ins, actuals weekly pacing, and overdue opportunity governance across all regions.</p>
+        <div class="tabs-preview">
+          <span class="tab-chip">Pipeline Summary</span><span class="tab-chip">Push & Pull</span><span class="tab-chip">Actuals Pacing</span><span class="tab-chip">Push-Out Analysis</span><span class="tab-chip">Overdue Opps</span>
+        </div>
+        <div class="stack"><span class="tech">HTML</span><span class="tech">SVG Charts</span><span class="tech">Power BI</span><span class="tech">TMDL</span></div>
+        <a href="funnel-management/pipeline-intelligence.html" class="btn-demo">▶ Open Dashboard</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div>
+          <div class="card-title">Net New Tracker</div>
+          <div class="card-subtitle">Revenue classification & incentive governance</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Classifies pipeline and closed deals as Net New vs. Installed Base. Validates classifications for incentive compensation accuracy with full audit trail.</p>
+        <div class="tabs-preview">
+          <span class="tab-chip">Overview</span><span class="tab-chip">Deal Details</span><span class="tab-chip">Classification Rules</span>
+        </div>
+        <div class="stack"><span class="tech">HTML</span><span class="tech">SVG</span><span class="tech">Power BI</span><span class="tech">DAX</span></div>
+        <a href="net-new-tracker/net-new-tracker.html" class="btn-demo">▶ Open Dashboard</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">⚡</div>
+        <div>
+          <div class="card-title">Pipeline Pulse</div>
+          <div class="card-subtitle">3x coverage · WoW delta · funnel hygiene</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Comprehensive pipeline intelligence using the 3x coverage methodology. Tracks week-over-week changes, funnel hygiene scores, and multi-horizon views (CQ/NQ/FY).</p>
+        <div class="tabs-preview">
+          <span class="tab-chip">🎯 The Pulse</span><span class="tab-chip">⚡ 3x Sufficiency</span><span class="tab-chip">🔄 WoW Changes</span><span class="tab-chip">🧹 Hygiene</span><span class="tab-chip">+7 more</span>
+        </div>
+        <div class="stack"><span class="tech">HTML</span><span class="tech">SVG</span><span class="tech">Power BI</span><span class="tech">TMDL · DAX</span></div>
+        <a href="pipeline-pulse/pipeline-pulse.html" class="btn-demo">▶ Open Dashboard</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🏆</div>
+        <div>
+          <div class="card-title">Sales League</div>
+          <div class="card-subtitle">Gamified leaderboard · RLS · recovery planning</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Gamified seller performance leaderboard with individual scorecards, manager views, structured recovery planning, and Row-Level Security enforcement.</p>
+        <div class="tabs-preview">
+          <span class="tab-chip">🏆 Leaderboard</span><span class="tab-chip">Seller Scorecard</span><span class="tab-chip">Manager View</span><span class="tab-chip">Recovery Plan</span><span class="tab-chip">Book Lost</span>
+        </div>
+        <div class="stack"><span class="tech">HTML</span><span class="tech">SVG</span><span class="tech">Power BI</span><span class="tech">RLS · DAX</span></div>
+        <a href="sales-league/sales-league.html" class="btn-demo">▶ Open Dashboard</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="skills">
+    <div class="skill-card">
+      <div class="skill-title">Commercial Analytics</div>
+      <div class="skill-list">KPI framework design · attainment analysis · funnel sufficiency modeling · incentive comp governance</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-title">Power BI & Data Modeling</div>
+      <div class="skill-list">TMDL / PBIP format · DAX (time intelligence, snapshots, RLS) · multi-snapshot fact tables · semantic model design</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-title">Frontend & Operations</div>
+      <div class="skill-list">Self-contained HTML apps · AI narrative integration · Word export · forecast submission workflow design</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-title">GTM Strategy & Ops</div>
+      <div class="skill-list">Weekly forecast governance · push/pull analysis · sales gamification · quota-to-actuals reconciliation</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Portfolio — All data is entirely fictional · Built with Vantara Sales as a fictional B2B SaaS company ·
+  <a href="https://github.com/renatorbruxel/projects">GitHub</a>
+</footer>
+
+</body>
+</html>
