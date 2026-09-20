@@ -3,52 +3,43 @@ table Calendar
 
 	column Date
 		dataType: dateTime
+		isHidden
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456790
-		formatString: yyyy-mm-dd
 		summarizeBy: none
-		isKey: true
+		sourceColumn: [Date]
 
 	column Year
 		dataType: int64
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456791
-		expression
-			= YEAR([Date])
+		summarizeBy: none
+		expression = YEAR([Date])
 
 	column Quarter
 		dataType: string
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456792
 		summarizeBy: none
-		expression
-			= "Q" & QUARTER([Date]) & " FY" & YEAR([Date])
+		expression = "Q" & QUARTER([Date])
 
 	column Month
 		dataType: int64
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456793
-		expression
-			= MONTH([Date])
+		summarizeBy: none
+		expression = MONTH([Date])
 
 	column MonthName
 		dataType: string
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456794
 		summarizeBy: none
-		expression
-			= FORMAT([Date], "MMM YYYY")
+		sortByColumn: Month
+		expression = FORMAT([Date], "MMM")
 
 	column WeekNum
 		dataType: int64
 		lineageTag: d0e1f2a3-b4c5-6789-defa-890123456795
-		expression
-			= WEEKNUM([Date])
+		summarizeBy: none
+		expression = WEEKNUM([Date], 2)
 
-	partition Calendar-Partition
-		mode: import
+	partition 'Calendar-calc'
+		mode: calculated
 		source
-			type: m
-			expression
-				= let
-				    Source = List.Dates(#date(2025,1,1), Duration.Days(#date(2027,12,31) - #date(2025,1,1)) + 1, #duration(1,0,0,0)),
-				    ToTable = Table.FromList(Source, Splitter.SplitByNothing(), {"Date"}),
-				    ChangedType = Table.TransformColumnTypes(ToTable, {{"Date", type date}})
-				in
-				    ChangedType
-
+			= CALENDAR(DATE(2025, 1, 1), DATE(2027, 12, 31))
