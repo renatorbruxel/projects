@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Net New Tracker | Vantara Sales</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal:   #0f4c5c;
+    --teal-light: #1a6a80;
+    --accent: #f4a261;
+    --white:  #ffffff;
+    --bg:     #f8f9fa;
+    --border: #dde2e6;
+    --text:   #1c2b30;
+    --muted:  #6b7f87;
+    --green:  #2d8a55;
+    --green-bg: #e6f4ec;
+    --yellow: #b07800;
+    --yellow-bg: #fff8e1;
+    --grey:   #5a6772;
+    --grey-bg: #eef1f3;
+    --row-alt: #f2f6f8;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── Header ─────────────────────────────────── */
+  .site-header {
+    background: var(--teal);
+    color: var(--white);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.18);
+  }
+  .site-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: .3px;
+  }
+  .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+  .site-header .subtitle { font-size: 12px; color: rgba(255,255,255,.65); font-weight: 400; }
+
+  /* ── Tab bar ─────────────────────────────────── */
+  .tab-bar {
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    padding: 0 32px;
+    gap: 0;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 14px 20px;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: color .15s, border-color .15s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--teal); }
+  .tab-btn.active { color: var(--teal); border-bottom-color: var(--accent); font-weight: 600; }
+
+  /* ── Main content ────────────────────────────── */
+  .tab-panel { display: none; padding: 28px 32px 48px; }
+  .tab-panel.active { display: block; }
+
+  .page-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 4px;
+  }
+  .page-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+
+  /* ── KPI cards ───────────────────────────────── */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .kpi-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .kpi-card .label { font-size: 11.5px; text-transform: uppercase; letter-spacing: .7px; color: var(--muted); margin-bottom: 6px; }
+  .kpi-card .value { font-size: 26px; font-weight: 700; color: var(--teal); line-height: 1; }
+  .kpi-card .meta  { font-size: 12px; color: var(--muted); margin-top: 5px; }
+  .kpi-card.accent-card { border-left: 4px solid var(--accent); }
+  .kpi-card.teal-card   { border-left: 4px solid var(--teal); }
+
+  /* ── Chart row ───────────────────────────────── */
+  .chart-row {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 20px;
+    margin-bottom: 28px;
+    align-items: start;
+  }
+  .chart-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .chart-card .chart-title {
+    font-size: 13px; font-weight: 600; color: var(--teal); margin-bottom: 14px;
+  }
+
+  /* ── Donut legend ────────────────────────────── */
+  .donut-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .donut-legend { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12.5px; }
+  .legend-swatch { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+  /* ── Bar chart ───────────────────────────────── */
+  .bar-chart-wrap { width: 100%; overflow: visible; }
+
+  /* ── Section header ──────────────────────────── */
+  .section-label {
+    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .7px;
+    color: var(--muted); margin-bottom: 10px;
+  }
+
+  /* ── Tables ──────────────────────────────────── */
+  .table-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    margin-bottom: 24px;
+  }
+  .table-card-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; font-weight: 600; color: var(--teal);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    background: #f0f5f7; text-align: left;
+    padding: 10px 14px; font-size: 11.5px;
+    font-weight: 600; text-transform: uppercase;
+    letter-spacing: .5px; color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid #eef1f3; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) td { background: var(--row-alt); }
+  tbody tr:hover td { background: #e8f1f5; }
+
+  .pct-bar-cell { display: flex; align-items: center; gap: 8px; }
+  .pct-bar { height: 6px; border-radius: 3px; background: var(--teal); }
+  .pct-label { font-size: 12px; font-weight: 600; color: var(--teal); min-width: 36px; }
+
+  /* ── Badges ──────────────────────────────────── */
+  .badge {
+    display: inline-flex; align-items: center;
+    padding: 3px 9px; border-radius: 20px;
+    font-size: 11.5px; font-weight: 600;
+    white-space: nowrap;
+  }
+  .badge-confirmed { background: var(--green-bg); color: var(--green); }
+  .badge-disputed  { background: var(--yellow-bg); color: var(--yellow); }
+  .badge-pending   { background: var(--grey-bg);   color: var(--grey); }
+  .badge-netnew    { background: #e8f3f8; color: var(--teal); }
+  .badge-ib        { background: #fff3e8; color: #c45d14; }
+  .badge-unclass   { background: var(--grey-bg); color: var(--grey); }
+  .badge-system    { background: #f0f5f7; color: var(--teal); }
+  .badge-seller    { background: #fdf4e8; color: #a85200; }
+  .badge-override  { background: #fef0f0; color: #b03030; }
+
+  /* ── Filter bar ──────────────────────────────── */
+  .filter-bar {
+    display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center;
+  }
+  .filter-bar label { font-size: 12px; color: var(--muted); margin-right: 4px; }
+  .filter-bar select {
+    border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px;
+    font-size: 13px; color: var(--text); background: var(--white);
+    cursor: pointer; outline: none;
+  }
+  .filter-bar select:focus { border-color: var(--teal); }
+  .filter-reset {
+    margin-left: auto; background: none; border: 1px solid var(--border);
+    border-radius: 6px; padding: 6px 14px; font-size: 12.5px;
+    color: var(--muted); cursor: pointer;
+  }
+  .filter-reset:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* ── Classification tab ──────────────────────── */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .rule-section-title {
+    font-size: 13px; font-weight: 600; color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .stat-pills { display: flex; flex-direction: column; gap: 10px; }
+  .stat-pill {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 16px;
+  }
+  .stat-pill .sp-label { font-size: 13px; font-weight: 500; }
+  .stat-pill .sp-value { font-size: 15px; font-weight: 700; color: var(--teal); }
+  .stat-pill .sp-bar-wrap { width: 100px; height: 6px; background: var(--border); border-radius: 3px; }
+  .stat-pill .sp-bar { height: 100%; border-radius: 3px; background: var(--teal); }
+
+  .accuracy-callout {
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+    color: var(--white); border-radius: 10px; padding: 18px 24px;
+    display: flex; align-items: center; gap: 20px; margin-bottom: 24px;
+  }
+  .accuracy-callout .big-num { font-size: 36px; font-weight: 800; line-height: 1; }
+  .accuracy-callout .callout-label { font-size: 13px; opacity: .85; margin-top: 3px; }
+
+  /* ── Flowchart ───────────────────────────────── */
+  .flowchart-wrap { overflow-x: auto; }
+  svg.flowchart { font-family: inherit; }
+
+  /* ── Deal list ───────────────────────────────── */
+  .deal-list { list-style: none; }
+  .deal-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid #eef1f3;
+  }
+  .deal-item:last-child { border-bottom: none; }
+  .deal-rank { width: 24px; height: 24px; border-radius: 50%; background: var(--teal); color: var(--white); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .deal-name { flex: 1; margin-left: 10px; font-weight: 500; font-size: 13px; }
+  .deal-arr  { font-size: 14px; font-weight: 700; color: var(--teal); }
+  .deal-arr span { font-size: 12px; font-weight: 400; color: var(--muted); }
+
+  /* ── Footer ──────────────────────────────────── */
+  footer {
+    background: var(--teal); color: rgba(255,255,255,.55);
+    text-align: center; padding: 14px; font-size: 11.5px; letter-spacing: .3px;
+  }
+  footer strong { color: rgba(255,255,255,.85); }
+
+  /* ── Responsive ──────────────────────────────── */
+  @media (max-width: 900px) {
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .chart-row { grid-template-columns: 1fr; }
+    .rules-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .kpi-row { grid-template-columns: 1fr; }
+    .tab-btn { padding: 12px 12px; font-size: 12.5px; }
+    .tab-panel { padding: 20px 16px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Site Header ──────────────────────────────── -->
+<header class="site-header">
+  <div class="brand">
+    <div class="brand-dot"></div>
+    Vantara Sales
+    <span class="subtitle">GTM Portfolio Intelligence</span>
+  </div>
+  <div style="font-size:12px;color:rgba(255,255,255,.55);">FY2026 Q3 &bull; Live View</div>
+</header>
+
+<!-- ── Tab Bar ──────────────────────────────────── -->
+<nav class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('overview',this)">Net New Overview</button>
+  <button class="tab-btn" onclick="switchTab('details',this)">Net New Details</button>
+  <button class="tab-btn" onclick="switchTab('rules',this)">Classification Rules</button>
+</nav>
+
+<!-- ══════════════════════════════════════════════════
+     TAB 1 — Net New Overview
+     ══════════════════════════════════════════════════ -->
+<div id="tab-overview" class="tab-panel active">
+
+  <div class="page-title">Net New Revenue Tracker — FY2026 Q3</div>
+  <div class="page-subtitle">All figures in USD millions &bull; Revenue classification as of Sept 19, 2026</div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-row">
+    <div class="kpi-card teal-card">
+      <div class="label">Net New ARR</div>
+      <div class="value">$38.2M</div>
+      <div class="meta">34% of total recognized ARR</div>
+    </div>
+    <div class="kpi-card" style="border-left:4px solid var(--accent)">
+      <div class="label">Installed Base ARR</div>
+      <div class="value" style="color:var(--accent)">$73.4M</div>
+      <div class="meta">66% of total recognized ARR</div>
+    </div>
+    <div class="kpi-card" style="border-left:4px solid #aab6bc">
+      <div class="label">Unclassified</div>
+      <div class="value" style="color:var(--grey)">$1.1M</div>
+      <div class="meta">1% — pending manual review</div>
+    </div>
+    <div class="kpi-card" style="border-left:4px solid var(--green)">
+      <div class="label">Net New Target</div>
+      <div class="value" style="color:var(--green)">$45.0M</div>
+      <div class="meta">85% attainment — 11% gap to close</div>
+    </div>
+  </div>
+
+  <!-- Chart Row: Donut + Bar -->
+  <div class="chart-row">
+
+    <!-- Donut -->
+    <div class="chart-card">
+      <div class="chart-title">ARR Mix — Net New vs. Installed Base</div>
+      <div class="donut-wrap">
+        <svg width="180" height="180" viewBox="0 0 180 180" aria-label="Donut chart showing 34% Net New and 66% Installed Base">
+          <circle cx="90" cy="90" r="72" fill="none" stroke="#eef1f3" stroke-width="28"/>
+          <!-- IB segment: 66% = 237.6 deg, circumference of r=72 = 452.4 -->
+          <circle cx="90" cy="90" r="72" fill="none" stroke="#f4a261" stroke-width="28"
+            stroke-dasharray="298.6 452.4"
+            stroke-dashoffset="0"
+            transform="rotate(-90 90 90)"/>
+          <!-- Net New: 34% -->
+          <circle cx="90" cy="90" r="72" fill="none" stroke="#0f4c5c" stroke-width="28"
+            stroke-dasharray="153.8 452.4"
+            stroke-dashoffset="-298.6"
+            transform="rotate(-90 90 90)"/>
+          <text x="90" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#0f4c5c">34%</text>
+          <text x="90" y="103" text-anchor="middle" font-size="11" fill="#6b7f87">Net New</text>
+        </svg>
+        <div class="donut-legend" style="max-width:200px">
+          <div class="legend-item">
+            <div class="legend-swatch" style="background:var(--teal)"></div>
+            <div><strong>Net New ARR</strong> — $38.2M (34%)</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background:var(--accent)"></div>
+            <div><strong>Installed Base</strong> — $73.4M (66%)</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background:#aab6bc"></div>
+            <div><strong>Unclassified</strong> — $1.1M (1%)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bar Chart -->
+    <div class="chart-card">
+      <div class="chart-title">Net New ARR by Quarter — FY2026</div>
+      <svg class="bar-chart-wrap" viewBox="0 0 480 230" width="100%" aria-label="Bar chart of Net New ARR by quarter">
+        <!-- Grid lines -->
+        <line x1="60" y1="20" x2="460" y2="20" stroke="#eef1f3" stroke-width="1"/>
+        <line x1="60" y1="58" x2="460" y2="58" stroke="#eef1f3" stroke-width="1"/>
+        <line x1="60" y1="96" x2="460" y2="96" stroke="#eef1f3" stroke-width="1"/>
+        <line x1="60" y1="134" x2="460" y2="134" stroke="#eef1f3" stroke-width="1"/>
+        <line x1="60" y1="172" x2="460" y2="172" stroke="#eef1f3" stroke-width="1"/>
+        <!-- Y axis labels -->
+        <text x="52" y="24"  text-anchor="end" font-size="11" fill="#6b7f87">$50M</text>
+        <text x="52" y="62"  text-anchor="end" font-size="11" fill="#6b7f87">$40M</text>
+        <text x="52" y="100" text-anchor="end" font-size="11" fill="#6b7f87">$30M</text>
+        <text x="52" y="138" text-anchor="end" font-size="11" fill="#6b7f87">$20M</text>
+        <text x="52" y="176" text-anchor="end" font-size="11" fill="#6b7f87">$10M</text>
+        <line x1="60" y1="172" x2="460" y2="172" stroke="#c8d2d8" stroke-width="1.5"/>
+        <!-- Bars: scale 0-50, height area = 152px (172-20), each $1M = 3.04px -->
+        <!-- Q1: $28M → height=85.1, y=172-85=87 -->
+        <rect x="100" y="86" width="70" height="86" rx="5" fill="#0f4c5c" opacity=".85"/>
+        <text x="135" y="80"  text-anchor="middle" font-size="12" font-weight="700" fill="#0f4c5c">$28M</text>
+        <text x="135" y="190" text-anchor="middle" font-size="12" fill="#6b7f87">Q1</text>
+        <!-- Q2: $33M → height=100.3, y=72 -->
+        <rect x="205" y="71" width="70" height="101" rx="5" fill="#0f4c5c" opacity=".9"/>
+        <text x="240" y="65"  text-anchor="middle" font-size="12" font-weight="700" fill="#0f4c5c">$33M</text>
+        <text x="240" y="190" text-anchor="middle" font-size="12" fill="#6b7f87">Q2</text>
+        <!-- Q3: $38M → height=115.5, y=57 -->
+        <rect x="310" y="56" width="70" height="116" rx="5" fill="#0f4c5c"/>
+        <text x="345" y="50"  text-anchor="middle" font-size="12" font-weight="700" fill="#0f4c5c">$38M</text>
+        <text x="345" y="190" text-anchor="middle" font-size="12" fill="#6b7f87">Q3</text>
+        <!-- Q4 forecast: $42M → height=127.7, y=44 — striped/lighter -->
+        <rect x="415" y="45" width="70" height="127" rx="5" fill="#0f4c5c" opacity=".4"/>
+        <rect x="415" y="45" width="70" height="127" rx="5" fill="none" stroke="#0f4c5c" stroke-width="2" stroke-dasharray="6 3"/>
+        <text x="450" y="39"  text-anchor="middle" font-size="12" font-weight="700" fill="#0f4c5c" opacity=".7">$42M</text>
+        <text x="450" y="190" text-anchor="middle" font-size="12" fill="#6b7f87">Q4 fcst</text>
+        <!-- Axis ticks -->
+        <text x="450" y="205" text-anchor="middle" font-size="10" fill="#aab6bc" font-style="italic">forecast</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Regional Table + Top Deals -->
+  <div style="display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start">
+
+    <!-- Regional Table -->
+    <div class="table-card">
+      <div class="table-card-header">
+        Net New ARR by Region — Q3 FY2026
+        <span style="font-size:11px;font-weight:400;color:var(--muted)">% = Net New as share of regional total</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Region</th>
+            <th>Net New ARR</th>
+            <th>% Net New</th>
+            <th>vs. Q2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Americas</strong></td>
+            <td>$18.4M</td>
+            <td>
+              <div class="pct-bar-cell">
+                <div class="pct-bar" style="width:82px"></div>
+                <span class="pct-label">41%</span>
+              </div>
+            </td>
+            <td style="color:var(--green);font-weight:600">+6%</td>
+          </tr>
+          <tr>
+            <td><strong>EMEA</strong></td>
+            <td>$12.1M</td>
+            <td>
+              <div class="pct-bar-cell">
+                <div class="pct-bar" style="width:58px"></div>
+                <span class="pct-label">29%</span>
+              </div>
+            </td>
+            <td style="color:var(--green);font-weight:600">+3%</td>
+          </tr>
+          <tr>
+            <td><strong>APJ</strong></td>
+            <td>$7.7M</td>
+            <td>
+              <div class="pct-bar-cell">
+                <div class="pct-bar" style="width:60px"></div>
+                <span class="pct-label">30%</span>
+              </div>
+            </td>
+            <td style="color:#b03030;font-weight:600">-2%</td>
+          </tr>
+          <tr style="font-weight:700;background:#f0f5f7">
+            <td><strong>Total</strong></td>
+            <td><strong>$38.2M</strong></td>
+            <td>
+              <div class="pct-bar-cell">
+                <div class="pct-bar" style="width:68px"></div>
+                <span class="pct-label">34%</span>
+              </div>
+            </td>
+            <td style="color:var(--green);font-weight:600">+3%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Top 5 Deals -->
+    <div class="chart-card">
+      <div class="chart-title">Top 5 Net New Deals — Q3 FY2026</div>
+      <ul class="deal-list">
+        <li class="deal-item">
+          <div class="deal-rank">1</div>
+          <div class="deal-name">HubSpot</div>
+          <div class="deal-arr">$1.8M <span>ARR</span></div>
+        </li>
+        <li class="deal-item">
+          <div class="deal-rank">2</div>
+          <div class="deal-name">Workday</div>
+          <div class="deal-arr">$1.4M <span>ARR</span></div>
+        </li>
+        <li class="deal-item">
+          <div class="deal-rank">3</div>
+          <div class="deal-name">ServiceNow</div>
+          <div class="deal-arr">$0.9M <span>ARR</span></div>
+        </li>
+        <li class="deal-item">
+          <div class="deal-rank">4</div>
+          <div class="deal-name">Zendesk</div>
+          <div class="deal-arr">$0.7M <span>ARR</span></div>
+        </li>
+        <li class="deal-item">
+          <div class="deal-rank">5</div>
+          <div class="deal-name">Okta</div>
+          <div class="deal-arr">$0.6M <span>ARR</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /tab-overview -->
+
+
+<!-- ══════════════════════════════════════════════════
+     TAB 2 — Net New Details
+     ══════════════════════════════════════════════════ -->
+<div id="tab-details" class="tab-panel">
+
+  <div class="page-title">Net New Deal Details</div>
+  <div class="page-subtitle">15 classified opportunities &bull; Q3 FY2026</div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <div>
+      <label for="f-region">Region</label>
+      <select id="f-region" onchange="applyFilters()">
+        <option value="">All Regions</option>
+        <option value="Americas">Americas</option>
+        <option value="EMEA">EMEA</option>
+        <option value="APJ">APJ</option>
+      </select>
+    </div>
+    <div>
+      <label for="f-class">Classification</label>
+      <select id="f-class" onchange="applyFilters()">
+        <option value="">All</option>
+        <option value="Net New">Net New</option>
+        <option value="Installed Base">Installed Base</option>
+        <option value="Unclassified">Unclassified</option>
+      </select>
+    </div>
+    <div>
+      <label for="f-source">Source</label>
+      <select id="f-source" onchange="applyFilters()">
+        <option value="">All Sources</option>
+        <option value="System">System</option>
+        <option value="Seller Declared">Seller Declared</option>
+        <option value="Override">Override</option>
+      </select>
+    </div>
+    <div>
+      <label for="f-status">Status</label>
+      <select id="f-status" onchange="applyFilters()">
+        <option value="">All Statuses</option>
+        <option value="Confirmed">Confirmed</option>
+        <option value="Disputed">Disputed</option>
+        <option value="Pending">Pending</option>
+      </select>
+    </div>
+    <button class="filter-reset" onclick="resetFilters()">Reset</button>
+  </div>
+
+  <div class="table-card">
+    <div class="table-card-header">
+      Opportunity Table
+      <span id="row-count" style="font-size:11px;font-weight:400;color:var(--muted)">Showing 15 of 15</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table id="details-table">
+        <thead>
+          <tr>
+            <th>Account</th>
+            <th>Region</th>
+            <th>ARR</th>
+            <th>Close Date</th>
+            <th>Classification</th>
+            <th>Source</th>
+            <th>Yrs Since Prior Rev.</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="details-tbody">
+          <!-- rows injected by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /tab-details -->
+
+
+<!-- ══════════════════════════════════════════════════
+     TAB 3 — Classification Rules
+     ══════════════════════════════════════════════════ -->
+<div id="tab-rules" class="tab-panel">
+
+  <div class="page-title">Net New Classification Logic</div>
+  <div class="page-subtitle">Governing rules, flowchart, and audit accuracy</div>
+
+  <!-- Accuracy callout -->
+  <div class="accuracy-callout">
+    <div>
+      <div class="big-num">94.2%</div>
+      <div class="callout-label">Classification accuracy rate — Audit Q2 FY2026</div>
+    </div>
+    <div style="width:1px;background:rgba(255,255,255,.25);align-self:stretch"></div>
+    <div style="font-size:13px;opacity:.85;line-height:1.6">
+      Accuracy measured against manual re-review of 1,200 closed deals.<br>
+      Remaining 5.8% attributed to M&amp;A events (3.1%) and data gaps (2.7%).
+    </div>
+  </div>
+
+  <div class="rules-grid">
+
+    <!-- Flowchart -->
+    <div class="chart-card" style="grid-column:1 / -1">
+      <div class="rule-section-title">Classification Decision Flowchart</div>
+      <div class="flowchart-wrap">
+        <svg class="flowchart" viewBox="0 0 820 280" width="100%" aria-label="Classification decision flowchart">
+          <!-- Start box -->
+          <rect x="10" y="110" width="160" height="50" rx="8" fill="#0f4c5c"/>
+          <text x="90" y="131" text-anchor="middle" font-size="12" fill="#fff" font-weight="600">New Opportunity</text>
+          <text x="90" y="148" text-anchor="middle" font-size="12" fill="#fff" font-weight="600">Created</text>
+          <!-- Arrow right -->
+          <line x1="170" y1="135" x2="205" y2="135" stroke="#0f4c5c" stroke-width="2" marker-end="url(#arrow)"/>
+          <!-- Decision diamond -->
+          <polygon points="260,100 370,135 260,170 150,135" transform="translate(50,0)" fill="#e8f3f8" stroke="#0f4c5c" stroke-width="2"/>
+          <text x="310" y="131" text-anchor="middle" font-size="11" fill="#0f4c5c" font-weight="600">Prior revenue</text>
+          <text x="310" y="146" text-anchor="middle" font-size="11" fill="#0f4c5c" font-weight="600">in last 5 years?</text>
+          <!-- Yes arrow → IB -->
+          <line x1="360" y1="170" x2="360" y2="210" stroke="#c45d14" stroke-width="2" marker-end="url(#arrow-orange)"/>
+          <text x="370" y="195" font-size="10" fill="#c45d14" font-weight="600">Yes</text>
+          <rect x="295" y="215" width="130" height="46" rx="8" fill="#fff3e8" stroke="#f4a261" stroke-width="2"/>
+          <text x="360" y="239" text-anchor="middle" font-size="12" fill="#c45d14" font-weight="700">Installed Base</text>
+          <text x="360" y="255" text-anchor="middle" font-size="10" fill="#c45d14">Existing customer</text>
+          <!-- No arrow → Net New -->
+          <line x1="460" y1="135" x2="510" y2="135" stroke="#0f4c5c" stroke-width="2" marker-end="url(#arrow)"/>
+          <text x="482" y="128" font-size="10" fill="#0f4c5c" font-weight="600">No</text>
+          <rect x="515" y="110" width="130" height="50" rx="8" fill="#e8f3f8" stroke="#0f4c5c" stroke-width="2"/>
+          <text x="580" y="131" text-anchor="middle" font-size="12" fill="#0f4c5c" font-weight="700">Net New</text>
+          <text x="580" y="148" text-anchor="middle" font-size="10" fill="#0f4c5c">New logo / reactivation</text>
+          <!-- No data branch from diamond upward -->
+          <line x1="310" y1="100" x2="310" y2="60" stroke="#6b7f87" stroke-width="2" marker-end="url(#arrow-grey)"/>
+          <text x="320" y="85" font-size="10" fill="#6b7f87" font-weight="600">No data</text>
+          <rect x="220" y="20" width="180" height="40" rx="8" fill="#eef1f3" stroke="#aab6bc" stroke-width="2"/>
+          <text x="310" y="37" text-anchor="middle" font-size="12" fill="#5a6772" font-weight="700">Unclassified</text>
+          <text x="310" y="52" text-anchor="middle" font-size="10" fill="#5a6772">Manual review required</text>
+          <!-- Manual review arrow to right -->
+          <line x1="400" y1="40" x2="450" y2="40" stroke="#6b7f87" stroke-width="2" marker-end="url(#arrow-grey)"/>
+          <rect x="455" y="18" width="155" height="44" rx="8" fill="#f8f9fa" stroke="#aab6bc" stroke-width="2"/>
+          <text x="532" y="37" text-anchor="middle" font-size="11" fill="#5a6772" font-weight="600">Revenue Ops Review</text>
+          <text x="532" y="52" text-anchor="middle" font-size="10" fill="#5a6772">Override or confirm</text>
+          <!-- Arrowhead defs -->
+          <defs>
+            <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#0f4c5c"/>
+            </marker>
+            <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#c45d14"/>
+            </marker>
+            <marker id="arrow-grey" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#6b7f87"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Rule Coverage Stats -->
+    <div class="chart-card">
+      <div class="rule-section-title">Rule Coverage by Source</div>
+      <div class="stat-pills">
+        <div class="stat-pill">
+          <div>
+            <div class="sp-label">System-generated</div>
+            <div style="font-size:11px;color:var(--muted)">CRM data + revenue history match</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="sp-bar-wrap"><div class="sp-bar" style="width:78%"></div></div>
+            <div class="sp-value">78%</div>
+          </div>
+        </div>
+        <div class="stat-pill">
+          <div>
+            <div class="sp-label">Seller Declared</div>
+            <div style="font-size:11px;color:var(--muted)">Manually tagged by account exec</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="sp-bar-wrap"><div class="sp-bar" style="width:15%;background:var(--accent)"></div></div>
+            <div class="sp-value" style="color:var(--accent)">15%</div>
+          </div>
+        </div>
+        <div class="stat-pill">
+          <div>
+            <div class="sp-label">Override</div>
+            <div style="font-size:11px;color:var(--muted)">Revenue Ops manual override</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="sp-bar-wrap"><div class="sp-bar" style="width:7%;background:#b03030"></div></div>
+            <div class="sp-value" style="color:#b03030">7%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rule Exceptions -->
+    <div class="chart-card">
+      <div class="rule-section-title">Rule Exceptions &amp; Edge Cases</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Classification</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Reactivation — dormant &gt;5 years</td>
+            <td><span class="badge badge-netnew">Net New</span></td>
+            <td style="color:var(--muted)">Revenue gap exceeds threshold</td>
+          </tr>
+          <tr>
+            <td>M&amp;A account</td>
+            <td><span class="badge badge-unclass">Manual</span></td>
+            <td style="color:var(--muted)">Rev Ops classification required</td>
+          </tr>
+          <tr>
+            <td>Partial expansion &gt;50% new product</td>
+            <td><span class="badge badge-netnew">Net New</span></td>
+            <td style="color:var(--muted)">Majority-new ACV qualifies</td>
+          </tr>
+          <tr>
+            <td>Renewal with uplift &lt;50%</td>
+            <td><span class="badge badge-ib">Installed Base</span></td>
+            <td style="color:var(--muted)">Treated as expansion</td>
+          </tr>
+          <tr>
+            <td>Subsidiary of existing account</td>
+            <td><span class="badge badge-unclass">Manual</span></td>
+            <td style="color:var(--muted)">Depends on parent relationship</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /rules-grid -->
+
+</div><!-- /tab-rules -->
+
+<!-- ── Footer ──────────────────────────────────── -->
+<footer>
+  <strong>Vantara Sales Portfolio</strong> &bull; All data fictional &bull; Internal use only
+</footer>
+
+<script>
+// ── Tab switching ──────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── Deal data ──────────────────────────────────
+var deals = [
+  { account:'HubSpot',     region:'Americas', arr:'$1,800K', close:'2026-08-15', class:'Net New',       source:'System',         yrs:'8',  status:'Confirmed' },
+  { account:'Workday',     region:'Americas', arr:'$1,400K', close:'2026-09-01', class:'Net New',       source:'System',         yrs:'7',  status:'Confirmed' },
+  { account:'ServiceNow',  region:'Americas', arr:'$900K',   close:'2026-09-10', class:'Net New',       source:'Seller Declared',yrs:'6',  status:'Confirmed' },
+  { account:'Zendesk',     region:'EMEA',     arr:'$700K',   close:'2026-08-28', class:'Net New',       source:'System',         yrs:'9',  status:'Confirmed' },
+  { account:'Okta',        region:'Americas', arr:'$600K',   close:'2026-09-15', class:'Net New',       source:'System',         yrs:'—',  status:'Confirmed' },
+  { account:'Grab',        region:'APJ',      arr:'$850K',   close:'2026-09-05', class:'Net New',       source:'System',         yrs:'—',  status:'Confirmed' },
+  { account:'ASML',        region:'EMEA',     arr:'$1,100K', close:'2026-08-20', class:'Net New',       source:'Override',       yrs:'6',  status:'Confirmed' },
+  { account:'Klarna',      region:'EMEA',     arr:'$450K',   close:'2026-09-18', class:'Net New',       source:'System',         yrs:'—',  status:'Pending'   },
+  { account:'UiPath',      region:'EMEA',     arr:'$620K',   close:'2026-09-12', class:'Net New',       source:'Seller Declared',yrs:'5+', status:'Disputed'  },
+  { account:'Adyen',       region:'EMEA',     arr:'$780K',   close:'2026-08-30', class:'Installed Base',source:'System',         yrs:'2',  status:'Confirmed' },
+  { account:'TCS',         region:'APJ',      arr:'$930K',   close:'2026-09-08', class:'Installed Base',source:'System',         yrs:'1',  status:'Confirmed' },
+  { account:'Infosys',     region:'APJ',      arr:'$410K',   close:'2026-09-14', class:'Installed Base',source:'System',         yrs:'3',  status:'Confirmed' },
+  { account:'SAP',         region:'EMEA',     arr:'$1,250K', close:'2026-08-25', class:'Installed Base',source:'Override',       yrs:'2',  status:'Disputed'  },
+  { account:'Monday.com',  region:'Americas', arr:'$330K',   close:'2026-09-17', class:'Unclassified',  source:'Seller Declared',yrs:'?',  status:'Pending'   },
+  { account:'GitHub',      region:'Americas', arr:'$290K',   close:'2026-09-19', class:'Unclassified',  source:'System',         yrs:'?',  status:'Pending'   },
+];
+
+function classBadge(c) {
+  if (c === 'Net New')       return '<span class="badge badge-netnew">Net New</span>';
+  if (c === 'Installed Base') return '<span class="badge badge-ib">Installed Base</span>';
+  return '<span class="badge badge-unclass">Unclassified</span>';
+}
+function sourceBadge(s) {
+  if (s === 'System')          return '<span class="badge badge-system">System</span>';
+  if (s === 'Seller Declared') return '<span class="badge badge-seller">Seller Declared</span>';
+  return '<span class="badge badge-override">Override</span>';
+}
+function statusBadge(s) {
+  if (s === 'Confirmed') return '<span class="badge badge-confirmed">Confirmed</span>';
+  if (s === 'Disputed')  return '<span class="badge badge-disputed">Disputed</span>';
+  return '<span class="badge badge-pending">Pending</span>';
+}
+
+function renderTable(rows) {
+  var tbody = document.getElementById('details-tbody');
+  var html = '';
+  rows.forEach(function(d) {
+    html += '<tr data-region="'+d.region+'" data-class="'+d.class+'" data-source="'+d.source+'" data-status="'+d.status+'">'
+      + '<td><strong>'+d.account+'</strong></td>'
+      + '<td>'+d.region+'</td>'
+      + '<td style="font-weight:600;color:var(--teal)">'+d.arr+'</td>'
+      + '<td>'+d.close+'</td>'
+      + '<td>'+classBadge(d.class)+'</td>'
+      + '<td>'+sourceBadge(d.source)+'</td>'
+      + '<td style="text-align:center">'+d.yrs+'</td>'
+      + '<td>'+statusBadge(d.status)+'</td>'
+      + '</tr>';
+  });
+  tbody.innerHTML = html;
+  document.getElementById('row-count').textContent = 'Showing ' + rows.length + ' of ' + deals.length;
+}
+
+function applyFilters() {
+  var region = document.getElementById('f-region').value;
+  var cls    = document.getElementById('f-class').value;
+  var source = document.getElementById('f-source').value;
+  var status = document.getElementById('f-status').value;
+  var filtered = deals.filter(function(d) {
+    return (!region || d.region === region)
+        && (!cls    || d.class  === cls)
+        && (!source || d.source === source)
+        && (!status || d.status === status);
+  });
+  renderTable(filtered);
+}
+
+function resetFilters() {
+  document.getElementById('f-region').value = '';
+  document.getElementById('f-class').value  = '';
+  document.getElementById('f-source').value = '';
+  document.getElementById('f-status').value = '';
+  renderTable(deals);
+}
+
+// Initial render
+renderTable(deals);
+</script>
+</body>
+</html>

@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales League | Vantara Sales</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --teal:#0f4c5c;--teal-dk:#0a3340;--teal-lt:#1a6b7f;
+  --acc:#f4a261;--acc-dk:#e08a45;
+  --bg:#f8f9fa;--border:#dee2e6;--txt:#212529;--muted:#6c757d;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
+
+/* ── HEADER ── */
+.app-header{background:linear-gradient(135deg,var(--teal-dk) 0%,var(--teal) 55%,var(--teal-lt) 100%);color:#fff;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.hd-brand{display:flex;align-items:center;gap:12px}
+.hd-logo{font-size:30px}
+.hd-title{font-size:21px;font-weight:800;letter-spacing:-.5px}
+.hd-sub{font-size:11px;opacity:.7;margin-top:2px}
+.cdown{background:var(--acc);color:#fff;padding:7px 15px;border-radius:20px;font-weight:800;font-size:13px;display:flex;align-items:center;gap:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.8}}
+
+/* ── TABS ── */
+.tab-nav{background:var(--teal-dk);padding:0 12px;display:flex;overflow-x:auto;gap:2px;scrollbar-width:thin;scrollbar-color:var(--acc) var(--teal-dk)}
+.tab-nav::-webkit-scrollbar{height:3px}
+.tab-nav::-webkit-scrollbar-thumb{background:var(--acc)}
+.tab-btn{background:none;border:none;color:rgba(255,255,255,.6);padding:11px 15px;cursor:pointer;font-size:12.5px;font-weight:600;white-space:nowrap;border-bottom:3px solid transparent;transition:all .18s}
+.tab-btn:hover{color:#fff;background:rgba(255,255,255,.07)}
+.tab-btn.active{color:var(--acc);border-bottom-color:var(--acc)}
+
+/* ── LAYOUT ── */
+.main{padding:22px 28px;max-width:1380px;margin:0 auto}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+@media(max-width:900px){.g2,.g3,.g5{grid-template-columns:1fr}.main{padding:14px}}
+
+/* ── CARD ── */
+.card{background:#fff;border-radius:10px;padding:18px;box-shadow:0 1px 5px rgba(0,0,0,.07);border:1px solid var(--border);margin-bottom:18px}
+.card-title{font-size:12px;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px}
+
+/* ── TABLES ── */
+.dt{width:100%;border-collapse:collapse;font-size:13px}
+.dt th{background:var(--bg);color:var(--muted);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:9px 11px;text-align:left;border-bottom:2px solid var(--border)}
+.dt td{padding:9px 11px;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+.dt tr:hover td{background:#fafbfc}
+.dt tr:last-child td{border-bottom:none}
+
+/* ── TIER BADGES ── */
+.tb{display:inline-flex;align-items:center;gap:3px;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:800}
+.tp{background:#e4f8ff;color:#0f4c5c;border:1.5px solid #7dd3ea}
+.tg{background:#fff8e0;color:#8a6200;border:1.5px solid #ffd700}
+.ts{background:#f2f2f2;color:#505050;border:1.5px solid #bbb}
+.tbr{background:#fdf0e0;color:#7d3e10;border:1.5px solid #cd7f32}
+.tr{background:#fff0f0;color:#c62828;border:1.5px solid #ef9a9a}
+
+/* ── RANK BADGES ── */
+.rk{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:900}
+.r1{background:linear-gradient(135deg,#ffd700,#ffe97a);color:#6b4a00}
+.r2{background:linear-gradient(135deg,#c0c0c0,#e4e4e4);color:#444}
+.r3{background:linear-gradient(135deg,#cd7f32,#e8a855);color:#fff}
+.ro{background:#e9ecef;color:#555;font-size:11px}
+
+/* ── WOW ── */
+.wu{color:#2e7d32;font-weight:700}.wd{color:#c62828;font-weight:700}.wn{color:var(--muted)}
+
+/* ── METRIC CARDS ── */
+.mc{background:#fff;border-radius:10px;padding:15px 16px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.mc-lbl{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.mc-val{font-size:24px;font-weight:900;color:var(--teal)}
+.mc-sub{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* ── SECTION HEAD ── */
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.st{font-size:17px;font-weight:800;color:var(--teal)}
+.ss{font-size:12px;color:var(--muted)}
+
+/* ── PROGRESS ── */
+.pb{background:#e9ecef;border-radius:5px;height:8px;overflow:hidden}
+.pf{height:100%;border-radius:5px}
+
+/* ── PEER BAR ── */
+.peer-row{margin-bottom:10px}
+.peer-lbl{font-size:11.5px;color:var(--muted);margin-bottom:3px}
+.peer-wrap{display:flex;align-items:center;gap:8px}
+.peer-bg{flex:1;background:#e9ecef;border-radius:4px;height:22px;overflow:hidden}
+.peer-fill{height:100%;display:flex;align-items:center;padding-left:8px;font-size:11.5px;font-weight:700;color:#fff;border-radius:4px}
+.peer-num{font-size:12px;font-weight:800;color:var(--teal);min-width:44px;text-align:right}
+
+/* ── ALERT ── */
+.al{padding:11px 15px;border-radius:8px;font-size:12.5px;margin-bottom:12px}
+.al-i{background:#d1ecf1;color:#0c5460;border:1px solid #bee5eb}
+.al-w{background:#fff3cd;color:#856404;border:1px solid #ffc107}
+.al-s{background:#d4edda;color:#155724;border:1px solid #c3e6cb}
+.al-d{background:#f8d7da;color:#842029;border:1px solid #f5c6cb}
+
+/* ── RISK FLAG ── */
+.rf{display:inline-flex;align-items:center;gap:4px;background:#f8d7da;color:#842029;border:1px solid #f5c6cb;border-radius:6px;padding:3px 9px;font-size:11.5px;font-weight:700}
+.rfw{background:#fff3cd;color:#856404;border-color:#ffc107}
+
+/* ── STATUS ── */
+.sa{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
+.s-act{background:#d1fae5;color:#065f46}
+.s-lv{background:#fef3c7;color:#92400e}
+
+/* ── FORMS ── */
+select,input{border:1.5px solid var(--border);border-radius:6px;padding:8px 12px;font-size:13px;background:#fff;color:var(--txt);outline:none;transition:border-color .18s}
+select:focus,input:focus{border-color:var(--teal)}
+.btn{padding:8px 18px;border-radius:6px;border:none;font-size:12.5px;font-weight:700;cursor:pointer;transition:all .18s}
+.btn-p{background:var(--teal);color:#fff}.btn-p:hover{background:var(--teal-dk)}
+.btn-a{background:var(--acc);color:#fff}.btn-a:hover{background:var(--acc-dk)}
+
+/* ── CHECK ITEM ── */
+.ci{display:flex;align-items:center;gap:10px;padding:10px 13px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;background:#fff}
+.ci input[type=checkbox]{width:16px;height:16px;cursor:pointer;accent-color:var(--teal);padding:0;border:none}
+.ci-lbl{flex:1;font-size:13px}
+.ci-amt{font-weight:800;color:var(--teal);font-size:13px}
+
+/* ── REGION CARD ── */
+.rc{background:#fff;border-radius:12px;padding:20px;border:1px solid var(--border);box-shadow:0 1px 5px rgba(0,0,0,.07);text-align:center}
+.rc-name{font-size:16px;font-weight:800;color:var(--teal)}
+.rc-att{font-size:40px;font-weight:900;color:var(--acc);line-height:1.1;margin:8px 0}
+.rc-sub{font-size:12px;color:var(--muted)}
+
+/* ── CHART CONTAINER ── */
+.cc{background:#fff;border-radius:10px;padding:18px;border:1px solid var(--border);box-shadow:0 1px 5px rgba(0,0,0,.07);margin-bottom:18px}
+.ct{font-size:13px;font-weight:800;color:var(--teal);margin-bottom:14px}
+
+/* ── LOCK INDICATOR ── */
+.lock{display:inline-flex;align-items:center;gap:5px;background:#e8f4f8;color:var(--teal);border:1px solid #bee5eb;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700}
+
+/* ── FOOTER ── */
+.app-footer{background:var(--teal-dk);color:rgba(255,255,255,.45);text-align:center;padding:13px;font-size:11.5px;margin-top:36px}
+
+/* ── GAUGE WRAPPER ── */
+#gauge-wrap{text-align:center;padding:10px 0}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="app-header">
+  <div class="hd-brand">
+    <div class="hd-logo">🏆</div>
+    <div>
+      <div class="hd-title">Sales League</div>
+      <div class="hd-sub">Vantara Sales · B2B SaaS · ~$800M ARR</div>
+    </div>
+  </div>
+  <div class="cdown">⏱ 12 days remaining — Q3 FY2026</div>
+</header>
+
+<!-- ═══ TAB NAV ═══ -->
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('leaderboard',this)">🏅 Leaderboard</button>
+  <button class="tab-btn" onclick="showTab('scorecard',this)">📊 Seller Scorecard</button>
+  <button class="tab-btn" onclick="showTab('manager',this)">👔 Manager View</button>
+  <button class="tab-btn" onclick="showTab('regional',this)">🌍 Regional View</button>
+  <button class="tab-btn" onclick="showTab('details',this)">🔍 Seller Details</button>
+  <button class="tab-btn" onclick="showTab('charts',this)">📈 Charts</button>
+  <button class="tab-btn" onclick="showTab('declaration',this)">📋 Declaration Form</button>
+  <button class="tab-btn" onclick="showTab('recovery',this)">🚨 Plan to Recover</button>
+  <button class="tab-btn" onclick="showTab('booklost',this)">📉 Book Lost</button>
+  <button class="tab-btn" onclick="showTab('roster',this)">👥 Seller Info</button>
+</nav>
+
+<main class="main">
+
+<!-- ════════════════════════════════════════
+     TAB 1 — LEADERBOARD
+════════════════════════════════════════ -->
+<section id="tab-leaderboard" class="tab-panel active">
+  <div class="sh">
+    <div class="st">Sales League — Q3 FY2026</div>
+    <div class="ss">All 12 sellers ranked by attainment % · Week 36</div>
+  </div>
+
+  <div class="g2" style="align-items:start">
+    <!-- Leaderboard Table -->
+    <div style="grid-column:1/2">
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="dt">
+          <thead>
+            <tr>
+              <th>Rank</th><th>Seller</th><th>Region</th><th>Quota</th>
+              <th>Actuals</th><th>Att%</th><th>Tier</th><th>WoW</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="rk r1">1</span></td>
+              <td><strong>Sarah Chen</strong></td><td>Americas</td>
+              <td>$800K</td><td>$1.02M</td>
+              <td><strong style="color:#0f4c5c;font-size:15px">128%</strong></td>
+              <td><span class="tb tp">🥇 Platinum</span></td>
+              <td><span class="wu">▲ +3%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rk r2">2</span></td>
+              <td><strong>Klaus Weber</strong></td><td>EMEA</td>
+              <td>$900K</td><td>$1.06M</td>
+              <td><strong style="color:#8a6200;font-size:15px">118%</strong></td>
+              <td><span class="tb tg">🥈 Gold</span></td>
+              <td><span class="wu">▲ +2%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rk r3">3</span></td>
+              <td><strong>Kenji Yamamoto</strong></td><td>APJ</td>
+              <td>$750K</td><td>$862K</td>
+              <td><strong style="color:#8a6200;font-size:15px">115%</strong></td>
+              <td><span class="tb tg">🥈 Gold</span></td>
+              <td><span class="wn">— 0%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rk ro">4</span></td>
+              <td>Marcus Williams</td><td>Americas</td>
+              <td>$850K</td><td>$918K</td>
+              <td><strong style="color:#8a6200">108%</strong></td>
+              <td><span class="tb tg">🥈 Gold</span></td>
+              <td><span class="wu">▲ +1%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rk ro">5</span></td>
+              <td>Raj Patel</td><td>APJ</td>
+              <td>$700K</td><td>$742K</td>
+              <td><strong style="color:#8a6200">106%</strong></td>
+              <td><span class="tb tg">🥈 Gold</span></td>
+              <td><span class="wu">▲ +4%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rk ro">6</span></td>
+              <td>Marie Dupont</td><td>EMEA</td>
+              <td>$800K</td><td>$824K</td>
+              <td><strong style="color:#8a6200">103%</strong></td>
+              <td><span class="tb tg">🥈 Gold</span></td>
+              <td><span class="wd">▼ −1%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rk ro">7</span></td>
+              <td>Ana Lima</td><td>Americas</td>
+              <td>$650K</td><td>$624K</td>
+              <td><strong style="color:#505050">96%</strong></td>
+              <td><span class="tb ts">🥉 Silver</span></td>
+              <td><span class="wu">▲ +2%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rk ro">8</span></td>
+              <td>Jennifer Park</td><td>Americas</td>
+              <td>$900K</td><td>$855K</td>
+              <td><strong style="color:#505050">95%</strong></td>
+              <td><span class="tb ts">🥉 Silver</span></td>
+              <td><span class="wd">▼ −2%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rk ro">9</span></td>
+              <td>James Bennett</td><td>EMEA</td>
+              <td>$750K</td><td>$698K</td>
+              <td><strong style="color:#505050">93%</strong></td>
+              <td><span class="tb ts">🥉 Silver</span></td>
+              <td><span class="wn">— 0%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rk ro">10</span></td>
+              <td>Petra Kovacs</td><td>EMEA</td>
+              <td>$700K</td><td>$638K</td>
+              <td><strong style="color:#505050">91%</strong></td>
+              <td><span class="tb ts">🥉 Silver</span></td>
+              <td><span class="wu">▲ +1%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rk ro">11</span></td>
+              <td>Priya Singh</td><td>APJ</td>
+              <td>$600K</td><td>$516K</td>
+              <td><strong style="color:#505050">86%</strong></td>
+              <td><span class="tb ts">🥉 Silver</span></td>
+              <td><span class="wd">▼ −3%</span></td>
+            </tr>
+            <tr style="background:#fff8f8">
+              <td><span class="rk ro">12</span></td>
+              <td>David Torres</td><td>Americas</td>
+              <td>$800K</td><td>$624K</td>
+              <td><strong style="color:#c62828">78%</strong></td>
+              <td><span class="tb tr">🔴 Bronze</span></td>
+              <td><span class="wd">▼ −4%</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Donut + Stats -->
+    <div>
+      <div class="card" style="text-align:center">
+        <div class="card-title">Tier Distribution</div>
+        <svg viewBox="0 0 240 240" width="200" height="200" style="display:block;margin:0 auto">
+          <!-- r=75, circ=471.24 -->
+          <circle cx="120" cy="120" r="75" fill="none" stroke="#7dd3ea" stroke-width="34"
+            stroke-dasharray="39.27 471.24" stroke-dashoffset="0" transform="rotate(-90 120 120)"/>
+          <circle cx="120" cy="120" r="75" fill="none" stroke="#ffd700" stroke-width="34"
+            stroke-dasharray="196.35 471.24" stroke-dashoffset="-39.27" transform="rotate(-90 120 120)"/>
+          <circle cx="120" cy="120" r="75" fill="none" stroke="#bbb" stroke-width="34"
+            stroke-dasharray="196.35 471.24" stroke-dashoffset="-235.62" transform="rotate(-90 120 120)"/>
+          <circle cx="120" cy="120" r="75" fill="none" stroke="#cd7f32" stroke-width="34"
+            stroke-dasharray="39.27 471.24" stroke-dashoffset="-431.97" transform="rotate(-90 120 120)"/>
+          <circle cx="120" cy="120" r="52" fill="white"/>
+          <text x="120" y="115" text-anchor="middle" font-size="22" font-weight="900" fill="#0f4c5c">12</text>
+          <text x="120" y="132" text-anchor="middle" font-size="11" fill="#888">Sellers</text>
+        </svg>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:12px">
+          <span class="tb tp">🥇 Platinum 1 (8%)</span>
+          <span class="tb tg">🥈 Gold 5 (42%)</span>
+          <span class="tb ts">🥉 Silver 5 (42%)</span>
+          <span class="tb tbr">🔴 Bronze 1 (8%)</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Quarter Snapshot</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+              <span>Team Attainment</span><strong>101%</strong>
+            </div>
+            <div class="pb"><div class="pf" style="width:101%;background:#0f4c5c"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+              <span>Sellers ≥100%</span><strong>6 / 12 (50%)</strong>
+            </div>
+            <div class="pb"><div class="pf" style="width:50%;background:var(--acc)"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+              <span>Total Quota</span><strong>$9.2M</strong>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+              <span>Total Actuals</span><strong>$9.36M</strong>
+            </div>
+          </div>
+          <div class="al al-w" style="font-size:12px">⚠️ David Torres at 78% with 12 days remaining — intervention required</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     TAB 2 — SELLER SCORECARD
+════════════════════════════════════════ -->
+<section id="tab-scorecard" class="tab-panel">
+  <div class="sh">
+    <div class="st">Seller Scorecard</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span class="ss">Select seller:</span>
+      <select id="seller-select" onchange="updateScorecard(this.value)">
+        <option value="sarah-chen">Sarah Chen</option>
+        <option value="klaus-weber">Klaus Weber</option>
+        <option value="kenji-yamamoto">Kenji Yamamoto</option>
+        <option value="marcus-williams">Marcus Williams</option>
+        <option value="raj-patel">Raj Patel</option>
+        <option value="marie-dupont">Marie Dupont</option>
+        <option value="ana-lima">Ana Lima</option>
+        <option value="jennifer-park">Jennifer Park</option>
+        <option value="james-bennett">James Bennett</option>
+        <option value="petra-kovacs">Petra Kovacs</option>
+        <option value="priya-singh">Priya Singh</option>
+        <option value="david-torres">David Torres</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="g2" style="align-items:start">
+    <div>
+      <!-- Gauge -->
+      <div class="card">
+        <div class="card-title">Attainment Gauge</div>
+        <div id="gauge-wrap"></div>
+      </div>
+      <!-- Pipeline Coverage -->
+      <div class="card">
+        <div class="card-title">Pipeline Coverage</div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div id="coverage-val" style="font-size:42px;font-weight:900;color:#2e7d32">3.0x</div>
+          <div>
+            <div id="coverage-lbl" style="font-size:13px;color:var(--muted)">Pipeline $2.4M vs. Remaining Quota</div>
+            <div class="al al-s" style="margin:6px 0 0;padding:6px 12px;font-size:12px">✅ Coverage above 2.5x benchmark</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <!-- Metric cards -->
+      <div class="g5" style="margin-bottom:18px">
+        <div class="mc"><div class="mc-lbl">Quota</div><div id="mc-quota" class="mc-val">$800K</div></div>
+        <div class="mc"><div class="mc-lbl">Actuals</div><div id="mc-actuals" class="mc-val" style="color:var(--acc)">$1.02M</div></div>
+        <div class="mc"><div class="mc-lbl">Pipeline</div><div id="mc-pipeline" class="mc-val">$2.4M</div></div>
+        <div class="mc"><div class="mc-lbl">Win Rate</div><div id="mc-winrate" class="mc-val">34%</div></div>
+        <div class="mc"><div class="mc-lbl">Hygiene</div><div id="mc-hygiene" class="mc-val">81%</div></div>
+      </div>
+
+      <!-- Open Opportunities -->
+      <div class="card" style="margin-bottom:18px">
+        <div class="card-title">Open Opportunities</div>
+        <table class="dt" id="opp-table">
+          <thead><tr><th>Account</th><th>ARR</th><th>Stage</th><th>Close Date</th><th>Forecast</th></tr></thead>
+          <tbody id="opp-tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- Peer Comparison -->
+      <div class="card">
+        <div class="card-title">Peer Comparison (vs. Region Avg)</div>
+        <div class="peer-row">
+          <div class="peer-lbl">Attainment %</div>
+          <div class="peer-wrap">
+            <div class="peer-bg"><div id="peer-att-self" class="peer-fill" style="background:var(--teal);width:85%">Sarah 128%</div></div>
+          </div>
+        </div>
+        <div class="peer-row">
+          <div class="peer-lbl">Region Avg Attainment</div>
+          <div class="peer-wrap">
+            <div class="peer-bg"><div id="peer-att-avg" class="peer-fill" style="background:#888;width:67%">Americas 101%</div></div>
+          </div>
+        </div>
+        <div class="peer-row" style="margin-top:12px">
+          <div class="peer-lbl">Win Rate</div>
+          <div class="peer-wrap">
+            <div class="peer-bg"><div id="peer-wr-self" class="peer-fill" style="background:var(--acc);width:57%">34%</div></div>
+          </div>
+        </div>
+        <div class="peer-row">
+          <div class="peer-lbl">Region Avg Win Rate</div>
+          <div class="peer-wrap">
+            <div class="peer-bg"><div id="peer-wr-avg" class="peer-fill" style="background:#bbb;width:43%">26%</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     TAB 3 — MANAGER VIEW
+════════════════════════════════════════ -->
+<section id="tab-manager" class="tab-panel">
+  <div class="sh">
+    <div class="st">Manager View</div>
+    <div class="ss">Front-line manager performance & risk flags</div>
+  </div>
+
+  <div class="card" style="padding:0;overflow:hidden;margin-bottom:18px">
+    <table class="dt">
+      <thead>
+        <tr><th>Manager</th><th>Region</th><th>Team Size</th><th>Total Quota</th><th>Total Actuals</th><th>Team Att%</th><th>Win Rate</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Jennifer Brooks</strong></td><td>Americas</td><td>4 sellers</td>
+          <td>$3.20M</td><td>$3.02M</td>
+          <td><strong style="color:#8a6200">94%</strong>
+            <div class="pb" style="width:120px;margin-top:4px"><div class="pf" style="width:94%;background:#ffd700"></div></div>
+          </td>
+          <td>28%</td>
+          <td><span class="rfw rf">⚠️ At-Risk Seller</span></td>
+        </tr>
+        <tr>
+          <td><strong>Thomas Schmidt</strong></td><td>EMEA</td><td>4 sellers</td>
+          <td>$3.15M</td><td>$3.22M</td>
+          <td><strong style="color:#2e7d32">102%</strong>
+            <div class="pb" style="width:120px;margin-top:4px"><div class="pf" style="width:100%;background:#2e7d32"></div></div>
+          </td>
+          <td>30%</td>
+          <td><span class="tb tg">✅ On Track</span></td>
+        </tr>
+        <tr>
+          <td><strong>Yuki Tanaka</strong></td><td>APJ</td><td>3 sellers</td>
+          <td>$2.05M</td><td>$2.12M</td>
+          <td><strong style="color:#2e7d32">103%</strong>
+            <div class="pb" style="width:120px;margin-top:4px"><div class="pf" style="width:100%;background:#2e7d32"></div></div>
+          </td>
+          <td>37%</td>
+          <td><span class="tb tg">✅ On Track</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">🚨 Risk Flags</div>
+      <div class="al al-d">
+        <strong>David Torres (Americas — Jennifer Brooks' team)</strong><br>
+        78% attainment · Pipeline coverage 1.2x (below 2.5x benchmark) · $144K gap to 100% · 12 days remaining.<br>
+        <strong>Action required: immediate coaching intervention and pull-in plan.</strong>
+      </div>
+      <div class="al al-w">
+        <strong>Jennifer Park (Americas)</strong><br>
+        95% attainment — borderline Silver. Pipeline cover 2.1x. At risk of missing 100% without late-quarter push.
+      </div>
+      <div class="al al-i">
+        <strong>Priya Singh (APJ)</strong><br>
+        86% attainment — monitoring required. 3 deals at Propose stage with close dates in Q4.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Team Win Rate vs. Benchmark (30%)</div>
+      <div class="peer-row">
+        <div class="peer-lbl">Jennifer Brooks' Team (Americas)</div>
+        <div class="peer-wrap">
+          <div class="peer-bg"><div class="peer-fill" style="background:#e08a45;width:47%">28%</div></div>
+          <div class="peer-num">28%</div>
+        </div>
+      </div>
+      <div class="peer-row">
+        <div class="peer-lbl">Thomas Schmidt's Team (EMEA)</div>
+        <div class="peer-wrap">
+          <div class="peer-bg"><div class="peer-fill" style="background:#0f4c5c;width:50%">30%</div></div>
+          <div class="peer-num">30%</div>
+        </div>
+      </div>
+      <div class="peer-row">
+        <div class="peer-lbl">Yuki Tanaka's Team (APJ)</div>
+        <div class="peer-wrap">
+          <div class="peer-bg"><div class="peer-fill" style="background:#2e7d32;width:62%">37%</div></div>
+          <div class="peer-num">37%</div>
+        </div>
+      </div>
+      <div class="peer-row">
+        <div class="peer-lbl">Benchmark</div>
+        <div class="peer-wrap">
+          <div class="peer-bg"><div class="peer-fill" style="background:#bbb;width:50%;border:2px dashed #888">30%</div></div>
+          <div class="peer-num">30%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     TAB 4 — REGIONAL VIEW
+════════════════════════════════════════ -->
+<section id="tab-regional" class="tab-panel">
+  <div class="sh">
+    <div class="st">Regional View</div>
+    <div class="ss">Q3 FY2026 · All regions vs. quota</div>
+  </div>
+
+  <div class="g3" style="margin-bottom:20px">
+    <div class="rc">
+      <div class="rc-name">🌎 Americas</div>
+      <div class="rc-att">101%</div>
+      <div class="rc-sub">5 sellers · $4.00M quota · $4.04M actuals</div>
+      <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+        <span class="tb tg">🥇 Platinum 1</span>
+        <span class="tb tg">🥈 Gold 2</span>
+        <span class="tb ts">🥉 Silver 1</span>
+        <span class="tb tr">🔴 Bronze 1</span>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">🌍 EMEA</div>
+      <div class="rc-att" style="color:#2e7d32">103%</div>
+      <div class="rc-sub">4 sellers · $3.15M quota · $3.22M actuals</div>
+      <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+        <span class="tb tg">🥈 Gold 2</span>
+        <span class="tb ts">🥉 Silver 2</span>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">🌏 APJ</div>
+      <div class="rc-att" style="color:#2e7d32">103%</div>
+      <div class="rc-sub">3 sellers · $2.05M quota · $2.12M actuals</div>
+      <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+        <span class="tb tg">🥈 Gold 2</span>
+        <span class="tb ts">🥉 Silver 1</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Regional Bar Chart -->
+  <div class="cc">
+    <div class="ct">Attainment % by Region vs. 100% Target</div>
+    <svg viewBox="0 0 600 220" style="width:100%;max-width:600px;display:block;margin:0 auto">
+      <!-- Grid lines -->
+      <line x1="80" y1="20" x2="560" y2="20" stroke="#f0f0f0" stroke-width="1"/>
+      <line x1="80" y1="60" x2="560" y2="60" stroke="#f0f0f0" stroke-width="1"/>
+      <line x1="80" y1="100" x2="560" y2="100" stroke="#f0f0f0" stroke-width="1"/>
+      <!-- 100% reference line at y=100 -->
+      <line x1="80" y1="100" x2="560" y2="100" stroke="#c62828" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="565" y="103" font-size="10" fill="#c62828" font-weight="700">100%</text>
+      <!-- Y axis labels -->
+      <text x="75" y="23" font-size="10" fill="#888" text-anchor="end">120%</text>
+      <text x="75" y="63" font-size="10" fill="#888" text-anchor="end">110%</text>
+      <text x="75" y="103" font-size="10" fill="#888" text-anchor="end">100%</text>
+      <text x="75" y="143" font-size="10" fill="#888" text-anchor="end">90%</text>
+      <text x="75" y="183" font-size="10" fill="#888" text-anchor="end">80%</text>
+      <!-- Americas bar: 101% → (101-80)/(120-80)*160 = 21/40*160=84px height, top=100-84=16+20=...
+           Let's map: 80%=180, 120%=20; scale: (att-80)/40 * 160 = height from bottom (180)
+           Americas 101%: (21/40)*160=84, bar top = 180-84=96 height=84 -->
+      <rect x="120" y="96" width="80" height="84" fill="#0f4c5c" rx="4"/>
+      <text x="160" y="91" font-size="12" font-weight="800" fill="#0f4c5c" text-anchor="middle">101%</text>
+      <text x="160" y="198" font-size="12" fill="#555" text-anchor="middle">Americas</text>
+      <!-- EMEA 103%: (23/40)*160=92, top=180-92=88 -->
+      <rect x="250" y="88" width="80" height="92" fill="#1a6b7f" rx="4"/>
+      <text x="290" y="83" font-size="12" font-weight="800" fill="#1a6b7f" text-anchor="middle">103%</text>
+      <text x="290" y="198" font-size="12" fill="#555" text-anchor="middle">EMEA</text>
+      <!-- APJ 103% -->
+      <rect x="380" y="88" width="80" height="92" fill="#f4a261" rx="4"/>
+      <text x="420" y="83" font-size="12" font-weight="800" fill="#e08a45" text-anchor="middle">103%</text>
+      <text x="420" y="198" font-size="12" fill="#555" text-anchor="middle">APJ</text>
+    </svg>
+  </div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="card-title">Americas — Seller Breakdown</div>
+      <table class="dt">
+        <thead><tr><th>Seller</th><th>Att%</th><th>Tier</th></tr></thead>
+        <tbody>
+          <tr><td>Sarah Chen</td><td><strong>128%</strong></td><td><span class="tb tp">🥇</span></td></tr>
+          <tr><td>Marcus Williams</td><td><strong>108%</strong></td><td><span class="tb tg">🥈</span></td></tr>
+          <tr><td>Ana Lima</td><td><strong>96%</strong></td><td><span class="tb ts">🥉</span></td></tr>
+          <tr><td>Jennifer Park</td><td><strong>95%</strong></td><td><span class="tb ts">🥉</span></td></tr>
+          <tr><td>David Torres</td><td><strong style="color:#c62828">78%</strong></td><td><span class="tb tr">🔴</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">EMEA — Seller Breakdown</div>
+      <table class="dt">
+        <thead><tr><th>Seller</th><th>Att%</th><th>Tier</th></tr></thead>
+        <tbody>
+          <tr><td>Klaus Weber</td><td><strong>118%</strong></td><td><span class="tb tg">🥈</span></td></tr>
+          <tr><td>Marie Dupont</td><td><strong>103%</strong></td><td><span class="tb tg">🥈</span></td></tr>
+          <tr><td>James Bennett</td><td><strong>93%</strong></td><td><span class="tb ts">🥉</span></td></tr>
+          <tr><td>Petra Kovacs</td><td><strong>91%</strong></td><td><span class="tb ts">🥉</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">APJ — Seller Breakdown</div>
+      <table class="dt">
+        <thead><tr><th>Seller</th><th>Att%</th><th>Tier</th></tr></thead>
+        <tbody>
+          <tr><td>Kenji Yamamoto</td><td><strong>115%</strong></td><td><span class="tb tg">🥈</span></td></tr>
+          <tr><td>Raj Patel</td><td><strong>106%</strong></td><td><span class="tb tg">🥈</span></td></tr>
+          <tr><td>Priya Singh</td><td><strong>86%</strong></td><td><span class="tb ts">🥉</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     TAB 5 — SELLER DETAILS (Sarah Chen)
+════════════════════════════════════════ -->
+<section id="tab-details" class="tab-panel">
+  <div class="sh">
+    <div class="st">Seller Details — Sarah Chen 🥇</div>
+    <div class="ss">Americas · Q3 FY2026 · Platinum</div>
+  </div>
+
+  <div class="g5" style="margin-bottom:18px">
+    <div class="mc"><div class="mc-lbl">Avg Deal Size</div><div class="mc-val">$137K</div></div>
+    <div class="mc"><div class="mc-lbl">Closed Won</div><div class="mc-val" style="color:#2e7d32">$824K</div></div>
+    <div class="mc"><div class="mc-lbl">Deals Closed</div><div class="mc-val">6</div></div>
+    <div class="mc"><div class="mc-lbl">Win/Loss</div><div class="mc-val">6W / 3L</div><div class="mc-sub">67% win</div></div>
+    <div class="mc"><div class="mc-lbl">Open ARR</div><div class="mc-val">$1.6M</div></div>
+  </div>
+
+  <div class="g2" style="align-items:start">
+    <div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <div style="padding:14px 16px;font-size:12px;font-weight:800;color:var(--teal);text-transform:uppercase;border-bottom:1px solid var(--border)">All Open Deals (8)</div>
+        <table class="dt">
+          <thead><tr><th>Account</th><th>ARR</th><th>Stage</th><th>Close Date</th><th>Forecast</th></tr></thead>
+          <tbody>
+            <tr><td><strong>CloudTech Enterprise</strong></td><td>$340K</td><td>Negotiate</td><td>Sep 28</td><td><span style="color:#2e7d32;font-weight:700">Commit</span></td></tr>
+            <tr><td><strong>DataSystems Inc.</strong></td><td>$210K</td><td>Solution</td><td>Oct 15</td><td><span style="color:#0f4c5c;font-weight:700">Best Case</span></td></tr>
+            <tr><td><strong>RetailGiant Corp</strong></td><td>$180K</td><td>Propose</td><td>Oct 30</td><td>Pipeline</td></tr>
+            <tr><td><strong>FinanceHub LLC</strong></td><td>$89K</td><td>Validate</td><td>Sep 25</td><td><span style="color:#2e7d32;font-weight:700">Commit</span></td></tr>
+            <tr><td><strong>LogiTrack Ltd</strong></td><td>$155K</td><td>Propose</td><td>Nov 5</td><td>Pipeline</td></tr>
+            <tr><td><strong>NebulaHealth</strong></td><td>$275K</td><td>Discovery</td><td>Nov 20</td><td>Pipeline</td></tr>
+            <tr><td><strong>StratoManufacture</strong></td><td>$230K</td><td>Solution</td><td>Oct 22</td><td><span style="color:#0f4c5c;font-weight:700">Best Case</span></td></tr>
+            <tr><td><strong>OceanPort Logistics</strong></td><td>$120K</td><td>Validate</td><td>Sep 30</td><td><span style="color:#2e7d32;font-weight:700">Commit</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <div style="padding:14px 16px;font-size:12px;font-weight:800;color:var(--teal);text-transform:uppercase;border-bottom:1px solid var(--border)">Closed Won This Quarter (6 deals · $824K)</div>
+        <table class="dt">
+          <thead><tr><th>Account</th><th>ARR</th><th>Close Date</th></tr></thead>
+          <tbody>
+            <tr><td><strong>AlphaStream Corp</strong></td><td>$185K</td><td>Jul 14</td></tr>
+            <tr><td><strong>FusionRetail</strong></td><td>$142K</td><td>Jul 28</td></tr>
+            <tr><td><strong>NexusBank</strong></td><td>$210K</td><td>Aug 12</td></tr>
+            <tr><td><strong>PrecisionMed</strong></td><td>$97K</td><td>Aug 25</td></tr>
+            <tr><td><strong>GlobeShip Inc.</strong></td><td>$115K</td><td>Sep 3</td></tr>
+            <tr><td><strong>TerraEnergy LLC</strong></td><td>$75K</td><td>Sep 11</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="al al-s" style="margin-top:14px">
+        🏆 Sarah is 28% above quota with 12 days remaining. No pull-in required — 3 commits totaling $548K in pipeline.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     TAB 6 — CHARTS
+════════════════════════════════════════ -->
+<section id="tab-charts" class="tab-panel">
+  <div class="sh"><div class="st">Analytics & Charts</div><div class="ss">Q3 FY2026</div></div>
+
+  <div class="g2">
+    <!-- Histogram -->
+    <div class="cc">
+      <div class="ct">Attainment Distribution — All 12 Sellers</div>
+      <svg viewBox="0 0 420 200" style="width:100%;display:block">
+        <!-- Axes -->
+        <line x1="50" y1="170" x2="410" y2="170" stroke="#ccc" stroke-width="1.5"/>
+        <line x1="50" y1="20" x2="50" y2="170" stroke="#ccc" stroke-width="1.5"/>
+        <!-- Y labels -->
+        <text x="45" y="170" font-size="10" fill="#888" text-anchor="end">0</text>
+        <text x="45" y="130" font-size="10" fill="#888" text-anchor="end">1</text>
+        <text x="45" y="90" font-size="10" fill="#888" text-anchor="end">2</text>
+        <text x="45" y="50" font-size="10" fill="#888" text-anchor="end">3</text>
+        <!-- Grid -->
+        <line x1="50" y1="130" x2="410" y2="130" stroke="#f5f5f5" stroke-width="1"/>
+        <line x1="50" y1="90" x2="410" y2="90" stroke="#f5f5f5" stroke-width="1"/>
+        <line x1="50" y1="50" x2="410" y2="50" stroke="#f5f5f5" stroke-width="1"/>
+        <!-- Bars: each bucket 55px wide, gap 5px; scale: each seller = 40px height -->
+        <!-- 70-80%: 1 seller -->
+        <rect x="55" y="130" width="50" height="40" fill="#c62828" rx="3"/>
+        <text x="80" y="126" font-size="11" font-weight="700" fill="#c62828" text-anchor="middle">1</text>
+        <text x="80" y="184" font-size="10" fill="#666" text-anchor="middle">70–80%</text>
+        <!-- 80-90%: 1 seller -->
+        <rect x="115" y="130" width="50" height="40" fill="#cd7f32" rx="3"/>
+        <text x="140" y="126" font-size="11" font-weight="700" fill="#cd7f32" text-anchor="middle">1</text>
+        <text x="140" y="184" font-size="10" fill="#666" text-anchor="middle">80–90%</text>
+        <!-- 90-100%: 4 sellers -->
+        <rect x="175" y="10" width="50" height="160" fill="#bbb" rx="3"/>
+        <text x="200" y="25" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">4</text>
+        <text x="200" y="184" font-size="10" fill="#666" text-anchor="middle">90–100%</text>
+        <!-- 100-110%: 3 sellers -->
+        <rect x="235" y="50" width="50" height="120" fill="#ffd700" rx="3"/>
+        <text x="260" y="65" font-size="11" font-weight="700" fill="#8a6200" text-anchor="middle">3</text>
+        <text x="260" y="184" font-size="10" fill="#666" text-anchor="middle">100–110%</text>
+        <!-- 110-120%: 2 sellers -->
+        <rect x="295" y="90" width="50" height="80" fill="#f4a261" rx="3"/>
+        <text x="320" y="106" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+        <text x="320" y="184" font-size="10" fill="#666" text-anchor="middle">110–120%</text>
+        <!-- 120%+: 1 seller -->
+        <rect x="355" y="130" width="50" height="40" fill="#0f4c5c" rx="3"/>
+        <text x="380" y="126" font-size="11" font-weight="700" fill="#0f4c5c" text-anchor="middle">1</text>
+        <text x="380" y="184" font-size="10" fill="#666" text-anchor="middle">120%+</text>
+      </svg>
+    </div>
+
+    <!-- Bookings Trend -->
+    <div class="cc">
+      <div class="ct">Bookings Trend — Last 4 Quarters ($M)</div>
+      <svg viewBox="0 0 380 200" style="width:100%;display:block">
+        <line x1="50" y1="170" x2="360" y2="170" stroke="#ccc" stroke-width="1.5"/>
+        <line x1="50" y1="20" x2="50" y2="170" stroke="#ccc" stroke-width="1.5"/>
+        <text x="45" y="170" font-size="10" fill="#888" text-anchor="end">$0</text>
+        <text x="45" y="120" font-size="10" fill="#888" text-anchor="end">$5M</text>
+        <text x="45" y="70" font-size="10" fill="#888" text-anchor="end">$10M</text>
+        <line x1="50" y1="120" x2="360" y2="120" stroke="#f5f5f5" stroke-width="1"/>
+        <line x1="50" y1="70" x2="360" y2="70" stroke="#f5f5f5" stroke-width="1"/>
+        <!-- Bars: Q4FY25=$7.8M, Q1FY26=$8.2M, Q2FY26=$7.5M, Q3FY26=$9.2M(current) -->
+        <!-- Scale: $10M = 150px height, from y=170; $7.8M=(7.8/10)*150=117px -->
+        <rect x="65" y="53" width="55" height="117" fill="#1a6b7f" rx="3"/>
+        <text x="92" y="48" font-size="11" font-weight="700" fill="#1a6b7f" text-anchor="middle">$7.8M</text>
+        <text x="92" y="186" font-size="10" fill="#666" text-anchor="middle">Q4 FY25</text>
+        <!-- $8.2M = 123px -->
+        <rect x="145" y="47" width="55" height="123" fill="#0f4c5c" rx="3"/>
+        <text x="172" y="42" font-size="11" font-weight="700" fill="#0f4c5c" text-anchor="middle">$8.2M</text>
+        <text x="172" y="186" font-size="10" fill="#666" text-anchor="middle">Q1 FY26</text>
+        <!-- $7.5M = 112.5px -->
+        <rect x="225" y="57" width="55" height="113" fill="#1a6b7f" rx="3"/>
+        <text x="252" y="52" font-size="11" font-weight="700" fill="#1a6b7f" text-anchor="middle">$7.5M</text>
+        <text x="252" y="186" font-size="10" fill="#666" text-anchor="middle">Q2 FY26</text>
+        <!-- $9.2M = 138px (current quarter — highlighted) -->
+        <rect x="305" y="32" width="55" height="138" fill="#f4a261" rx="3"/>
+        <text x="332" y="27" font-size="11" font-weight="700" fill="#e08a45" text-anchor="middle">$9.2M*</text>
+        <text x="332" y="186" font-size="10" fill="#e08a45" font-weight="700" text-anchor="middle">Q3 FY26</text>
+        <text x="200" y="198" font-size="9" fill="#888" text-anchor="middle">* Q3 in progress — 12 days remaining</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Scatter Plot -->
+  <div class="cc">
+    <div class="ct">Win Rate vs. Avg Deal Size — All Sellers</div>
+    <svg viewBox="0 0 620 260" style="width:100%;display:block">
+      <!-- Axes -->
+      <line x1="70" y1="220" x2="590" y2="220" stroke="#ccc" stroke-width="1.5"/>
+      <line x1="70" y1="20" x2="70" y2="220" stroke="#ccc" stroke-width="1.5"/>
+      <!-- X axis labels (deal size $50K - $250K) -->
+      <text x="70" y="234" font-size="9" fill="#888" text-anchor="middle">$50K</text>
+      <text x="200" y="234" font-size="9" fill="#888" text-anchor="middle">$100K</text>
+      <text x="330" y="234" font-size="9" fill="#888" text-anchor="middle">$150K</text>
+      <text x="460" y="234" font-size="9" fill="#888" text-anchor="middle">$200K</text>
+      <text x="590" y="234" font-size="9" fill="#888" text-anchor="middle">$250K</text>
+      <text x="330" y="250" font-size="10" fill="#666" text-anchor="middle">Avg Deal Size</text>
+      <!-- Y axis labels (win rate 0-60%) -->
+      <text x="65" y="220" font-size="9" fill="#888" text-anchor="end">0%</text>
+      <text x="65" y="153" font-size="9" fill="#888" text-anchor="end">20%</text>
+      <text x="65" y="87" font-size="9" fill="#888" text-anchor="end">40%</text>
+      <text x="65" y="20" font-size="9" fill="#888" text-anchor="end">60%</text>
+      <!-- Grid -->
+      <line x1="70" y1="153" x2="590" y2="153" stroke="#f5f5f5" stroke-width="1"/>
+      <line x1="70" y1="87" x2="590" y2="87" stroke="#f5f5f5" stroke-width="1"/>
+      <!-- 30% benchmark line -->
+      <line x1="70" y1="120" x2="590" y2="120" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="5,4"/>
+      <text x="592" y="118" font-size="9" fill="#aaa">30%</text>
+      <!-- Scale: x: ($sz-50K)/200K * 520 + 70; y: 220 - (wr/60)*200
+           Sarah Chen: $170K WR34% → x=70+(120/200)*520=382, y=220-(34/60)*200=107 -->
+      <!-- Data points: deal_size, win_rate, name, color -->
+      <!-- Sarah Chen: 170K, 34% → x=382, y=107 -->
+      <circle cx="382" cy="107" r="9" fill="#0f4c5c" opacity=".85"/>
+      <text x="382" y="96" font-size="9" fill="#0f4c5c" text-anchor="middle">Sarah</text>
+      <!-- Klaus: 200K, 29% → x=(150/200)*520+70=459, y=220-(29/60)*200=123 -->
+      <circle cx="459" cy="123" r="8" fill="#1a6b7f" opacity=".85"/>
+      <text x="459" y="112" font-size="9" fill="#1a6b7f" text-anchor="middle">Klaus</text>
+      <!-- Kenji: 140K, 38% → x=(90/200)*520+70=304, y=220-(38/60)*200=93 -->
+      <circle cx="304" cy="93" r="8" fill="#f4a261" opacity=".85"/>
+      <text x="304" y="82" font-size="9" fill="#e08a45" text-anchor="middle">Kenji</text>
+      <!-- Marcus: 155K, 31% → x=(105/200)*520+70=343, y=220-(31/60)*200=116 -->
+      <circle cx="343" cy="116" r="8" fill="#0f4c5c" opacity=".7"/>
+      <text x="343" y="105" font-size="9" fill="#0f4c5c" text-anchor="middle">Marcus</text>
+      <!-- Raj: 120K, 42% → x=(70/200)*520+70=252, y=220-(42/60)*200=80 -->
+      <circle cx="252" cy="80" r="8" fill="#f4a261" opacity=".85"/>
+      <text x="252" y="69" font-size="9" fill="#e08a45" text-anchor="middle">Raj</text>
+      <!-- Marie: 145K, 28% → x=(95/200)*520+70=317, y=220-(28/60)*200=127 -->
+      <circle cx="317" cy="127" r="8" fill="#1a6b7f" opacity=".7"/>
+      <text x="317" y="140" font-size="9" fill="#1a6b7f" text-anchor="middle">Marie</text>
+      <!-- Ana: 95K, 35% → x=(45/200)*520+70=187, y=220-(35/60)*200=103 -->
+      <circle cx="187" cy="103" r="8" fill="#0f4c5c" opacity=".7"/>
+      <text x="187" y="116" font-size="9" fill="#0f4c5c" text-anchor="middle">Ana</text>
+      <!-- Jennifer: 175K, 24% → x=(125/200)*520+70=395, y=220-(24/60)*200=140 -->
+      <circle cx="395" cy="140" r="8" fill="#0f4c5c" opacity=".6"/>
+      <text x="395" y="153" font-size="9" fill="#555" text-anchor="middle">Jennifer</text>
+      <!-- James: 110K, 32% → x=(60/200)*520+70=226, y=220-(32/60)*200=113 -->
+      <circle cx="226" cy="113" r="8" fill="#1a6b7f" opacity=".65"/>
+      <text x="226" y="102" font-size="9" fill="#1a6b7f" text-anchor="middle">James</text>
+      <!-- Petra: 88K, 29% → x=(38/200)*520+70=169, y=220-(29/60)*200=123 -->
+      <circle cx="169" cy="123" r="7" fill="#1a6b7f" opacity=".6"/>
+      <text x="169" y="112" font-size="9" fill="#1a6b7f" text-anchor="middle">Petra</text>
+      <!-- Priya: 80K, 38% → x=(30/200)*520+70=148, y=220-(38/60)*200=93 -->
+      <circle cx="148" cy="93" r="7" fill="#f4a261" opacity=".75"/>
+      <text x="148" y="82" font-size="9" fill="#e08a45" text-anchor="middle">Priya</text>
+      <!-- David: 135K, 22% → x=(85/200)*520+70=291, y=220-(22/60)*200=147 -->
+      <circle cx="291" cy="147" r="8" fill="#c62828" opacity=".85"/>
+      <text x="291" y="160" font-size="9" fill="#c62828" text-anchor="middle">David</text>
+    </svg>
+    <div style="font-size:11px;color:var(--muted);margin-top:4px">Circle size proportional to attainment. Red = below 80% attainment. Dashed line = 30% win rate benchmark.</div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     TAB 7 — DECLARATION FORM
+════════════════════════════════════════ -->
+<section id="tab-declaration" class="tab-panel">
+  <div class="sh">
+    <div class="st">Commit Declaration Form</div>
+    <div class="ss">Week 35 · Declarations close after Week 8 of quarter</div>
+  </div>
+
+  <div class="g2" style="align-items:start">
+    <div>
+      <div class="card">
+        <div class="card-title">Seller</div>
+        <select style="width:100%;margin-bottom:16px">
+          <option>Sarah Chen — Americas</option>
+          <option>Klaus Weber — EMEA</option>
+          <option>David Torres — Americas</option>
+        </select>
+        <div class="al al-s">✅ Declaration submitted by Sarah Chen — Week 35</div>
+        <div style="margin-top:12px;display:flex;align-items:center;gap:8px">
+          <span class="lock">🔒 Declarations locked after Week 8 of quarter</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Commit Deals — Select to Include</div>
+        <div class="ci">
+          <input type="checkbox" checked onchange="calcTotal()">
+          <span class="ci-lbl"><strong>CloudTech Enterprise</strong> · Negotiate · Sep 28</span>
+          <span class="ci-amt">$340K</span>
+        </div>
+        <div class="ci">
+          <input type="checkbox" checked onchange="calcTotal()">
+          <span class="ci-lbl"><strong>FinanceHub LLC</strong> · Validate · Sep 25</span>
+          <span class="ci-amt">$89K</span>
+        </div>
+        <div class="ci">
+          <input type="checkbox" checked onchange="calcTotal()">
+          <span class="ci-lbl"><strong>OceanPort Logistics</strong> · Validate · Sep 30</span>
+          <span class="ci-amt">$120K</span>
+        </div>
+        <div class="ci">
+          <input type="checkbox" onchange="calcTotal()">
+          <span class="ci-lbl"><strong>DataSystems Inc.</strong> · Solution · Oct 15</span>
+          <span class="ci-amt">$210K</span>
+        </div>
+        <div class="ci">
+          <input type="checkbox" onchange="calcTotal()">
+          <span class="ci-lbl"><strong>StratoManufacture</strong> · Solution · Oct 22</span>
+          <span class="ci-amt">$230K</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title">Declaration Summary</div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg);border-radius:8px">
+            <span style="font-size:13px;color:var(--muted)">Total Committed (selected)</span>
+            <span id="decl-total" style="font-size:26px;font-weight:900;color:var(--teal)">$549K</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg);border-radius:8px">
+            <span style="font-size:13px;color:var(--muted)">Remaining Quota</span>
+            <span style="font-size:22px;font-weight:900;color:#2e7d32">$0</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg);border-radius:8px">
+            <span style="font-size:13px;color:var(--muted)">Current Attainment</span>
+            <span style="font-size:22px;font-weight:900;color:#0f4c5c">128% 🥇</span>
+          </div>
+          <div class="al al-s">Sarah is already above 100% — declaration is informational and supports upside forecasting.</div>
+          <button class="btn btn-p" style="width:100%;padding:12px;font-size:14px" onclick="alert('Declaration saved for Sarah Chen — Week 35')">Submit Declaration</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Declaration History</div>
+        <table class="dt">
+          <thead><tr><th>Week</th><th>Committed</th><th>Actuals at Lock</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>W32</td><td>$680K</td><td>$590K</td><td><span class="sa s-act">Closed</span></td></tr>
+            <tr><td>W33</td><td>$720K</td><td>$740K</td><td><span class="sa s-act">Closed</span></td></tr>
+            <tr><td>W34</td><td>$810K</td><td>$880K</td><td><span class="sa s-act">Closed</span></td></tr>
+            <tr><td>W35</td><td>$549K</td><td>—</td><td><span class="sa" style="background:#e8f4f8;color:#0f4c5c">Active</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     TAB 8 — PLAN TO RECOVER
+════════════════════════════════════════ -->
+<section id="tab-recovery" class="tab-panel">
+  <div class="sh">
+    <div class="st">🚨 Plan to Recover — David Torres</div>
+    <div class="ss">Americas · 78% attainment · 12 days remaining</div>
+  </div>
+
+  <div class="g5" style="margin-bottom:18px">
+    <div class="mc"><div class="mc-lbl">Attainment</div><div class="mc-val" style="color:#c62828">78%</div></div>
+    <div class="mc"><div class="mc-lbl">Gap to 100%</div><div class="mc-val" style="color:#c62828">$144K</div></div>
+    <div class="mc"><div class="mc-lbl">Pipeline Cover</div><div class="mc-val" style="color:#c62828">1.2x</div><div class="mc-sub">Below 2.5x benchmark</div></div>
+    <div class="mc"><div class="mc-lbl">Recovery Confidence</div><div class="mc-val" style="color:#e08a45">58%</div></div>
+    <div class="mc"><div class="mc-lbl">Days Remaining</div><div class="mc-val">12</div></div>
+  </div>
+
+  <div class="g2" style="align-items:start">
+    <div>
+      <div class="card">
+        <div class="card-title">Recovery Progress</div>
+        <div style="margin-bottom:6px;font-size:12px;color:var(--muted)">Quota attainment vs. 100% target</div>
+        <div style="background:#e9ecef;border-radius:10px;height:28px;overflow:hidden;margin-bottom:8px">
+          <div style="height:100%;width:78%;background:linear-gradient(90deg,#c62828,#e57373);border-radius:10px;display:flex;align-items:center;padding-left:10px;font-size:12px;font-weight:700;color:#fff">78% ($624K actuals)</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)">
+          <span>$0</span><span style="color:#c62828;font-weight:700">← $144K gap →</span><span>$800K quota</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Pull-In Candidates (Deals That Could Close Early)</div>
+        <table class="dt">
+          <thead><tr><th>Account</th><th>ARR</th><th>Stage</th><th>Accelerator</th><th>Probability</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Coca-Cola LATAM</strong></td><td>$89K</td><td>Negotiate</td>
+              <td style="font-size:12px">Legal exception approval</td>
+              <td><span style="color:#2e7d32;font-weight:700">72%</span></td>
+            </tr>
+            <tr>
+              <td><strong>ServiceNow EMEA</strong></td><td>$67K</td><td>Propose</td>
+              <td style="font-size:12px">Price concession + exec sponsor</td>
+              <td><span style="color:#e08a45;font-weight:700">45%</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top:10px;font-size:12px;color:var(--muted)">Combined pull-in potential: <strong>$156K</strong> — sufficient to close gap if both land</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title">Recovery Confidence</div>
+        <div style="text-align:center;padding:20px 0">
+          <div style="font-size:56px;font-weight:900;color:#e08a45">58%</div>
+          <div style="font-size:14px;color:var(--muted);margin-top:4px">Probability of reaching 100%</div>
+          <div style="margin-top:16px">
+            <svg viewBox="0 0 200 24" style="width:100%;display:block">
+              <rect x="0" y="4" width="200" height="16" fill="#e9ecef" rx="8"/>
+              <rect x="0" y="4" width="116" height="16" fill="#e08a45" rx="8"/>
+              <text x="108" y="16" font-size="11" font-weight="700" fill="#fff">58%</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Action Log</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="padding:10px;background:var(--bg);border-radius:8px;border-left:3px solid var(--teal)">
+            <div style="font-size:11px;color:var(--muted)">Sep 17 — Jennifer Brooks (Manager)</div>
+            <div style="font-size:13px;margin-top:3px">David committed to accelerate Coca-Cola LATAM by leveraging legal exception pathway. Exec sponsor engaged.</div>
+          </div>
+          <div style="padding:10px;background:var(--bg);border-radius:8px;border-left:3px solid var(--acc)">
+            <div style="font-size:11px;color:var(--muted)">Sep 15 — Yuki Tanaka (Deal Assist)</div>
+            <div style="font-size:13px;margin-top:3px">ServiceNow price concession approved at 8% discount. Awaiting customer signature.</div>
+          </div>
+          <div style="padding:10px;background:var(--bg);border-radius:8px;border-left:3px solid #c62828">
+            <div style="font-size:11px;color:var(--muted)">Sep 14 — Flag raised by SI system</div>
+            <div style="font-size:13px;margin-top:3px">Pipeline coverage at 1.2x — risk flag triggered. No new pipeline created in 3 weeks.</div>
+          </div>
+        </div>
+        <div class="al al-w" style="margin-top:12px">
+          ⚠️ If Coca-Cola LATAM slips, David will end Q3 below 80% — triggering PIP review per compensation policy.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     TAB 9 — BOOK LOST
+════════════════════════════════════════ -->
+<section id="tab-booklost" class="tab-panel">
+  <div class="sh">
+    <div class="st">Book Lost — Loss Analysis</div>
+    <div class="ss">FY2026 YTD · 29 losses tracked</div>
+  </div>
+
+  <div class="g3" style="margin-bottom:18px">
+    <div class="mc"><div class="mc-lbl">Won FY2026 YTD</div><div class="mc-val" style="color:#2e7d32">71</div><div class="mc-sub">71% win rate</div></div>
+    <div class="mc"><div class="mc-lbl">Lost FY2026 YTD</div><div class="mc-val" style="color:#c62828">29</div><div class="mc-sub">29% loss rate</div></div>
+    <div class="mc"><div class="mc-lbl">Top Competitor</div><div class="mc-val" style="font-size:16px">CloudMetrics Corp</div><div class="mc-sub">3 of 6 Q3 losses</div></div>
+  </div>
+
+  <div class="g2" style="align-items:start">
+    <div class="card" style="padding:0;overflow:hidden">
+      <div style="padding:14px 16px;font-size:12px;font-weight:800;color:var(--teal);text-transform:uppercase;border-bottom:1px solid var(--border)">Q3 FY2026 — Lost Deals (6)</div>
+      <table class="dt">
+        <thead><tr><th>Account</th><th>ARR</th><th>Loss Reason</th><th>Competitor</th><th>Seller</th><th>Date</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>TechCorp Global</strong></td><td>$180K</td>
+            <td><span class="al al-d" style="margin:0;padding:2px 8px;display:inline-block;font-size:11px">Price</span></td>
+            <td>CloudMetrics Corp</td><td>Sarah Chen</td><td>Aug 15</td>
+          </tr>
+          <tr>
+            <td><strong>ManuFacture Ltd</strong></td><td>$240K</td>
+            <td><span class="al al-w" style="margin:0;padding:2px 8px;display:inline-block;font-size:11px">Product Gap</span></td>
+            <td>InfraCloud</td><td>Klaus Weber</td><td>Aug 22</td>
+          </tr>
+          <tr>
+            <td><strong>RetailPlus Corp</strong></td><td>$95K</td>
+            <td><span class="al al-d" style="margin:0;padding:2px 8px;display:inline-block;font-size:11px">Price</span></td>
+            <td>CloudMetrics Corp</td><td>Ana Lima</td><td>Jul 30</td>
+          </tr>
+          <tr>
+            <td><strong>HealthData Inc.</strong></td><td>$165K</td>
+            <td><span class="al al-i" style="margin:0;padding:2px 8px;display:inline-block;font-size:11px">No Decision</span></td>
+            <td>—</td><td>Jennifer Park</td><td>Sep 1</td>
+          </tr>
+          <tr>
+            <td><strong>GlobalShip Ltd</strong></td><td>$200K</td>
+            <td><span class="al al-w" style="margin:0;padding:2px 8px;display:inline-block;font-size:11px">Product Gap</span></td>
+            <td>DataVault</td><td>David Torres</td><td>Aug 18</td>
+          </tr>
+          <tr>
+            <td><strong>PayTech Solutions</strong></td><td>$140K</td>
+            <td><span class="al al-d" style="margin:0;padding:2px 8px;display:inline-block;font-size:11px">Competition</span></td>
+            <td>CloudMetrics Corp</td><td>Raj Patel</td><td>Aug 28</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title">Loss Reason Breakdown — Q3</div>
+        <svg viewBox="0 0 280 180" style="width:100%;display:block">
+          <!-- Horizontal bars -->
+          <text x="10" y="30" font-size="12" fill="#555">Price</text>
+          <rect x="100" y="18" width="120" height="18" fill="#c62828" rx="3"/>
+          <text x="225" y="30" font-size="12" font-weight="700" fill="#c62828">2 deals</text>
+          <text x="10" y="62" font-size="12" fill="#555">Product Gap</text>
+          <rect x="100" y="50" width="120" height="18" fill="#e08a45" rx="3"/>
+          <text x="225" y="62" font-size="12" font-weight="700" fill="#e08a45">2 deals</text>
+          <text x="10" y="94" font-size="12" fill="#555">Competition</text>
+          <rect x="100" y="82" width="60" height="18" fill="#888" rx="3"/>
+          <text x="165" y="94" font-size="12" font-weight="700" fill="#888">1 deal</text>
+          <text x="10" y="126" font-size="12" fill="#555">No Decision</text>
+          <rect x="100" y="114" width="60" height="18" fill="#bbb" rx="3"/>
+          <text x="165" y="126" font-size="12" font-weight="700" fill="#888">1 deal</text>
+        </svg>
+      </div>
+      <div class="card">
+        <div class="card-title">Competitor Intelligence</div>
+        <table class="dt">
+          <thead><tr><th>Competitor</th><th>Q3 Wins vs. Vantara</th><th>Avg Deal</th></tr></thead>
+          <tbody>
+            <tr><td><strong>CloudMetrics Corp</strong></td><td><span class="rf">3 deals</span></td><td>$138K</td></tr>
+            <tr><td><strong>InfraCloud</strong></td><td>1 deal</td><td>$240K</td></tr>
+            <tr><td><strong>DataVault</strong></td><td>1 deal</td><td>$200K</td></tr>
+          </tbody>
+        </table>
+        <div class="al al-w" style="margin-top:12px">CloudMetrics Corp dominates Q3 losses — primary threat in price-sensitive mid-market. Product team notified.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     TAB 10 — SELLER INFO / ROSTER
+════════════════════════════════════════ -->
+<section id="tab-roster" class="tab-panel">
+  <div class="sh">
+    <div class="st">Seller Roster</div>
+    <div class="ss">Last synced from CRM: Week 36 · All emails fictional</div>
+  </div>
+
+  <div class="al al-i" style="margin-bottom:16px">📌 Data quality note: Last synced from CRM: Week 36. Manager assignments reflect current org structure as of Q3 FY2026.</div>
+
+  <div class="card" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <thead>
+        <tr><th>#</th><th>Name</th><th>Email</th><th>Region</th><th>Role</th><th>Manager</th><th>Tier</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Sarah Chen</strong></td><td>sarah.chen@vantara-fictional.demo</td><td>Americas</td><td>Senior AE</td><td>Jennifer Brooks</td><td><span class="tb tp">🥇 Platinum</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>2</td><td><strong>Klaus Weber</strong></td><td>klaus.weber@vantara-fictional.demo</td><td>EMEA</td><td>Senior AE</td><td>Thomas Schmidt</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>3</td><td><strong>Kenji Yamamoto</strong></td><td>kenji.yamamoto@vantara-fictional.demo</td><td>APJ</td><td>Senior AE</td><td>Yuki Tanaka</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>4</td><td><strong>Marcus Williams</strong></td><td>marcus.williams@vantara-fictional.demo</td><td>Americas</td><td>AE</td><td>Jennifer Brooks</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>5</td><td><strong>Raj Patel</strong></td><td>raj.patel@vantara-fictional.demo</td><td>APJ</td><td>AE</td><td>Yuki Tanaka</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>6</td><td><strong>Marie Dupont</strong></td><td>marie.dupont@vantara-fictional.demo</td><td>EMEA</td><td>AE</td><td>Thomas Schmidt</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>7</td><td><strong>Ana Lima</strong></td><td>ana.lima@vantara-fictional.demo</td><td>Americas</td><td>AE</td><td>Jennifer Brooks</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>8</td><td><strong>Jennifer Park</strong></td><td>jennifer.park@vantara-fictional.demo</td><td>Americas</td><td>AE</td><td>Jennifer Brooks</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>9</td><td><strong>James Bennett</strong></td><td>james.bennett@vantara-fictional.demo</td><td>EMEA</td><td>AE</td><td>Thomas Schmidt</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>10</td><td><strong>Petra Kovacs</strong></td><td>petra.kovacs@vantara-fictional.demo</td><td>EMEA</td><td>AE</td><td>Thomas Schmidt</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-lv">Leave</span></td></tr>
+        <tr><td>11</td><td><strong>Priya Singh</strong></td><td>priya.singh@vantara-fictional.demo</td><td>APJ</td><td>AE</td><td>Yuki Tanaka</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>12</td><td><strong>David Torres</strong></td><td>david.torres@vantara-fictional.demo</td><td>Americas</td><td>AE</td><td>Jennifer Brooks</td><td><span class="tb tr">🔴 Bronze</span></td><td><span class="sa s-act">Active</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="g3" style="margin-top:18px">
+    <div class="card"><div class="card-title">Managers</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>Jennifer Brooks</strong><br><span style="font-size:12px;color:var(--muted)">jennifer.brooks@vantara-fictional.demo · Americas · 4 direct reports</span></div>
+        <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>Thomas Schmidt</strong><br><span style="font-size:12px;color:var(--muted)">thomas.schmidt@vantara-fictional.demo · EMEA · 4 direct reports</span></div>
+        <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>Yuki Tanaka</strong><br><span style="font-size:12px;color:var(--muted)">yuki.tanaka@vantara-fictional.demo · APJ · 3 direct reports</span></div>
+      </div>
+    </div>
+    <div class="card"><div class="card-title">Headcount by Region</div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
+        <div style="display:flex;justify-content:space-between"><span>Americas</span><strong>5 sellers</strong></div>
+        <div class="pb"><div class="pf" style="width:42%;background:var(--teal)"></div></div>
+        <div style="display:flex;justify-content:space-between"><span>EMEA</span><strong>4 sellers</strong></div>
+        <div class="pb"><div class="pf" style="width:33%;background:#1a6b7f"></div></div>
+        <div style="display:flex;justify-content:space-between"><span>APJ</span><strong>3 sellers</strong></div>
+        <div class="pb"><div class="pf" style="width:25%;background:var(--acc)"></div></div>
+      </div>
+    </div>
+    <div class="card"><div class="card-title">Active vs. Leave</div>
+      <div style="font-size:42px;font-weight:900;color:var(--teal);text-align:center;padding:10px 0">11 <span style="font-size:16px;color:var(--muted)">Active</span></div>
+      <div style="text-align:center;font-size:14px;color:#e08a45">1 <span style="color:var(--muted)">on Leave</span> (Petra Kovacs)</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="app-footer">
+  Vantara Sales Portfolio &nbsp;|&nbsp; All data fictional &nbsp;|&nbsp; Access controlled by RLS in production &nbsp;|&nbsp; Q3 FY2026 · Week 36
+</footer>
+
+<script>
+// ── TAB SWITCHING ──
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'scorecard') updateScorecard(document.getElementById('seller-select').value);
+}
+
+// ── SELLER DATA ──
+const SD = {
+  'sarah-chen':    { name:'Sarah Chen',      region:'Americas', quota:'$800K', actuals:'$1.02M', att:128, tier:'Platinum', tierCls:'tp', tierIco:'🥇', pipeline:'$2.4M', wr:34, hyg:81, cov:3.0, covOk:true,  regAvgAtt:101, regAvgWR:26,
+    deals:[{a:'CloudTech Enterprise',v:'$340K',s:'Negotiate',d:'Sep 28',f:'Commit'},{a:'DataSystems Inc.',v:'$210K',s:'Solution',d:'Oct 15',f:'Best Case'},{a:'RetailGiant Corp',v:'$180K',s:'Propose',d:'Oct 30',f:'Pipeline'},{a:'FinanceHub LLC',v:'$89K',s:'Validate',d:'Sep 25',f:'Commit'}] },
+  'klaus-weber':   { name:'Klaus Weber',     region:'EMEA',     quota:'$900K', actuals:'$1.06M', att:118, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$2.1M', wr:29, hyg:76, cov:2.8, covOk:true,  regAvgAtt:102, regAvgWR:30,
+    deals:[{a:'EuroTech GmbH',v:'$280K',s:'Negotiate',d:'Sep 26',f:'Commit'},{a:'NordPharma AG',v:'$195K',s:'Solution',d:'Oct 10',f:'Best Case'},{a:'Francais Holding',v:'$145K',s:'Propose',d:'Nov 2',f:'Pipeline'},{a:'ViennaSoft GmbH',v:'$89K',s:'Validate',d:'Sep 28',f:'Commit'}] },
+  'kenji-yamamoto':{ name:'Kenji Yamamoto',  region:'APJ',      quota:'$750K', actuals:'$862K',  att:115, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$1.8M', wr:38, hyg:84, cov:2.7, covOk:true,  regAvgAtt:103, regAvgWR:37,
+    deals:[{a:'TokyoDigital Corp',v:'$220K',s:'Negotiate',d:'Sep 24',f:'Commit'},{a:'SingTech Pte',v:'$160K',s:'Solution',d:'Oct 8',f:'Best Case'},{a:'KoreaBiz Ltd',v:'$95K',s:'Propose',d:'Oct 25',f:'Pipeline'},{a:'Sydney Systems',v:'$72K',s:'Validate',d:'Sep 29',f:'Commit'}] },
+  'marcus-williams':{ name:'Marcus Williams', region:'Americas', quota:'$850K', actuals:'$918K',  att:108, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$1.9M', wr:31, hyg:79, cov:2.5, covOk:true,  regAvgAtt:101, regAvgWR:26,
+    deals:[{a:'NexaCorp USA',v:'$310K',s:'Negotiate',d:'Sep 27',f:'Commit'},{a:'TexasLogistics',v:'$175K',s:'Solution',d:'Oct 12',f:'Best Case'},{a:'ChicagoFinTech',v:'$130K',s:'Propose',d:'Nov 1',f:'Pipeline'},{a:'FloridiaTech',v:'$92K',s:'Validate',d:'Sep 30',f:'Commit'}] },
+  'raj-patel':     { name:'Raj Patel',       region:'APJ',      quota:'$700K', actuals:'$742K',  att:106, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$1.6M', wr:42, hyg:88, cov:2.6, covOk:true,  regAvgAtt:103, regAvgWR:37,
+    deals:[{a:'MumbaiCloud Ltd',v:'$185K',s:'Negotiate',d:'Sep 25',f:'Commit'},{a:'BangaloreAI Inc',v:'$142K',s:'Solution',d:'Oct 14',f:'Best Case'},{a:'ChennaiSoft',v:'$98K',s:'Propose',d:'Oct 28',f:'Pipeline'},{a:'DelhiData Corp',v:'$68K',s:'Validate',d:'Sep 29',f:'Commit'}] },
+  'marie-dupont':  { name:'Marie Dupont',    region:'EMEA',     quota:'$800K', actuals:'$824K',  att:103, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$1.7M', wr:28, hyg:74, cov:2.4, covOk:false, regAvgAtt:102, regAvgWR:30,
+    deals:[{a:'ParisRetail SA',v:'$230K',s:'Negotiate',d:'Sep 29',f:'Commit'},{a:'BrusselsBank NV',v:'$155K',s:'Solution',d:'Oct 16',f:'Best Case'},{a:'AmsterdamTech BV',v:'$110K',s:'Propose',d:'Nov 3',f:'Pipeline'},{a:'MadridSystems SL',v:'$78K',s:'Validate',d:'Sep 28',f:'Commit'}] },
+  'ana-lima':      { name:'Ana Lima',        region:'Americas', quota:'$650K', actuals:'$624K',  att:96,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.4M', wr:35, hyg:77, cov:2.3, covOk:false, regAvgAtt:101, regAvgWR:26,
+    deals:[{a:'BrasilCorp SA',v:'$145K',s:'Negotiate',d:'Sep 30',f:'Commit'},{a:'MexicoTech SRL',v:'$110K',s:'Solution',d:'Oct 18',f:'Best Case'},{a:'BogotaSystems',v:'$85K',s:'Propose',d:'Nov 5',f:'Pipeline'},{a:'SantiagoCloud',v:'$62K',s:'Validate',d:'Sep 27',f:'Commit'}] },
+  'jennifer-park': { name:'Jennifer Park',   region:'Americas', quota:'$900K', actuals:'$855K',  att:95,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.9M', wr:24, hyg:71, cov:2.1, covOk:false, regAvgAtt:101, regAvgWR:26,
+    deals:[{a:'SeattleTech Inc',v:'$290K',s:'Negotiate',d:'Sep 30',f:'Best Case'},{a:'PortlandData',v:'$200K',s:'Solution',d:'Oct 20',f:'Pipeline'},{a:'SanFranSaaS',v:'$165K',s:'Propose',d:'Nov 8',f:'Pipeline'},{a:'LABiz Corp',v:'$88K',s:'Validate',d:'Sep 28',f:'Commit'}] },
+  'james-bennett': { name:'James Bennett',   region:'EMEA',     quota:'$750K', actuals:'$698K',  att:93,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.5M', wr:32, hyg:73, cov:2.3, covOk:false, regAvgAtt:102, regAvgWR:30,
+    deals:[{a:'LondonFinance Ltd',v:'$195K',s:'Negotiate',d:'Sep 30',f:'Commit'},{a:'ManchesterTech',v:'$145K',s:'Solution',d:'Oct 15',f:'Best Case'},{a:'EdinburghSoft',v:'$98K',s:'Propose',d:'Oct 29',f:'Pipeline'},{a:'BristolData',v:'$72K',s:'Validate',d:'Sep 26',f:'Commit'}] },
+  'petra-kovacs':  { name:'Petra Kovacs',    region:'EMEA',     quota:'$700K', actuals:'$638K',  att:91,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.4M', wr:29, hyg:68, cov:2.1, covOk:false, regAvgAtt:102, regAvgWR:30,
+    deals:[{a:'BudapestSoft Kft',v:'$168K',s:'Negotiate',d:'Sep 30',f:'Commit'},{a:'PragueCloud AS',v:'$125K',s:'Solution',d:'Oct 18',f:'Best Case'},{a:'VarsoviaData',v:'$92K',s:'Propose',d:'Nov 4',f:'Pipeline'},{a:'BucharestIT SRL',v:'$58K',s:'Validate',d:'Sep 28',f:'Commit'}] },
+  'priya-singh':   { name:'Priya Singh',     region:'APJ',      quota:'$600K', actuals:'$516K',  att:86,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.2M', wr:38, hyg:80, cov:2.0, covOk:false, regAvgAtt:103, regAvgWR:37,
+    deals:[{a:'SydneyCloud Pty',v:'$155K',s:'Negotiate',d:'Sep 30',f:'Best Case'},{a:'MelbourneSaaS',v:'$115K',s:'Solution',d:'Oct 16',f:'Pipeline'},{a:'PerthData',v:'$78K',s:'Propose',d:'Oct 28',f:'Pipeline'},{a:'AucklandTech',v:'$58K',s:'Validate',d:'Sep 30',f:'Commit'}] },
+  'david-torres':  { name:'David Torres',    region:'Americas', quota:'$800K', actuals:'$624K',  att:78,  tier:'Bronze',   tierCls:'tr', tierIco:'🔴', pipeline:'$960K',  wr:22, hyg:61, cov:1.2, covOk:false, regAvgAtt:101, regAvgWR:26,
+    deals:[{a:'Coca-Cola LATAM',v:'$89K',s:'Negotiate',d:'Sep 28',f:'Best Case'},{a:'ServiceNow EMEA',v:'$67K',s:'Propose',d:'Oct 5',f:'Pipeline'},{a:'TampaTech Inc',v:'$95K',s:'Solution',d:'Oct 18',f:'Pipeline'},{a:'OrlandoData',v:'$55K',s:'Validate',d:'Sep 30',f:'Commit'}] },
+};
+
+// ── GAUGE SVG ──
+function gaugesvg(att, tier) {
+  const cx=150, cy=138, r=100, maxD=150;
+  const cap = Math.min(att, maxD);
+  const bg = `M ${cx-r},${cy} A ${r},${r} 0 0,0 ${cx+r},${cy}`;
+  const theta = (180 - (cap/maxD)*180) * Math.PI / 180;
+  const ex = (cx + r * Math.cos(theta)).toFixed(1);
+  const ey = (cy - r * Math.sin(theta)).toFixed(1);
+  const fg = cap > 0 ? `M ${cx-r},${cy} A ${r},${r} 0 0,0 ${ex},${ey}` : '';
+  const cols = { Platinum:'#0f4c5c', Gold:'#c8860a', Silver:'#777', Bronze:'#cd7f32' };
+  const c = cols[tier] || '#c62828';
+  const tierLabel = tier === 'Bronze' && att < 80 ? 'BRONZE' : tier.toUpperCase();
+  return `<svg viewBox="0 0 300 178" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px;display:block;margin:0 auto">
+    <path d="${bg}" fill="none" stroke="#eee" stroke-width="22" stroke-linecap="round"/>
+    ${fg ? `<path d="${fg}" fill="none" stroke="${c}" stroke-width="22" stroke-linecap="round"/>` : ''}
+    <text x="${cx}" y="${cy-18}" text-anchor="middle" font-size="46" font-weight="900" fill="${c}" font-family="-apple-system,sans-serif">${att}%</text>
+    <text x="${cx}" y="${cy+6}" text-anchor="middle" font-size="15" font-weight="800" fill="${c}" font-family="-apple-system,sans-serif">${tierLabel}</text>
+    <text x="${cx-r}" y="${cy+20}" text-anchor="middle" font-size="10" fill="#aaa" font-family="-apple-system,sans-serif">0%</text>
+    <text x="${cx}" y="${cy-r-10}" text-anchor="middle" font-size="10" fill="#aaa" font-family="-apple-system,sans-serif">75%</text>
+    <text x="${cx+r}" y="${cy+20}" text-anchor="middle" font-size="10" fill="#aaa" font-family="-apple-system,sans-serif">150%</text>
+  </svg>`;
+}
+
+// ── UPDATE SCORECARD ──
+function updateScorecard(key) {
+  const d = SD[key]; if(!d) return;
+  document.getElementById('gauge-wrap').innerHTML = gaugesvg(d.att, d.tier);
+  document.getElementById('mc-quota').textContent   = d.quota;
+  document.getElementById('mc-actuals').textContent = d.actuals;
+  document.getElementById('mc-pipeline').textContent= d.pipeline;
+  document.getElementById('mc-winrate').textContent = d.wr + '%';
+  document.getElementById('mc-hygiene').textContent = d.hyg + '%';
+  const cval = document.getElementById('coverage-val');
+  cval.textContent = d.cov + 'x';
+  cval.style.color = d.covOk ? '#2e7d32' : '#c62828';
+  document.getElementById('coverage-lbl').textContent = 'Pipeline ' + d.pipeline + ' vs. Remaining Quota';
+  // Deals
+  const tbody = document.getElementById('opp-tbody');
+  tbody.innerHTML = d.deals.map(dd => {
+    const fc = dd.f === 'Commit' ? `<span style="color:#2e7d32;font-weight:700">Commit</span>`
+             : dd.f === 'Best Case' ? `<span style="color:#0f4c5c;font-weight:700">Best Case</span>`
+             : dd.f;
+    return `<tr><td>${dd.a}</td><td>${dd.v}</td><td>${dd.s}</td><td>${dd.d}</td><td>${fc}</td></tr>`;
+  }).join('');
+  // Peer bars (max display 150%)
+  const attPct  = Math.min((d.att/150*100), 100).toFixed(0);
+  const avgPct  = Math.min((d.regAvgAtt/150*100), 100).toFixed(0);
+  const wrPct   = Math.min((d.wr/60*100),100).toFixed(0);
+  const avgWrPct= Math.min((d.regAvgWR/60*100),100).toFixed(0);
+  document.getElementById('peer-att-self').style.width = attPct + '%';
+  document.getElementById('peer-att-self').textContent = d.name.split(' ')[0] + ' ' + d.att + '%';
+  document.getElementById('peer-att-avg').style.width = avgPct + '%';
+  document.getElementById('peer-att-avg').textContent = d.region + ' avg ' + d.regAvgAtt + '%';
+  document.getElementById('peer-wr-self').style.width = wrPct + '%';
+  document.getElementById('peer-wr-self').textContent = d.wr + '%';
+  document.getElementById('peer-wr-avg').style.width = avgWrPct + '%';
+  document.getElementById('peer-wr-avg').textContent = d.regAvgWR + '%';
+}
+
+// ── DECLARATION TOTAL ──
+const DEAL_VALS = [340, 89, 120, 210, 230];
+function calcTotal() {
+  const cbs = document.querySelectorAll('.ci input[type=checkbox]');
+  let t = 0;
+  cbs.forEach((cb, i) => { if(cb.checked) t += DEAL_VALS[i] || 0; });
+  document.getElementById('decl-total').textContent = '$' + t + 'K';
+}
+
+// ── INIT ──
+updateScorecard('sarah-chen');
+</script>
+</body>
+</html>
