@@ -45,6 +45,6 @@ table 'Calendar_Full'
 		expression = WEEKDAY([Date], 2) = 6
 
 	partition Calendar_Full = calculated
-		mode: calculated
+		mode: import
 		source =
 			CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))

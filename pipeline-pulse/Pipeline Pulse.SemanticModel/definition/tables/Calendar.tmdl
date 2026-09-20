@@ -69,6 +69,6 @@ table 'Calendar'
 		expression = "Q" & QUARTER([Date]) & " " & YEAR([Date])
 
 	partition Calendar = calculated
-		mode: calculated
+		mode: import
 		source =
 			CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))

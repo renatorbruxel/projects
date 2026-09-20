@@ -39,6 +39,6 @@ table 'Calendar_Full'
 		expression = "W" & FORMAT(WEEKNUM([Date], 2), "00") & "-" & FORMAT(YEAR([Date]), "0000")
 
 	partition Calendar_Full = calculated
-		mode: calculated
+		mode: import
 		source =
 			CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))
