@@ -556,6 +556,9 @@
   <button class="tab-btn active" onclick="switchTab('overview',this)">Net New Overview</button>
   <button class="tab-btn" onclick="switchTab('details',this)">Net New Details</button>
   <button class="tab-btn" onclick="switchTab('rules',this)">Classification Rules</button>
+  <button class="tab-btn" onclick="switchTab('unit-econ',this)">&#x1F4D0; Unit Economics</button>
+  <button class="tab-btn" onclick="switchTab('market-pos',this)">&#x1F30D; Market Position</button>
+  <button class="tab-btn" onclick="switchTab('retention-econ',this)">&#x1F4C8; Retention Economics</button>
 </nav>
 
 <!-- ── Tooltip div (shared) ─────────────────────── -->
@@ -1171,6 +1174,646 @@
   </div><!-- /rules-grid -->
 
 </div><!-- /tab-rules -->
+
+
+<!-- ══════════════════════════════════════════════════
+     Tab: Unit Economics
+     ══════════════════════════════════════════════════ -->
+<div id="tab-unit-econ" class="tab-panel">
+  <div class="page-title">&#x1F4D0; Unit Economics</div>
+  <div class="page-subtitle">GTM efficiency, LTV:CAC ratios, and payback performance &mdash; Q3 FY26</div>
+
+  <!-- KPI Row -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="label">Magic Number (GM-Adjusted)</div>
+      <div class="value" style="color:#2d8a55">0.82</div>
+      <div class="meta"><span class="badge badge-confirmed">Scale: invest aggressively</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">LTV:CAC Ratio</div>
+      <div class="value" style="color:#2d8a55">5.4x</div>
+      <div class="meta"><span class="badge badge-confirmed">Strong</span>&nbsp; Benchmark: &gt;3x viable &middot; &gt;5x strong &middot; &gt;7x elite</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">CAC Payback</div>
+      <div class="value" style="color:#2d8a55">11.2 mo</div>
+      <div class="meta"><span class="badge badge-confirmed">Excellent</span>&nbsp; Benchmark: &lt;12 mo</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">SaaS Quick Ratio</div>
+      <div class="value" style="color:#2d8a55">4.6x</div>
+      <div class="meta"><span class="badge badge-confirmed">High-growth</span>&nbsp; Benchmark: &gt;4x</div>
+    </div>
+  </div>
+
+  <!-- Magic Number by Segment horizontal bar chart -->
+  <div class="trend-card">
+    <div class="chart-title">Magic Number by Segment</div>
+    <svg viewBox="0 0 580 200" width="100%" style="display:block;max-height:200px">
+      <!-- threshold lines -->
+      <line x1="230" y1="10" x2="230" y2="182" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+      <text x="230" y="8" font-size="9" fill="#b07800" text-anchor="middle">0.5 warn</text>
+      <line x1="363" y1="10" x2="363" y2="182" stroke="#2d8a55" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+      <text x="363" y="8" font-size="9" fill="#2d8a55" text-anchor="middle">0.75 invest</text>
+      <!-- bars: x=130, max scale 1.4 -> 360px, bar height 22, gap 10 -->
+      <!-- Ent Inbound 1.24 -> 319px -> green -->
+      <rect x="130" y="20" width="319" height="22" rx="3" fill="#2d8a55" opacity="0.85"/>
+      <text x="125" y="35" font-size="11" fill="#1c2b30" text-anchor="end">Ent. Inbound</text>
+      <text x="456" y="35" font-size="11" font-weight="700" fill="#2d8a55">1.24</text>
+      <!-- Ent Outbound 0.71 -> 183px -> yellow -->
+      <rect x="130" y="56" width="183" height="22" rx="3" fill="#f59e0b" opacity="0.85"/>
+      <text x="125" y="71" font-size="11" fill="#1c2b30" text-anchor="end">Ent. Outbound</text>
+      <text x="320" y="71" font-size="11" font-weight="700" fill="#b07800">0.71</text>
+      <!-- MM Inbound 0.89 -> 229px -> green -->
+      <rect x="130" y="92" width="229" height="22" rx="3" fill="#2d8a55" opacity="0.85"/>
+      <text x="125" y="107" font-size="11" fill="#1c2b30" text-anchor="end">MM Inbound</text>
+      <text x="366" y="107" font-size="11" font-weight="700" fill="#2d8a55">0.89</text>
+      <!-- MM Outbound 0.44 -> 113px -> red -->
+      <rect x="130" y="128" width="113" height="22" rx="3" fill="#b03030" opacity="0.8"/>
+      <text x="125" y="143" font-size="11" fill="#1c2b30" text-anchor="end">MM Outbound</text>
+      <text x="250" y="143" font-size="11" font-weight="700" fill="#b03030">0.44</text>
+      <!-- SMB 0.21 -> 54px -> red -->
+      <rect x="130" y="164" width="54" height="22" rx="3" fill="#b03030" opacity="0.8"/>
+      <text x="125" y="179" font-size="11" fill="#1c2b30" text-anchor="end">SMB</text>
+      <text x="191" y="179" font-size="11" font-weight="700" fill="#b03030">0.21</text>
+    </svg>
+    <div class="exec-insight" style="margin-top:14px">
+      <div class="ei-label"><span class="ei-icon">!</span> Insight</div>
+      SMB Outbound at 0.21 &mdash; reallocate resources to higher-efficiency channels. Enterprise Inbound at 1.24 &mdash; double down on inbound motion.
+    </div>
+  </div>
+
+  <!-- LTV:CAC + CAC Payback side by side -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px">
+
+    <div class="chart-card">
+      <div class="chart-title">LTV:CAC by Segment</div>
+      <svg viewBox="0 0 300 190" width="100%" style="display:block;max-height:190px">
+        <!-- gridlines: scale max 8, height 140, baseline y=165 -->
+        <!-- y = 165 - v/8*140 -->
+        <!-- 7x -> y=165-122.5=42.5; 5x -> y=165-87.5=77.5; 3x -> y=165-52.5=112.5 -->
+        <line x1="30" y1="43" x2="275" y2="43" stroke="#eef1f3" stroke-width="1"/>
+        <text x="28" y="46" font-size="9" fill="#6b7f87" text-anchor="end">7x</text>
+        <line x1="30" y1="78" x2="275" y2="78" stroke="#2d8a55" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+        <text x="28" y="81" font-size="9" fill="#2d8a55" text-anchor="end">5x</text>
+        <line x1="30" y1="113" x2="275" y2="113" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+        <text x="28" y="116" font-size="9" fill="#b07800" text-anchor="end">3x</text>
+        <!-- Enterprise 7.2 -> h=7.2/8*140=126 -> y=165-126=39, x=55, w=52 -->
+        <rect x="55" y="39" width="52" height="126" rx="4" fill="#0f4c5c" opacity="0.85"/>
+        <text x="81" y="35" font-size="10" font-weight="700" fill="#0f4c5c" text-anchor="middle">7.2x</text>
+        <text x="81" y="179" font-size="10" fill="#6b7f87" text-anchor="middle">Enterprise</text>
+        <!-- Mid-Market 4.8 -> h=4.8/8*140=84 -> y=165-84=81, x=125, w=52 -->
+        <rect x="125" y="81" width="52" height="84" rx="4" fill="#1a6a80" opacity="0.85"/>
+        <text x="151" y="77" font-size="10" font-weight="700" fill="#1a6a80" text-anchor="middle">4.8x</text>
+        <text x="151" y="179" font-size="10" fill="#6b7f87" text-anchor="middle">Mid-Market</text>
+        <!-- SMB 2.1 -> h=2.1/8*140=36.75 -> y=165-37=128, x=195, w=52 -->
+        <rect x="195" y="128" width="52" height="37" rx="4" fill="#6b7f87" opacity="0.7"/>
+        <text x="221" y="124" font-size="10" font-weight="700" fill="#6b7f87" text-anchor="middle">2.1x</text>
+        <text x="221" y="179" font-size="10" fill="#6b7f87" text-anchor="middle">SMB</text>
+        <line x1="30" y1="165" x2="275" y2="165" stroke="#dde2e6" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">CAC Payback Trend (Months)</div>
+      <!-- scale: 10-16mo, height 120, baseline y=155, y=155-(v-10)/6*120 -->
+      <!-- 12mo threshold -> y=155-2/6*120=155-40=115 -->
+      <!-- Q3FY25 14.1 -> y=155-4.1/6*120=155-82=73 -->
+      <!-- Q4FY25 13.2 -> y=155-3.2/6*120=155-64=91 -->
+      <!-- Q1FY26 12.8 -> y=155-2.8/6*120=155-56=99 -->
+      <!-- Q2FY26 11.9 -> y=155-1.9/6*120=155-38=117 -->
+      <!-- Q3FY26 11.2 -> y=155-1.2/6*120=155-24=131 -->
+      <!-- x: 45,95,145,195,245 -->
+      <svg viewBox="0 0 300 190" width="100%" style="display:block;max-height:190px">
+        <line x1="30" y1="115" x2="270" y2="115" stroke="#2d8a55" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+        <text x="272" y="118" font-size="8" fill="#2d8a55">12mo</text>
+        <polygon points="45,73 95,91 145,99 195,117 245,131 245,155 45,155" fill="#0f4c5c" opacity="0.07"/>
+        <polyline points="45,73 95,91 145,99 195,117 245,131" fill="none" stroke="#0f4c5c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="45" cy="73" r="4" fill="#0f4c5c"/>
+        <circle cx="95" cy="91" r="4" fill="#0f4c5c"/>
+        <circle cx="145" cy="99" r="4" fill="#0f4c5c"/>
+        <circle cx="195" cy="117" r="4" fill="#0f4c5c"/>
+        <circle cx="245" cy="131" r="4" fill="#2d8a55"/>
+        <text x="45" y="66" font-size="9" fill="#0f4c5c" text-anchor="middle">14.1</text>
+        <text x="95" y="84" font-size="9" fill="#0f4c5c" text-anchor="middle">13.2</text>
+        <text x="145" y="92" font-size="9" fill="#0f4c5c" text-anchor="middle">12.8</text>
+        <text x="195" y="110" font-size="9" fill="#0f4c5c" text-anchor="middle">11.9</text>
+        <text x="245" y="124" font-size="9" fill="#2d8a55" font-weight="700" text-anchor="middle">11.2</text>
+        <text x="45" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q3FY25</text>
+        <text x="95" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q4FY25</text>
+        <text x="145" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q1FY26</text>
+        <text x="195" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q2FY26</text>
+        <text x="245" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q3FY26</text>
+        <line x1="30" y1="155" x2="270" y2="155" stroke="#dde2e6" stroke-width="1.5"/>
+      </svg>
+      <div style="font-size:11.5px;color:var(--green);margin-top:8px;font-weight:600">&#x2193; Declining &mdash; improving GTM efficiency each quarter</div>
+    </div>
+
+  </div>
+
+  <!-- Formula Reference (collapsible) -->
+  <details style="background:var(--white);border:1px solid var(--border);border-radius:10px;margin-bottom:22px;box-shadow:0 1px 4px rgba(0,0,0,.06)">
+    <summary style="padding:16px 20px;cursor:pointer;font-size:13px;font-weight:600;color:var(--teal)">
+      &#x1F4CB; Formula Reference &mdash; click to expand calculations
+    </summary>
+    <div style="padding:0 20px 20px;border-top:1px solid var(--border)">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px">
+        <div style="background:var(--teal-pale);border-radius:8px;padding:14px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--teal);margin-bottom:8px">Magic Number</div>
+          <div style="font-size:12px;color:var(--text);line-height:1.75">
+            <strong>Formula:</strong> (Net New ARR &times; GM%) &divide; Prior S&amp;M Spend<br>
+            <strong>GM%:</strong> 72%<br>
+            <strong>Calc:</strong> ($38.2M &times; 72%) &divide; $33.6M<br>
+            <strong style="color:var(--teal)">&equals; 0.82</strong>
+          </div>
+        </div>
+        <div style="background:var(--teal-pale);border-radius:8px;padding:14px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--teal);margin-bottom:8px">LTV:CAC</div>
+          <div style="font-size:12px;color:var(--text);line-height:1.75">
+            <strong>Formula:</strong> (ARPA &divide; Churn Rate) &divide; CAC<br>
+            <strong>ARPA:</strong> $47.2K &nbsp;&nbsp; <strong>Churn:</strong> 2.8%/yr<br>
+            <strong>CAC:</strong> $249K<br>
+            <strong style="color:var(--teal)">&equals; 5.4x</strong>
+          </div>
+        </div>
+        <div style="background:var(--teal-pale);border-radius:8px;padding:14px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--teal);margin-bottom:8px">CAC Payback</div>
+          <div style="font-size:12px;color:var(--text);line-height:1.75">
+            <strong>Formula:</strong> CAC &divide; (Monthly ARPA &times; GM%)<br>
+            <strong>Calc:</strong> $249K &divide; ($3.93K &times; 72%)<br>
+            &equals; 88 days<br>
+            <strong style="color:var(--teal)">&equals; 11.2 months</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+</div><!-- /tab-unit-econ -->
+
+
+<!-- ══════════════════════════════════════════════════
+     Tab: Market Position
+     ══════════════════════════════════════════════════ -->
+<div id="tab-market-pos" class="tab-panel">
+  <div class="page-title">&#x1F30D; Market Position</div>
+  <div class="page-subtitle">TAM penetration, ICP win rates, and logo velocity &mdash; Q3 FY26</div>
+
+  <!-- TAM Penetration Table -->
+  <div class="table-card" style="margin-bottom:22px">
+    <div class="table-card-header">TAM Penetration by Segment</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Segment</th>
+          <th>ICP Accounts</th>
+          <th>Current Logos</th>
+          <th>Penetration</th>
+          <th>Progress</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Enterprise</strong></td>
+          <td>840</td>
+          <td>127</td>
+          <td><strong style="color:var(--teal)">15.1%</strong></td>
+          <td>
+            <div class="pct-bar-cell">
+              <div class="pct-bar" style="width:76px"></div>
+              <span class="pct-label">15%</span>
+            </div>
+          </td>
+          <td><span class="badge badge-confirmed">Growing</span></td>
+        </tr>
+        <tr>
+          <td><strong>Mid-Market</strong></td>
+          <td>3,200</td>
+          <td>284</td>
+          <td><strong style="color:var(--teal)">8.9%</strong></td>
+          <td>
+            <div class="pct-bar-cell">
+              <div class="pct-bar" style="width:45px"></div>
+              <span class="pct-label">9%</span>
+            </div>
+          </td>
+          <td><span class="badge badge-confirmed">Expanding</span></td>
+        </tr>
+        <tr>
+          <td><strong>SMB</strong></td>
+          <td>12,000</td>
+          <td>438</td>
+          <td><strong style="color:var(--muted)">3.7%</strong></td>
+          <td>
+            <div class="pct-bar-cell">
+              <div class="pct-bar" style="width:19px;background:var(--grey)"></div>
+              <span class="pct-label" style="color:var(--muted)">4%</span>
+            </div>
+          </td>
+          <td><span class="badge badge-pending">Early</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="exec-insight" style="margin-bottom:22px">
+    <div class="ei-label"><span class="ei-icon">!</span> Insight</div>
+    Enterprise penetration at 15% with 85% whitespace remaining &mdash; primary growth lever. Mid-Market is expanding with 3&times; the addressable accounts of Enterprise.
+  </div>
+
+  <!-- ICP vs Non-ICP Win Rate -->
+  <div class="trend-card">
+    <div class="chart-title">ICP vs. Non-ICP Win Rate by Segment</div>
+    <svg viewBox="0 0 540 215" width="100%" style="display:block;max-height:215px">
+      <!-- Legend -->
+      <rect x="30" y="4" width="12" height="10" rx="2" fill="#0f4c5c"/>
+      <text x="46" y="13" font-size="10" fill="#1c2b30">ICP-Fit</text>
+      <rect x="110" y="4" width="12" height="10" rx="2" fill="#e8f3f8" stroke="#0f4c5c" stroke-width="1"/>
+      <text x="126" y="13" font-size="10" fill="#1c2b30">Non-ICP</text>
+      <!-- scale: max 50%, height 140, baseline y=180, y=180-v/50*140 -->
+      <!-- Ent ICP 41% -> h=114.8->115, y=65; Non-ICP 18% -> h=50.4->50, y=130 -->
+      <!-- MM ICP 34% -> h=95.2->95, y=85; Non-ICP 16% -> h=44.8->45, y=135 -->
+      <!-- SMB ICP 28% -> h=78.4->78, y=102; Non-ICP 13% -> h=36.4->36, y=144 -->
+      <!-- group x centres: 90, 270, 450; bar w=40; ICP left, nonICP right, gap=8 -->
+      <!-- group 1: Enterprise -->
+      <rect x="58" y="65" width="42" height="115" rx="3" fill="#0f4c5c" opacity="0.9"/>
+      <text x="79" y="60" font-size="10" font-weight="700" fill="#0f4c5c" text-anchor="middle">41%</text>
+      <rect x="104" y="130" width="42" height="50" rx="3" fill="#e8f3f8" stroke="#0f4c5c" stroke-width="1"/>
+      <text x="125" y="125" font-size="10" fill="#6b7f87" text-anchor="middle">18%</text>
+      <text x="92" y="197" font-size="10" fill="#6b7f87" text-anchor="middle">Enterprise</text>
+      <text x="92" y="209" font-size="9" fill="#f4a261" font-weight="600" text-anchor="middle">2.3&times; ICP lift</text>
+      <!-- group 2: Mid-Market -->
+      <rect x="228" y="85" width="42" height="95" rx="3" fill="#0f4c5c" opacity="0.9"/>
+      <text x="249" y="80" font-size="10" font-weight="700" fill="#0f4c5c" text-anchor="middle">34%</text>
+      <rect x="274" y="135" width="42" height="45" rx="3" fill="#e8f3f8" stroke="#0f4c5c" stroke-width="1"/>
+      <text x="295" y="130" font-size="10" fill="#6b7f87" text-anchor="middle">16%</text>
+      <text x="262" y="197" font-size="10" fill="#6b7f87" text-anchor="middle">Mid-Market</text>
+      <text x="262" y="209" font-size="9" fill="#f4a261" font-weight="600" text-anchor="middle">2.1&times; ICP lift</text>
+      <!-- group 3: SMB -->
+      <rect x="398" y="102" width="42" height="78" rx="3" fill="#1a6a80" opacity="0.85"/>
+      <text x="419" y="97" font-size="10" font-weight="700" fill="#1a6a80" text-anchor="middle">28%</text>
+      <rect x="444" y="144" width="42" height="36" rx="3" fill="#e8f3f8" stroke="#1a6a80" stroke-width="1"/>
+      <text x="465" y="139" font-size="10" fill="#6b7f87" text-anchor="middle">13%</text>
+      <text x="433" y="197" font-size="10" fill="#6b7f87" text-anchor="middle">SMB</text>
+      <text x="433" y="209" font-size="9" fill="#f4a261" font-weight="600" text-anchor="middle">2.2&times; ICP lift</text>
+      <!-- baseline & gridlines -->
+      <line x1="30" y1="180" x2="510" y2="180" stroke="#dde2e6" stroke-width="1.5"/>
+      <line x1="30" y1="110" x2="510" y2="110" stroke="#eef1f3" stroke-width="1"/>
+      <text x="28" y="113" font-size="9" fill="#6b7f87" text-anchor="end">25%</text>
+      <line x1="30" y1="40" x2="510" y2="40" stroke="#eef1f3" stroke-width="1"/>
+      <text x="28" y="43" font-size="9" fill="#6b7f87" text-anchor="end">50%</text>
+    </svg>
+    <div class="exec-insight" style="margin-top:14px">
+      <div class="ei-label"><span class="ei-icon">!</span> Insight</div>
+      ICP-fit deals win at 2.1&ndash;2.3&times; the rate of non-ICP accounts &mdash; GTM alignment is working. Every point of ICP penetration improvement directly compounds pipeline quality.
+    </div>
+  </div>
+
+  <!-- Vertical Penetration Heatmap -->
+  <div class="table-card" style="margin-bottom:22px">
+    <div class="table-card-header">Win Rate by Vertical &times; Segment (%)</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Vertical</th>
+          <th style="text-align:center">Enterprise</th>
+          <th style="text-align:center">Mid-Market</th>
+          <th style="text-align:center">SMB</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Financial Services</strong></td>
+          <td style="text-align:center;background:#a8dfc0;color:#0d4a26;font-weight:700">47%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">31%</td>
+          <td style="text-align:center;background:#fff8e1;color:#b07800;font-weight:600">18%</td>
+        </tr>
+        <tr>
+          <td><strong>Technology</strong></td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">39%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">38%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">24%</td>
+        </tr>
+        <tr>
+          <td><strong>Manufacturing</strong></td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">33%</td>
+          <td style="text-align:center;background:#fff8e1;color:#b07800;font-weight:600">27%</td>
+          <td style="text-align:center;background:#fff8e1;color:#b07800;font-weight:600">16%</td>
+        </tr>
+        <tr>
+          <td><strong>Healthcare Tech</strong></td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">36%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">29%</td>
+          <td style="text-align:center;background:#fef0f0;color:#b03030;font-weight:600">12%</td>
+        </tr>
+        <tr>
+          <td><strong>Retail</strong></td>
+          <td style="text-align:center;background:#fff8e1;color:#b07800;font-weight:600">22%</td>
+          <td style="text-align:center;background:#fff8e1;color:#b07800;font-weight:600">19%</td>
+          <td style="text-align:center;background:#fef0f0;color:#b03030;font-weight:600">9%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Logo Velocity Trend -->
+  <div class="trend-card">
+    <div class="chart-title">Enterprise Logo Velocity &mdash; New Logos per Quarter</div>
+    <!-- scale: 0-22, height 120, baseline y=140, y=140-v/22*120 -->
+    <!-- Q3FY25:8->96, Q4FY25:11->80, Q1FY26:14->64, Q2FY26:16->53, Q3FY26:19->36 -->
+    <!-- target 20 -> y=140-20/22*120=140-109=31 -->
+    <!-- x: 65,165,265,365,465 -->
+    <svg viewBox="0 0 540 170" width="100%" style="display:block;max-height:170px">
+      <line x1="30" y1="31" x2="505" y2="31" stroke="#f4a261" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <text x="507" y="34" font-size="9" fill="#f4a261">Target 20</text>
+      <polygon points="65,96 165,80 265,64 365,53 465,36 465,140 65,140" fill="#0f4c5c" opacity="0.07"/>
+      <polyline points="65,96 165,80 265,64 365,53 465,36" fill="none" stroke="#0f4c5c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="65" cy="96" r="5" fill="#0f4c5c"/>
+      <circle cx="165" cy="80" r="5" fill="#0f4c5c"/>
+      <circle cx="265" cy="64" r="5" fill="#0f4c5c"/>
+      <circle cx="365" cy="53" r="5" fill="#0f4c5c"/>
+      <circle cx="465" cy="36" r="5" fill="#2d8a55"/>
+      <text x="65" y="88" font-size="10" font-weight="700" fill="#0f4c5c" text-anchor="middle">8</text>
+      <text x="165" y="72" font-size="10" font-weight="700" fill="#0f4c5c" text-anchor="middle">11</text>
+      <text x="265" y="56" font-size="10" font-weight="700" fill="#0f4c5c" text-anchor="middle">14</text>
+      <text x="365" y="45" font-size="10" font-weight="700" fill="#0f4c5c" text-anchor="middle">16</text>
+      <text x="465" y="28" font-size="10" font-weight="700" fill="#2d8a55" text-anchor="middle">19</text>
+      <text x="65" y="155" font-size="9" fill="#6b7f87" text-anchor="middle">Q3FY25</text>
+      <text x="165" y="155" font-size="9" fill="#6b7f87" text-anchor="middle">Q4FY25</text>
+      <text x="265" y="155" font-size="9" fill="#6b7f87" text-anchor="middle">Q1FY26</text>
+      <text x="365" y="155" font-size="9" fill="#6b7f87" text-anchor="middle">Q2FY26</text>
+      <text x="465" y="155" font-size="9" fill="#6b7f87" text-anchor="middle">Q3FY26</text>
+      <line x1="30" y1="140" x2="505" y2="140" stroke="#dde2e6" stroke-width="1.5"/>
+    </svg>
+    <div style="font-size:11.5px;color:var(--teal);margin-top:8px;font-weight:600">&#x2197; +138% over 5 quarters &mdash; approaching target of 20 new Enterprise logos per quarter</div>
+  </div>
+
+</div><!-- /tab-market-pos -->
+
+
+<!-- ══════════════════════════════════════════════════
+     Tab: Retention Economics
+     ══════════════════════════════════════════════════ -->
+<div id="tab-retention-econ" class="tab-panel">
+  <div class="page-title">&#x1F4C8; Retention Economics</div>
+  <div class="page-subtitle">NRR, GRR, expansion engine health, and cohort performance &mdash; Q3 FY26</div>
+
+  <!-- KPI Row -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="label">Company NRR</div>
+      <div class="value" style="color:#2d8a55">118%</div>
+      <div class="meta"><span class="badge badge-confirmed">Strong</span>&nbsp; Benchmark: &gt;110%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">GRR</div>
+      <div class="value" style="color:#b07800">91%</div>
+      <div class="meta"><span class="badge badge-disputed">Monitor</span>&nbsp; Benchmark: &gt;90% enterprise</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Expansion Spread</div>
+      <div class="value" style="color:#0f4c5c">27 pts</div>
+      <div class="meta">NRR &minus; GRR &mdash; expansion engine strength</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Land Multiplier</div>
+      <div class="value" style="color:#0f4c5c">2.4&times;</div>
+      <div class="meta">ACV at Month 24 vs. ACV at Month 0</div>
+    </div>
+  </div>
+
+  <!-- NRR Cohort Grid -->
+  <div class="table-card" style="margin-bottom:22px">
+    <div class="table-card-header">
+      NRR Cohort Grid &mdash; Expansion by Month
+      <span style="font-size:11px;font-weight:400;color:var(--muted)">Values = Net Revenue Retention %</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Cohort</th>
+          <th style="text-align:center">M0</th>
+          <th style="text-align:center">M3</th>
+          <th style="text-align:center">M6</th>
+          <th style="text-align:center">M9</th>
+          <th style="text-align:center">M12</th>
+          <th style="text-align:center">M18</th>
+          <th style="text-align:center">M24</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Q1 FY24</strong></td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">100%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">102%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">107%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">111%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">118%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">124%</td>
+          <td style="text-align:center;background:#a8dfc0;color:#0d4a26;font-weight:700">131%</td>
+        </tr>
+        <tr>
+          <td><strong>Q2 FY24</strong></td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">100%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">101%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">106%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">110%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">116%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">122%</td>
+          <td style="text-align:center;background:#a8dfc0;color:#0d4a26;font-weight:700">128%</td>
+        </tr>
+        <tr>
+          <td><strong>Q3 FY24</strong></td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">100%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">103%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">108%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">113%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">119%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">125%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+        </tr>
+        <tr>
+          <td><strong>Q4 FY24</strong></td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">100%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">102%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">107%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">112%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">117%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">124%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+        </tr>
+        <tr>
+          <td><strong>Q1 FY25</strong></td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">100%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">104%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">109%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">114%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">120%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+        </tr>
+        <tr>
+          <td><strong>Q2 FY25</strong></td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">100%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">103%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">108%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">114%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">119%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+        </tr>
+        <tr>
+          <td><strong>Q3 FY25</strong></td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">100%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">104%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">110%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">115%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+        </tr>
+        <tr>
+          <td><strong>Q4 FY25</strong></td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">100%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">103%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">109%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+        </tr>
+        <tr>
+          <td><strong>Q1 FY26</strong></td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">100%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">105%</td>
+          <td style="text-align:center;background:#c6ecd6;color:#1a5c35;font-weight:700">112%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+        </tr>
+        <tr>
+          <td><strong>Q2 FY26</strong></td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">100%</td>
+          <td style="text-align:center;background:#e6f4ec;color:#2d8a55;font-weight:600">106%</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+          <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="exec-insight" style="margin-bottom:22px">
+    <div class="ei-label"><span class="ei-icon">!</span> Insight</div>
+    Newer cohorts (Q1&ndash;Q2 FY26) are expanding faster in early months &mdash; M3 rates of 105&ndash;106% vs. prior cohort average of 102&ndash;103%. ICP targeting improvement is visible in cohort trajectory.
+  </div>
+
+  <!-- GRR vs NRR trend + ARR Bridge -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px">
+
+    <div class="chart-card">
+      <div class="chart-title">GRR vs. NRR Trend</div>
+      <!-- scale: 85-125%, range 40pp, height 120, baseline y=155, y=155-(v-85)/40*120 -->
+      <!-- GRR 91 -> y=155-6/40*120=155-18=137 (all 4 pts) -->
+      <!-- NRR: 112->y=155-27/40*120=155-81=74; 114->68; 116->63; 118->57 -->
+      <!-- x: 55,115,175,235 -->
+      <svg viewBox="0 0 295 190" width="100%" style="display:block;max-height:190px">
+        <line x1="30" y1="8" x2="46" y2="8" stroke="#0f4c5c" stroke-width="2.5"/>
+        <text x="50" y="12" font-size="10" fill="#1c2b30">NRR</text>
+        <line x1="88" y1="8" x2="104" y2="8" stroke="#f4a261" stroke-width="2.5"/>
+        <text x="108" y="12" font-size="10" fill="#1c2b30">GRR</text>
+        <!-- area between lines -->
+        <polygon points="55,74 115,68 175,63 235,57 235,137 175,137 115,137 55,137" fill="#0f4c5c" opacity="0.06"/>
+        <!-- GRR line -->
+        <polyline points="55,137 115,137 175,137 235,137" fill="none" stroke="#f4a261" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <!-- NRR line -->
+        <polyline points="55,74 115,68 175,63 235,57" fill="none" stroke="#0f4c5c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <!-- GRR dots -->
+        <circle cx="55" cy="137" r="4" fill="#f4a261"/>
+        <circle cx="115" cy="137" r="4" fill="#f4a261"/>
+        <circle cx="175" cy="137" r="4" fill="#f4a261"/>
+        <circle cx="235" cy="137" r="4" fill="#f4a261"/>
+        <!-- NRR dots -->
+        <circle cx="55" cy="74" r="4" fill="#0f4c5c"/>
+        <circle cx="115" cy="68" r="4" fill="#0f4c5c"/>
+        <circle cx="175" cy="63" r="4" fill="#0f4c5c"/>
+        <circle cx="235" cy="57" r="4" fill="#0f4c5c"/>
+        <!-- value labels -->
+        <text x="55" y="67" font-size="9" fill="#0f4c5c" text-anchor="middle" font-weight="600">112%</text>
+        <text x="115" y="61" font-size="9" fill="#0f4c5c" text-anchor="middle" font-weight="600">114%</text>
+        <text x="175" y="56" font-size="9" fill="#0f4c5c" text-anchor="middle" font-weight="600">116%</text>
+        <text x="235" y="50" font-size="9" fill="#0f4c5c" text-anchor="middle" font-weight="600">118%</text>
+        <text x="145" y="151" font-size="9" fill="#c45d14" text-anchor="middle" font-weight="600">GRR 91% (stable)</text>
+        <!-- x axis labels -->
+        <text x="55" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q4FY25</text>
+        <text x="115" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q1FY26</text>
+        <text x="175" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q2FY26</text>
+        <text x="235" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q3FY26</text>
+        <line x1="30" y1="155" x2="265" y2="155" stroke="#dde2e6" stroke-width="1.5"/>
+      </svg>
+      <div style="font-size:11.5px;color:var(--teal);margin-top:8px">The spread widening indicates a strengthening expansion engine</div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">ARR Bridge &mdash; Q3 to Q4 Projection ($M)</div>
+      <!-- Zoomed scale: 250-400M range -> 150M -> 155px, 1M=1.033px -->
+      <!-- dataY(v) = 180 - (v-250)*1.033 -->
+      <!-- Start 284: top=180-(34*1.033)=144.9->145, h=35 -->
+      <!-- New Logo cumulative 322.2: top=180-(72.2*1.033)=180-74.6=105.4->105, float from 145, h=40 -->
+      <!-- Expansion cumulative 363.3: top=180-(113.3*1.033)=180-117.0=63->63, float from 105, h=42 -->
+      <!-- Churn cumulative 354.9 (down): top=63, bottom=180-(104.9*1.033)=180-108.4=71.6->72, h=9 -->
+      <!-- Contraction cumulative 351.1 (down): top=72, bottom=180-(101.1*1.033)=180-104.4=75.6->76, h=4->use 7 -->
+      <!-- End 351.1: top=76, h=104 -->
+      <!-- bar x: 12,57,102,147,192,240, w=34 -->
+      <svg viewBox="0 0 300 210" width="100%" style="display:block;max-height:210px">
+        <!-- axis break indicator -->
+        <text x="5" y="183" font-size="7" fill="#6b7f87">$250M</text>
+        <line x1="5" y1="180" x2="290" y2="180" stroke="#dde2e6" stroke-width="1.5"/>
+        <polyline points="4,180 8,175 4,170 8,165" fill="none" stroke="#aab6bc" stroke-width="1.2"/>
+        <!-- Start bar (teal) -->
+        <rect x="12" y="145" width="34" height="35" rx="2" fill="#0f4c5c" opacity="0.87"/>
+        <text x="29" y="141" font-size="8.5" fill="#0f4c5c" text-anchor="middle" font-weight="700">$284M</text>
+        <text x="29" y="197" font-size="8" fill="#6b7f87" text-anchor="middle">Start</text>
+        <!-- connector -->
+        <line x1="46" y1="145" x2="57" y2="145" stroke="#c8d2d8" stroke-width="1" stroke-dasharray="3,2"/>
+        <!-- New Logo (green, floating up from 145) -->
+        <rect x="57" y="105" width="34" height="40" rx="2" fill="#2d8a55" opacity="0.87"/>
+        <text x="74" y="100" font-size="8" fill="#2d8a55" text-anchor="middle" font-weight="700">+$38.2M</text>
+        <text x="74" y="197" font-size="8" fill="#6b7f87" text-anchor="middle">New Logo</text>
+        <!-- connector -->
+        <line x1="91" y1="105" x2="102" y2="105" stroke="#c8d2d8" stroke-width="1" stroke-dasharray="3,2"/>
+        <!-- Expansion (green, floating up from 105) -->
+        <rect x="102" y="63" width="34" height="42" rx="2" fill="#2d8a55" opacity="0.87"/>
+        <text x="119" y="58" font-size="8" fill="#2d8a55" text-anchor="middle" font-weight="700">+$41.1M</text>
+        <text x="119" y="197" font-size="8" fill="#6b7f87" text-anchor="middle">Expansion</text>
+        <!-- connector -->
+        <line x1="136" y1="63" x2="147" y2="63" stroke="#c8d2d8" stroke-width="1" stroke-dasharray="3,2"/>
+        <!-- Churn (red, going down from 63) -->
+        <rect x="147" y="63" width="34" height="9" rx="2" fill="#b03030" opacity="0.85"/>
+        <text x="164" y="56" font-size="8" fill="#b03030" text-anchor="middle" font-weight="700">-$8.4M</text>
+        <text x="164" y="197" font-size="8" fill="#6b7f87" text-anchor="middle">Churn</text>
+        <!-- connector -->
+        <line x1="181" y1="72" x2="192" y2="72" stroke="#c8d2d8" stroke-width="1" stroke-dasharray="3,2"/>
+        <!-- Contraction (red, going down from 72) -->
+        <rect x="192" y="72" width="34" height="7" rx="2" fill="#b03030" opacity="0.85"/>
+        <text x="209" y="67" font-size="8" fill="#b03030" text-anchor="middle" font-weight="700">-$3.8M</text>
+        <text x="209" y="197" font-size="8" fill="#6b7f87" text-anchor="middle">Contraction</text>
+        <!-- connector -->
+        <line x1="226" y1="79" x2="240" y2="79" stroke="#c8d2d8" stroke-width="1" stroke-dasharray="3,2"/>
+        <!-- End bar (teal) -->
+        <rect x="240" y="76" width="34" height="104" rx="2" fill="#0f4c5c" opacity="0.87"/>
+        <text x="257" y="71" font-size="8.5" fill="#0f4c5c" text-anchor="middle" font-weight="700">$351M</text>
+        <text x="257" y="197" font-size="8" fill="#6b7f87" text-anchor="middle">End</text>
+      </svg>
+      <div style="font-size:11.5px;color:var(--teal);margin-top:8px">Net new + expansion exceeds churn+contraction by 8.7&times; &mdash; healthy growth trajectory</div>
+    </div>
+
+  </div>
+
+</div><!-- /tab-retention-econ -->
 
 
 <!-- ── Footer ──────────────────────────────────── -->

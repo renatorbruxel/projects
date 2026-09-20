@@ -468,6 +468,11 @@
   <button onclick="switchTab('howto',this)">📖 How to Use</button>
   <button onclick="switchTab('raci',this)">👥 RACI</button>
   <button onclick="switchTab('admin',this)">⚙️ Admin</button>
+  <button onclick="switchTab('commops-ai',this)">🤖 CommOps AI</button>
+  <button onclick="switchTab('gtm-dashboard',this)">📊 GTM Dashboard</button>
+  <button onclick="switchTab('pipeline-intel',this)">🔍 Pipeline Intel</button>
+  <button onclick="switchTab('region-insights',this)">🌍 Region Insights</button>
+  <button onclick="switchTab('sales-perf',this)">🏆 Sales Perf</button>
 </nav>
 
 <!-- ── Main ───────────────────────────────────────────────────────────────── -->
@@ -1108,6 +1113,447 @@
   </div>
 </div>
 
+
+<!-- ═══════════════════════ TAB: COMMOPS AI ═══════════════════════════════ -->
+<div id="tab-commops-ai" class="tab-panel">
+  <div class="page-head">
+    <div class="page-title">CommOps AI</div>
+    <div class="page-sub">Intelligent sales ops assistant · Week 38 FY2026 context loaded</div>
+  </div>
+  <div style="display:flex;flex-direction:column;height:580px;background:#fff;border-radius:12px;border:1px solid #e5e7eb;overflow:hidden">
+    <div style="background:linear-gradient(135deg,#0b3a47,#0f4c5c);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:12px">
+      <div style="width:36px;height:36px;background:#f4a261;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px">🤖</div>
+      <div><div style="font-weight:700;font-size:15px">CommOps AI</div><div style="font-size:11px;opacity:.7">Powered by Vantara Intelligence · Week 38 context loaded</div></div>
+      <button onclick="clearChat()" style="margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px">New Chat</button>
+    </div>
+    <div style="padding:12px 16px;background:#f8f9fa;border-bottom:1px solid #e5e7eb;display:flex;gap:8px;flex-wrap:wrap">
+      <button onclick="sendPrompt('What is the current funnel by stage?')" style="background:#fff;border:1px solid #d1d5db;border-radius:16px;padding:4px 12px;font-size:12px;cursor:pointer;color:#374151">📊 Funnel by stage</button>
+      <button onclick="sendPrompt('Show me the top 5 risk deals this week')" style="background:#fff;border:1px solid #d1d5db;border-radius:16px;padding:4px 12px;font-size:12px;cursor:pointer;color:#374151">⚠️ Top risk deals</button>
+      <button onclick="sendPrompt('What is net R&O vs. AOP this quarter?')" style="background:#fff;border:1px solid #d1d5db;border-radius:16px;padding:4px 12px;font-size:12px;cursor:pointer;color:#374151">📈 R&amp;O vs AOP</button>
+      <button onclick="sendPrompt('Which region has the largest pipeline gap to 3x?')" style="background:#fff;border:1px solid #d1d5db;border-radius:16px;padding:4px 12px;font-size:12px;cursor:pointer;color:#374151">⚡ Pipeline gap</button>
+    </div>
+    <div id="chat-messages" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px">
+      <div style="background:#f0f9ff;border-left:3px solid #0f4c5c;padding:10px 14px;border-radius:6px;font-size:13px;color:#374151">
+        <strong>CommOps AI:</strong> Hello. I have full context for Week 38 FY2026. Americas submitted (+$23.4M), APJ approved (+$11.7M), EMEA pending revision. Ask me anything about pipeline, forecasts, risks, or performance.
+      </div>
+    </div>
+    <div style="padding:12px 16px;border-top:1px solid #e5e7eb;display:flex;gap:10px">
+      <input id="chat-input" type="text" placeholder="Ask about pipeline, risks, forecast..." style="flex:1;border:1.5px solid #d1d5db;border-radius:8px;padding:9px 14px;font-size:13px;outline:none" onkeydown="if(event.key==='Enter')sendPrompt(this.value)">
+      <button onclick="sendPrompt(document.getElementById('chat-input').value)" style="background:#0f4c5c;color:#fff;border:none;padding:9px 18px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ TAB: GTM DASHBOARD ════════════════════════════ -->
+<div id="tab-gtm-dashboard" class="tab-panel">
+  <div class="page-head">
+    <div class="page-title">GTM Dashboard</div>
+    <div class="page-sub">Multi-factor GTM performance scoring · Week 38 FY2026</div>
+  </div>
+
+  <!-- Global Health Score -->
+  <div class="card" style="text-align:center;padding:28px">
+    <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#94a3b8;margin-bottom:8px">Global GTM Health Score</div>
+    <div style="font-size:64px;font-weight:900;color:#0f4c5c;line-height:1;letter-spacing:-2px">74<span style="font-size:28px;color:#94a3b8">/100</span></div>
+    <div style="margin-top:10px"><span style="background:#fff3e8;color:#92400e;border:1.5px solid #fcd34d;padding:5px 16px;border-radius:20px;font-size:13px;font-weight:700">⚡ On Track</span></div>
+    <div style="font-size:13px;color:#64748b;margin-top:8px">Weighted composite across Pipeline Coverage, Forecast Accuracy, Win Rate, Hygiene, and Activity</div>
+  </div>
+
+  <!-- Region Band Cards -->
+  <div class="region-grid" style="margin-bottom:18px">
+    <div style="background:#fff;border:2px solid #10b981;border-radius:12px;padding:18px 22px;border-top:4px solid #10b981">
+      <div style="font-size:13px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.5px">Americas</div>
+      <div style="font-size:40px;font-weight:900;color:#0f172a;letter-spacing:-1px;margin:6px 0">83<span style="font-size:18px;color:#94a3b8">/100</span></div>
+      <div><span style="background:#dcfce7;color:#166534;border:1.5px solid #86efac;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700">🟢 Over-performing</span></div>
+    </div>
+    <div style="background:#fff;border:2px solid #f59e0b;border-radius:12px;padding:18px 22px;border-top:4px solid #f59e0b">
+      <div style="font-size:13px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.5px">EMEA</div>
+      <div style="font-size:40px;font-weight:900;color:#0f172a;letter-spacing:-1px;margin:6px 0">61<span style="font-size:18px;color:#94a3b8">/100</span></div>
+      <div><span style="background:#fef3c7;color:#92400e;border:1.5px solid #fcd34d;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700">🟡 At Risk</span></div>
+    </div>
+    <div style="background:#fff;border:2px solid #0f4c5c;border-radius:12px;padding:18px 22px;border-top:4px solid #0f4c5c">
+      <div style="font-size:13px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.5px">APJ</div>
+      <div style="font-size:40px;font-weight:900;color:#0f172a;letter-spacing:-1px;margin:6px 0">78<span style="font-size:18px;color:#94a3b8">/100</span></div>
+      <div><span style="background:#e0f2fe;color:#0369a1;border:1.5px solid #7dd3fc;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700">🟢 On Track</span></div>
+    </div>
+  </div>
+
+  <!-- Multi-Factor Scoring Table -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title"><div class="card-icon">📊</div>Multi-Factor Scoring Breakdown</div>
+    </div>
+    <div style="overflow-x:auto">
+    <table class="styled" style="width:100%">
+      <thead><tr><th>Factor</th><th>Weight</th><th>Americas</th><th>EMEA</th><th>APJ</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="fw7">Pipeline Coverage</td><td><span class="tag tag-teal">25%</span></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:91%;height:8px;background:#10b981;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#10b981">91%</span></div><div style="font-size:11px;color:#64748b">3.1x / 3x ✓</div></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:64%;height:8px;background:#f59e0b;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#f59e0b">64%</span></div><div style="font-size:11px;color:#64748b">2.6x / 3x ⚠</div></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:71%;height:8px;background:#f59e0b;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#f59e0b">71%</span></div><div style="font-size:11px;color:#64748b">2.3x / 3x ⚠</div></td>
+        </tr>
+        <tr>
+          <td class="fw7">Forecast Accuracy</td><td><span class="tag tag-teal">20%</span></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:87%;height:8px;background:#10b981;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#10b981">87%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:71%;height:8px;background:#f59e0b;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#f59e0b">71% ⚠</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:79%;height:8px;background:#10b981;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#10b981">79%</span></div></td>
+        </tr>
+        <tr>
+          <td class="fw7">Win Rate</td><td><span class="tag tag-teal">20%</span></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:86%;height:8px;background:#10b981;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#10b981">86%</span></div><div style="font-size:11px;color:#64748b">34.4%</div></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:73%;height:8px;background:#f59e0b;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#f59e0b">73%</span></div><div style="font-size:11px;color:#64748b">29.2%</div></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:82%;height:8px;background:#10b981;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#10b981">82%</span></div><div style="font-size:11px;color:#64748b">32.8%</div></td>
+        </tr>
+        <tr>
+          <td class="fw7">Hygiene Score</td><td><span class="tag tag-teal">20%</span></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:78%;height:8px;background:#10b981;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#10b981">78%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:55%;height:8px;background:#ef4444;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#ef4444">55%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:74%;height:8px;background:#f59e0b;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#f59e0b">74%</span></div></td>
+        </tr>
+        <tr>
+          <td class="fw7">Activity Index</td><td><span class="tag tag-teal">15%</span></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:82%;height:8px;background:#10b981;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#10b981">82%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:66%;height:8px;background:#f59e0b;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#f59e0b">66%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px"><div style="width:79%;height:8px;background:#10b981;border-radius:4px"></div></div><span style="font-size:12px;font-weight:700;color:#10b981">79%</span></div></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Score History SVG Line Chart -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title"><div class="card-icon">📈</div>GTM Score Trend — W34 to W38</div>
+      <div style="display:flex;gap:12px;font-size:12px">
+        <span style="color:#0f4c5c;font-weight:700">⬤ Americas</span>
+        <span style="color:#f59e0b;font-weight:700">⬤ EMEA</span>
+        <span style="color:#10b981;font-weight:700">⬤ APJ</span>
+      </div>
+    </div>
+    <svg width="100%" height="200" viewBox="0 0 620 200" style="font-family:inherit">
+      <text x="28" y="20"  font-size="10" fill="#94a3b8" text-anchor="end">100</text>
+      <text x="28" y="60"  font-size="10" fill="#94a3b8" text-anchor="end">80</text>
+      <text x="28" y="100" font-size="10" fill="#94a3b8" text-anchor="end">60</text>
+      <text x="28" y="140" font-size="10" fill="#94a3b8" text-anchor="end">40</text>
+      <line x1="35" x2="610" y1="20"  y2="20"  stroke="#f1f5f9" stroke-width="1"/>
+      <line x1="35" x2="610" y1="60"  y2="60"  stroke="#e2e8f0" stroke-width="1"/>
+      <line x1="35" x2="610" y1="100" y2="100" stroke="#e2e8f0" stroke-width="1"/>
+      <line x1="35" x2="610" y1="140" y2="140" stroke="#f1f5f9" stroke-width="1"/>
+      <text x="100" y="175" font-size="11" fill="#64748b" text-anchor="middle">W34</text>
+      <text x="220" y="175" font-size="11" fill="#64748b" text-anchor="middle">W35</text>
+      <text x="340" y="175" font-size="11" fill="#64748b" text-anchor="middle">W36</text>
+      <text x="460" y="175" font-size="11" fill="#64748b" text-anchor="middle">W37</text>
+      <text x="580" y="175" font-size="11" fill="#64748b" text-anchor="middle">W38</text>
+      <!-- Americas 77→79→81→82→83: y = 160-(val-40)*2 -->
+      <polyline points="100,86 220,82 340,78 460,76 580,74" fill="none" stroke="#0f4c5c" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="100" cy="86" r="4" fill="#0f4c5c"/>
+      <circle cx="220" cy="82" r="4" fill="#0f4c5c"/>
+      <circle cx="340" cy="78" r="4" fill="#0f4c5c"/>
+      <circle cx="460" cy="76" r="4" fill="#0f4c5c"/>
+      <circle cx="580" cy="74" r="4" fill="#0f4c5c"/>
+      <!-- EMEA 71→68→65→62→61 (declining — dashed) -->
+      <polyline points="100,98 220,104 340,110 460,116 580,118" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linejoin="round" stroke-dasharray="5,2"/>
+      <circle cx="100" cy="98"  r="4" fill="#f59e0b"/>
+      <circle cx="220" cy="104" r="4" fill="#f59e0b"/>
+      <circle cx="340" cy="110" r="4" fill="#f59e0b"/>
+      <circle cx="460" cy="116" r="4" fill="#f59e0b"/>
+      <circle cx="580" cy="118" r="4" fill="#f59e0b"/>
+      <!-- APJ 72→74→75→77→78 -->
+      <polyline points="100,96 220,92 340,90 460,86 580,84" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="100" cy="96" r="4" fill="#10b981"/>
+      <circle cx="220" cy="92" r="4" fill="#10b981"/>
+      <circle cx="340" cy="90" r="4" fill="#10b981"/>
+      <circle cx="460" cy="86" r="4" fill="#10b981"/>
+      <circle cx="580" cy="84" r="4" fill="#10b981"/>
+      <text x="593" y="114" font-size="11" fill="#f59e0b" font-weight="700">⚠</text>
+    </svg>
+    <div style="font-size:12px;color:#ef4444;font-weight:600;text-align:center;margin-top:4px">⚠ EMEA score declining for 5 consecutive weeks — coaching escalation required</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ TAB: PIPELINE INTEL ═══════════════════════════ -->
+<div id="tab-pipeline-intel" class="tab-panel">
+  <div class="page-head">
+    <div class="page-title">Pipeline Intel</div>
+    <div class="page-sub">Coverage analysis, concentration risk, and deal intelligence · Week 38 FY2026</div>
+  </div>
+
+  <!-- Coverage Summary -->
+  <div class="kpi-row" style="grid-template-columns:repeat(3,1fr)">
+    <div class="kpi-card green">
+      <div class="kpi-label">Americas Coverage</div>
+      <div class="kpi-val">3.1x</div>
+      <div style="margin-top:8px;background:#e5e7eb;border-radius:4px;height:10px;overflow:hidden"><div style="width:100%;height:10px;background:#10b981;border-radius:4px"></div></div>
+      <div class="kpi-sub" style="display:flex;justify-content:space-between;margin-top:4px"><span>0x</span><span style="color:#10b981;font-weight:700">+$8.4M above 3x ✓</span></div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-label">EMEA Coverage</div>
+      <div class="kpi-val">2.6x</div>
+      <div style="margin-top:8px;background:#e5e7eb;border-radius:4px;height:10px;overflow:hidden"><div style="width:87%;height:10px;background:#f59e0b;border-radius:4px"></div></div>
+      <div class="kpi-sub" style="display:flex;justify-content:space-between;margin-top:4px"><span>0x</span><span style="color:#f59e0b;font-weight:700">Gap: -$9.9M to 3x</span></div>
+    </div>
+    <div style="background:white;border-radius:var(--radius-lg);padding:18px 20px;border:1px solid var(--neutral-200);border-top:3px solid #ef4444;box-shadow:var(--shadow-sm)">
+      <div class="kpi-label">APJ Coverage</div>
+      <div class="kpi-val" style="color:#ef4444">2.3x</div>
+      <div style="margin-top:8px;background:#e5e7eb;border-radius:4px;height:10px;overflow:hidden"><div style="width:77%;height:10px;background:#ef4444;border-radius:4px"></div></div>
+      <div class="kpi-sub" style="display:flex;justify-content:space-between;margin-top:4px"><span>0x</span><span style="color:#ef4444;font-weight:700">Gap: -$11.8M to 3x</span></div>
+    </div>
+  </div>
+
+  <!-- HHI Gauge -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title"><div class="card-icon">🎯</div>HHI Concentration Risk</div>
+      <span style="font-size:13px;font-weight:700;color:#f59e0b">Moderate Concentration</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:32px;flex-wrap:wrap">
+      <div style="text-align:center;min-width:300px">
+        <svg width="300" height="170" viewBox="0 0 300 170" style="font-family:inherit">
+          <path d="M 30 145 A 120 120 0 0 1 270 145" fill="none" stroke="#e5e7eb" stroke-width="22" stroke-linecap="round"/>
+          <path d="M 30 145 A 120 120 0 0 1 66 54" fill="none" stroke="#10b981" stroke-width="22" stroke-linecap="butt"/>
+          <path d="M 66 54 A 120 120 0 0 1 113 22" fill="none" stroke="#f59e0b" stroke-width="22" stroke-linecap="butt"/>
+          <path d="M 113 22 A 120 120 0 0 1 270 145" fill="none" stroke="#ef4444" stroke-width="22" stroke-linecap="round"/>
+          <line x1="150" y1="145" x2="88" y2="40" stroke="#1e293b" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="150" cy="145" r="7" fill="#1e293b"/>
+          <text x="22"  y="162" font-size="10" fill="#64748b">0</text>
+          <text x="143" y="16"  font-size="10" fill="#64748b">0.5</text>
+          <text x="268" y="162" font-size="10" fill="#64748b">1.0</text>
+          <text x="150" y="112" font-size="28" font-weight="900" fill="#1e293b" text-anchor="middle">0.31</text>
+          <text x="150" y="130" font-size="10" fill="#64748b" text-anchor="middle">HHI Index</text>
+        </svg>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:8px">Concentration Analysis</div>
+        <div style="font-size:13px;color:#475569;line-height:1.7">
+          <div>Top 3 deals (Accenture, SAP, Microsoft) represent <strong>28.4%</strong> of CQ pipeline.</div>
+          <div style="margin-top:6px">Losing all 3 = <strong style="color:#ef4444">-$21.4M impact</strong> on committed forecast.</div>
+          <div style="margin-top:10px;padding:8px 12px;background:#fef3c7;border-radius:6px;border-left:3px solid #f59e0b;font-size:12px">
+            ⚠ HHI above 0.28 threshold. Diversification coaching recommended for Americas.
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px;font-size:12px;flex-wrap:wrap">
+          <span style="background:#dcfce7;color:#166534;padding:3px 10px;border-radius:20px;font-weight:700">0–0.18 Safe</span>
+          <span style="background:#fef3c7;color:#92400e;padding:3px 10px;border-radius:20px;font-weight:700">0.18–0.35 Moderate</span>
+          <span style="background:#fee2e2;color:#991b1b;padding:3px 10px;border-radius:20px;font-weight:700">0.35+ Concentrated</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deal Table -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title"><div class="card-icon">📋</div>Active Pipeline — Deal View</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <button class="rtab active" onclick="filterPipelineDeals(this,'all')">All</button>
+        <button class="rtab" onclick="filterPipelineDeals(this,'americas')">Americas</button>
+        <button class="rtab" onclick="filterPipelineDeals(this,'emea')">EMEA</button>
+        <button class="rtab" onclick="filterPipelineDeals(this,'apj')">APJ</button>
+        <button class="rtab" onclick="filterPipelineDeals(this,'risk')">⚠ At Risk</button>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+    <table class="styled" style="width:100%" id="pipeline-deal-table">
+      <thead><tr><th>Account</th><th>Region</th><th>Stage</th><th>ARR</th><th>Close Date</th><th>Forecast</th><th>Health</th></tr></thead>
+      <tbody>
+        <tr data-region="americas" data-health="healthy"><td class="fw7">Accenture Platform</td><td>Americas</td><td>Negotiate</td><td>$3.8M</td><td>Sep 30</td><td><span class="tag tag-green">Commit</span></td><td>✅ Healthy</td></tr>
+        <tr data-region="americas" data-health="healthy"><td class="fw7">SAP Integration Suite</td><td>Americas</td><td>Propose</td><td>$4.2M</td><td>Oct 15</td><td><span class="tag tag-amber">Best Case</span></td><td>✅ Healthy</td></tr>
+        <tr data-region="americas" data-health="risk"><td class="fw7">Microsoft Cloud</td><td>Americas</td><td>Validate</td><td>$3.4M</td><td>Sep 22</td><td><span class="tag tag-green">Commit</span></td><td>⚠ At Risk</td></tr>
+        <tr data-region="americas" data-health="stale"><td class="fw7">Infosys Migration</td><td>Americas</td><td>Validate</td><td>$1.8M</td><td>Sep 20</td><td><span class="tag tag-teal">Pipeline</span></td><td>🔴 Stale</td></tr>
+        <tr data-region="apj" data-health="risk"><td class="fw7">KDDI Enterprise</td><td>APJ</td><td>Develop</td><td>$1.4M</td><td>Oct 30</td><td><span class="tag tag-teal">Pipeline</span></td><td>⚠ At Risk</td></tr>
+        <tr data-region="emea" data-health="stale"><td class="fw7">Capgemini Analytics</td><td>EMEA</td><td>Propose</td><td>$1.1M</td><td>Oct 10</td><td><span class="tag tag-amber">Best Case</span></td><td>🔴 Stale</td></tr>
+        <tr data-region="emea" data-health="risk"><td class="fw7">Volkswagen Data Lake</td><td>EMEA</td><td>Negotiate</td><td>$0.9M</td><td>Sep 25</td><td><span class="tag tag-green">Commit</span></td><td>⚠ At Risk</td></tr>
+        <tr data-region="apj" data-health="risk"><td class="fw7">Telstra Cloud</td><td>APJ</td><td>Negotiate</td><td>$0.7M</td><td>Sep 17</td><td><span class="tag tag-green">Commit</span></td><td>⚠ At Risk</td></tr>
+        <tr data-region="emea" data-health="healthy"><td class="fw7">Deutsche Bank</td><td>EMEA</td><td>Qualify</td><td>$2.1M</td><td>Nov 15</td><td><span class="tag tag-teal">Pipeline</span></td><td>✅ Healthy</td></tr>
+        <tr data-region="apj" data-health="healthy"><td class="fw7">Grab Holdings</td><td>APJ</td><td>Validate</td><td>$1.6M</td><td>Oct 20</td><td><span class="tag tag-amber">Best Case</span></td><td>✅ Healthy</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ TAB: REGION INSIGHTS ═════════════════════════ -->
+<div id="tab-region-insights" class="tab-panel">
+  <div class="page-head">
+    <div class="page-title">Region Insights</div>
+    <div class="page-sub">Deal slippage analysis, KPI health, and coaching priorities · Week 38 FY2026</div>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-bottom:18px">
+    <button class="rtab active" onclick="selectRegionInsight(this,'ri-americas')">Americas</button>
+    <button class="rtab" onclick="selectRegionInsight(this,'ri-emea')">EMEA</button>
+    <button class="rtab" onclick="selectRegionInsight(this,'ri-apj')">APJ</button>
+  </div>
+
+  <!-- Americas Panel -->
+  <div id="ri-americas">
+    <div class="kpi-row" style="grid-template-columns:repeat(5,1fr)">
+      <div class="kpi-card green"><div class="kpi-label">Bookings W38</div><div class="kpi-val">$23.4M</div><div class="kpi-delta delta-pos">▲ +$1.2M WoW</div></div>
+      <div class="kpi-card green"><div class="kpi-label">Pipeline Coverage</div><div class="kpi-val">3.1x</div><div class="kpi-sub">Above 3x threshold</div></div>
+      <div class="kpi-card green"><div class="kpi-label">Win Rate</div><div class="kpi-val">34.4%</div><div class="kpi-delta delta-pos">▲ +1.2pts WoW</div></div>
+      <div class="kpi-card amber"><div class="kpi-label">Hygiene Score</div><div class="kpi-val">78/100</div><div class="kpi-sub">Amber threshold</div></div>
+      <div class="kpi-card green"><div class="kpi-label">Forecast Accuracy</div><div class="kpi-val">87%</div><div class="kpi-sub">Above 80% target</div></div>
+    </div>
+    <div class="card">
+      <div class="card-hdr"><div class="card-title"><div class="card-icon">⬇</div>Deal Slippage — Americas W38</div><span style="font-size:13px;font-weight:700;color:#ef4444">$3.0M slipped</span></div>
+      <table class="styled" style="width:100%">
+        <thead><tr><th>Deal</th><th>ARR</th><th>Stage</th><th>Reason</th><th>Severity</th></tr></thead>
+        <tbody>
+          <tr><td class="fw7">Infosys Migration</td><td>$1.8M</td><td>Validate</td><td>2nd push — no next step defined</td><td>🔴 High</td></tr>
+          <tr><td class="fw7">Telstra Cloud</td><td>$0.7M</td><td>Negotiate</td><td>Close date passed</td><td>🟡 Medium</td></tr>
+          <tr><td class="fw7">ANZ Bank</td><td>$0.5M</td><td>Propose</td><td>Champion unresponsive</td><td>🟡 Medium</td></tr>
+          <tr style="background:var(--red-light);font-weight:700"><td colspan="2">Total slipped: $3.0M</td><td colspan="3">Net forecast impact: <span style="color:#991b1b">-$1.8M</span> (probability-adjusted)</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:14px;padding:12px 16px;background:#f0f9ff;border-left:4px solid #0f4c5c;border-radius:6px;font-size:13px;color:#374151">
+        <strong>Insight:</strong> Americas net slippage is within tolerance ($3.0M vs. $3.5M threshold). Win rate trend is positive (+1.2pts). Primary coaching focus: Infosys deal hygiene — assign new next step and executive sponsor by W39.
+      </div>
+    </div>
+  </div>
+
+  <!-- EMEA Panel (hidden) -->
+  <div id="ri-emea" style="display:none">
+    <div class="kpi-row" style="grid-template-columns:repeat(5,1fr)">
+      <div style="background:white;border-radius:var(--radius-lg);padding:18px 20px;border:1px solid var(--neutral-200);border-top:3px solid #ef4444;box-shadow:var(--shadow-sm)"><div class="kpi-label">Bookings W38</div><div class="kpi-val" style="color:#ef4444">$18.1M</div><div class="kpi-delta delta-neg">▼ -$0.8M WoW</div></div>
+      <div class="kpi-card amber"><div class="kpi-label">Pipeline Coverage</div><div class="kpi-val">2.6x</div><div class="kpi-sub" style="color:#e07b00">Below 3x threshold</div></div>
+      <div class="kpi-card amber"><div class="kpi-label">Win Rate</div><div class="kpi-val">29.2%</div><div class="kpi-delta delta-neg">▼ -0.5pts WoW</div></div>
+      <div style="background:white;border-radius:var(--radius-lg);padding:18px 20px;border:1px solid var(--neutral-200);border-top:3px solid #ef4444;box-shadow:var(--shadow-sm)"><div class="kpi-label">Hygiene Score</div><div class="kpi-val" style="color:#ef4444">55/100</div><div class="kpi-sub" style="color:#ef4444">Below 65 threshold</div></div>
+      <div class="kpi-card amber"><div class="kpi-label">Forecast Accuracy</div><div class="kpi-val">71%</div><div class="kpi-sub" style="color:#e07b00">Below 80% target</div></div>
+    </div>
+    <div class="card">
+      <div class="card-hdr"><div class="card-title"><div class="card-icon">⬇</div>Deal Slippage — EMEA W38</div><span style="font-size:13px;font-weight:700;color:#ef4444">$2.4M slipped</span></div>
+      <table class="styled" style="width:100%">
+        <thead><tr><th>Deal</th><th>ARR</th><th>Stage</th><th>Reason</th><th>Severity</th></tr></thead>
+        <tbody>
+          <tr><td class="fw7">WEU Bank</td><td>$1.8M</td><td>Negotiate</td><td>UK procurement freeze — Q4 budget cycle</td><td>🔴 High</td></tr>
+          <tr><td class="fw7">DACH Corp</td><td>$0.6M</td><td>Propose</td><td>Champion change — re-mapping required</td><td>🟡 Medium</td></tr>
+          <tr style="background:var(--red-light);font-weight:700"><td colspan="2">Total slipped: $2.4M</td><td colspan="3">Net forecast impact: <span style="color:#991b1b">-$1.4M</span> (probability-adjusted)</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:14px;padding:12px 16px;background:#fff3e8;border-left:4px solid #f59e0b;border-radius:6px;font-size:13px;color:#374151">
+        <strong>Insight:</strong> EMEA slippage exceeds tolerance ($2.4M vs. $2.0M threshold). Hygiene score at 55/100 is a systemic issue. WEU VP must escalate TechCorp München — currently 6 weeks in Negotiate with no movement.
+      </div>
+    </div>
+  </div>
+
+  <!-- APJ Panel (hidden) -->
+  <div id="ri-apj" style="display:none">
+    <div class="kpi-row" style="grid-template-columns:repeat(5,1fr)">
+      <div class="kpi-card green"><div class="kpi-label">Bookings W38</div><div class="kpi-val">$11.7M</div><div class="kpi-delta delta-pos">▲ +$0.3M WoW</div></div>
+      <div style="background:white;border-radius:var(--radius-lg);padding:18px 20px;border:1px solid var(--neutral-200);border-top:3px solid #ef4444;box-shadow:var(--shadow-sm)"><div class="kpi-label">Pipeline Coverage</div><div class="kpi-val" style="color:#ef4444">2.3x</div><div class="kpi-sub" style="color:#ef4444">Gap: -$11.8M to 3x</div></div>
+      <div class="kpi-card green"><div class="kpi-label">Win Rate</div><div class="kpi-val">32.8%</div><div class="kpi-delta delta-pos">▲ +0.8pts WoW</div></div>
+      <div class="kpi-card amber"><div class="kpi-label">Hygiene Score</div><div class="kpi-val">74/100</div><div class="kpi-sub">Near amber threshold</div></div>
+      <div class="kpi-card amber"><div class="kpi-label">Forecast Accuracy</div><div class="kpi-val">79%</div><div class="kpi-sub">Near 80% target</div></div>
+    </div>
+    <div class="card">
+      <div class="card-hdr"><div class="card-title"><div class="card-icon">⬇</div>Deal Slippage — APJ W38</div><span style="font-size:13px;font-weight:700;color:#f59e0b">$1.1M slipped</span></div>
+      <table class="styled" style="width:100%">
+        <thead><tr><th>Deal</th><th>ARR</th><th>Stage</th><th>Reason</th><th>Severity</th></tr></thead>
+        <tbody>
+          <tr><td class="fw7">Telstra Cloud</td><td>$0.7M</td><td>Negotiate</td><td>Close date passed — requires immediate follow-up</td><td>🔴 High</td></tr>
+          <tr><td class="fw7">SoftBank Japan</td><td>$0.4M</td><td>Propose</td><td>Legal review delayed by 2 weeks</td><td>🟡 Medium</td></tr>
+          <tr style="background:var(--amber-light);font-weight:700"><td colspan="2">Total slipped: $1.1M</td><td colspan="3">Net forecast impact: <span style="color:#92400e">-$0.6M</span> (probability-adjusted)</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:14px;padding:12px 16px;background:#f0f9ff;border-left:4px solid #0f4c5c;border-radius:6px;font-size:13px;color:#374151">
+        <strong>Insight:</strong> APJ slippage is within tolerance. Strong win rate trend (+0.8pts). Primary risk is pipeline coverage at 2.3x — below 3x threshold by $11.8M. Sourcing acceleration required in ANZ and SEA for Q4 pipeline build.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ TAB: SALES PERF ══════════════════════════════ -->
+<div id="tab-sales-perf" class="tab-panel">
+  <div class="page-head">
+    <div class="page-title">Sales Performance</div>
+    <div class="page-sub">Attainment distribution, deal mix, and top performer leaderboard · Week 38 FY2026</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px">
+    <!-- Attainment Distribution Histogram -->
+    <div class="card">
+      <div class="card-hdr"><div class="card-title"><div class="card-icon">📊</div>Attainment Distribution — 13 Sellers</div></div>
+      <svg width="100%" height="185" viewBox="0 0 420 185" style="font-family:inherit">
+        <line x1="35" x2="410" y1="20"  y2="20"  stroke="#f1f5f9" stroke-width="1"/>
+        <line x1="35" x2="410" y1="57"  y2="57"  stroke="#e2e8f0" stroke-width="1"/>
+        <line x1="35" x2="410" y1="95"  y2="95"  stroke="#e2e8f0" stroke-width="1"/>
+        <line x1="35" x2="410" y1="132" y2="132" stroke="#e2e8f0" stroke-width="1"/>
+        <text x="30" y="24"  font-size="10" fill="#94a3b8" text-anchor="end">4</text>
+        <text x="30" y="61"  font-size="10" fill="#94a3b8" text-anchor="end">3</text>
+        <text x="30" y="99"  font-size="10" fill="#94a3b8" text-anchor="end">2</text>
+        <text x="30" y="136" font-size="10" fill="#94a3b8" text-anchor="end">1</text>
+        <!-- 0–50%: 1 seller, height=37 -->
+        <rect x="42"  y="133" width="48" height="37" fill="#94a3b8" rx="3"/>
+        <text x="66"  y="128" font-size="11" fill="#94a3b8" text-anchor="middle">1</text>
+        <text x="66"  y="172" font-size="10" fill="#64748b" text-anchor="middle">0–50%</text>
+        <!-- 50–75%: 1 seller -->
+        <rect x="102" y="133" width="48" height="37" fill="#ef4444" rx="3" opacity=".8"/>
+        <text x="126" y="128" font-size="11" fill="#ef4444" text-anchor="middle">1</text>
+        <text x="126" y="172" font-size="10" fill="#64748b" text-anchor="middle">50–75%</text>
+        <!-- 75–90%: 2 sellers, height=74 -->
+        <rect x="162" y="96"  width="48" height="74" fill="#f59e0b" rx="3" opacity=".85"/>
+        <text x="186" y="91"  font-size="11" fill="#f59e0b" text-anchor="middle">2</text>
+        <text x="186" y="172" font-size="10" fill="#64748b" text-anchor="middle">75–90%</text>
+        <!-- 90–100%: 3 sellers, height=111 -->
+        <rect x="222" y="59"  width="48" height="111" fill="#f4a261" rx="3" opacity=".85"/>
+        <text x="246" y="54"  font-size="11" fill="#f4a261" text-anchor="middle">3</text>
+        <text x="246" y="172" font-size="10" fill="#64748b" text-anchor="middle">90–100%</text>
+        <!-- 100–120%: 4 sellers, height=148 (modal) -->
+        <rect x="282" y="22"  width="48" height="148" fill="#0f4c5c" rx="3"/>
+        <text x="306" y="17"  font-size="11" fill="#0f4c5c" font-weight="700" text-anchor="middle">4 ★</text>
+        <text x="306" y="172" font-size="10" fill="#64748b" text-anchor="middle">100–120%</text>
+        <!-- 120%+: 2 sellers, height=74 -->
+        <rect x="342" y="96"  width="48" height="74" fill="#10b981" rx="3" opacity=".85"/>
+        <text x="366" y="91"  font-size="11" fill="#10b981" text-anchor="middle">2</text>
+        <text x="366" y="172" font-size="10" fill="#64748b" text-anchor="middle">120%+</text>
+      </svg>
+      <div style="font-size:12px;color:#475569;text-align:center;margin-top:4px">Healthy unimodal distribution — modal band: 100–120%. No quota miscalibration signal.</div>
+    </div>
+
+    <!-- Deal Mix Donut -->
+    <div class="card">
+      <div class="card-hdr"><div class="card-title"><div class="card-icon">🍩</div>Deal Mix — Q3 FY2026</div></div>
+      <div style="display:flex;align-items:center;gap:24px;justify-content:center;padding-top:8px">
+        <svg width="220" height="220" viewBox="0 0 260 220" style="font-family:inherit">
+          <!-- New Logo 34%: 0° to 122.4° (teal) -->
+          <path d="M 130,30 A 80,80 0 0,1 197,153 L 168,134 A 45,45 0 0,0 130,65 Z" fill="#0f4c5c"/>
+          <!-- Expansion 41%: 122.4° to 270° (accent) -->
+          <path d="M 197,153 A 80,80 0 0,1 50,110 L 85,110 A 45,45 0 0,0 168,134 Z" fill="#f4a261"/>
+          <!-- Renewal 25%: 270° to 360° (green) -->
+          <path d="M 50,110 A 80,80 0 0,1 130,30 L 130,65 A 45,45 0 0,0 85,110 Z" fill="#10b981"/>
+          <text x="130" y="105" font-size="13" font-weight="700" fill="#1e293b" text-anchor="middle">$53.2M</text>
+          <text x="130" y="120" font-size="10" fill="#64748b" text-anchor="middle">Total ARR</text>
+        </svg>
+        <div style="font-size:13px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:#0f4c5c;border-radius:3px;flex-shrink:0"></div><div><div style="font-weight:700">New Logo</div><div style="color:#64748b">34% · $18.1M</div></div></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:#f4a261;border-radius:3px;flex-shrink:0"></div><div><div style="font-weight:700">Expansion</div><div style="color:#64748b">41% · $21.8M</div></div></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:#10b981;border-radius:3px;flex-shrink:0"></div><div><div style="font-weight:700">Renewal</div><div style="color:#64748b">25% · $13.3M</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Performers -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title"><div class="card-icon">🏆</div>Top Performers — Week 38 FY2026</div>
+      <span style="font-size:12px;color:#64748b">Ranked by attainment %</span>
+    </div>
+    <table class="styled" style="width:100%">
+      <thead><tr><th>Rank</th><th>Seller</th><th>Region</th><th>Attainment</th><th>ARR Closed</th><th>Pipeline Coverage</th></tr></thead>
+      <tbody>
+        <tr><td style="font-size:18px">🥇</td><td class="fw7">Sarah Chen</td><td>Americas</td><td><span style="color:#10b981;font-weight:800;font-size:15px">128%</span></td><td>$1.02M</td><td><span class="tag tag-green">3.0x ✓</span></td></tr>
+        <tr><td style="font-size:18px">🥈</td><td class="fw7">Klaus Weber</td><td>EMEA</td><td><span style="color:#10b981;font-weight:800;font-size:15px">118%</span></td><td>$1.06M</td><td><span class="tag tag-amber">2.9x</span></td></tr>
+        <tr><td style="font-size:18px">🥉</td><td class="fw7">Kenji Yamamoto</td><td>APJ</td><td><span style="color:#10b981;font-weight:800;font-size:15px">115%</span></td><td>$862K</td><td><span class="tag tag-green">3.2x ✓</span></td></tr>
+        <tr><td style="font-size:14px;text-align:center;font-weight:700;color:#64748b">4</td><td class="fw7">Marcus Williams</td><td>Americas</td><td><span style="color:#0f4c5c;font-weight:800;font-size:15px">108%</span></td><td>$918K</td><td><span class="tag tag-amber">2.8x</span></td></tr>
+        <tr><td style="font-size:14px;text-align:center;font-weight:700;color:#64748b">5</td><td class="fw7">Raj Patel</td><td>APJ</td><td><span style="color:#0f4c5c;font-weight:800;font-size:15px">106%</span></td><td>$742K</td><td><span class="tag tag-green">3.1x ✓</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 </main>
 
 <script>
@@ -1143,6 +1589,63 @@
     ['nar-amer','nar-emea','nar-apj'].forEach(n => {
       const el = document.getElementById(n);
       if (el) el.style.display = n === id ? 'block' : 'none';
+    });
+  }
+
+  // ── CommOps AI ─────────────────────────────────────────────────────────────
+  const AI_RESPONSES = {
+    'funnel': 'Current funnel by stage (W38 FY2026):\n• Qualify: $42.1M (28 opps)\n• Develop: $38.4M (24 opps)\n• Validate: $31.2M (19 opps)\n• Propose: $24.8M (14 opps)\n• Negotiate: $18.1M (9 opps)\n• Commit: $22.3M (11 opps)\nTotal active pipeline: $176.9M | Coverage: 2.9x (below 3x threshold — EMEA is the gap).',
+    'risk': 'Top 5 risk deals this week:\n1. Infosys Platform Migration — $1.8M — pushed from Q3 to Q4 (2nd push) — no next step defined\n2. KDDI Enterprise Suite — $1.4M — stage regression Propose→Develop — budget freeze\n3. Capgemini Analytics — $1.1M — no activity in 18 days — single-threaded\n4. Volkswagen Data Lake — $0.9M — procurement delay — champion change\n5. Telstra Cloud — $0.7M — close date 3 days past — requires immediate follow-up\nTotal risk ARR: $5.9M',
+    'ro': 'Net R&O vs. AOP (Q3 FY2026):\n• AOP target: $64.0M\n• Current forecast (Commit): $53.2M | Best Case: $61.4M | Weighted: $57.1M\n• Net R&O: Americas +$2.1M, EMEA -$1.4M, APJ +$0.8M = Net +$1.5M\n• Upside scenarios: Telstra early close ($0.7M), ServiceNow pull-in ($0.6M)\n• Risk scenarios: EMEA revision likely -$3M worst case\nBottomline: Best case closes the gap at $61.4M — 96% of AOP.',
+    'gap': 'Pipeline gap to 3x coverage:\n• Americas: $89.4M pipeline vs. $81.0M required → 3.1x ✓ $8.4M above threshold\n• EMEA: $62.1M pipeline vs. $72.0M required → 2.6x ✗ $9.9M BELOW threshold\n• APJ: $36.2M pipeline vs. $48.0M required → 2.3x ✗ $11.8M BELOW threshold\nEMEA and APJ need combined $21.7M in new pipeline to reach 3x. At current build rate (+$6M/wk global), expect 3.6 weeks to close the gap if sourcing accelerates.',
+    'default': 'I can help with pipeline analysis, forecast scenarios, deal risk assessment, and regional performance. Try asking about specific metrics, regions, or deals.'
+  };
+
+  function sendPrompt(text) {
+    if (!text || !text.trim()) return;
+    const msgs = document.getElementById('chat-messages');
+    if (!msgs) return;
+    msgs.innerHTML += `<div style="align-self:flex-end;background:#0f4c5c;color:#fff;padding:9px 14px;border-radius:12px 12px 4px 12px;font-size:13px;max-width:80%">${text}</div>`;
+    const inp = document.getElementById('chat-input');
+    if (inp) inp.value = '';
+    const lower = text.toLowerCase();
+    let resp = lower.includes('funnel') || lower.includes('stage') ? AI_RESPONSES.funnel :
+               lower.includes('risk') || lower.includes('deal') ? AI_RESPONSES.risk :
+               lower.includes('ro') || lower.includes('aop') || lower.includes('forecast') ? AI_RESPONSES.ro :
+               lower.includes('gap') || lower.includes('pipeline') || lower.includes('coverage') ? AI_RESPONSES.gap :
+               AI_RESPONSES.default;
+    setTimeout(() => {
+      msgs.innerHTML += `<div style="background:#f0f9ff;border-left:3px solid #0f4c5c;padding:10px 14px;border-radius:6px;font-size:13px;color:#374151;white-space:pre-line"><strong>CommOps AI:</strong> ${resp}</div>`;
+      msgs.scrollTop = msgs.scrollHeight;
+    }, 600);
+  }
+
+  function clearChat() {
+    const msgs = document.getElementById('chat-messages');
+    if (msgs) msgs.innerHTML = '<div style="background:#f0f9ff;border-left:3px solid #0f4c5c;padding:10px 14px;border-radius:6px;font-size:13px;color:#374151"><strong>CommOps AI:</strong> Chat cleared. Week 38 context still loaded. How can I help?</div>';
+  }
+
+  // ── Region Insights selector ───────────────────────────────────────────────
+  function selectRegionInsight(btn, panelId) {
+    btn.closest('div').querySelectorAll('.rtab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    ['ri-americas','ri-emea','ri-apj'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = id === panelId ? 'block' : 'none';
+    });
+  }
+
+  // ── Pipeline deal filter ───────────────────────────────────────────────────
+  function filterPipelineDeals(btn, filter) {
+    btn.closest('div').querySelectorAll('.rtab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#pipeline-deal-table tbody tr').forEach(row => {
+      const region = (row.dataset.region || '').toLowerCase();
+      const health = (row.dataset.health || '').toLowerCase();
+      const show = filter === 'all' ||
+                   (filter === 'risk' && (health === 'risk' || health === 'stale')) ||
+                   region === filter;
+      row.style.display = show ? '' : 'none';
     });
   }
 </script>

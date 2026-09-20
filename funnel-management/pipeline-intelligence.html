@@ -225,6 +225,8 @@
   <button class="tab-btn" onclick="switchTab('tab-pullin', this)">Pull-In Analysis</button>
   <button class="tab-btn" onclick="switchTab('tab-overdue', this)">Overdue Opportunities</button>
   <button class="tab-btn" onclick="switchTab('tab-rawdata', this)">Raw Data</button>
+  <button class="tab-btn" onclick="switchTab('tab-velocity', this)">&#9889; Pipeline Velocity</button>
+  <button class="tab-btn" onclick="switchTab('tab-funnel', this)">&#128256; Funnel Conversion</button>
 </div>
 
 <!-- ══════════════════════════════════════
@@ -1140,6 +1142,386 @@
       </tbody>
     </table>
   </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 8: PIPELINE VELOCITY
+══════════════════════════════════════ -->
+<div id="tab-velocity" class="tab-content">
+  <div class="section-title">&#9889; Pipeline Velocity</div>
+  <div class="section-sub">Q3 FY2026 &bull; Velocity decomposed into 4 levers</div>
+
+  <!-- Hero -->
+  <div style="background:var(--teal);border-radius:12px;padding:24px 32px;margin-bottom:24px;text-align:center;">
+    <div style="font-size:56px;font-weight:900;color:#f4a261;letter-spacing:-1px;line-height:1;">$1,163<span style="font-size:28px;">/day</span></div>
+    <div style="font-size:14px;color:rgba(255,255,255,0.8);margin-top:8px;font-weight:500;">Pipeline Velocity &mdash; Q3 FY2026 &bull; Composed of 4 levers</div>
+  </div>
+
+  <!-- 4 Lever Cards -->
+  <div class="kpi-row">
+    <div class="kpi-card" style="border-left-color:var(--green)">
+      <div class="kpi-label">Qualified Opportunities</div>
+      <div class="kpi-value" style="color:var(--green)">147</div>
+      <div class="kpi-delta delta-pos">3% above target of 143</div>
+    </div>
+    <div class="kpi-card" style="border-left-color:var(--red)">
+      <div class="kpi-label">Average Contract Value</div>
+      <div class="kpi-value" style="color:var(--red)">$48.2K</div>
+      <div class="kpi-delta delta-neg">&#8595; $1.4K vs. prior quarter &mdash; ACV compression signal</div>
+    </div>
+    <div class="kpi-card" style="border-left-color:var(--red)">
+      <div class="kpi-label">Win Rate</div>
+      <div class="kpi-value" style="color:var(--red)">33.1%</div>
+      <div class="kpi-delta delta-neg">&#8595; 1.8pts vs. prior quarter &mdash; qualification issue</div>
+    </div>
+    <div class="kpi-card" style="border-left-color:var(--yellow)">
+      <div class="kpi-label">Avg Sales Cycle</div>
+      <div class="kpi-value" style="color:var(--yellow)">47 days</div>
+      <div class="kpi-delta delta-warn">&#8593; 3 days vs. prior quarter &mdash; slowing down</div>
+    </div>
+  </div>
+
+  <!-- Formula -->
+  <div style="background:#e8f6f9;border:1px solid #b0d4df;border-radius:8px;padding:14px 20px;margin-bottom:24px;text-align:center;font-size:15px;font-weight:700;color:var(--teal);">
+    147 &times; $48.2K &times; 33.1% &divide; 47 days = <span style="color:var(--accent);font-size:18px;">$1,163/day</span>
+  </div>
+
+  <!-- Velocity by Segment -->
+  <div class="panel">
+    <div class="panel-title">Velocity by Segment</div>
+    <div class="chart-wrap">
+      <svg viewBox="0 0 700 190" width="700" height="190">
+        <line x1="140" y1="20" x2="140" y2="165" stroke="#dee2e6" stroke-width="1"/>
+        <line x1="280" y1="20" x2="280" y2="165" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <line x1="420" y1="20" x2="420" y2="165" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <line x1="560" y1="20" x2="560" y2="165" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <text x="135" y="175" text-anchor="end" font-size="10" fill="#6c757d">$0</text>
+        <text x="280" y="175" text-anchor="middle" font-size="10" fill="#6c757d">$700</text>
+        <text x="420" y="175" text-anchor="middle" font-size="10" fill="#6c757d">$1,400</text>
+        <text x="560" y="175" text-anchor="middle" font-size="10" fill="#6c757d">$2,100</text>
+        <!-- Enterprise: 1664/2100*420=333px -->
+        <text x="6" y="47" font-size="11" fill="#2c3e50" font-weight="600">Enterprise</text>
+        <rect x="140" y="28" width="333" height="28" rx="3" fill="#0f4c5c"/>
+        <text x="479" y="46" font-size="12" fill="#0f4c5c" font-weight="700">$1,664/day</text>
+        <text x="479" y="58" font-size="9" fill="#6c757d">28 opps &times; $182K &times; 28% &divide; 86 days</text>
+        <!-- Mid-Market: 2086/2100*420=417px -->
+        <text x="6" y="97" font-size="11" fill="#2c3e50" font-weight="600">Mid-Market</text>
+        <rect x="140" y="78" width="417" height="28" rx="3" fill="#f4a261"/>
+        <text x="563" y="96" font-size="12" fill="#f4a261" font-weight="700">$2,086/day</text>
+        <text x="563" y="108" font-size="9" fill="#6c757d">64 opps &times; $47K &times; 36% &divide; 52 days</text>
+        <!-- SMB: 920/2100*420=184px -->
+        <text x="6" y="147" font-size="11" fill="#2c3e50" font-weight="600">SMB</text>
+        <rect x="140" y="128" width="184" height="28" rx="3" fill="#2980b9"/>
+        <text x="330" y="146" font-size="12" fill="#2980b9" font-weight="700">$920/day</text>
+        <text x="330" y="158" font-size="9" fill="#6c757d">55 opps &times; $12K &times; 39% &divide; 28 days</text>
+      </svg>
+    </div>
+    <div class="insight-box" style="margin-top:14px;margin-bottom:0;">
+      <div class="insight-title">Segment Velocity Insight</div>
+      <div class="insight-body">Mid-Market has the highest velocity despite lower ACV &mdash; shorter cycle compensates. Enterprise velocity is constrained by cycle length (86 days avg). SMB velocity drag comes from low ACV, not cycle or win rate.</div>
+    </div>
+  </div>
+
+  <!-- Velocity Trend -->
+  <div class="panel">
+    <div class="panel-title">Pipeline Velocity Trend &mdash; Last 4 Quarters</div>
+    <div class="chart-wrap">
+      <svg viewBox="0 0 700 230" width="700" height="230">
+        <line x1="60" y1="190" x2="640" y2="190" stroke="#dee2e6" stroke-width="1"/>
+        <line x1="60" y1="165" x2="640" y2="165" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <line x1="60" y1="140" x2="640" y2="140" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <line x1="60" y1="115" x2="640" y2="115" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <line x1="60" y1="90" x2="640" y2="90" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <line x1="60" y1="65" x2="640" y2="65" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <text x="55" y="193" text-anchor="end" font-size="10" fill="#6c757d">$1,000</text>
+        <text x="55" y="168" text-anchor="end" font-size="10" fill="#6c757d">$1,100</text>
+        <text x="55" y="143" text-anchor="end" font-size="10" fill="#6c757d">$1,200</text>
+        <text x="55" y="118" text-anchor="end" font-size="10" fill="#6c757d">$1,300</text>
+        <text x="55" y="93" text-anchor="end" font-size="10" fill="#6c757d">$1,400</text>
+        <text x="55" y="68" text-anchor="end" font-size="10" fill="#6c757d">$1,500</text>
+        <line x1="60" y1="60" x2="60" y2="195" stroke="#dee2e6" stroke-width="1"/>
+        <!-- y = 190 - (val-1000)/600*150 -->
+        <!-- Q4FY25 $1421: y=85 | Q1FY26 $1387: y=93 | Q2FY26 $1291: y=117 | Q3FY26 $1163: y=149 -->
+        <polygon points="130,85 290,93 450,117 610,149 610,190 130,190" fill="#0f4c5c" opacity="0.12"/>
+        <polyline points="130,85 290,93 450,117 610,149" fill="none" stroke="#0f4c5c" stroke-width="2.5" stroke-linejoin="round"/>
+        <circle cx="130" cy="85" r="5" fill="#0f4c5c"/>
+        <circle cx="290" cy="93" r="5" fill="#0f4c5c"/>
+        <circle cx="450" cy="117" r="5" fill="#f4a261"/>
+        <circle cx="610" cy="149" r="5" fill="#e74c3c"/>
+        <text x="130" y="78" text-anchor="middle" font-size="11" fill="#0f4c5c" font-weight="700">$1,421</text>
+        <text x="290" y="86" text-anchor="middle" font-size="11" fill="#0f4c5c" font-weight="700">$1,387</text>
+        <text x="450" y="110" text-anchor="middle" font-size="11" fill="#f4a261" font-weight="700">$1,291</text>
+        <text x="610" y="142" text-anchor="middle" font-size="11" fill="#e74c3c" font-weight="700">$1,163</text>
+        <text x="220" y="108" font-size="9" fill="#6c757d">Win rate &#8595;</text>
+        <text x="370" y="132" font-size="9" fill="#6c757d">ACV compression</text>
+        <text x="510" y="164" font-size="9" fill="#6c757d">Cycle &#8593;</text>
+        <text x="130" y="210" text-anchor="middle" font-size="11" fill="#6c757d" font-weight="600">Q4 FY25</text>
+        <text x="290" y="210" text-anchor="middle" font-size="11" fill="#6c757d" font-weight="600">Q1 FY26</text>
+        <text x="450" y="210" text-anchor="middle" font-size="11" fill="#6c757d" font-weight="600">Q2 FY26</text>
+        <text x="610" y="210" text-anchor="middle" font-size="11" fill="#e74c3c" font-weight="600">Q3 FY26</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Lever Coaching Panel -->
+  <div class="panel">
+    <div class="panel-title">Lever Coaching &mdash; Current Quarter Signals</div>
+    <div class="insight-box red">
+      <div class="insight-title">&#128200; Win Rate Declining &mdash; Qualification Risk</div>
+      <div class="insight-body">Win rate &#8595; 1.8pts &mdash; review qualification criteria. Focus on discovery call quality and ICP alignment before advancing deals to the Develop stage.</div>
+    </div>
+    <div class="insight-box red" style="margin-top:12px;">
+      <div class="insight-title">&#128178; ACV Compression &mdash; Discounting Signal</div>
+      <div class="insight-body">ACV &#8595; $1.4K quarter-over-quarter &mdash; check if reps are discounting to accelerate close. Validate deal structuring and multi-year commitment conversations.</div>
+    </div>
+    <div class="insight-box orange" style="margin-top:12px;">
+      <div class="insight-title">&#9203; Sales Cycle Lengthening &mdash; Access Risk</div>
+      <div class="insight-body">Sales cycle &#8593; 3 days vs. prior quarter &mdash; review multi-threading. Are champions engaging the economic buyer early? Identify stuck deals at the Develop stage.</div>
+    </div>
+    <div class="insight-box green" style="margin-top:12px;margin-bottom:0;">
+      <div class="insight-title">&#10003; Pipeline Volume &mdash; On Track</div>
+      <div class="insight-body">Qualified opportunity count (147) is 3% above the 143 target. Volume lever is healthy. Focus remediation energy on win rate and ACV levers.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 9: FUNNEL CONVERSION
+══════════════════════════════════════ -->
+<div id="tab-funnel" class="tab-content">
+  <div class="section-title">&#128256; Funnel Conversion</div>
+  <div class="section-sub">Volume vs. value conversion &bull; Source analysis &bull; Stage bottlenecks &bull; Q3 FY2026</div>
+
+  <!-- SECTION 1: DUAL FUNNEL WATERFALL -->
+  <div class="panel">
+    <div class="panel-title">Dual Funnel Waterfall &mdash; Volume vs. Value</div>
+    <div style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;align-items:center;margin-bottom:6px;">
+      <div style="text-align:center;font-size:12px;font-weight:700;color:#2471a3;letter-spacing:0.3px;">VOLUME &mdash; Deal Count</div>
+      <div></div>
+      <div style="text-align:center;font-size:12px;font-weight:700;color:#0f4c5c;letter-spacing:0.3px;">VALUE &mdash; ARR $M</div>
+    </div>
+    <div class="chart-wrap">
+      <svg viewBox="0 0 860 300" width="860" height="300">
+        <!-- Stage labels centre column -->
+        <text x="430" y="47" text-anchor="middle" font-size="11" fill="#2c3e50" font-weight="600">MQL</text>
+        <text x="430" y="81" text-anchor="middle" font-size="11" fill="#2c3e50" font-weight="600">SQL</text>
+        <text x="430" y="115" text-anchor="middle" font-size="11" fill="#2c3e50" font-weight="600">SQO</text>
+        <text x="430" y="149" text-anchor="middle" font-size="11" fill="#2c3e50" font-weight="600">Qualify</text>
+        <text x="430" y="183" text-anchor="middle" font-size="11" fill="#2c3e50" font-weight="600">Develop</text>
+        <text x="430" y="217" text-anchor="middle" font-size="11" fill="#2c3e50" font-weight="600">Propose</text>
+        <text x="430" y="251" text-anchor="middle" font-size="11" fill="#2c3e50" font-weight="600">Closed Won</text>
+        <!-- LEFT FUNNEL (VOLUME) centered at x=210 -->
+        <!-- MQL 524: half_w=180 → x=30, w=360 -->
+        <rect x="30" y="30" width="360" height="28" rx="2" fill="#2471a3"/>
+        <text x="210" y="48" text-anchor="middle" font-size="11" fill="white" font-weight="700">524</text>
+        <!-- SQL 287: half_w=99 → x=111, w=198 -->
+        <rect x="111" y="64" width="198" height="28" rx="2" fill="#2e86c1"/>
+        <text x="210" y="82" text-anchor="middle" font-size="11" fill="white" font-weight="700">287 (54.8%)</text>
+        <!-- SQO 198: half_w=68 → x=142, w=136 -->
+        <rect x="142" y="98" width="136" height="28" rx="2" fill="#3498db"/>
+        <text x="210" y="116" text-anchor="middle" font-size="11" fill="white" font-weight="700">198 (69.0%)</text>
+        <!-- Qualify 147: half_w=51 → x=159, w=102 -->
+        <rect x="159" y="132" width="102" height="28" rx="2" fill="#5dade2"/>
+        <text x="210" y="150" text-anchor="middle" font-size="11" fill="white" font-weight="700">147 (74.2%)</text>
+        <!-- Develop 108: half_w=37 → x=173, w=74 -->
+        <rect x="173" y="166" width="74" height="28" rx="2" fill="#7fb3d3"/>
+        <text x="210" y="184" text-anchor="middle" font-size="10" fill="#2c3e50" font-weight="700">108 (73.5%)</text>
+        <!-- Propose 71: half_w=24 → x=186, w=48 -->
+        <rect x="186" y="200" width="48" height="28" rx="2" fill="#a9cce3"/>
+        <text x="210" y="218" text-anchor="middle" font-size="10" fill="#2c3e50" font-weight="700">71 (65.7%)</text>
+        <!-- Closed Won 47: half_w=16 → x=194, w=32 -->
+        <rect x="194" y="234" width="32" height="28" rx="2" fill="#d4e6f1"/>
+        <text x="210" y="252" text-anchor="middle" font-size="10" fill="#2c3e50" font-weight="700">47 (66.2%)</text>
+        <!-- RIGHT FUNNEL (VALUE) centered at x=650 -->
+        <!-- MQL $61.2M: half_w=180 → x=470, w=360 -->
+        <rect x="470" y="30" width="360" height="28" rx="2" fill="#0f4c5c"/>
+        <text x="650" y="48" text-anchor="middle" font-size="11" fill="white" font-weight="700">$61.2M</text>
+        <!-- SQL $38.4M: ratio=0.627, half_w=113 → x=537, w=226 -->
+        <rect x="537" y="64" width="226" height="28" rx="2" fill="#1a6678"/>
+        <text x="650" y="82" text-anchor="middle" font-size="11" fill="white" font-weight="700">$38.4M (62.7%)</text>
+        <!-- SQO $29.1M: ratio=0.476, half_w=86 → x=564, w=172 -->
+        <rect x="564" y="98" width="172" height="28" rx="2" fill="#1a7a96"/>
+        <text x="650" y="116" text-anchor="middle" font-size="11" fill="white" font-weight="700">$29.1M (75.8%)</text>
+        <!-- Qualify $24.8M: ratio=0.405, half_w=73 → x=577, w=146 -->
+        <rect x="577" y="132" width="146" height="28" rx="2" fill="#2e9ab5"/>
+        <text x="650" y="150" text-anchor="middle" font-size="11" fill="white" font-weight="700">$24.8M (85.2%)</text>
+        <!-- Develop $20.1M: ratio=0.328, half_w=59 → x=591, w=118 -->
+        <rect x="591" y="166" width="118" height="28" rx="2" fill="#45b7d1"/>
+        <text x="650" y="184" text-anchor="middle" font-size="11" fill="#2c3e50" font-weight="700">$20.1M (81.1%)</text>
+        <!-- Propose $14.7M: ratio=0.240, half_w=43 → x=607, w=86 -->
+        <rect x="607" y="200" width="86" height="28" rx="2" fill="#7fd1e8"/>
+        <text x="650" y="218" text-anchor="middle" font-size="11" fill="#2c3e50" font-weight="700">$14.7M (73.1%)</text>
+        <!-- Closed Won $11.2M: ratio=0.183, half_w=33 → x=617, w=66 -->
+        <rect x="617" y="234" width="66" height="28" rx="2" fill="#b3e0f0"/>
+        <text x="650" y="252" text-anchor="middle" font-size="10" fill="#2c3e50" font-weight="700">$11.2M (76.2%)</text>
+        <!-- Divider -->
+        <line x1="415" y1="20" x2="415" y2="275" stroke="#dee2e6" stroke-width="1.5" stroke-dasharray="6,4"/>
+        <text x="210" y="278" text-anchor="middle" font-size="11" fill="#2471a3" font-weight="700">Deal Count</text>
+        <text x="650" y="278" text-anchor="middle" font-size="11" fill="#0f4c5c" font-weight="700">ARR Value</text>
+      </svg>
+    </div>
+    <div class="insight-box orange" style="margin-top:14px;margin-bottom:0;">
+      <div class="insight-title">Divergence Signal &mdash; SQO to Qualify</div>
+      <div class="insight-body">SQO &rarr; Qualify: volume converts at 74%, but value converts at 85% &mdash; larger deals advance faster at this stage. Prioritize ACV in pipeline qualification, not just deal count. High-value deals are self-selecting through; low-ACV deals are stalling.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: CONVERSION BY SOURCE -->
+  <div class="panel">
+    <div class="panel-title">Stage 3-to-Close Conversion Rate by Source</div>
+    <div class="chart-wrap">
+      <svg viewBox="0 0 680 240" width="680" height="240">
+        <line x1="60" y1="180" x2="640" y2="180" stroke="#dee2e6" stroke-width="1"/>
+        <line x1="60" y1="150" x2="640" y2="150" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <line x1="60" y1="120" x2="640" y2="120" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <line x1="60" y1="90" x2="640" y2="90" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <line x1="60" y1="60" x2="640" y2="60" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <!-- Y axis: 0%,10%,20%,30%,40% — scale 3px/% — y=180-(pct*3) -->
+        <text x="55" y="183" text-anchor="end" font-size="10" fill="#6c757d">0%</text>
+        <text x="55" y="153" text-anchor="end" font-size="10" fill="#6c757d">10%</text>
+        <text x="55" y="123" text-anchor="end" font-size="10" fill="#6c757d">20%</text>
+        <text x="55" y="93" text-anchor="end" font-size="10" fill="#6c757d">30%</text>
+        <text x="55" y="63" text-anchor="end" font-size="10" fill="#6c757d">40%</text>
+        <line x1="60" y1="55" x2="60" y2="185" stroke="#dee2e6" stroke-width="1"/>
+        <!-- Enterprise Inbound 42%: height=126, y=54 -->
+        <rect x="105" y="54" width="90" height="126" rx="3" fill="#0f4c5c"/>
+        <text x="150" y="48" text-anchor="middle" font-size="12" fill="#0f4c5c" font-weight="700">42%</text>
+        <text x="150" y="200" text-anchor="middle" font-size="10" fill="#6c757d" font-weight="600">Enterprise</text>
+        <text x="150" y="213" text-anchor="middle" font-size="10" fill="#6c757d">Inbound</text>
+        <text x="150" y="228" text-anchor="middle" font-size="10" fill="#f4a261" font-weight="700">$6,140/opp</text>
+        <!-- Enterprise Outbound 31%: height=93, y=87 -->
+        <rect x="235" y="87" width="90" height="93" rx="3" fill="#1a7a96"/>
+        <text x="280" y="81" text-anchor="middle" font-size="12" fill="#1a7a96" font-weight="700">31%</text>
+        <text x="280" y="200" text-anchor="middle" font-size="10" fill="#6c757d" font-weight="600">Enterprise</text>
+        <text x="280" y="213" text-anchor="middle" font-size="10" fill="#6c757d">Outbound</text>
+        <text x="280" y="228" text-anchor="middle" font-size="10" fill="#f4a261" font-weight="700">$4,280/opp</text>
+        <!-- Marketing MQL 28%: height=84, y=96 -->
+        <rect x="365" y="96" width="90" height="84" rx="3" fill="#2980b9"/>
+        <text x="410" y="90" text-anchor="middle" font-size="12" fill="#2980b9" font-weight="700">28%</text>
+        <text x="410" y="200" text-anchor="middle" font-size="10" fill="#6c757d" font-weight="600">Marketing</text>
+        <text x="410" y="213" text-anchor="middle" font-size="10" fill="#6c757d">MQL</text>
+        <text x="410" y="228" text-anchor="middle" font-size="10" fill="#f4a261" font-weight="700">$1,920/opp</text>
+        <!-- Partner-Sourced 38%: height=114, y=66 -->
+        <rect x="495" y="66" width="90" height="114" rx="3" fill="#27ae60"/>
+        <text x="540" y="60" text-anchor="middle" font-size="12" fill="#27ae60" font-weight="700">38%</text>
+        <text x="540" y="200" text-anchor="middle" font-size="10" fill="#6c757d" font-weight="600">Partner-</text>
+        <text x="540" y="213" text-anchor="middle" font-size="10" fill="#6c757d">Sourced</text>
+        <text x="540" y="228" text-anchor="middle" font-size="10" fill="#f4a261" font-weight="700">$5,440/opp</text>
+      </svg>
+    </div>
+    <div class="insight-box" style="margin-top:14px;margin-bottom:0;">
+      <div class="insight-title">Channel ROI Insight</div>
+      <div class="insight-body">Enterprise Inbound has <strong>3.2x revenue-per-opportunity</strong> vs. Marketing MQL ($6,140 vs. $1,920) despite lower volume. Partner-Sourced combines strong conversion (38%) with high deal value ($5,440) &mdash; an underweighted channel. Consider shifting investment from Marketing MQL toward Inbound demand generation and Partner enablement.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: BOTTLENECK HEATMAP -->
+  <div class="panel">
+    <div class="panel-title">Stage Bottleneck Heatmap</div>
+    <div class="chart-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Stage Transition</th>
+            <th>Conversion Rate</th>
+            <th>Avg Days in Stage</th>
+            <th>Volume</th>
+            <th>Risk Signal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700;">MQL &rarr; SQL</td>
+            <td style="background:#fff8e6;color:#9a6500;font-weight:700;">54.8%</td>
+            <td style="background:#fef9e7;color:#9a6500;font-weight:600;">18 days</td>
+            <td>524 &rarr; 287</td>
+            <td><span class="badge badge-yellow">Watch</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">SQL &rarr; SQO</td>
+            <td style="background:#edfaf3;color:#1a6033;font-weight:700;">69.0%</td>
+            <td style="background:#e8f5ee;color:#1e7e45;font-weight:600;">12 days</td>
+            <td>287 &rarr; 198</td>
+            <td><span class="badge badge-green">Healthy</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">SQO &rarr; Qualify</td>
+            <td style="background:#edfaf3;color:#1a6033;font-weight:700;">74.2%</td>
+            <td style="background:#e8f5ee;color:#1e7e45;font-weight:600;">9 days</td>
+            <td>198 &rarr; 147</td>
+            <td><span class="badge badge-green">Healthy</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:#e74c3c;">Qualify &rarr; Develop</td>
+            <td style="background:#fff8e6;color:#9a6500;font-weight:700;">73.5%</td>
+            <td style="background:#fdecea;color:#c0392b;font-weight:700;">24 days &#9888;</td>
+            <td>147 &rarr; 108</td>
+            <td><span class="badge badge-red">Bottleneck</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">Develop &rarr; Propose</td>
+            <td style="background:#fdecea;color:#c0392b;font-weight:700;">65.7%</td>
+            <td style="background:#fff8e6;color:#9a6500;font-weight:600;">19 days</td>
+            <td>108 &rarr; 71</td>
+            <td><span class="badge badge-red">Risk</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">Propose &rarr; Close</td>
+            <td style="background:#fff8e6;color:#9a6500;font-weight:700;">66.2%</td>
+            <td style="background:#fef9e7;color:#9a6500;font-weight:600;">16 days</td>
+            <td>71 &rarr; 47</td>
+            <td><span class="badge badge-yellow">Watch</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight-box red" style="margin-top:14px;margin-bottom:0;">
+      <div class="insight-title">Primary Bottleneck &mdash; Qualify &rarr; Develop (24 Days Avg)</div>
+      <div class="insight-body">The Develop stage has 65% conversion but 24 days average time-in-stage &mdash; the primary velocity drag. Investigate: are economic buyers being engaged at this stage? Champion-only access without budget authority will stall deals here. Multi-threading should be a gate to move from Qualify into Develop.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: STAGE CONVERSION TREND -->
+  <div class="panel">
+    <div class="panel-title">Proposal-to-Close Conversion Rate &mdash; 4-Quarter Trend</div>
+    <div class="chart-wrap">
+      <svg viewBox="0 0 700 220" width="700" height="220">
+        <line x1="60" y1="170" x2="640" y2="170" stroke="#dee2e6" stroke-width="1"/>
+        <line x1="60" y1="140" x2="640" y2="140" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <line x1="60" y1="110" x2="640" y2="110" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <line x1="60" y1="80" x2="640" y2="80" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <line x1="60" y1="50" x2="640" y2="50" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <!-- Y axis: 50%,60%,70%,80%,90% — y=170-(pct-50)/40*120 -->
+        <text x="55" y="173" text-anchor="end" font-size="10" fill="#6c757d">50%</text>
+        <text x="55" y="143" text-anchor="end" font-size="10" fill="#6c757d">60%</text>
+        <text x="55" y="113" text-anchor="end" font-size="10" fill="#6c757d">70%</text>
+        <text x="55" y="83" text-anchor="end" font-size="10" fill="#6c757d">80%</text>
+        <text x="55" y="53" text-anchor="end" font-size="10" fill="#6c757d">90%</text>
+        <line x1="60" y1="45" x2="60" y2="175" stroke="#dee2e6" stroke-width="1"/>
+        <!-- Data: Q4FY25=78%→y=86, Q1FY26=74%→y=98, Q2FY26=70%→y=110, Q3FY26=66%→y=122 -->
+        <polygon points="130,86 290,98 450,110 610,122 610,170 130,170" fill="#e74c3c" opacity="0.15"/>
+        <polyline points="130,86 290,98 450,110 610,122" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-linejoin="round"/>
+        <circle cx="130" cy="86" r="5" fill="#e74c3c"/>
+        <circle cx="290" cy="98" r="5" fill="#e74c3c"/>
+        <circle cx="450" cy="110" r="5" fill="#e74c3c"/>
+        <circle cx="610" cy="122" r="5" fill="#e74c3c"/>
+        <text x="130" y="79" text-anchor="middle" font-size="12" fill="#e74c3c" font-weight="700">78%</text>
+        <text x="290" y="91" text-anchor="middle" font-size="12" fill="#e74c3c" font-weight="700">74%</text>
+        <text x="450" y="103" text-anchor="middle" font-size="12" fill="#e74c3c" font-weight="700">70%</text>
+        <text x="610" y="115" text-anchor="middle" font-size="12" fill="#e74c3c" font-weight="700">66%</text>
+        <text x="130" y="190" text-anchor="middle" font-size="11" fill="#6c757d" font-weight="600">Q4 FY25</text>
+        <text x="290" y="190" text-anchor="middle" font-size="11" fill="#6c757d" font-weight="600">Q1 FY26</text>
+        <text x="450" y="190" text-anchor="middle" font-size="11" fill="#6c757d" font-weight="600">Q2 FY26</text>
+        <text x="610" y="190" text-anchor="middle" font-size="11" fill="#e74c3c" font-weight="600">Q3 FY26</text>
+      </svg>
+    </div>
+    <div class="insight-box red" style="margin-top:14px;margin-bottom:0;">
+      <div class="insight-title">&#128201; Proposal Conversion Declining &mdash; Competitive Positioning Risk</div>
+      <div class="insight-body">Proposal-to-close conversion rate has declined <strong>12 percentage points over 4 quarters</strong> (78% &rarr; 66%). Root causes to investigate: proposal quality, competitive differentiation at late stage, and economic buyer alignment. A sustained decline at this stage typically signals that deals are being qualified in without sufficient executive sponsorship or budget authority.</div>
+    </div>
+  </div>
+
 </div>
 
 <!-- FOOTER -->
