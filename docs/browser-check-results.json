@@ -1,0 +1,299 @@
+[
+  {
+    "path": "index.html",
+    "clicked": 0,
+    "errors": [],
+    "xss": null,
+    "narrowOverflow": {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    "narrowTabs": [],
+    "overflow": false
+  },
+  {
+    "path": "weekly-checkin-portal/weekly-checkin-portal.html",
+    "clicked": 14,
+    "errors": [],
+    "xss": null,
+    "narrowOverflow": {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    "narrowTabs": [
+      {
+        "tab": "📊 Dashboard",
+        "overflow": false
+      },
+      {
+        "tab": "📥 Submit Bookings",
+        "overflow": false
+      },
+      {
+        "tab": "💰 Submit Revenue",
+        "overflow": false
+      },
+      {
+        "tab": "📋 Book & Bill",
+        "overflow": false
+      },
+      {
+        "tab": "✨ Narratives",
+        "overflow": false
+      },
+      {
+        "tab": "✅ Final Submission",
+        "overflow": false
+      },
+      {
+        "tab": "📖 How to Use",
+        "overflow": false
+      },
+      {
+        "tab": "👥 RACI",
+        "overflow": false
+      },
+      {
+        "tab": "⚙️ Admin",
+        "overflow": false
+      },
+      {
+        "tab": "🤖 CommOps AI",
+        "overflow": false
+      },
+      {
+        "tab": "📊 GTM Dashboard",
+        "overflow": false
+      },
+      {
+        "tab": "🔍 Pipeline Intel",
+        "overflow": false
+      },
+      {
+        "tab": "🌍 Region Insights",
+        "overflow": false
+      },
+      {
+        "tab": "🏆 Sales Perf",
+        "overflow": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "path": "funnel-management/pipeline-intelligence.html",
+    "clicked": 9,
+    "errors": [],
+    "xss": null,
+    "narrowOverflow": {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    "narrowTabs": [
+      {
+        "tab": "Pipeline Summary",
+        "overflow": false
+      },
+      {
+        "tab": "Push & Pull Dynamics",
+        "overflow": false
+      },
+      {
+        "tab": "Actuals Pacing",
+        "overflow": false
+      },
+      {
+        "tab": "Push-Out Analysis",
+        "overflow": false
+      },
+      {
+        "tab": "Pull-In Analysis",
+        "overflow": false
+      },
+      {
+        "tab": "Overdue Opportunities",
+        "overflow": false
+      },
+      {
+        "tab": "Raw Data",
+        "overflow": false
+      },
+      {
+        "tab": "⚡ Pipeline Velocity",
+        "overflow": false
+      },
+      {
+        "tab": "🔀 Funnel Conversion",
+        "overflow": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "path": "net-new-tracker/net-new-tracker.html",
+    "clicked": 6,
+    "errors": [],
+    "xss": null,
+    "narrowOverflow": {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    "narrowTabs": [
+      {
+        "tab": "Net New Overview",
+        "overflow": false
+      },
+      {
+        "tab": "Net New Details",
+        "overflow": false
+      },
+      {
+        "tab": "Classification Rules",
+        "overflow": false
+      },
+      {
+        "tab": "📐 Unit Economics",
+        "overflow": false
+      },
+      {
+        "tab": "🌍 Market Position",
+        "overflow": false
+      },
+      {
+        "tab": "📈 Retention Economics",
+        "overflow": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "path": "pipeline-pulse/pipeline-pulse.html",
+    "clicked": 12,
+    "errors": [],
+    "xss": null,
+    "narrowOverflow": {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    "narrowTabs": [
+      {
+        "tab": "01🎯 The Pulse",
+        "overflow": false
+      },
+      {
+        "tab": "02📅 History",
+        "overflow": false
+      },
+      {
+        "tab": "03📊 CQ Funnel",
+        "overflow": false
+      },
+      {
+        "tab": "04📈 NQ Funnel",
+        "overflow": false
+      },
+      {
+        "tab": "05🗓️ Rolling Pipeline",
+        "overflow": false
+      },
+      {
+        "tab": "06⚡ 3x Sufficiency",
+        "overflow": false
+      },
+      {
+        "tab": "07👥 Activity",
+        "overflow": false
+      },
+      {
+        "tab": "08🔄 WoW Changes",
+        "overflow": false
+      },
+      {
+        "tab": "09🧹 Hygiene",
+        "overflow": false
+      },
+      {
+        "tab": "10🔍 Analysis",
+        "overflow": false
+      },
+      {
+        "tab": "11📋 Raw Data",
+        "overflow": false
+      },
+      {
+        "tab": "12📊 Forecast Accuracy",
+        "overflow": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "path": "sales-league/sales-league.html",
+    "clicked": 11,
+    "errors": [],
+    "xss": null,
+    "narrowOverflow": {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    "narrowTabs": [
+      {
+        "tab": "🏅 Leaderboard",
+        "overflow": false
+      },
+      {
+        "tab": "📊 Seller Scorecard",
+        "overflow": false
+      },
+      {
+        "tab": "👔 Manager View",
+        "overflow": false
+      },
+      {
+        "tab": "🌍 Regional View",
+        "overflow": false
+      },
+      {
+        "tab": "🔍 Seller Details",
+        "overflow": false
+      },
+      {
+        "tab": "📈 Charts",
+        "overflow": false
+      },
+      {
+        "tab": "📋 Declaration Form",
+        "overflow": false
+      },
+      {
+        "tab": "🚨 Plan to Recover",
+        "overflow": false
+      },
+      {
+        "tab": "📉 Book Lost",
+        "overflow": false
+      },
+      {
+        "tab": "👥 Seller Info",
+        "overflow": false
+      },
+      {
+        "tab": "📋 Capacity Planning",
+        "overflow": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "path": "portfolio-deep-dive.html",
+    "clicked": 0,
+    "errors": [],
+    "xss": null,
+    "narrowOverflow": {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    "narrowTabs": [],
+    "overflow": false
+  }
+]

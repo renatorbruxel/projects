@@ -156,8 +156,28 @@ footer .disclaimer{font-size:11px;color:var(--muted2);max-width:500px;margin:16p
   .nav{padding:0 16px}
 }
 </style>
+<style>
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #1675b5;outline-offset:3px}
+</style>
+<style>
+/* Keep dense data tables scrollable without widening the page. */
+.table-scroll{max-width:100%;overflow-x:auto}
+.panel,.card,.db-card,.chart-card,.two-col>*,.three-col>*,.g2>*,.g3>*,.g5>*,.chart-row>*,.db-grid>*{min-width:0}
+@media(max-width:768px){
+  [style*="grid-template-columns"]{grid-template-columns:minmax(0,1fr)!important}
+  .two-col,.three-col,.layers,.principles,.stack-cards,.db-grid,.qa-grid,.metrics-row{grid-template-columns:minmax(0,1fr)}
+  .kpi-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tab-content{padding:20px 16px}
+  .header,.app-header{flex-wrap:wrap;gap:12px;padding:16px}
+  .sh{flex-wrap:wrap;gap:8px}
+  .code-section,.code-section>*{min-width:0;max-width:100%}
+  pre{max-width:100%;overflow-x:auto}
+}
+@media(max-width:480px){.kpi-row,.howto-grid{grid-template-columns:minmax(0,1fr)}}
+</style>
 </head>
-<body>
+<body><div role="note" style="background:#eef5f6;color:#163b44;padding:12px 24px;font:14px/1.5 system-ui">Design notes and synthetic scenarios. Code blocks are illustrative unless covered by repository tests. No live enterprise connections, AI service, production RLS, or production outcome is demonstrated here.</div>
 
 <!-- NAV -->
 <nav class="nav">
@@ -178,7 +198,7 @@ footer .disclaimer{font-size:11px;color:var(--muted2);max-width:500px;margin:16p
 <div class="hero">
   <div class="hero-eyebrow">🚀 GTM STRATEGY &amp; OPERATIONS</div>
   <h1>Revenue Analytics<br><span>Built to Answer</span><br>the Hard Questions</h1>
-  <p class="hero-sub">5 interconnected data products covering the full commercial stack — from individual seller performance to global forecast governance. Possibly the most complete RevOps analytics portfolio publicly available on GitHub: pipeline forecasting, CRM hygiene, revenue attribution, GTM motion analysis, and a production forecast portal that has run 83+ weekly cycles. Built to show how I think, not just what I built.</p>
+  <p class="hero-sub">Five interactive prototypes explore commercial forecasting, pipeline health, revenue classification and seller performance. The examples show the questions, metric definitions and governance decisions behind an executive review. Scenario values are fictional; the pages do not establish production deployments or measured business results.</p>
   <div class="tags">
     <span class="tag highlight">Power BI · TMDL · DAX</span>
     <span class="tag highlight">SQL · Python</span>
@@ -190,7 +210,7 @@ footer .disclaimer{font-size:11px;color:var(--muted2);max-width:500px;margin:16p
     <span class="tag">Sales Performance</span>
   </div>
   <div class="demo-links">
-    <a href="https://renatorbruxel.github.io/projects/" class="demo-btn" target="_blank">▶ Live Portfolio</a>
+    <a href="https://renatorbruxel.github.io/projects/" class="demo-btn" target="_blank">▶ Portfolio Prototypes</a>
     <a href="https://renatorbruxel.github.io/projects/weekly-checkin-portal/weekly-checkin-portal.html" class="demo-btn outline" target="_blank">📋 WCI Portal</a>
     <a href="https://renatorbruxel.github.io/projects/pipeline-pulse/pipeline-pulse.html" class="demo-btn outline" target="_blank">⚡ Pipeline Pulse</a>
     <a href="https://github.com/renatorbruxel/projects" class="demo-btn outline" target="_blank">⌥ GitHub Source</a>
@@ -468,7 +488,7 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
       <div class="db-title">Pipeline Intelligence</div>
       <div class="db-sub">Push/pull dynamics · Actuals pacing · Funnel conversion · Velocity decomposition</div>
       <div class="db-links">
-        <a href="https://renatorbruxel.github.io/projects/funnel-management/pipeline-intelligence.html" target="_blank">▶ Live Demo</a>
+        <a href="https://renatorbruxel.github.io/projects/funnel-management/pipeline-intelligence.html" target="_blank">▶ HTML Demo</a>
         <a href="https://github.com/renatorbruxel/projects/tree/main/funnel-management" target="_blank">⌥ Source</a>
       </div>
     </div>
@@ -489,7 +509,7 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
 
   <div class="db-card" style="margin-bottom:20px">
     <h4>Data Architecture</h4>
-    <table class="schema-table">
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="schema-table">
       <thead><tr><th>Table</th><th>Type</th><th>Key Columns</th><th>Purpose</th></tr></thead>
       <tbody>
         <tr><td class="tbl">opportunities</td><td class="col-type">Fact</td><td class="col">opportunity_id, stage, arr_usd, close_date, updated_at</td><td class="col-desc">Raw CRM opportunity data</td></tr>
@@ -498,7 +518,7 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
         <tr><td class="tbl">bookings_actuals</td><td class="col-type">Fact</td><td class="col">region, booking_date, aop_bookings, actual_bookings</td><td class="col-desc">Target vs. actuals for pacing</td></tr>
         <tr><td class="tbl">calendar</td><td class="col-type">Dimension</td><td class="col">date, week_num, quarter, days_remaining_in_quarter</td><td class="col-desc">Time intelligence</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <p style="font-size:12px;color:var(--muted)"><strong>Key join:</strong> pipeline_snapshot self-join on prior week to detect movement type. Partition strategy: import mode with M query <code>Table.FromRecords</code> for embedded data; directQuery for live CRM.</p>
   </div>
 
@@ -620,7 +640,7 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
       <div class="db-title">Net New Tracker → GTM Strategy Platform</div>
       <div class="db-sub">Revenue classification · ICP analytics · Unit economics · NRR cohort compounding</div>
       <div class="db-links">
-        <a href="https://renatorbruxel.github.io/projects/net-new-tracker/net-new-tracker.html" target="_blank">▶ Live Demo</a>
+        <a href="https://renatorbruxel.github.io/projects/net-new-tracker/net-new-tracker.html" target="_blank">▶ HTML Demo</a>
         <a href="https://github.com/renatorbruxel/projects/tree/main/net-new-tracker" target="_blank">⌥ Source</a>
       </div>
     </div>
@@ -645,8 +665,8 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
 
   <div class="metrics-row">
     <div class="metric-box"><div class="metric-val m-green">0.82</div><div class="metric-lbl">Magic Number</div><div class="metric-sub">GM-adjusted · Scale signal</div></div>
-    <div class="metric-box"><div class="metric-val m-orange">5.4x</div><div class="metric-lbl">LTV : CAC</div><div class="metric-sub">Strong · Benchmark >3x</div></div>
-    <div class="metric-box"><div class="metric-val m-blue">11.2mo</div><div class="metric-lbl">CAC Payback</div><div class="metric-sub">Excellent · Benchmark <12mo</div></div>
+    <div class="metric-box"><div class="metric-val m-orange">6.8x</div><div class="metric-lbl">LTV : CAC</div><div class="metric-sub">Revenue-based formula · scenario only</div></div>
+    <div class="metric-box"><div class="metric-val m-blue">88.0mo</div><div class="metric-lbl">CAC Payback</div><div class="metric-sub">Above illustrative 12-month benchmark</div></div>
     <div class="metric-box"><div class="metric-val m-purple">118%</div><div class="metric-lbl">NRR</div><div class="metric-sub">Strong · Benchmark >110%</div></div>
   </div>
 
@@ -655,33 +675,30 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
       <span class="code-question">Question: Does this deal qualify as Net New, or is it an Installed Base expansion?</span>
       <span class="code-lang">SQL</span>
     </div>
-    <pre><span class="cmt">-- Net New classification engine with 5-year lookback window</span>
-<span class="cmt">-- Edge cases: dormant reactivation (3-5yr gap), M&A account merges</span>
-
-<span class="kw">WITH</span> <span class="tbl">account_history</span> <span class="kw">AS</span> (
-  <span class="kw">SELECT</span>
-    <span class="col">account_id</span>,
-    <span class="fn">MAX</span>(<span class="col">close_date</span>)                                  <span class="kw">AS</span> <span class="col">last_revenue_date</span>,
-    <span class="fn">SUM</span>(<span class="col">arr_closed</span>)                                    <span class="kw">AS</span> <span class="col">prior_arr_total</span>,
-    <span class="fn">DATEDIFF</span>(<span class="str">'year'</span>, <span class="fn">MAX</span>(<span class="col">close_date</span>), <span class="fn">CURRENT_DATE</span>) <span class="kw">AS</span> <span class="col">yrs_since_revenue</span>
-  <span class="kw">FROM</span> <span class="tbl">closed_won_deals</span>
-  <span class="kw">WHERE</span> <span class="col">close_date</span> < <span class="fn">CURRENT_DATE</span>
-  <span class="kw">GROUP BY</span> <span class="col">account_id</span>
+    <pre>-- Illustrative SQLite query: example policy, not a compensation rule.
+-- History is evaluated BEFORE each deal; a deal cannot classify itself.
+WITH prior_revenue AS (
+  SELECT d.opportunity_id,
+         MAX(h.close_date) AS prior_close_date
+  FROM closed_won_deals AS d
+  LEFT JOIN closed_won_deals AS h
+    ON h.account_id = d.account_id
+   AND h.close_date &lt; d.close_date
+   AND h.opportunity_id &lt;&gt; d.opportunity_id
+  GROUP BY d.opportunity_id
 )
-<span class="kw">SELECT</span>
-  d.<span class="col">opportunity_id</span>,
-  d.<span class="col">account_name</span>,
-  d.<span class="col">arr_usd</span>,
-  h.<span class="col">yrs_since_revenue</span>,
-  <span class="kw">CASE</span>
-    <span class="kw">WHEN</span> h.<span class="col">account_id</span> <span class="kw">IS NULL</span>             <span class="kw">THEN</span> <span class="str">'Net New'</span>        <span class="cmt">-- No history</span>
-    <span class="kw">WHEN</span> h.<span class="col">yrs_since_revenue</span> > <span class="num">5</span>          <span class="kw">THEN</span> <span class="str">'Net New'</span>        <span class="cmt">-- Dormant >5yr</span>
-    <span class="kw">WHEN</span> h.<span class="col">yrs_since_revenue</span> <span class="kw">BETWEEN</span> <span class="num">3</span> <span class="kw">AND</span> <span class="num">5</span> <span class="kw">THEN</span> <span class="str">'Reactivation'</span> <span class="cmt">-- Edge case</span>
-    <span class="kw">ELSE</span>                                        <span class="str">'Installed Base'</span>
-  <span class="kw">END</span> <span class="kw">AS</span> <span class="col">classification</span>
-<span class="kw">FROM</span> <span class="tbl">closed_won_deals</span> d
-<span class="kw">LEFT JOIN</span> <span class="tbl">account_history</span> h <span class="kw">USING</span> (<span class="col">account_id</span>)
-<span class="kw">WHERE</span> d.<span class="col">close_date</span> >= <span class="fn">DATE_TRUNC</span>(<span class="str">'quarter'</span>, <span class="fn">CURRENT_DATE</span>)</pre>
+SELECT d.opportunity_id, d.account_name, d.arr_usd,
+       CASE
+         WHEN p.prior_close_date IS NULL THEN &#x27;Net New&#x27;
+         WHEN p.prior_close_date &lt; date(d.close_date, &#x27;-5 years&#x27;)
+           THEN &#x27;Net New&#x27;
+         WHEN p.prior_close_date &lt;= date(d.close_date, &#x27;-3 years&#x27;)
+           THEN &#x27;Reactivation&#x27;
+         ELSE &#x27;Installed Base&#x27;
+       END AS classification
+FROM closed_won_deals AS d
+JOIN prior_revenue AS p USING (opportunity_id);
+-- Same-day deals need a deterministic timestamp/order policy before use.</pre>
   </div>
 
   <div class="code-section">
@@ -744,7 +761,7 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
       <div class="db-title">Pipeline Pulse — Revenue Predictability Engine</div>
       <div class="db-sub">3x coverage methodology · Forecast accuracy · Clean vs. phantom pipeline · CRO-level reporting</div>
       <div class="db-links">
-        <a href="https://renatorbruxel.github.io/projects/pipeline-pulse/pipeline-pulse.html" target="_blank">▶ Live Demo</a>
+        <a href="https://renatorbruxel.github.io/projects/pipeline-pulse/pipeline-pulse.html" target="_blank">▶ HTML Demo</a>
         <a href="https://github.com/renatorbruxel/projects/tree/main/pipeline-pulse" target="_blank">⌥ Source</a>
       </div>
     </div>
@@ -847,7 +864,7 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
   </div>
 
   <div class="qa-grid">
-    <div class="qa-item"><div class="qa-q">Can I trust the EMEA forecast call this week?</div><div class="qa-a">Forecast Trust Score: EMEA has a 71% commit accuracy rate and +11% systematic bias (calls high). Discount EMEA commits by 9% in the global rollup.</div></div>
+    <div class="qa-item"><div class="qa-q">Can I trust the Aurora forecast call this week?</div><div class="qa-a">Forecast Trust Score: Aurora has a 71% commit accuracy rate and +11% systematic bias (calls high). Discount Aurora commits by 9% in the global rollup.</div></div>
     <div class="qa-item"><div class="qa-q">Is our 3x coverage actually 3x, or inflated by stale deals?</div><div class="qa-a">Clean Coverage metric isolates phantom pipeline (overdue + stale). Gross 4.1x may actually be 2.9x clean — a 29% overstatement.</div></div>
     <div class="qa-item"><div class="qa-q">What does the pipeline model say we should close this quarter?</div><div class="qa-a">Stage-weighted predicted close provides a third forecast line alongside Commit (rep-reported) and Quota — where all three converge is where the CRO should commit.</div></div>
     <div class="qa-item qa-limit"><div class="qa-q">⚠ Limitation: Forecast call log requirement</div><div class="qa-a">Forecast accuracy tracking requires a historical log of weekly calls. If the org doesn't currently capture this, the accuracy scorecard needs 2-3 quarters of new data before it becomes meaningful.</div></div>
@@ -865,7 +882,7 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
       <div class="db-title">Sales League — Performance & Capacity Platform</div>
       <div class="db-sub">Gamified leaderboard · RLS security · Capacity planning model · Ramp analytics · Quality-adjusted attainment</div>
       <div class="db-links">
-        <a href="https://renatorbruxel.github.io/projects/sales-league/sales-league.html" target="_blank">▶ Live Demo</a>
+        <a href="https://renatorbruxel.github.io/projects/sales-league/sales-league.html" target="_blank">▶ HTML Demo</a>
         <a href="https://github.com/renatorbruxel/projects/tree/main/sales-league" target="_blank">⌥ Source</a>
       </div>
     </div>
@@ -960,7 +977,7 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
       <div class="db-title">Weekly Check-In Portal — Forecast Operating System</div>
       <div class="db-sub">Forecast governance · AI narrative generation · Submission workflow · Anomaly detection · V83.2</div>
       <div class="db-links">
-        <a href="https://renatorbruxel.github.io/projects/weekly-checkin-portal/weekly-checkin-portal.html" target="_blank">▶ Live Demo</a>
+        <a href="https://renatorbruxel.github.io/projects/weekly-checkin-portal/weekly-checkin-portal.html" target="_blank">▶ HTML Demo</a>
         <a href="https://github.com/renatorbruxel/projects/tree/main/weekly-checkin-portal" target="_blank">⌥ Source</a>
       </div>
     </div>
@@ -970,14 +987,14 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
     <div class="db-card">
       <h4>Problem Statement</h4>
       <p>Six regional sales leaders need to submit forecast data every Friday — covering bookings, revenue, and B&amp;B plans across multiple business units and quarters. The previous process: email chains, inconsistent Excel formats, no audit trail, and narratives that were either late or copy-pasted from prior weeks.</p>
-      <p style="margin-top:8px">V83.2 reflects 83+ weekly production cycles. It's not a prototype — it's a deployed governance system.</p>
+      <p style="margin-top:8px">The version label identifies this design example. It does not establish deployment history, operating cycles or production governance.</p>
     </div>
     <div class="db-card">
-      <h4>Three Capabilities</h4>
+      <h4>Workflow design illustrated</h4>
       <ul>
         <li><strong>Input:</strong> Structured data capture with CQ/NQ quarterly blocks, R&amp;O tables, and business unit breakdowns</li>
-        <li><strong>Intelligence:</strong> AI narrative generation with WoW deal context injection, anomaly flagging on variance outliers</li>
-        <li><strong>Governance:</strong> Multi-state approval workflow (Pending → Submitted → Approved/Revision), audit trail, accuracy tracking</li>
+        <li><strong>Intelligence:</strong> Scripted narrative previews; the Python example illustrates a possible source context for a future AI integration</li>
+        <li><strong>Governance:</strong> Illustrative approval states (Pending → Submitted → Approved/Revision); no durable audit trail or enforced approval service</li>
       </ul>
     </div>
   </div>
@@ -988,7 +1005,7 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
       <span class="code-lang">Python</span>
     </div>
     <pre><span class="cmt"># WoW deal context builder — injected into LLM narrative prompt</span>
-<span class="cmt"># Makes AI output accurate and grounded, not generic</span>
+<span class="cmt"># Supplies evidence for validation; does not guarantee AI factual accuracy</span>
 
 <span class="kw">def</span> <span class="fn">build_deal_changes_context</span>(region: <span class="tbl">str</span>, quarter: <span class="tbl">str</span>, week: <span class="tbl">int</span>) -> <span class="tbl">dict</span>:
     <span class="str">"""
@@ -1010,9 +1027,9 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
         <span class="kw">and</span> <span class="fn">abs</span>(c[<span class="str">'amount'</span>] - p[<span class="str">'amount'</span>]) > <span class="num">100_000</span>  <span class="cmt"># threshold: >100K change</span>
     ]
 
-    net = (  <span class="fn">sum</span>(d[<span class="str">'amount'</span>] <span class="kw">for</span> d <span class="kw">in</span> added)
-           - <span class="fn">sum</span>(d[<span class="str">'amount'</span>] <span class="kw">for</span> d <span class="kw">in</span> removed)
-           + <span class="fn">sum</span>(d[<span class="str">'delta'</span>]  <span class="kw">for</span> d <span class="kw">in</span> changed) )
+    <span class="cmt"># Reconcile ALL movements; significance only controls narrative selection.</span>
+    net = (<span class="fn">sum</span>(d[<span class="str">'amount'</span>] <span class="kw">for</span> d <span class="kw">in</span> current)
+           - <span class="fn">sum</span>(d[<span class="str">'amount'</span>] <span class="kw">for</span> d <span class="kw">in</span> prior))
 
     <span class="kw">return</span> {
         <span class="str">'region'</span>:         region,
@@ -1028,15 +1045,15 @@ Effective Capacity = Σ (Heads × Multiplier)</pre>
   </div>
 
   <div class="decisions">
-    <div class="decision-item"><div class="d-bullet">1</div><div class="d-text"><h5>Self-contained single-file architecture</h5><p>The portal is one HTML file with no external CDN dependencies. It opens in any browser with no server. This was a deliberate governance decision — the file is portable, auditable, and can be shared directly. V83.2 proves the pattern scales: 83 production cycles, no infrastructure incidents.</p></div></div>
-    <div class="decision-item"><div class="d-bullet">2</div><div class="d-text"><h5>Context injection over generic prompts</h5><p>AI narrative quality correlates directly with prompt specificity. The WoW context builder computes deal-level changes and injects them as structured data before the LLM generates text. Without this, narratives are generic templates; with it, they reference actual movement in the regional pipeline.</p></div></div>
-    <div class="decision-item"><div class="d-bullet">3</div><div class="d-text"><h5>Quarter-locked state machine per submission</h5><p>Once a submission is approved, all input fields are locked via CSS <code>pointer-events: none</code> + server-side flag. This prevents accidental edits that would corrupt the audit trail. The state machine (Pending → Submitted → Approved/Revision) is the governance backbone.</p></div></div>
+    <div class="decision-item"><div class="d-bullet">1</div><div class="d-text"><h5>Self-contained single-file architecture</h5><p>The portal is one HTML file with no external CDN dependencies. It opens in any browser with no server. This was a deliberate governance decision — the file is portable, auditable, and can be shared directly. This portfolio file is an interactive mockup. No deployment history, incident record, or production release count is established by its version label.</p></div></div>
+    <div class="decision-item"><div class="d-bullet">2</div><div class="d-text"><h5>Context injection over generic prompts</h5><p>The Python example computes deal-level changes for a possible narrative context. A future integration would need source references, numerical validation and human review. Providing context alone does not guarantee a correct narrative.</p></div></div>
+    <div class="decision-item"><div class="d-bullet">3</div><div class="d-text"><h5>Quarter-locked state machine per submission</h5><p>A production design would enforce approval transitions on the server and retain an immutable audit trail. The current static prototype does not implement these protections; CSS cannot enforce authorization.</p></div></div>
   </div>
 
   <div class="qa-grid">
-    <div class="qa-item"><div class="qa-q">Which regions have submitted their forecast this week?</div><div class="qa-a">Real-time cycle status dashboard shows each region's submission state: Pending / Submitted / Approved / Needs Revision.</div></div>
-    <div class="qa-item"><div class="qa-q">Is the EMEA narrative consistent with the numbers they submitted?</div><div class="qa-a">AI-generated narratives are derived from the submitted data context — factual inconsistencies are structurally prevented by construction.</div></div>
-    <div class="qa-item"><div class="qa-q">What is our forecast accuracy trend over the last 8 quarters?</div><div class="qa-a">Forecast Accuracy tab: called vs. actual by week of quarter, commit accuracy by region, systematic bias detection.</div></div>
+    <div class="qa-item"><div class="qa-q">Which regions have submitted their forecast this week?</div><div class="qa-a">The mockup displays illustrative submission states. It does not read or persist a real weekly cycle.</div></div>
+    <div class="qa-item"><div class="qa-q">Is the Aurora narrative consistent with the numbers they submitted?</div><div class="qa-a">The demo shows scripted example narratives. A production implementation would require source grounding, numerical checks, and human review; prompt context alone cannot prevent factual errors.</div></div>
+    <div class="qa-item"><div class="qa-q">What is our forecast accuracy trend over the last 8 quarters?</div><div class="qa-a">This HTML does not implement an eight-quarter forecast accuracy analysis. That would require dated forecast and actual records, a defined cohort and a reproducible error calculation.</div></div>
     <div class="qa-item qa-limit"><div class="qa-q">⚠ Limitation: Real-time CRM sync</div><div class="qa-a">The portal accepts manual input by regional leaders. Without a CRM API integration, the submission data is self-reported — not auto-populated from opportunity records. The gap: what's submitted may not exactly match the live CRM state at submission time.</div></div>
   </div>
 </div>

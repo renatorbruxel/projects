@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pipeline Pulse | Vantara Sales</title>
+<title>Pipeline Pulse | Aurora Demo</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fa;color:#1a1a2e;font-size:14px}
@@ -143,8 +143,28 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
 /* ─── PRINT ─── */
 @media print{.tab-bar,footer{display:none}.tab-panel{display:block !important}}
 </style>
+<style>
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #1675b5;outline-offset:3px}
+</style>
+<style>
+/* Keep dense data tables scrollable without widening the page. */
+.table-scroll{max-width:100%;overflow-x:auto}
+.panel,.card,.db-card,.chart-card,.two-col>*,.three-col>*,.g2>*,.g3>*,.g5>*,.chart-row>*,.db-grid>*{min-width:0}
+@media(max-width:768px){
+  [style*="grid-template-columns"]{grid-template-columns:minmax(0,1fr)!important}
+  .two-col,.three-col,.layers,.principles,.stack-cards,.db-grid,.qa-grid,.metrics-row{grid-template-columns:minmax(0,1fr)}
+  .kpi-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tab-content{padding:20px 16px}
+  .header,.app-header{flex-wrap:wrap;gap:12px;padding:16px}
+  .sh{flex-wrap:wrap;gap:8px}
+  .code-section,.code-section>*{min-width:0;max-width:100%}
+  pre{max-width:100%;overflow-x:auto}
+}
+@media(max-width:480px){.kpi-row,.howto-grid{grid-template-columns:minmax(0,1fr)}}
+</style>
 </head>
-<body>
+<body><p role="note" style="margin:0;background:#eef5f6;color:#163b44;padding:10px 20px;font-size:13px">Synthetic demonstration scenarios. Some panels are independent examples; the rolling pipeline spans FY26–FY27 and is not a full-year forecast. Cross-panel reconciliation remains under review.</p>
 
 <!-- HEADER -->
 <div class="header">
@@ -152,7 +172,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
     <div class="logo-mark">VP</div>
     <div>
       <h1>Pipeline Pulse</h1>
-      <div class="header-sub">Vantara Sales &nbsp;|&nbsp; GTM Portfolio Intelligence</div>
+      <div class="header-sub">Aurora Demo &nbsp;|&nbsp; GTM Portfolio Intelligence</div>
     </div>
   </div>
   <div class="header-right">
@@ -168,7 +188,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
     <button class="tab-btn" onclick="switchTab(1)"><span class="tab-number">02</span>📅 History</button>
     <button class="tab-btn" onclick="switchTab(2)"><span class="tab-number">03</span>📊 CQ Funnel</button>
     <button class="tab-btn" onclick="switchTab(3)"><span class="tab-number">04</span>📈 NQ Funnel</button>
-    <button class="tab-btn" onclick="switchTab(4)"><span class="tab-number">05</span>🗓️ FY Funnel</button>
+    <button class="tab-btn" onclick="switchTab(4)"><span class="tab-number">05</span>🗓️ Rolling Pipeline</button>
     <button class="tab-btn" onclick="switchTab(5)"><span class="tab-number">06</span>⚡ 3x Sufficiency</button>
     <button class="tab-btn" onclick="switchTab(6)"><span class="tab-number">07</span>👥 Activity</button>
     <button class="tab-btn" onclick="switchTab(7)"><span class="tab-number">08</span>🔄 WoW Changes</button>
@@ -213,17 +233,17 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
       <div class="region-gauges">
         <div class="region-gauge-wrap">
           <svg id="gauge-amer" viewBox="0 0 160 115" width="160" height="115"></svg>
-          <div style="font-size:12px;font-weight:700;color:#374151;margin-top:4px">Americas</div>
+          <div style="font-size:12px;font-weight:700;color:#374151;margin-top:4px">Northstar</div>
           <div style="margin-top:4px"><span class="badge badge-green">3.1x &#9679; On Track</span></div>
         </div>
         <div class="region-gauge-wrap">
-          <svg id="gauge-emea" viewBox="0 0 160 115" width="160" height="115"></svg>
-          <div style="font-size:12px;font-weight:700;color:#374151;margin-top:4px">EMEA</div>
+          <svg id="gauge-aurora" viewBox="0 0 160 115" width="160" height="115"></svg>
+          <div style="font-size:12px;font-weight:700;color:#374151;margin-top:4px">Aurora</div>
           <div style="margin-top:4px"><span class="badge badge-yellow">2.8x &#9888; Watch</span></div>
         </div>
         <div class="region-gauge-wrap">
-          <svg id="gauge-apj" viewBox="0 0 160 115" width="160" height="115"></svg>
-          <div style="font-size:12px;font-weight:700;color:#374151;margin-top:4px">APJ</div>
+          <svg id="gauge-summit" viewBox="0 0 160 115" width="160" height="115"></svg>
+          <div style="font-size:12px;font-weight:700;color:#374151;margin-top:4px">Summit</div>
           <div style="margin-top:4px"><span class="badge badge-red">2.4x &#9940; At Risk</span></div>
         </div>
       </div>
@@ -257,15 +277,15 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
         <div class="card-title">Top 3 Callouts This Week</div>
         <div class="callout">
           <div class="callout-title">&#11014; Largest Add</div>
-          <div class="callout-text">Accenture — $2.3M added to pipeline <span class="badge badge-blue" style="margin-left:6px">Americas</span></div>
+          <div class="callout-text">Demo Account 003 — $2.3M added to pipeline <span class="badge badge-blue" style="margin-left:6px">Northstar</span></div>
         </div>
         <div class="callout" style="border-left-color:#ef4444">
           <div class="callout-title" style="color:#ef4444">&#11015; Biggest Drop</div>
-          <div class="callout-text">KDDI — $1.8M removed from pipeline <span class="badge badge-gray" style="margin-left:6px">APJ</span></div>
+          <div class="callout-text">Demo Account 025 — $1.8M removed from pipeline <span class="badge badge-gray" style="margin-left:6px">Summit</span></div>
         </div>
         <div class="callout" style="border-left-color:#10b981">
           <div class="callout-title" style="color:#10b981">&#11014; Most Improved Region</div>
-          <div class="callout-text">EMEA — +$3.1M net add vs. prior week, 3 new opps created</div>
+          <div class="callout-text">Aurora — +$3.1M net add vs. prior week, 3 new opps created</div>
         </div>
       </div>
 
@@ -277,18 +297,18 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
             <span style="font-size:13px;font-weight:800;color:#0f4c5c">$191M</span>
           </div>
           <div class="coverage-bar-bg"><div class="coverage-bar-fill" style="width:96.5%;background:#f59e0b"></div></div>
-          <div class="coverage-label"><span>0</span><span>3x = $198M target</span><span>$250M</span></div>
+          <div class="coverage-label"><span>0</span><span>3x = $192M (3 × $64M)</span><span>$250M</span></div>
         </div>
-        <div style="font-size:12px;color:#6b7280">&#9888; Pipeline is <strong>$7M short</strong> of the 3x coverage threshold. Requires net new creation this week to reach green.</div>
+        <div style="font-size:12px;color:#6b7280">&#9888; Pipeline is <strong>$1M short</strong> of the 3x coverage threshold. Requires net new creation this week to reach green.</div>
       </div>
     </div>
   </div>
 
   <div style="border-left:4px solid #0f4c5c;background:#f0f9ff;padding:12px 16px;border-radius:6px;margin:16px 0;font-size:13px">
-    <strong>📊 Week 37 Key Insight:</strong> Overall coverage at 2.9x — below the 3x minimum.
-    APJ most at risk at 2.4x ($22.7M gap). EMEA needs $19.4M.
-    At current build rate (+$8M/week), EMEA reaches 3x NQ in 5 weeks.
-    <strong>Priority action: accelerate APJ late-stage deals before quarter close.</strong>
+    <strong>📊 Week 37 Key Insight:</strong> CQ scenario coverage at 2.98x — below the 3x minimum.
+    Summit most at risk at 2.4x ($22.7M gap). Aurora needs $19.4M.
+    At current build rate (+$8M/week), Aurora reaches 3x NQ in 5 weeks.
+    <strong>Priority action: accelerate Summit late-stage deals before quarter close.</strong>
   </div>
 </div>
 
@@ -314,10 +334,10 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
   <div class="grid-2">
     <div class="card">
       <div class="card-title">Weekly Pipeline Values</div>
-      <table class="data-table">
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="data-table">
         <thead><tr><th>Week</th><th>Pipeline ($M)</th><th>vs. 3x Threshold</th><th>Status</th></tr></thead>
         <tbody id="history-table"></tbody>
-      </table>
+      </table></div>
     </div>
     <div class="card">
       <div class="card-title">Trend Insights</div>
@@ -331,7 +351,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
       </div>
       <div class="callout" style="border-left-color:#ef4444">
         <div class="callout-title" style="color:#ef4444">Watch Period</div>
-        <div class="callout-text">W28–W29 regression of $6M was driven by APJ deal slippage. Recovery was 5 weeks. Playbook needed for APJ management.</div>
+        <div class="callout-text">W28–W29 regression of $6M was driven by Summit deal slippage. Recovery was 5 weeks. Playbook needed for Summit management.</div>
       </div>
       <div style="margin-top:16px">
         <div style="display:flex;gap:24px">
@@ -366,7 +386,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
     </div>
     <div class="card">
       <div class="card-title">Stage Velocity (Avg Days)</div>
-      <table class="data-table">
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="data-table">
         <thead><tr><th>Transition</th><th>Avg Days</th><th>Benchmark</th><th>Status</th></tr></thead>
         <tbody>
           <tr><td>Qualify → Develop</td><td><strong>18</strong></td><td>14–21 days</td><td><span class="badge badge-green">On Track</span></td></tr>
@@ -375,7 +395,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
           <tr><td>Propose → Negotiate</td><td><strong>19</strong></td><td>14–25 days</td><td><span class="badge badge-green">On Track</span></td></tr>
           <tr><td>Negotiate → Commit</td><td><strong>12</strong></td><td>7–14 days</td><td><span class="badge badge-green">On Track</span></td></tr>
         </tbody>
-      </table>
+      </table></div>
       <div class="section-label">Coverage Analysis</div>
       <div class="coverage-bar-wrap">
         <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:600">CQ Coverage</span><span style="font-size:12px;font-weight:800;color:#f59e0b">2.7x</span></div>
@@ -388,16 +408,16 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
 
   <div class="card">
     <div class="card-title">Top 5 Sellers — CQ Pipeline</div>
-    <table class="data-table">
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="data-table">
       <thead><tr><th>#</th><th>Seller</th><th>Region</th><th>CQ Pipeline</th><th>Stage Mix</th><th>Coverage vs. Quota</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td><strong>Sarah Chen</strong></td><td>Americas</td><td>$18.4M</td><td>Qualify 30% | Late 70%</td><td><span class="badge badge-green">3.6x</span></td></tr>
-        <tr><td>2</td><td><strong>Marcus Weber</strong></td><td>EMEA</td><td>$15.1M</td><td>Develop 45% | Late 55%</td><td><span class="badge badge-green">3.1x</span></td></tr>
-        <tr><td>3</td><td><strong>Klaus Witte</strong></td><td>EMEA</td><td>$12.8M</td><td>Qualify 55% | Late 45%</td><td><span class="badge badge-yellow">2.8x</span></td></tr>
-        <tr><td>4</td><td><strong>Raj Patel</strong></td><td>APJ</td><td>$11.2M</td><td>Qualify 40% | Late 60%</td><td><span class="badge badge-yellow">2.7x</span></td></tr>
-        <tr><td>5</td><td><strong>Marie Dubois</strong></td><td>EMEA</td><td>$9.6M</td><td>Develop 60% | Late 40%</td><td><span class="badge badge-yellow">2.4x</span></td></tr>
+        <tr><td>1</td><td><strong>Demo Seller 01</strong></td><td>Northstar</td><td>$18.4M</td><td>Qualify 30% | Late 70%</td><td><span class="badge badge-green">3.6x</span></td></tr>
+        <tr><td>2</td><td><strong>Demo Seller 21</strong></td><td>Aurora</td><td>$15.1M</td><td>Develop 45% | Late 55%</td><td><span class="badge badge-green">3.1x</span></td></tr>
+        <tr><td>3</td><td><strong>Demo Seller 22</strong></td><td>Aurora</td><td>$12.8M</td><td>Qualify 55% | Late 45%</td><td><span class="badge badge-yellow">2.8x</span></td></tr>
+        <tr><td>4</td><td><strong>Demo Seller 05</strong></td><td>Summit</td><td>$11.2M</td><td>Qualify 40% | Late 60%</td><td><span class="badge badge-yellow">2.7x</span></td></tr>
+        <tr><td>5</td><td><strong>Demo Seller 23</strong></td><td>Aurora</td><td>$9.6M</td><td>Develop 60% | Late 40%</td><td><span class="badge badge-yellow">2.4x</span></td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 </div>
 
@@ -461,15 +481,15 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
      TAB 5: FY FUNNEL
 ═══════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-4">
-  <div class="page-title">Full Year Funnel (FY2026)</div>
-  <div class="page-subtitle">FY Quota: $256M &nbsp;|&nbsp; YTD Booked: $124M &nbsp;|&nbsp; Total Pipeline: $520M</div>
+  <div class="page-title">Rolling Four-Quarter Pipeline (Q4 FY26–Q3 FY27)</div>
+  <div class="page-subtitle">Pipeline buckets span two fiscal years. FY26 quota and YTD actuals below are separate context; they cannot be used as the denominator for all $520M.</div>
 
   <div class="stat-row">
-    <div class="stat-card"><div class="stat-num">$520M</div><div class="stat-lbl">Total FY Pipeline</div></div>
-    <div class="stat-card"><div class="stat-num">$256M</div><div class="stat-lbl">FY Quota</div></div>
-    <div class="stat-card green"><div class="stat-num">$124M</div><div class="stat-lbl">YTD Booked</div></div>
-    <div class="stat-card yellow"><div class="stat-num">2.9x</div><div class="stat-lbl">FY Coverage</div></div>
-    <div class="stat-card"><div class="stat-num">$132M</div><div class="stat-lbl">Remaining Quota</div></div>
+    <div class="stat-card"><div class="stat-num">$520M</div><div class="stat-lbl">Rolling 4Q Pipeline</div></div>
+    <div class="stat-card"><div class="stat-num">$256M</div><div class="stat-lbl">FY26 Quota (separate scope)</div></div>
+    <div class="stat-card green"><div class="stat-num">$124M</div><div class="stat-lbl">FY26 YTD Booked</div></div>
+    <div class="stat-card yellow"><div class="stat-num">N/A</div><div class="stat-lbl">Matched-period coverage unavailable</div></div>
+    <div class="stat-card"><div class="stat-num">$132M</div><div class="stat-lbl">FY26 Remaining Quota</div></div>
   </div>
 
   <div class="card">
@@ -486,22 +506,22 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
   <div class="grid-2">
     <div class="card">
       <div class="card-title">Quarter Bucket Breakdown</div>
-      <table class="data-table">
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="data-table">
         <thead><tr><th>Quarter</th><th>Pipeline</th><th>% of Total</th><th>Status</th></tr></thead>
         <tbody>
           <tr><td><strong>CQ (Q4 FY26)</strong></td><td>$175M</td><td>33.7%</td><td><span class="badge badge-yellow">2.7x coverage</span></td></tr>
           <tr><td><strong>NQ (Q1 FY27)</strong></td><td>$143M</td><td>27.5%</td><td><span class="badge badge-red">2.2x coverage</span></td></tr>
-          <tr><td><strong>NQ+2 (Q2 FY27)</strong></td><td>$118M</td><td>22.7%</td><td><span class="badge badge-yellow">2.5x coverage*</span></td></tr>
-          <tr><td><strong>NQ+3 (Q3 FY27)</strong></td><td>$84M</td><td>16.1%</td><td><span class="badge badge-red">1.8x coverage*</span></td></tr>
-          <tr style="background:#f9fafb"><td colspan="2"><strong>Total FY</strong></td><td><strong>100%</strong></td><td><span class="badge badge-yellow">2.9x blended</span></td></tr>
+          <tr><td><strong>NQ+2 (Q2 FY27)</strong></td><td>$118M</td><td>22.7%</td><td><span class="badge badge-yellow">Target not supplied</span></td></tr>
+          <tr><td><strong>NQ+3 (Q3 FY27)</strong></td><td>$84M</td><td>16.1%</td><td><span class="badge badge-red">Target not supplied</span></td></tr>
+          <tr style="background:#f9fafb"><td colspan="2"><strong>Rolling total</strong></td><td><strong>100%</strong></td><td><span class="badge badge-yellow">Target alignment required</span></td></tr>
         </tbody>
-      </table>
+      </table></div>
       <div style="font-size:11px;color:#9ca3af;margin-top:8px">* NQ+2 and NQ+3 coverage vs. estimated future quota ($47M each)</div>
     </div>
     <div class="card">
       <div class="card-title">FY Attainment Trajectory</div>
       <div class="coverage-bar-wrap">
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:600">YTD Booked</span><span style="font-size:12px;font-weight:800;color:#10b981">48.4%</span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:600">FY26 YTD Booked</span><span style="font-size:12px;font-weight:800;color:#10b981">48.4%</span></div>
         <div class="coverage-bar-bg"><div class="coverage-bar-fill" style="width:48.4%;background:#10b981"></div></div>
         <div class="coverage-label"><span>0%</span><span>FY Target: $256M</span><span>100%</span></div>
       </div>
@@ -511,7 +531,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
       </div>
       <div class="callout" style="border-left-color:#ef4444">
         <div class="callout-title" style="color:#ef4444">NQ+3 Risk</div>
-        <div class="callout-text">NQ+3 pipeline at 1.8x is the critical gap. Early-stage creation for FY27 H2 must begin now to avoid coverage deficit.</div>
+        <div class="callout-text">NQ+3 pipeline is $84M. A matching Q3 FY27 target is required before classifying coverage or recommending a hiring or sourcing response.</div>
       </div>
     </div>
   </div>
@@ -527,7 +547,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
 
   <div class="card">
     <div class="card-title">Coverage Matrix — Region × Time Horizon</div>
-    <table class="matrix-table">
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="matrix-table">
       <thead>
         <tr>
           <th class="row-head">Region</th>
@@ -538,19 +558,19 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
       </thead>
       <tbody>
         <tr>
-          <td class="region-name">&#127758; Americas</td>
+          <td class="region-name">&#127758; Northstar</td>
           <td class="cell-green">3.1x</td>
           <td class="cell-yellow">2.6x</td>
           <td class="cell-yellow">2.8x</td>
         </tr>
         <tr>
-          <td class="region-name">&#127757; EMEA</td>
+          <td class="region-name">&#127757; Aurora</td>
           <td class="cell-yellow">2.8x</td>
           <td class="cell-yellow">2.2x</td>
           <td class="cell-yellow">2.5x</td>
         </tr>
         <tr>
-          <td class="region-name">&#127759; APJ</td>
+          <td class="region-name">&#127759; Summit</td>
           <td class="cell-yellow">2.4x</td>
           <td class="cell-red">1.9x</td>
           <td class="cell-yellow">2.1x</td>
@@ -562,55 +582,55 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
           <td class="cell-yellow"><strong>2.9x</strong></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div style="border-left:4px solid #f4a261;background:#fff8f0;padding:12px 16px;border-radius:6px;margin:16px 0;font-size:13px">
-    <strong>⚡ Sufficiency Insight:</strong> Only Americas (3.1x CQ) is above the 3x threshold across all horizons.
-    APJ NQ at 1.9x is the single most critical gap — requires $28.4M pipeline addition to reach threshold.
+    <strong>⚡ Sufficiency Insight:</strong> Only Northstar (3.1x CQ) is above the 3x threshold across all horizons.
+    Summit NQ at 1.9x is the single most critical gap — requires $28.4M pipeline addition to reach threshold.
     NQ pipeline build is tracking at +$8M/week across all regions.
   </div>
 
   <div class="grid-2">
     <div class="card">
       <div class="card-title">Gap-to-3x Analysis</div>
-      <table class="data-table">
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="data-table">
         <thead><tr><th>Region</th><th>CQ Gap</th><th>NQ Gap</th><th>Priority</th></tr></thead>
         <tbody>
           <tr>
-            <td><strong>Americas</strong></td>
+            <td><strong>Northstar</strong></td>
             <td><span class="badge badge-green">$0M — Above</span></td>
             <td><span class="badge badge-yellow">$25.6M</span></td>
             <td><span class="badge badge-yellow">Medium</span></td>
           </tr>
           <tr>
-            <td><strong>EMEA</strong></td>
+            <td><strong>Aurora</strong></td>
             <td><span class="badge badge-yellow">$12.8M</span></td>
             <td><span class="badge badge-red">$19.4M</span></td>
             <td><span class="badge badge-red">High</span></td>
           </tr>
           <tr>
-            <td><strong>APJ</strong></td>
+            <td><strong>Summit</strong></td>
             <td><span class="badge badge-red">$14.4M</span></td>
             <td><span class="badge badge-red">$22.7M</span></td>
             <td><span class="badge badge-red">Critical</span></td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
 
       <div style="margin-top:20px">
         <div class="card-title" style="margin-bottom:10px">Action Priorities</div>
         <div class="callout" style="border-left-color:#ef4444">
-          <div class="callout-title" style="color:#ef4444">APJ — Critical</div>
-          <div class="callout-text">APJ NQ at 1.9x is the only red cell. $22.7M gap requires immediate pipeline blitz. Seller coverage review recommended.</div>
+          <div class="callout-title" style="color:#ef4444">Summit — Critical</div>
+          <div class="callout-text">Summit NQ at 1.9x is the only red cell. $22.7M gap requires immediate pipeline blitz. Seller coverage review recommended.</div>
         </div>
         <div class="callout">
-          <div class="callout-title">EMEA — High Priority</div>
-          <div class="callout-text">EMEA needs $32.2M across CQ+NQ. Campaign-driven acceleration and partner-sourced opps should be mobilized this week.</div>
+          <div class="callout-title">Aurora — High Priority</div>
+          <div class="callout-text">Aurora needs $32.2M across CQ+NQ. Campaign-driven acceleration and partner-sourced opps should be mobilized this week.</div>
         </div>
         <div class="callout" style="border-left-color:#10b981">
-          <div class="callout-title" style="color:#10b981">Americas — Maintain</div>
-          <div class="callout-text">Americas is the only region above 3x for CQ. NQ build must be sustained — current +$8M/week build rate from Americas is on track.</div>
+          <div class="callout-title" style="color:#10b981">Northstar — Maintain</div>
+          <div class="callout-text">Northstar is the only region above 3x for CQ. NQ build must be sustained — current +$8M/week build rate from Northstar is on track.</div>
         </div>
       </div>
     </div>
@@ -619,9 +639,9 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
       <div class="card-title">Sufficiency Trend — 8 Weeks (by Region)</div>
       <svg id="suff-trend-chart" viewBox="0 0 480 300" width="100%" height="300"></svg>
       <div style="display:flex;gap:16px;margin-top:12px;font-size:12px">
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:20px;height:3px;background:#0f4c5c;display:inline-block;border-radius:2px"></span>Americas</span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:20px;height:3px;background:#f4a261;display:inline-block;border-radius:2px"></span>EMEA</span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:20px;height:3px;background:#ef4444;display:inline-block;border-radius:2px"></span>APJ</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:20px;height:3px;background:#0f4c5c;display:inline-block;border-radius:2px"></span>Northstar</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:20px;height:3px;background:#f4a261;display:inline-block;border-radius:2px"></span>Aurora</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:20px;height:3px;background:#ef4444;display:inline-block;border-radius:2px"></span>Summit</span>
         <span style="display:flex;align-items:center;gap:5px"><span style="width:20px;height:2px;background:#9ca3af;display:inline-block;border-top:2px dashed #9ca3af"></span>3x Line</span>
       </div>
     </div>
@@ -647,22 +667,22 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
     <div class="card">
       <div class="card-title">Activities per Seller vs. Peer Average (W37)</div>
       <svg id="activity-chart" viewBox="0 0 480 260" width="100%" height="260"></svg>
-      <div style="font-size:12px;color:#6b7280;margin-top:8px">Peer average: <strong>18 activities/week</strong>. Sarah Chen leads at 28; Marie Dubois requires coaching at 16.</div>
+      <div style="font-size:12px;color:#6b7280;margin-top:8px">Peer average: <strong>18 activities/week</strong>. Demo Seller 01 leads at 28; Demo Seller 23 requires coaching at 16.</div>
     </div>
     <div class="card">
       <div class="card-title">Top 5 Inactive Deals (No Activity 14+ Days)</div>
-      <table class="data-table">
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="data-table">
         <thead><tr><th>Account</th><th>Region</th><th>ARR</th><th>Last Activity</th><th>Stage</th></tr></thead>
         <tbody>
-          <tr><td><strong>Fujitsu</strong></td><td>APJ</td><td>$4.8M</td><td>22 days ago</td><td><span class="badge badge-yellow">Propose</span></td></tr>
-          <tr><td><strong>Zurich Insurance</strong></td><td>EMEA</td><td>$4.2M</td><td>18 days ago</td><td><span class="badge badge-yellow">Validate</span></td></tr>
-          <tr><td><strong>Telstra</strong></td><td>APJ</td><td>$3.9M</td><td>31 days ago</td><td><span class="badge badge-red">Develop</span></td></tr>
-          <tr><td><strong>Orange</strong></td><td>EMEA</td><td>$3.1M</td><td>16 days ago</td><td><span class="badge badge-yellow">Develop</span></td></tr>
-          <tr><td><strong>Verizon</strong></td><td>Americas</td><td>$2.8M</td><td>25 days ago</td><td><span class="badge badge-red">Qualify</span></td></tr>
+          <tr><td><strong>Demo Account 016</strong></td><td>Summit</td><td>$4.8M</td><td>22 days ago</td><td><span class="badge badge-yellow">Propose</span></td></tr>
+          <tr><td><strong>Demo Account 055</strong></td><td>Aurora</td><td>$4.2M</td><td>18 days ago</td><td><span class="badge badge-yellow">Validate</span></td></tr>
+          <tr><td><strong>Demo Account 045</strong></td><td>Summit</td><td>$3.9M</td><td>31 days ago</td><td><span class="badge badge-red">Develop</span></td></tr>
+          <tr><td><strong>Demo Account 033</strong></td><td>Aurora</td><td>$3.1M</td><td>16 days ago</td><td><span class="badge badge-yellow">Develop</span></td></tr>
+          <tr><td><strong>Demo Account 049</strong></td><td>Northstar</td><td>$2.8M</td><td>25 days ago</td><td><span class="badge badge-red">Qualify</span></td></tr>
         </tbody>
-      </table>
+      </table></div>
       <div style="margin-top:12px;padding:10px;background:#fef3c7;border-radius:8px;font-size:12px;color:#92400e">
-        &#9888; <strong>Telstra</strong> has been inactive 31 days in Develop stage. Risk of stall or disqualification. Immediate manager outreach required.
+        &#9888; <strong>Demo Account 045</strong> has been inactive 31 days in Develop stage. Risk of stall or disqualification. Immediate manager outreach required.
       </div>
     </div>
   </div>
@@ -696,72 +716,72 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
         <div class="event-item">
           <div class="event-icon ei-up">&#11014;</div>
           <div class="event-body">
-            <div class="event-account">Accenture</div>
-            <div class="event-desc">Americas &nbsp;|&nbsp; ARR increased from $2.1M to $2.3M</div>
+            <div class="event-account">Demo Account 003</div>
+            <div class="event-desc">Northstar &nbsp;|&nbsp; ARR increased from $2.1M to $2.3M</div>
             <div class="event-delta delta-pos">+$0.2M &nbsp;|&nbsp; Stage: Propose (unchanged)</div>
           </div>
         </div>
         <div class="event-item">
           <div class="event-icon ei-down">&#11015;</div>
           <div class="event-body">
-            <div class="event-account">KDDI</div>
-            <div class="event-desc">APJ &nbsp;|&nbsp; Stage regression — Propose → Develop</div>
+            <div class="event-account">Demo Account 025</div>
+            <div class="event-desc">Summit &nbsp;|&nbsp; Stage regression — Propose → Develop</div>
             <div class="event-delta delta-neg">Stage moved back &nbsp;|&nbsp; $1.8M at risk of further slippage</div>
           </div>
         </div>
         <div class="event-item">
           <div class="event-icon ei-date">&#128197;</div>
           <div class="event-body">
-            <div class="event-account">GitHub Enterprise</div>
-            <div class="event-desc">Americas &nbsp;|&nbsp; Close date pushed from Sep 30 → Oct 31</div>
+            <div class="event-account">Demo Account 019 Enterprise</div>
+            <div class="event-desc">Northstar &nbsp;|&nbsp; Close date pushed from Sep 30 → Oct 31</div>
             <div class="event-delta delta-neg">31-day slip — moves from CQ to NQ &nbsp;|&nbsp; $1.4M</div>
           </div>
         </div>
         <div class="event-item">
           <div class="event-icon ei-stage">&#11014;</div>
           <div class="event-body">
-            <div class="event-account">SAP SE</div>
-            <div class="event-desc">EMEA &nbsp;|&nbsp; Stage advanced — Develop → Validate</div>
+            <div class="event-account">Demo Account 036</div>
+            <div class="event-desc">Aurora &nbsp;|&nbsp; Stage advanced — Develop → Validate</div>
             <div class="event-delta delta-pos">Stage advance &nbsp;|&nbsp; $3.2M — positive momentum</div>
           </div>
         </div>
         <div class="event-item">
           <div class="event-icon ei-up">&#11014;</div>
           <div class="event-body">
-            <div class="event-account">Deutsche Telekom</div>
-            <div class="event-desc">EMEA &nbsp;|&nbsp; New opportunity created in Qualify</div>
-            <div class="event-delta delta-pos">+$2.1M net new pipeline &nbsp;|&nbsp; Marcus Weber (AE)</div>
+            <div class="event-account">Demo Account 015</div>
+            <div class="event-desc">Aurora &nbsp;|&nbsp; New opportunity created in Qualify</div>
+            <div class="event-delta delta-pos">+$2.1M net new pipeline &nbsp;|&nbsp; Demo Seller 21 (AE)</div>
           </div>
         </div>
         <div class="event-item">
           <div class="event-icon ei-down">&#11015;</div>
           <div class="event-body">
             <div class="event-account">Rakuten</div>
-            <div class="event-desc">APJ &nbsp;|&nbsp; Opportunity closed-lost (budget freeze)</div>
+            <div class="event-desc">Summit &nbsp;|&nbsp; Opportunity closed-lost (budget freeze)</div>
             <div class="event-delta delta-neg">-$2.4M removed from pipeline &nbsp;|&nbsp; Q4 FY26</div>
           </div>
         </div>
         <div class="event-item">
           <div class="event-icon ei-stage">&#11014;</div>
           <div class="event-body">
-            <div class="event-account">Siemens AG</div>
-            <div class="event-desc">EMEA &nbsp;|&nbsp; Stage advanced — Validate → Propose</div>
+            <div class="event-account">Demo Account 040</div>
+            <div class="event-desc">Aurora &nbsp;|&nbsp; Stage advanced — Validate → Propose</div>
             <div class="event-delta delta-pos">Stage advance &nbsp;|&nbsp; $4.1M — verbal agreement in place</div>
           </div>
         </div>
         <div class="event-item">
           <div class="event-icon ei-up">&#11014;</div>
           <div class="event-body">
-            <div class="event-account">American Express</div>
-            <div class="event-desc">Americas &nbsp;|&nbsp; ARR expanded — $1.2M → $2.8M (expansion renewal)</div>
+            <div class="event-account">Demo Account 006</div>
+            <div class="event-desc">Northstar &nbsp;|&nbsp; ARR expanded — $1.2M → $2.8M (expansion renewal)</div>
             <div class="event-delta delta-pos">+$1.6M &nbsp;|&nbsp; Customer Success-sourced expansion</div>
           </div>
         </div>
       </div>
       <div style="border-left:4px solid #ef4444;background:#fff5f5;padding:12px 16px;border-radius:6px;margin:16px 0;font-size:13px">
-        <strong>🔄 WoW Insight:</strong> Stage regressions (2) concentrated in APJ — KDDI and Fujitsu both pushed
+        <strong>🔄 WoW Insight:</strong> Stage regressions (2) concentrated in Summit — Demo Account 025 and Demo Account 016 both pushed
         from Propose to Develop citing budget freeze. This accounts for $2.7M of the week's pipeline movement.
-        Net pipeline +$4.2M despite these regressions, driven by 3 Americas adds.
+        Net pipeline +$4.2M despite these regressions, driven by 3 Northstar adds.
       </div>
     </div>
     <div>
@@ -771,7 +791,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
       </div>
       <div class="card">
         <div class="card-title">Movement by Type</div>
-        <table class="data-table">
+        <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="data-table">
           <thead><tr><th>Change Type</th><th>Count</th><th>Net Value</th></tr></thead>
           <tbody>
             <tr><td>New opportunities created</td><td>8</td><td><span style="color:#10b981;font-weight:700">+$11.4M</span></td></tr>
@@ -780,7 +800,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
             <tr><td>Closed-lost removals</td><td>3</td><td><span style="color:#ef4444;font-weight:700">-$5.8M</span></td></tr>
             <tr><td>CQ→NQ date pushes</td><td>2</td><td><span style="color:#6b7280;font-weight:700">–$3.1M (CQ)</span></td></tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
     </div>
   </div>
@@ -838,22 +858,22 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
   <div class="grid-2">
     <div class="card">
       <div class="card-title">Seller Hygiene Ranking (Worst → Best)</div>
-      <table class="data-table">
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="data-table">
         <thead><tr><th>Seller</th><th>Region</th><th>Score</th><th>Worst Issue</th></tr></thead>
         <tbody>
-          <tr><td><strong>Raj Patel</strong></td><td>APJ</td><td><span class="badge badge-red">44/100</span></td><td>6 overdue, missing MEDDIC</td></tr>
-          <tr><td><strong>Marie Dubois</strong></td><td>EMEA</td><td><span class="badge badge-red">51/100</span></td><td>4 stale dates, low activity</td></tr>
-          <tr><td><strong>Tom Andrews</strong></td><td>Americas</td><td><span class="badge badge-yellow">63/100</span></td><td>3 deals past close date</td></tr>
-          <tr><td><strong>Klaus Witte</strong></td><td>EMEA</td><td><span class="badge badge-yellow">71/100</span></td><td>2 missing close dates</td></tr>
-          <tr><td><strong>Marcus Weber</strong></td><td>EMEA</td><td><span class="badge badge-green">84/100</span></td><td>Minor — 1 stale date</td></tr>
-          <tr><td><strong>Sarah Chen</strong></td><td>Americas</td><td><span class="badge badge-green">91/100</span></td><td>None — fully compliant</td></tr>
+          <tr><td><strong>Demo Seller 05</strong></td><td>Summit</td><td><span class="badge badge-red">44/100</span></td><td>6 overdue, missing MEDDIC</td></tr>
+          <tr><td><strong>Demo Seller 23</strong></td><td>Aurora</td><td><span class="badge badge-red">51/100</span></td><td>4 stale dates, low activity</td></tr>
+          <tr><td><strong>Demo Seller 24</strong></td><td>Northstar</td><td><span class="badge badge-yellow">63/100</span></td><td>3 deals past close date</td></tr>
+          <tr><td><strong>Demo Seller 22</strong></td><td>Aurora</td><td><span class="badge badge-yellow">71/100</span></td><td>2 missing close dates</td></tr>
+          <tr><td><strong>Demo Seller 21</strong></td><td>Aurora</td><td><span class="badge badge-green">84/100</span></td><td>Minor — 1 stale date</td></tr>
+          <tr><td><strong>Demo Seller 01</strong></td><td>Northstar</td><td><span class="badge badge-green">91/100</span></td><td>None — fully compliant</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
     <div class="card">
       <div class="card-title">Hygiene Score Trend — W29 to W37</div>
       <svg id="hygiene-trend-chart" viewBox="0 0 480 220" width="100%" height="220"></svg>
-      <div style="font-size:12px;color:#6b7280;margin-top:8px">Score has improved +9 points over 8 weeks. Two coaching sessions (W32, W35) drove step-change improvements. W38 blitz planned targeting Raj Patel and Marie Dubois portfolios.</div>
+      <div style="font-size:12px;color:#6b7280;margin-top:8px">Score has improved +9 points over 8 weeks. Two coaching sessions (W32, W35) drove step-change improvements. W38 blitz planned targeting Demo Seller 05 and Demo Seller 23 portfolios.</div>
     </div>
   </div>
 </div>
@@ -870,9 +890,9 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
     <label>Region</label>
     <select id="filter-region" onchange="updateScatter()">
       <option value="all">All Regions</option>
-      <option value="Americas">Americas</option>
-      <option value="EMEA">EMEA</option>
-      <option value="APJ">APJ</option>
+      <option value="Northstar">Northstar</option>
+      <option value="Aurora">Aurora</option>
+      <option value="Summit">Summit</option>
     </select>
     <label>Stage</label>
     <select id="filter-stage" onchange="updateScatter()">
@@ -897,9 +917,9 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
     <div class="card-title">Deal Size ($M) vs. Days in Current Stage</div>
     <svg id="scatter-chart" viewBox="0 0 880 380" width="100%" height="380"></svg>
     <div style="display:flex;gap:20px;margin-top:12px;font-size:12px;flex-wrap:wrap">
-      <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#0f4c5c;display:inline-block"></span>Americas</span>
-      <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#f4a261;display:inline-block"></span>EMEA</span>
-      <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#ef4444;display:inline-block"></span>APJ</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#0f4c5c;display:inline-block"></span>Northstar</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#f4a261;display:inline-block"></span>Aurora</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#ef4444;display:inline-block"></span>Summit</span>
     </div>
   </div>
 
@@ -931,7 +951,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
   <div class="page-title">Raw Opportunity Data</div>
   <div class="page-subtitle">Full pipeline export &nbsp;|&nbsp; 20 records &nbsp;|&nbsp; All data fictional</div>
   <div class="card" style="overflow-x:auto">
-    <table class="data-table" id="raw-data-table">
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="data-table" id="raw-data-table">
       <thead>
         <tr>
           <th>ID</th><th>Account</th><th>Region</th><th>Stage</th>
@@ -940,7 +960,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
         </tr>
       </thead>
       <tbody id="raw-data-body"></tbody>
-    </table>
+    </table></div>
   </div>
 </div>
 
@@ -959,17 +979,17 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
       <div class="stat-lbl" style="margin-top:6px">Top quartile: within ±5% at Week 8</div>
     </div>
     <div class="stat-card green">
-      <div class="stat-lbl">Americas Commit Accuracy</div>
+      <div class="stat-lbl">Northstar Commit Accuracy</div>
       <div class="stat-num">87%</div>
       <div class="stat-lbl" style="margin-top:6px">Of Commit-category deals, 87% closed ✓</div>
     </div>
     <div class="stat-card yellow">
-      <div class="stat-lbl">EMEA Commit Accuracy</div>
+      <div class="stat-lbl">Aurora Commit Accuracy</div>
       <div class="stat-num">71%</div>
       <div class="stat-lbl" style="margin-top:6px">Below 80% threshold — sandbagging risk</div>
     </div>
     <div class="stat-card yellow">
-      <div class="stat-lbl">APJ Commit Accuracy</div>
+      <div class="stat-lbl">Summit Commit Accuracy</div>
       <div class="stat-num">79%</div>
       <div class="stat-lbl" style="margin-top:6px">Borderline — trending down 3pts MoM</div>
     </div>
@@ -1054,7 +1074,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
   <!-- Section 3: Forecast Accuracy by Region Table -->
   <div class="card">
     <div class="card-title">Forecast Accuracy by Region — Q3 FY2026</div>
-    <table class="data-table">
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="data-table">
       <thead>
         <tr>
           <th>Region</th><th>W1 Call</th><th>W4 Call</th><th>W8 Call</th><th>Final Call</th><th>Actual</th><th>Error %</th><th>Bias</th>
@@ -1062,19 +1082,19 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
       </thead>
       <tbody>
         <tr>
-          <td><strong>Americas</strong></td>
+          <td><strong>Northstar</strong></td>
           <td>$26.1M</td><td>$27.4M</td><td>$25.8M</td><td>$26.2M</td><td>$25.7M</td>
           <td style="background:#d1fae5;color:#065f46;font-weight:700">+1.9%</td>
           <td>Slightly high</td>
         </tr>
         <tr>
-          <td><strong>EMEA</strong></td>
+          <td><strong>Aurora</strong></td>
           <td>$16.4M</td><td>$17.8M</td><td>$18.3M</td><td>$19.1M</td><td>$17.2M</td>
           <td style="background:#fee2e2;color:#991b1b;font-weight:700">+11.0% ⚠</td>
           <td>Consistently high</td>
         </tr>
         <tr>
-          <td><strong>APJ</strong></td>
+          <td><strong>Summit</strong></td>
           <td>$8.5M</td><td>$9.2M</td><td>$9.4M</td><td>$13.6M</td><td>$18.1M</td>
           <td style="background:#fee2e2;color:#991b1b;font-weight:700">-25.0% ⚠</td>
           <td>Consistently low</td>
@@ -1086,14 +1106,14 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
           <td>Slight under</td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
     <div style="font-size:11px;color:#9ca3af;margin-top:10px">Color coding: &lt;5% error = green &nbsp;|&nbsp; 5–10% = yellow &nbsp;|&nbsp; &gt;10% = red</div>
   </div>
 
   <!-- Section 4: Systematic Bias Indicator -->
   <div class="card">
     <div class="card-title">Systematic Bias — Trailing 4 Quarters</div>
-    <table class="data-table">
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="data-table">
       <thead>
         <tr>
           <th>Region</th><th>Q4 FY2025</th><th>Q1 FY2026</th><th>Q2 FY2026</th><th>Q3 FY2026</th><th>Pattern</th>
@@ -1101,7 +1121,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
       </thead>
       <tbody>
         <tr>
-          <td><strong>Americas</strong></td>
+          <td><strong>Northstar</strong></td>
           <td style="background:#d1fae5;color:#065f46;font-weight:700">-1.1%</td>
           <td style="background:#d1fae5;color:#065f46;font-weight:700">+2.3%</td>
           <td style="background:#d1fae5;color:#065f46;font-weight:700">-0.8%</td>
@@ -1109,7 +1129,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
           <td style="font-size:12px;color:#374151">No systematic bias — reliable as-is</td>
         </tr>
         <tr>
-          <td><strong>EMEA</strong></td>
+          <td><strong>Aurora</strong></td>
           <td style="background:#fef3c7;color:#92400e;font-weight:700">+8.2%</td>
           <td style="background:#fef3c7;color:#92400e;font-weight:700">+9.1%</td>
           <td style="background:#fee2e2;color:#991b1b;font-weight:700">+10.4%</td>
@@ -1117,7 +1137,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
           <td style="font-size:12px;color:#374151">Consistently calls high — apply 0.91x discount</td>
         </tr>
         <tr>
-          <td><strong>APJ</strong></td>
+          <td><strong>Summit</strong></td>
           <td style="background:#fee2e2;color:#991b1b;font-weight:700">-18.0%</td>
           <td style="background:#fee2e2;color:#991b1b;font-weight:700">-22.0%</td>
           <td style="background:#fee2e2;color:#991b1b;font-weight:700">-27.0%</td>
@@ -1125,10 +1145,10 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
           <td style="font-size:12px;color:#374151">Sandbagging — actuals exceed calls; apply 1.24x</td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="callout" style="margin-top:16px;border-left-color:#f59e0b">
       <div class="callout-title">Recommendation</div>
-      <div class="callout-text">Apply regional calibration factors in weekly CRO rollup. EMEA calls × 0.91, APJ calls × 1.24, Americas calls are reliable as-is.</div>
+      <div class="callout-text">Apply regional calibration factors in weekly CRO rollup. Aurora calls × 0.91, Summit calls × 1.24, Northstar calls are reliable as-is.</div>
     </div>
   </div>
 
@@ -1201,43 +1221,43 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
         <text x="45" y="53" text-anchor="end" font-size="10" fill="#9ca3af">90%</text>
         <!-- Groups: xGroupStart(g)=50+g*157+30, bars r0=xgs, r1=xgs+34, r2=xgs+68, w=30 -->
         <!-- G0 Q4FY25: xgs=80 -->
-        <!-- Americas(85): y=63 h=102 -->
+        <!-- Northstar(85): y=63 h=102 -->
         <rect x="80" y="63" width="30" height="102" rx="2" fill="#0f4c5c"/>
         <text x="95" y="58" text-anchor="middle" font-size="9" fill="#0f4c5c" font-weight="700">85%</text>
-        <!-- EMEA(74): y=95 h=70 -->
+        <!-- Aurora(74): y=95 h=70 -->
         <rect x="114" y="95" width="30" height="70" rx="2" fill="#f4a261"/>
         <text x="129" y="90" text-anchor="middle" font-size="9" fill="#f4a261" font-weight="700">74%</text>
-        <!-- APJ(71): y=107 h=58 -->
+        <!-- Summit(71): y=107 h=58 -->
         <rect x="148" y="107" width="30" height="58" rx="2" fill="#ef4444"/>
         <text x="163" y="102" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="700">71%</text>
         <!-- G1 Q1FY26: xgs=237 -->
-        <!-- Americas(83): y=69 h=96 -->
+        <!-- Northstar(83): y=69 h=96 -->
         <rect x="237" y="69" width="30" height="96" rx="2" fill="#0f4c5c"/>
         <text x="252" y="64" text-anchor="middle" font-size="9" fill="#0f4c5c" font-weight="700">83%</text>
-        <!-- EMEA(70): y=107 h=58 -->
+        <!-- Aurora(70): y=107 h=58 -->
         <rect x="271" y="107" width="30" height="58" rx="2" fill="#f4a261"/>
         <text x="286" y="102" text-anchor="middle" font-size="9" fill="#f4a261" font-weight="700">70%</text>
-        <!-- APJ(76): y=90 h=75 -->
+        <!-- Summit(76): y=90 h=75 -->
         <rect x="305" y="90" width="30" height="75" rx="2" fill="#ef4444"/>
         <text x="320" y="85" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="700">76%</text>
         <!-- G2 Q2FY26: xgs=394 -->
-        <!-- Americas(86): y=61 h=104 -->
+        <!-- Northstar(86): y=61 h=104 -->
         <rect x="394" y="61" width="30" height="104" rx="2" fill="#0f4c5c"/>
         <text x="409" y="56" text-anchor="middle" font-size="9" fill="#0f4c5c" font-weight="700">86%</text>
-        <!-- EMEA(68): y=113 h=52 -->
+        <!-- Aurora(68): y=113 h=52 -->
         <rect x="428" y="113" width="30" height="52" rx="2" fill="#f4a261"/>
         <text x="443" y="108" text-anchor="middle" font-size="9" fill="#f4a261" font-weight="700">68%</text>
-        <!-- APJ(73): y=98 h=67 -->
+        <!-- Summit(73): y=98 h=67 -->
         <rect x="462" y="98" width="30" height="67" rx="2" fill="#ef4444"/>
         <text x="477" y="93" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="700">73%</text>
         <!-- G3 Q3FY26: xgs=551 -->
-        <!-- Americas(87): y=58 h=107 -->
+        <!-- Northstar(87): y=58 h=107 -->
         <rect x="551" y="58" width="30" height="107" rx="2" fill="#0f4c5c"/>
         <text x="566" y="53" text-anchor="middle" font-size="9" fill="#0f4c5c" font-weight="700">87%</text>
-        <!-- EMEA(71): y=104 h=61 -->
+        <!-- Aurora(71): y=104 h=61 -->
         <rect x="585" y="104" width="30" height="61" rx="2" fill="#f4a261"/>
         <text x="600" y="99" text-anchor="middle" font-size="9" fill="#f4a261" font-weight="700">71%</text>
-        <!-- APJ(79): y=81 h=84 -->
+        <!-- Summit(79): y=81 h=84 -->
         <rect x="619" y="81" width="30" height="84" rx="2" fill="#ef4444"/>
         <text x="634" y="76" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="700">79%</text>
         <!-- Group X labels at y=180 (group centers: 129, 286, 443, 600) -->
@@ -1247,11 +1267,11 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
         <text x="600" y="181" text-anchor="middle" font-size="10" fill="#6b7280">Q3FY26</text>
         <!-- Legend -->
         <rect x="50" y="195" width="12" height="12" rx="2" fill="#0f4c5c"/>
-        <text x="67" y="205" font-size="11" fill="#374151">Americas</text>
+        <text x="67" y="205" font-size="11" fill="#374151">Northstar</text>
         <rect x="155" y="195" width="12" height="12" rx="2" fill="#f4a261"/>
-        <text x="172" y="205" font-size="11" fill="#374151">EMEA</text>
+        <text x="172" y="205" font-size="11" fill="#374151">Aurora</text>
         <rect x="240" y="195" width="12" height="12" rx="2" fill="#ef4444"/>
-        <text x="257" y="205" font-size="11" fill="#374151">APJ</text>
+        <text x="257" y="205" font-size="11" fill="#374151">Summit</text>
       </svg>
     </div>
   </div>
@@ -1260,7 +1280,7 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
 
 </div><!-- /content -->
 
-<footer>Vantara Sales Portfolio &nbsp;|&nbsp; All data fictional &nbsp;|&nbsp; Pipeline Pulse v1.0 &nbsp;|&nbsp; FY2026</footer>
+<footer>Aurora Demo Portfolio &nbsp;|&nbsp; All data fictional &nbsp;|&nbsp; Pipeline Pulse v1.0 &nbsp;|&nbsp; FY2026</footer>
 <div class="tt" id="tooltip"></div>
 
 <script>
@@ -1320,10 +1340,10 @@ function drawGauge(svgId, value, max, label, isLarge) {
 // ══════════════════════════════════════════════════════
 // TAB 1: GAUGES
 // ══════════════════════════════════════════════════════
-drawGauge('gauge-main', 2.9, 5, 'Overall — CQ+NQ+FY', true);
+drawGauge('gauge-main', 2.98, 5, 'CQ scenario: $191M / $64M', true);
 drawGauge('gauge-amer', 3.1, 5, '', false);
-drawGauge('gauge-emea', 2.8, 5, '', false);
-drawGauge('gauge-apj', 2.4, 5, '', false);
+drawGauge('gauge-aurora', 2.8, 5, '', false);
+drawGauge('gauge-summit', 2.4, 5, '', false);
 
 // ══════════════════════════════════════════════════════
 // TAB 2: HISTORY LINE CHART
@@ -1331,7 +1351,7 @@ drawGauge('gauge-apj', 2.4, 5, '', false);
 (function(){
   const weeks = ['W26','W27','W28','W29','W30','W31','W32','W33','W34','W35','W36','W37'];
   const pipeline = [168,171,174,172,178,181,183,179,185,188,187,191];
-  const threshold = 180;
+  const threshold = 192; // Same $64M quota basis as the current-quarter header.
   const svg = document.getElementById('history-chart');
   const W=880, H=280, padL=54, padR=20, padT=20, padB=40;
   const minV=155, maxV=200;
@@ -1521,8 +1541,8 @@ drawGauge('gauge-apj', 2.4, 5, '', false);
 (function(){
   const wks=['W30','W31','W32','W33','W34','W35','W36','W37'];
   const amer=[2.8,2.9,3.0,3.1,3.0,3.1,3.1,3.1];
-  const emea=[2.5,2.6,2.6,2.7,2.7,2.8,2.7,2.8];
-  const apj=[2.1,2.2,2.3,2.2,2.3,2.4,2.3,2.4];
+  const aurora=[2.5,2.6,2.6,2.7,2.7,2.8,2.7,2.8];
+  const summit=[2.1,2.2,2.3,2.2,2.3,2.4,2.3,2.4];
   const svg=document.getElementById('suff-trend-chart');
   const W=480, H=300, padL=50, padR=20, padT=20, padB=40;
   const minV=1.8, maxV=3.5;
@@ -1540,7 +1560,7 @@ drawGauge('gauge-apj', 2.4, 5, '', false);
   html+=`<line x1="${padL}" y1="${ty.toFixed(1)}" x2="${W-padR}" y2="${ty.toFixed(1)}" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="5,3"/>`;
 
   // Lines
-  [[amer,'#0f4c5c'],[emea,'#f4a261'],[apj,'#ef4444']].forEach(([data,col])=>{
+  [[amer,'#0f4c5c'],[aurora,'#f4a261'],[summit,'#ef4444']].forEach(([data,col])=>{
     const pts=data.map((v,i)=>`${xScale(i).toFixed(1)},${yScale(v).toFixed(1)}`).join(' ');
     html+=`<polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/>`;
     data.forEach((v,i)=>{
@@ -1560,11 +1580,11 @@ drawGauge('gauge-apj', 2.4, 5, '', false);
 // ══════════════════════════════════════════════════════
 (function(){
   const sellers=[
-    {name:'Sarah Chen',val:28,region:'Americas'},
-    {name:'Marcus W.',val:24,region:'EMEA'},
-    {name:'Klaus W.',val:22,region:'EMEA'},
-    {name:'Raj P.',val:19,region:'APJ'},
-    {name:'Marie D.',val:16,region:'EMEA'},
+    {name:'Demo Seller 01',val:28,region:'Northstar'},
+    {name:'Demo Seller 21',val:24,region:'Aurora'},
+    {name:'Demo Seller 22',val:22,region:'Aurora'},
+    {name:'Demo Seller 05',val:19,region:'Summit'},
+    {name:'Demo Seller 23',val:16,region:'Aurora'},
   ];
   const avg=18;
   const svg=document.getElementById('activity-chart');
@@ -1583,7 +1603,7 @@ drawGauge('gauge-apj', 2.4, 5, '', false);
   html+=`<line x1="${ax}" y1="${padT}" x2="${ax}" y2="${H-padB}" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>`;
   html+=`<text x="${ax}" y="${padT-5}" text-anchor="middle" font-size="10" fill="#f59e0b" font-weight="700">Avg 18</text>`;
   // Bars
-  const colors={'Americas':'#0f4c5c','EMEA':'#1a7a93','APJ':'#ef4444'};
+  const colors={'Northstar':'#0f4c5c','Aurora':'#1a7a93','Summit':'#ef4444'};
   sellers.forEach((s,i)=>{
     const y=padT+i*(barH+gap);
     const bw=xScale(s.val)-padL;
@@ -1733,30 +1753,36 @@ drawGauge('gauge-apj', 2.4, 5, '', false);
 // TAB 10: SCATTER CHART
 // ══════════════════════════════════════════════════════
 const DEALS = [
-  {id:'OPP-001',account:'Accenture',region:'Americas',stage:'Propose',arr:2.3,days:14,quarter:'CQ',seller:'Sarah Chen'},
-  {id:'OPP-002',account:'SAP SE',region:'EMEA',stage:'Validate',arr:3.2,days:22,quarter:'CQ',seller:'Marcus Weber'},
-  {id:'OPP-003',account:'KDDI',region:'APJ',stage:'Develop',arr:1.8,days:38,quarter:'CQ',seller:'Raj Patel'},
-  {id:'OPP-004',account:'Siemens AG',region:'EMEA',stage:'Propose',arr:4.1,days:19,quarter:'CQ',seller:'Klaus Witte'},
-  {id:'OPP-005',account:'American Express',region:'Americas',stage:'Commit',arr:2.8,days:8,quarter:'CQ',seller:'Sarah Chen'},
-  {id:'OPP-006',account:'Fujitsu',region:'APJ',stage:'Propose',arr:4.8,days:22,quarter:'NQ',seller:'Raj Patel'},
-  {id:'OPP-007',account:'Zurich Insurance',region:'EMEA',stage:'Validate',arr:4.2,days:18,quarter:'NQ',seller:'Marie Dubois'},
-  {id:'OPP-008',account:'Telstra',region:'APJ',stage:'Develop',arr:3.9,days:31,quarter:'NQ',seller:'Raj Patel'},
-  {id:'OPP-009',account:'Orange',region:'EMEA',stage:'Develop',arr:3.1,days:16,quarter:'NQ',seller:'Marie Dubois'},
-  {id:'OPP-010',account:'Verizon',region:'Americas',stage:'Qualify',arr:2.8,days:25,quarter:'NQ',seller:'Tom Andrews'},
-  {id:'OPP-011',account:'Deutsche Telekom',region:'EMEA',stage:'Qualify',arr:2.1,days:9,quarter:'NQ',seller:'Marcus Weber'},
-  {id:'OPP-012',account:'JP Morgan Chase',region:'Americas',stage:'Negotiate',arr:5.4,days:12,quarter:'CQ',seller:'Sarah Chen'},
-  {id:'OPP-013',account:'HSBC',region:'EMEA',stage:'Validate',arr:3.7,days:26,quarter:'CQ',seller:'Klaus Witte'},
-  {id:'OPP-014',account:'NTT Data',region:'APJ',stage:'Qualify',arr:1.4,days:7,quarter:'NQ',seller:'Raj Patel'},
-  {id:'OPP-015',account:'Capgemini',region:'EMEA',stage:'Develop',arr:2.6,days:21,quarter:'CQ',seller:'Marie Dubois'},
-  {id:'OPP-016',account:'AT&T',region:'Americas',stage:'Commit',arr:6.2,days:5,quarter:'CQ',seller:'Tom Andrews'},
-  {id:'OPP-017',account:'Vodafone',region:'EMEA',stage:'Propose',arr:3.4,days:17,quarter:'NQ',seller:'Marcus Weber'},
-  {id:'OPP-018',account:'Sony',region:'APJ',stage:'Develop',arr:1.9,days:28,quarter:'NQ',seller:'Raj Patel'},
-  {id:'OPP-019',account:'Walmart',region:'Americas',stage:'Validate',arr:4.6,days:23,quarter:'CQ',seller:'Sarah Chen'},
-  {id:'OPP-020',account:'Roche',region:'EMEA',stage:'Qualify',arr:2.2,days:11,quarter:'NQ',seller:'Klaus Witte'},
+  {id:'OPP-001',account:'Demo Account 003',region:'Northstar',stage:'Propose',arr:2.3,days:14,quarter:'CQ',seller:'Demo Seller 01'},
+  {id:'OPP-002',account:'Demo Account 036',region:'Aurora',stage:'Validate',arr:3.2,days:22,quarter:'CQ',seller:'Demo Seller 21'},
+  {id:'OPP-003',account:'Demo Account 025',region:'Summit',stage:'Develop',arr:1.8,days:38,quarter:'CQ',seller:'Demo Seller 05'},
+  {id:'OPP-004',account:'Demo Account 040',region:'Aurora',stage:'Propose',arr:4.1,days:19,quarter:'CQ',seller:'Demo Seller 22'},
+  {id:'OPP-005',account:'Demo Account 006',region:'Northstar',stage:'Commit',arr:2.8,days:8,quarter:'CQ',seller:'Demo Seller 01'},
+  {id:'OPP-006',account:'Demo Account 016',region:'Summit',stage:'Propose',arr:4.8,days:22,quarter:'NQ',seller:'Demo Seller 05'},
+  {id:'OPP-007',account:'Demo Account 055',region:'Aurora',stage:'Validate',arr:4.2,days:18,quarter:'NQ',seller:'Demo Seller 23'},
+  {id:'OPP-008',account:'Demo Account 045',region:'Summit',stage:'Develop',arr:3.9,days:31,quarter:'NQ',seller:'Demo Seller 05'},
+  {id:'OPP-009',account:'Demo Account 033',region:'Aurora',stage:'Develop',arr:3.1,days:16,quarter:'NQ',seller:'Demo Seller 23'},
+  {id:'OPP-010',account:'Demo Account 049',region:'Northstar',stage:'Qualify',arr:2.8,days:25,quarter:'NQ',seller:'Demo Seller 24'},
+  {id:'OPP-011',account:'Demo Account 015',region:'Aurora',stage:'Qualify',arr:2.1,days:9,quarter:'NQ',seller:'Demo Seller 21'},
+  {id:'OPP-012',account:'Demo Account 024',region:'Northstar',stage:'Negotiate',arr:5.4,days:12,quarter:'CQ',seller:'Demo Seller 01'},
+  {id:'OPP-013',account:'Demo Account 021',region:'Aurora',stage:'Validate',arr:3.7,days:26,quarter:'CQ',seller:'Demo Seller 22'},
+  {id:'OPP-014',account:'Demo Account 030',region:'Summit',stage:'Qualify',arr:1.4,days:7,quarter:'NQ',seller:'Demo Seller 05'},
+  {id:'OPP-015',account:'Demo Account 009',region:'Aurora',stage:'Develop',arr:2.6,days:21,quarter:'CQ',seller:'Demo Seller 23'},
+  {id:'OPP-016',account:'Demo Account 002',region:'Northstar',stage:'Commit',arr:6.2,days:5,quarter:'CQ',seller:'Demo Seller 24'},
+  {id:'OPP-017',account:'Demo Account 050',region:'Aurora',stage:'Propose',arr:3.4,days:17,quarter:'NQ',seller:'Demo Seller 21'},
+  {id:'OPP-018',account:'Demo Account 043',region:'Summit',stage:'Develop',arr:1.9,days:28,quarter:'NQ',seller:'Demo Seller 05'},
+  {id:'OPP-019',account:'Demo Account 052',region:'Northstar',stage:'Validate',arr:4.6,days:23,quarter:'CQ',seller:'Demo Seller 01'},
+  {id:'OPP-020',account:'Demo Account 034',region:'Aurora',stage:'Qualify',arr:2.2,days:11,quarter:'NQ',seller:'Demo Seller 22'},
 ];
 
-const regionColors={'Americas':'#0f4c5c','EMEA':'#f4a261','APJ':'#ef4444'};
+const regionColors={'Northstar':'#0f4c5c','Aurora':'#f4a261','Summit':'#ef4444'};
 
+function median(values) {
+  if (!values.length) return null;
+  const sorted = [...values].sort((a,b) => a-b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 ? sorted[mid] : (sorted[mid-1] + sorted[mid]) / 2;
+}
 function updateScatter(){
   const rFilter=document.getElementById('filter-region').value;
   const sFilter=document.getElementById('filter-stage').value;
@@ -1801,19 +1827,19 @@ function updateScatter(){
     const r=Math.max(6, Math.min(14, d.arr*2.5));
     const col=regionColors[d.region];
     html+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${col}" opacity="0.8" stroke="white" stroke-width="1.5"/>`;
-    html+=`<text x="${x.toFixed(1)}" y="${(y-r-3).toFixed(1)}" text-anchor="middle" font-size="9" fill="#374151" font-weight="600">${d.account.split(' ')[0]}</text>`;
+    html+=`<text x="${x.toFixed(1)}" y="${(y-r-3).toFixed(1)}" text-anchor="middle" font-size="9" fill="#374151" font-weight="600">${d.account.replace('Demo Account ','A')}</text>`;
   });
 
   svg.innerHTML=html;
 
   // Stats
   const count=filtered.length;
-  const medArr=filtered.length?filtered.map(d=>d.arr).sort((a,b)=>a-b)[Math.floor(count/2)]:0;
-  const medDays=filtered.length?filtered.map(d=>d.days).sort((a,b)=>a-b)[Math.floor(count/2)]:0;
+  const medArr = median(filtered.map(d => d.arr));
+  const medDays = median(filtered.map(d => d.days));
   const outliers=filtered.filter(d=>d.days>28).length;
   document.getElementById('stat-count').textContent=count;
-  document.getElementById('stat-median').textContent='$'+(medArr||0)+'M';
-  document.getElementById('stat-days').textContent=medDays||0;
+  document.getElementById('stat-median').textContent=medArr === null ? 'N/A' : '$'+medArr.toFixed(2)+'M';
+  document.getElementById('stat-days').textContent=medDays === null ? 'N/A' : medDays;
   document.getElementById('stat-outliers').textContent=outliers;
   document.getElementById('scatter-count').textContent=`${count} deals shown`;
 }

@@ -1,5 +1,5 @@
 # Whitelist approach — portfolio subfolders are fully tracked
-# Root-level Philips files (PBIP, HTML, ABF) stay local only
+# Keep local source/reference files out of the public portfolio
 
 # Exclude everything by default
 *
@@ -19,3 +19,15 @@
 !net-new-tracker/**
 !pipeline-pulse/**
 !sales-league/**
+
+# Review documentation and verification code
+!docs/**
+!tests/**
+# Never publish local secrets or generated source exports
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.key
+**/__pycache__/
+**/*.pyc

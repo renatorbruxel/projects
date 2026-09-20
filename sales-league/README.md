@@ -1,122 +1,53 @@
 # Sales League
 
-> **Stack:** Power BI · DAX · TMDL (PBIP format) · Row-Level Security
-> **Pages:** 14 visible · 10 tooltip pages | **Semantic model:** ~30 tables
+**Status: existing HTML reference prototype; audit and repair scope.**
 
-A gamified seller performance leaderboard with individual scorecards, manager and regional views, structured recovery planning, and formal commitment workflows. Designed to drive competitive performance, seller accountability, and transparent quota attainment visibility across the entire GTM organization.
+[Open HTML](./sales-league.html) · [Existing hosted demo](https://renatorbruxel.github.io/projects/sales-league/sales-league.html) · [Portfolio](../README.md)
 
-Access is controlled by multi-tier Row-Level Security — each seller sees only their own data; managers see their team; regional VPs see their region; global admins see everything. Sellers formally opt in to the gamification program via a consent mechanism built into the model.
+Hosted content may precede this local revision.
 
----
+## Purpose and users
 
-## Report Pages
+Sellers, managers and commercial operations need a consistent view of quota, actuals and the actions that may close a performance gap. This prototype illustrates scorecards, regional comparison and coaching conversations. Gamification and recovery scenarios are examples, not validated performance-management policy.
 
-### 1. Home — Leaderboard
-The main leaderboard. All sellers in the user's accessible scope, ranked by current-quarter attainment with tier badges and position-change indicators vs. prior week.
+## Implemented scope
 
-Key visuals:
-- Ranked seller list: attainment %, quota, actuals, pipeline coverage
-- Tier distribution: % of sellers in each attainment band (Platinum / Gold / Silver / Bronze)
-- Position change indicators ▲▼ vs. prior week ranking
-- Days remaining in quarter countdown with urgency color coding
+The HTML presents a 12-seller fixture with leaderboard, seller scorecard, manager/region examples, opportunity detail, distributions, declaration preview, recovery, roster and capacity scenarios. Seller selection and local comparison controls demonstrate browser interactions.
 
-### 2. Seller Scorecard
-Individual seller performance profile — the primary self-service view for each quota-carrying seller.
+## Architecture and metrics
 
-Key visuals:
-- Quota vs. actuals attainment gauge (current quarter %)
-- Pipeline coverage vs. 3x target
-- Win rate trend (rolling 4 quarters)
-- Funnel hygiene score
-- Peer comparison: seller vs. anonymized regional average (peers not identified by name)
-- Top 5 open opportunities with stage and expected close date
+HTML/CSS/SVG and JavaScript render local seller fixtures. Anyone opening the HTML can inspect its embedded data; the page has no authenticated seller or manager boundary. Declaration controls do not create a durable commitment, approval record or payout instruction.
 
-### 3. Manager View
-Team-level scorecard for front-line sales managers. All direct reports in one table with the key signals needed for weekly 1:1 coaching conversations.
+| Metric | Definition to inspect | Important limit |
+|---|---|---|
+| Attainment | Actuals ÷ quota | Regional totals should use summed actuals ÷ summed quotas |
+| Gap to target | Target − actuals, with the intended sign stated | Distinguish an unmet gap from an overachievement |
+| Coverage | Pipeline ÷ the labeled quota basis | Full quota and remaining quota are different denominators |
+| Distribution | Seller counts in mutually exclusive attainment bands | Bands must reconcile to the same eligible seller population |
+| Capacity scenario | Headcount × explicit productivity/attainment assumptions | Hiring and ramp outputs are assumptions, not proven forecasts |
 
-Key visuals:
-- Team attainment table: seller / quota / actuals / attainment % / pipeline / hygiene
-- Team aggregate row: total quota, total actuals, blended team attainment %
-- Risk flags: sellers below 80% attainment with less than 2x pipeline coverage
-- Team win rate trend vs. regional benchmark
+Peer averages, tier counts and narrative summaries must use a consistent population. No causal effect of coaching, calibrated recovery probability, fairness certification or compensation recommendation is demonstrated by these fixtures.
 
-### 4. Regional Manager View
-Rollup for regional VPs. Aggregates across all front-line managers in the region.
+## Run and validate
 
-Key visuals:
-- Manager-level attainment summary with team rollup
-- Region vs. peer-region comparison (Americas / EMEA / APJ)
-- Rolling 12-week bookings trend by manager
-- Headcount view: active sellers vs. open territory capacity
+From the repository root:
 
-### 5. Seller Details
-Extended seller profile with full opportunity-level breakdown for the current and prior periods.
+```bash
+python3 -m http.server 8000
+```
 
-Key visuals:
-- All open deals: account, stage, value, close date, product line
-- Closed-won history with booking date and deal size
-- Lost deals with reason codes and competitive context
-- Average deal size trend (is the seller moving upmarket or downmarket?)
+Open [the local Sales League](http://localhost:8000/sales-league/sales-league.html). The HTML demonstration requires no paid service or API token.
 
-### 6. Specialist Seller View
-Tailored view for product specialists and overlay sellers who carry a different quota structure than direct account executives. Shows specialist-specific KPIs and coverage against overlay quota targets.
+```bash
+python3 tests/run_checks.py
+```
 
-### 7. Charts
-Visual analytics hub — charts-first layout for trend and distribution analysis across the seller population.
+The [repository audit](../docs/FINAL_PORTFOLIO_AUDIT.md) records what was actually checked. [Brief alignment](../docs/MASTER_PROMPT_ALIGNMENT.md) records remaining requirements.
 
-Key visuals:
-- Attainment distribution histogram: how is performance distributed?
-- Quota vs. actuals scatter: every seller plotted by quota size and attainment
-- Win rate vs. average deal size scatter: are bigger deals harder to close?
-- Bookings trend by product line (rolling 8 quarters)
+## Governance and production evolution
 
-### 8. Declaration Form
-Formal commitment interface. Each seller selects open opportunities they are committing to close in the current quarter — creating an accountability record compared against actuals at quarter close.
+The scenarios are presented as synthetic; their original provenance has not been independently certified. Do not treat them as employee, customer, compensation or financial records. The existing source is not certified as independent of employer material. Review the audit before external release.
 
-Key elements:
-- Deal selector: choose from open pipeline with close date and stage visible
-- Total committed value vs. quota: how confident is the seller?
-- Submission lock: declarations freeze at quarter midpoint — no revisions after lock date
-- Manager approval step: manager countersigns the declaration before it becomes official
+Production work would require governed eligibility and quota rules, authenticated access, tested server-side authorization/RLS, consent handling, reconciled aggregates and immutable submissions. Capacity recommendations also need explicit productivity, attrition, hiring-date and ramp assumptions.
 
-### 9. Plan to Recover — Manager
-Structured recovery workflow for managers tracking below quota. Guided process for identifying recovery levers and committing to a recovery path.
-
-Key elements:
-- Quota gap in dollar and percentage terms with days-remaining context
-- Pull-in candidates: late-stage deals from next quarter that could accelerate into the current quarter
-- Committed recovery actions: manager logs specific deals and close strategies
-- Recovery confidence score: probability-weighted expected recovery value vs. gap
-
-### 10. Plan to Recover — Region
-Same recovery planning framework elevated to the regional level. Regional VPs track each manager's recovery commitments and roll them up to the regional recovery plan.
-
-### 11. Book Lost
-Lost deal analysis for coaching and competitive strategy refinement. All closed-lost opportunities with structured reason codes, competitive involvement flags, and deal characteristics.
-
-Key visuals:
-- Lost deal list: account, value, loss reason, competitor, seller, deal age at loss
-- Win/loss ratio trend (rolling 8 quarters)
-- Loss reason breakdown: price / product gap / competition / timing / no decision
-- Competitive displacement analysis: which competitors are winning and in which segments?
-
-### 12. Access Denied
-Displayed when a user's RLS role does not grant access to the requested view (e.g., a seller trying to navigate to another seller's scorecard). Provides a contact link for access requests and explains the data access model.
-
-### 13. Seller Info
-Roster management page for ops admins. Shows seller metadata, region assignment, quota type, manager mapping, and active/inactive status. Used to validate the headcount file and flag roster discrepancies.
-
-### 14. Seller with No Opportunities
-Zero-coverage alert. Identifies every quota-carrying seller who has no open pipeline — the highest-priority coaching signal. Sorted by quota size (highest-quota, zero-pipeline sellers first).
-
----
-
-## Data Model & Security Highlights
-
-- **Multi-tier Row-Level Security:** seller / front-line manager / regional VP / global admin roles — implemented via username-based role mapping with dynamic DAX USERPRINCIPALNAME() filters
-- **RLS bypass tables:** `(No RLS)` variants of gamification and peer tables provide global views for admin roles and enable anonymized peer comparisons without exposing individual identities
-- **Active Player Consent:** sellers formally opt in via a consent table — gamification data for non-consenting sellers is excluded from the leaderboard, respecting data privacy governance
-- **Declaration-to-actuals closed loop:** commitment records linked to closed deals at quarter end — enables commitment accuracy scoring and coaching on forecast reliability
-- **Gamification engine:** points and badge assignments driven by attainment thresholds, win rate, funnel hygiene score, and activity signals — configurable without DAX changes
-- **Quota model flexibility:** handles direct sellers, product specialists, and overlay roles with different quota structures, time phasing, and commission multipliers
-- **10 custom tooltip pages:** inline deep-dives on hover for bookings, win rate, funnel hygiene, forecast, and quarterly breakdowns — no page navigation required for the most common drill-down questions
+This example relates to Renato's experience in sales performance management, incentive governance, quota-setting analytics and cross-regional operating reviews. Career outcomes in the [portfolio overview](../README.md#professional-evidence) are separate from the prototype's scenario values and are not measured by this code.

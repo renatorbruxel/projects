@@ -1,79 +1,53 @@
-# Funnel Management
+# Pipeline Intelligence
 
-> **Stack:** Power BI · DAX · TMDL (PBIP format)
-> **Pages:** 7 visible · 9 hidden/tooltip | **Semantic model:** ~60 tables
+**Status: existing HTML reference prototype; audit and repair scope.**
 
-A Power BI report tracking pipeline movement dynamics — specifically how opportunities are being pushed to later quarters (push-outs) or pulled forward (pull-ins), alongside weekly actuals pacing and overdue opportunity governance.
+[Open HTML](./pipeline-intelligence.html) · [Existing hosted demo](https://renatorbruxel.github.io/projects/funnel-management/pipeline-intelligence.html) · [Portfolio](../README.md)
 
-Built in the PBIP (Power BI Project) format for full source-control compatibility — the semantic model is decomposed into TMDL files and the report layout into JSON, both version-controlled in Git.
+Hosted content may precede this local revision.
 
----
+## Purpose and users
 
-## Report Pages
+A commercial leader or operations analyst needs to separate pipeline volume from timing and conversion risk. This prototype illustrates review of push-outs, pull-ins, overdue opportunities, pacing and velocity, supporting a focused discussion of what to investigate next.
 
-### 1. Funnel Summary
-The main landing page. Executive-level overview of current pipeline health across all regions — total pipeline, push-out and pull-in volume vs. prior week, and actuals-to-date vs. target.
+## Implemented scope
 
-Key visuals:
-- Pipeline waterfall by stage
-- Push vs. pull balance by region (current week vs. 4-week average)
-- Current quarter coverage ratio with color-coded threshold bands
-- Top accounts with movement in the current week
+The standalone HTML has nine views, including summary, movement, pacing, raw detail, velocity and conversion. Region filtering on the push-out table, raw-data search, sorting and tab navigation operate locally. The figures are embedded examples rather than connected CRM records.
 
-### 2. Push & Pull Dynamics
-Detailed breakdown of push-out and pull-in behavior — which accounts moved, when, by how much, and which sellers or managers are driving it.
+## Architecture and metrics
 
-Key visuals:
-- Push/pull volume trend (rolling 8 weeks)
-- Scatter: deal size vs. push frequency (repeat pushers highlighted)
-- Manager-level push rate ranking — accountability signal for coaching conversations
-- Movement reason code distribution
+HTML/CSS/SVG and JavaScript render local fixtures. The page has no connected data backend.
 
-### 3. Actuals Weekly Pacing
-Tracks bookings actuals against the weekly pacing curve required to hit the quarterly target. Early warning system for quarters falling behind the required run rate.
+| Metric | Definition in the example | Important limit |
+|---|---|---|
+| Attainment | Actuals ÷ quarter quota | $61M ÷ $65.8M rounds to 93% |
+| Coverage | Open pipeline ÷ full quarter quota | $187M ÷ $65.8M rounds to 2.8x; the 3x threshold is illustrative |
+| Gap to quota | Quota − actuals | Distinct from the pipeline creation gap |
+| Pipeline velocity | Opportunity count × average contract value × win rate ÷ cycle days | Current inputs produce $49,899/day; segment cohorts are independent examples |
+| Stretch pacing | Cumulative actuals against an $80M scenario target | This target differs explicitly from the $65.8M summary quota |
 
-Key visuals:
-- Actuals vs. required pacing curve (line chart with ±10% tolerance bands)
-- Days remaining in quarter vs. gap to close
-- Weekly booking trend with 4-week moving average
-- Region-level pacing scorecard: on track / at risk / behind
+Historical velocity is withheld where comparable formula inputs are unavailable. Raw detail is an illustrative sample, not evidence of a complete reconciliation to all summary figures. No calibrated close probability or causal effect is established by the scenarios.
 
-### 4. Push-Out Analysis — Current Quarter
-Focused view on all opportunities originally forecasted for the current quarter that have since been pushed out. Designed for pipeline recovery conversations.
+## Run and validate
 
-Key visuals:
-- Full list of pushed-out opportunities with account, value, new close date, and seller
-- Push-out total value vs. prior week delta
-- Time-in-stage for pushed deals (are they getting stuck?)
-- Recovery probability scoring based on historical push-out conversion rates
+From the repository root:
 
-### 5. Pull-In Analysis — Current Quarter
-Opportunities originally forecasted for a future quarter that have been accelerated into the current quarter — representing potential upside to the quarterly plan.
+```bash
+python3 -m http.server 8000
+```
 
-Key visuals:
-- Pull-in list with original close date vs. revised date
-- Pull-in value vs. remaining quota gap (can pull-ins close the gap?)
-- Historical pull-in conversion rate (% of pull-ins that actually close in the pulled quarter)
+Open [the local Pipeline Intelligence](http://localhost:8000/funnel-management/pipeline-intelligence.html). The HTML demonstration requires no paid service or API token.
 
-### 6. Overdue Opportunities
-All open opportunities with a close date in the past — a pipeline hygiene signal indicating stale records that distort coverage ratios and forecast accuracy.
+```bash
+python3 tests/run_checks.py
+```
 
-Key visuals:
-- Overdue opportunity list with age in days past due date
-- Overdue pipeline value by region and seller
-- Trend: overdue pipeline as % of total pipeline (rolling 12 weeks)
-- Manager accountability table sorted by overdue value owned
+The [repository audit](../docs/FINAL_PORTFOLIO_AUDIT.md) records what was actually checked. [Brief alignment](../docs/MASTER_PROMPT_ALIGNMENT.md) records remaining requirements.
 
-### 7. Raw Data
-Full opportunity-level extract for self-service analysis. All fields used in the report, filterable by region, seller, stage, product, and date range. Supports export.
+## Governance and production evolution
 
----
+The scenarios are presented as synthetic; their original provenance has not been independently certified. Do not treat them as employee, customer, compensation or financial records. The existing source is not certified as independent of employer material. Review the audit before external release.
 
-## Data Model Highlights
+Production work would first establish dated opportunity snapshots, a common grain and currency basis, reconciled detail-to-summary totals and explicit ownership of the coverage denominator.
 
-- **~60 tables** — multi-snapshot design enabling point-in-time comparisons at any week
-- **Snapshot architecture:** current funnel, weekly snapshots, and prior-day state tables — enabling WoW and DoD delta calculations across any dimension
-- **Cross-source integration:** funnel data joined to actuals, weekly targets, bookings, and Book-and-Bill tables across a common account/opportunity key
-- **Currency normalization:** multi-currency pipeline converted to USD reporting currency via a dedicated `Currency` table with weekly exchange rates
-- **Conversion rate modeling:** dedicated `Conversion Rate` and `WinRate_Mode` tables for probability-weighted pipeline calculations
-- **Q&A enabled:** natural language queries supported across the full semantic model
+This example relates to Renato's experience in funnel analysis, forecasting, governed KPI definitions and leadership performance reviews. Career outcomes in the [portfolio overview](../README.md#professional-evidence) are separate from the prototype's scenario values and are not measured by this code.

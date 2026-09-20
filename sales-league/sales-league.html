@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sales League | Vantara Sales</title>
+<title>Sales League | Aurora Demo</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -159,6 +159,26 @@ select:focus,input:focus{border-color:var(--teal)}
 .milestone-item{font-size:13px;padding:6px 0;border-bottom:1px solid #f0f0f0;color:var(--txt)}
 .milestone-item:last-child{border-bottom:none}
 </style>
+<style>
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #1675b5;outline-offset:3px}
+</style>
+<style>
+/* Keep dense data tables scrollable without widening the page. */
+.table-scroll{max-width:100%;overflow-x:auto}
+.panel,.card,.db-card,.chart-card,.two-col>*,.three-col>*,.g2>*,.g3>*,.g5>*,.chart-row>*,.db-grid>*{min-width:0}
+@media(max-width:768px){
+  [style*="grid-template-columns"]{grid-template-columns:minmax(0,1fr)!important}
+  .two-col,.three-col,.layers,.principles,.stack-cards,.db-grid,.qa-grid,.metrics-row{grid-template-columns:minmax(0,1fr)}
+  .kpi-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tab-content{padding:20px 16px}
+  .header,.app-header{flex-wrap:wrap;gap:12px;padding:16px}
+  .sh{flex-wrap:wrap;gap:8px}
+  .code-section,.code-section>*{min-width:0;max-width:100%}
+  pre{max-width:100%;overflow-x:auto}
+}
+@media(max-width:480px){.kpi-row,.howto-grid{grid-template-columns:minmax(0,1fr)}}
+</style>
 </head>
 <body>
 
@@ -168,7 +188,7 @@ select:focus,input:focus{border-color:var(--teal)}
     <div class="hd-logo">🏆</div>
     <div>
       <div class="hd-title">Sales League</div>
-      <div class="hd-sub">Vantara Sales · B2B SaaS · ~$800M ARR</div>
+      <div class="hd-sub">Aurora Demo · B2B SaaS · ~$800M ARR</div>
     </div>
   </div>
   <div class="cdown">⏱ 12 days remaining — Q3 FY2026</div>
@@ -202,15 +222,15 @@ select:focus,input:focus{border-color:var(--teal)}
 
   <div class="insight-box">
     <strong>📊 Week 36 Insight:</strong> 6 of 12 sellers at or above 100% attainment.
-    David Torres (78%) is the only Bronze-tier risk — $144K gap with 12 days remaining.
-    Team blended attainment: 101%. Americas leads at 101%, EMEA 103%, APJ 103%.
+    Demo Seller 12 (78%) is the only Bronze-tier risk — $176K gap with 12 days remaining.
+    Team blended attainment: 102% (total actuals / total quota). Northstar 101%, Aurora 102%, Summit 103%.
   </div>
 
   <div class="g2" style="align-items:start">
     <!-- Leaderboard Table -->
     <div style="grid-column:1/2">
       <div class="card" style="padding:0;overflow:hidden">
-        <table class="dt">
+        <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
           <thead>
             <tr>
               <th>Rank</th><th>Seller</th><th>Region</th><th>Quota</th>
@@ -220,7 +240,7 @@ select:focus,input:focus{border-color:var(--teal)}
           <tbody>
             <tr>
               <td><span class="rk r1">1</span></td>
-              <td><strong>Sarah Chen</strong></td><td>Americas</td>
+              <td><strong>Demo Seller 01</strong></td><td>Northstar</td>
               <td>$800K</td><td>$1.02M</td>
               <td><strong style="color:#0f4c5c;font-size:15px">128%</strong></td>
               <td><span class="tb tp">🥇 Platinum</span></td>
@@ -228,7 +248,7 @@ select:focus,input:focus{border-color:var(--teal)}
             </tr>
             <tr>
               <td><span class="rk r2">2</span></td>
-              <td><strong>Klaus Weber</strong></td><td>EMEA</td>
+              <td><strong>Demo Seller 02</strong></td><td>Aurora</td>
               <td>$900K</td><td>$1.06M</td>
               <td><strong style="color:#8a6200;font-size:15px">118%</strong></td>
               <td><span class="tb tg">🥈 Gold</span></td>
@@ -236,7 +256,7 @@ select:focus,input:focus{border-color:var(--teal)}
             </tr>
             <tr>
               <td><span class="rk r3">3</span></td>
-              <td><strong>Kenji Yamamoto</strong></td><td>APJ</td>
+              <td><strong>Demo Seller 03</strong></td><td>Summit</td>
               <td>$750K</td><td>$862K</td>
               <td><strong style="color:#8a6200;font-size:15px">115%</strong></td>
               <td><span class="tb tg">🥈 Gold</span></td>
@@ -244,7 +264,7 @@ select:focus,input:focus{border-color:var(--teal)}
             </tr>
             <tr>
               <td><span class="rk ro">4</span></td>
-              <td>Marcus Williams</td><td>Americas</td>
+              <td>Demo Seller 04</td><td>Northstar</td>
               <td>$850K</td><td>$918K</td>
               <td><strong style="color:#8a6200">108%</strong></td>
               <td><span class="tb tg">🥈 Gold</span></td>
@@ -252,7 +272,7 @@ select:focus,input:focus{border-color:var(--teal)}
             </tr>
             <tr>
               <td><span class="rk ro">5</span></td>
-              <td>Raj Patel</td><td>APJ</td>
+              <td>Demo Seller 05</td><td>Summit</td>
               <td>$700K</td><td>$742K</td>
               <td><strong style="color:#8a6200">106%</strong></td>
               <td><span class="tb tg">🥈 Gold</span></td>
@@ -260,7 +280,7 @@ select:focus,input:focus{border-color:var(--teal)}
             </tr>
             <tr>
               <td><span class="rk ro">6</span></td>
-              <td>Marie Dupont</td><td>EMEA</td>
+              <td>Demo Seller 06</td><td>Aurora</td>
               <td>$800K</td><td>$824K</td>
               <td><strong style="color:#8a6200">103%</strong></td>
               <td><span class="tb tg">🥈 Gold</span></td>
@@ -268,7 +288,7 @@ select:focus,input:focus{border-color:var(--teal)}
             </tr>
             <tr>
               <td><span class="rk ro">7</span></td>
-              <td>Ana Lima</td><td>Americas</td>
+              <td>Demo Seller 07</td><td>Northstar</td>
               <td>$650K</td><td>$624K</td>
               <td><strong style="color:#505050">96%</strong></td>
               <td><span class="tb ts">🥉 Silver</span></td>
@@ -276,7 +296,7 @@ select:focus,input:focus{border-color:var(--teal)}
             </tr>
             <tr>
               <td><span class="rk ro">8</span></td>
-              <td>Jennifer Park</td><td>Americas</td>
+              <td>Demo Seller 08</td><td>Northstar</td>
               <td>$900K</td><td>$855K</td>
               <td><strong style="color:#505050">95%</strong></td>
               <td><span class="tb ts">🥉 Silver</span></td>
@@ -284,7 +304,7 @@ select:focus,input:focus{border-color:var(--teal)}
             </tr>
             <tr>
               <td><span class="rk ro">9</span></td>
-              <td>James Bennett</td><td>EMEA</td>
+              <td>Demo Seller 09</td><td>Aurora</td>
               <td>$750K</td><td>$698K</td>
               <td><strong style="color:#505050">93%</strong></td>
               <td><span class="tb ts">🥉 Silver</span></td>
@@ -292,7 +312,7 @@ select:focus,input:focus{border-color:var(--teal)}
             </tr>
             <tr>
               <td><span class="rk ro">10</span></td>
-              <td>Petra Kovacs</td><td>EMEA</td>
+              <td>Demo Seller 10</td><td>Aurora</td>
               <td>$700K</td><td>$638K</td>
               <td><strong style="color:#505050">91%</strong></td>
               <td><span class="tb ts">🥉 Silver</span></td>
@@ -300,7 +320,7 @@ select:focus,input:focus{border-color:var(--teal)}
             </tr>
             <tr>
               <td><span class="rk ro">11</span></td>
-              <td>Priya Singh</td><td>APJ</td>
+              <td>Demo Seller 11</td><td>Summit</td>
               <td>$600K</td><td>$516K</td>
               <td><strong style="color:#505050">86%</strong></td>
               <td><span class="tb ts">🥉 Silver</span></td>
@@ -308,20 +328,20 @@ select:focus,input:focus{border-color:var(--teal)}
             </tr>
             <tr style="background:#fff8f8">
               <td><span class="rk ro">12</span></td>
-              <td>David Torres</td><td>Americas</td>
+              <td>Demo Seller 12</td><td>Northstar</td>
               <td>$800K</td><td>$624K</td>
               <td><strong style="color:#c62828">78%</strong></td>
               <td><span class="tb tr">🔴 Bronze</span></td>
               <td><span class="wd">▼ −4%</span></td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="bubble-section">
         <h4 style="margin:16px 0 8px;font-size:13px;font-weight:700;color:#0f4c5c;">🔥 On the Bubble</h4>
-        <div class="bubble-item">Marcus Williams is 7% from Platinum — $56K remaining</div>
-        <div class="bubble-item warning">⚠️ David Torres needs $144K to reach Silver — critical pipeline gap</div>
+        <div class="bubble-item">Demo Seller 04 is 7% from Platinum — $56K remaining</div>
+        <div class="bubble-item warning">⚠️ Demo Seller 12 needs $176K to reach Silver — critical pipeline gap</div>
       </div>
     </div>
 
@@ -356,9 +376,9 @@ select:focus,input:focus{border-color:var(--teal)}
         <div style="display:flex;flex-direction:column;gap:10px">
           <div>
             <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
-              <span>Team Attainment</span><strong>101%</strong>
+              <span>Team Attainment</span><strong>102%</strong>
             </div>
-            <div class="pb"><div class="pf" style="width:101%;background:#0f4c5c"></div></div>
+            <div class="pb"><div class="pf" style="width:100%;background:#0f4c5c"></div></div>
           </div>
           <div>
             <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
@@ -376,7 +396,7 @@ select:focus,input:focus{border-color:var(--teal)}
               <span>Total Actuals</span><strong>$9.36M</strong>
             </div>
           </div>
-          <div class="al al-w" style="font-size:12px">⚠️ David Torres at 78% with 12 days remaining — intervention required</div>
+          <div class="al al-w" style="font-size:12px">⚠️ Demo Seller 12 at 78% with 12 days remaining — intervention required</div>
         </div>
       </div>
     </div>
@@ -384,9 +404,9 @@ select:focus,input:focus{border-color:var(--teal)}
 
   <div class="milestones">
     <h4>🏆 Quarter Milestones</h4>
-    <div class="milestone-item">🥇 Sarah Chen — First to reach 120% this quarter</div>
-    <div class="milestone-item">⚡ Klaus Weber — 5 deals closed in a single week (W34)</div>
-    <div class="milestone-item">🎯 Kenji Yamamoto — 3 consecutive quarters above 100%</div>
+    <div class="milestone-item">🥇 Demo Seller 01 — First to reach 120% this quarter</div>
+    <div class="milestone-item">⚡ Demo Seller 02 — 5 deals closed in a single week (W34)</div>
+    <div class="milestone-item">🎯 Demo Seller 03 — 3 consecutive quarters above 100%</div>
   </div>
 </section>
 
@@ -400,18 +420,18 @@ select:focus,input:focus{border-color:var(--teal)}
     <div style="display:flex;align-items:center;gap:10px">
       <span class="ss">Select seller:</span>
       <select id="seller-select" onchange="updateScorecard(this.value)">
-        <option value="sarah-chen">Sarah Chen</option>
-        <option value="klaus-weber">Klaus Weber</option>
-        <option value="kenji-yamamoto">Kenji Yamamoto</option>
-        <option value="marcus-williams">Marcus Williams</option>
-        <option value="raj-patel">Raj Patel</option>
-        <option value="marie-dupont">Marie Dupont</option>
-        <option value="ana-lima">Ana Lima</option>
-        <option value="jennifer-park">Jennifer Park</option>
-        <option value="james-bennett">James Bennett</option>
-        <option value="petra-kovacs">Petra Kovacs</option>
-        <option value="priya-singh">Priya Singh</option>
-        <option value="david-torres">David Torres</option>
+        <option value="sarah-chen">Demo Seller 01</option>
+        <option value="klaus-weber">Demo Seller 02</option>
+        <option value="kenji-yamamoto">Demo Seller 03</option>
+        <option value="marcus-williams">Demo Seller 04</option>
+        <option value="raj-patel">Demo Seller 05</option>
+        <option value="marie-dupont">Demo Seller 06</option>
+        <option value="ana-lima">Demo Seller 07</option>
+        <option value="jennifer-park">Demo Seller 08</option>
+        <option value="james-bennett">Demo Seller 09</option>
+        <option value="petra-kovacs">Demo Seller 10</option>
+        <option value="priya-singh">Demo Seller 11</option>
+        <option value="david-torres">Demo Seller 12</option>
       </select>
     </div>
   </div>
@@ -430,7 +450,7 @@ select:focus,input:focus{border-color:var(--teal)}
           <div id="coverage-val" style="font-size:42px;font-weight:900;color:#2e7d32">3.0x</div>
           <div>
             <div id="coverage-lbl" style="font-size:13px;color:var(--muted)">Pipeline $2.4M vs. Remaining Quota</div>
-            <div class="al al-s" style="margin:6px 0 0;padding:6px 12px;font-size:12px">✅ Coverage above 2.5x benchmark</div>
+            <div id="coverage-status" class="al" style="margin:6px 0 0;padding:6px 12px;font-size:12px"></div>
           </div>
         </div>
       </div>
@@ -444,16 +464,16 @@ select:focus,input:focus{border-color:var(--teal)}
         <div class="mc"><div class="mc-lbl">Pipeline</div><div id="mc-pipeline" class="mc-val">$2.4M</div></div>
         <div class="mc"><div class="mc-lbl">Win Rate</div><div id="mc-winrate" class="mc-val">34%</div></div>
         <div class="mc"><div class="mc-lbl">Hygiene</div><div id="mc-hygiene" class="mc-val">81%</div></div>
-        <div class="mc"><div class="mc-lbl">Peer Rank</div><div id="mc-peerrank" class="mc-val" style="font-size:18px">#1 of 5 in Americas</div></div>
+        <div class="mc"><div class="mc-lbl">Peer Rank</div><div id="mc-peerrank" class="mc-val" style="font-size:18px">#1 of 5 in Northstar</div></div>
       </div>
 
       <!-- Open Opportunities -->
       <div class="card" style="margin-bottom:18px">
         <div class="card-title">Open Opportunities</div>
-        <table class="dt" id="opp-table">
+        <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt" id="opp-table">
           <thead><tr><th>Account</th><th>ARR</th><th>Stage</th><th>Close Date</th><th>Forecast</th></tr></thead>
           <tbody id="opp-tbody"></tbody>
-        </table>
+        </table></div>
       </div>
 
       <!-- Peer Comparison -->
@@ -468,7 +488,7 @@ select:focus,input:focus{border-color:var(--teal)}
         <div class="peer-row">
           <div class="peer-lbl">Region Avg Attainment</div>
           <div class="peer-wrap">
-            <div class="peer-bg"><div id="peer-att-avg" class="peer-fill" style="background:#888;width:67%">Americas 101%</div></div>
+            <div class="peer-bg"><div id="peer-att-avg" class="peer-fill" style="background:#888;width:67%">Northstar 101%</div></div>
           </div>
         </div>
         <div class="peer-row" style="margin-top:12px">
@@ -499,13 +519,13 @@ select:focus,input:focus{border-color:var(--teal)}
   </div>
 
   <div class="card" style="padding:0;overflow:hidden;margin-bottom:18px">
-    <table class="dt">
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
       <thead>
         <tr><th>Manager</th><th>Region</th><th>Team Size</th><th>Total Quota</th><th>Total Actuals</th><th>Team Att%</th><th>Win Rate</th><th>Status</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>Jennifer Brooks</strong></td><td>Americas</td><td>4 sellers</td>
+          <td><strong>Demo Seller 35</strong></td><td>Northstar</td><td>4 sellers</td>
           <td>$3.20M</td><td>$3.02M</td>
           <td><strong style="color:#8a6200">94%</strong>
             <div class="pb" style="width:120px;margin-top:4px"><div class="pf" style="width:94%;background:#ffd700"></div></div>
@@ -514,7 +534,7 @@ select:focus,input:focus{border-color:var(--teal)}
           <td><span class="rfw rf">⚠️ At-Risk Seller</span></td>
         </tr>
         <tr>
-          <td><strong>Thomas Schmidt</strong></td><td>EMEA</td><td>4 sellers</td>
+          <td><strong>Demo Seller 36</strong></td><td>Aurora</td><td>4 sellers</td>
           <td>$3.15M</td><td>$3.22M</td>
           <td><strong style="color:#2e7d32">102%</strong>
             <div class="pb" style="width:120px;margin-top:4px"><div class="pf" style="width:100%;background:#2e7d32"></div></div>
@@ -523,7 +543,7 @@ select:focus,input:focus{border-color:var(--teal)}
           <td><span class="tb tg">✅ On Track</span></td>
         </tr>
         <tr>
-          <td><strong>Yuki Tanaka</strong></td><td>APJ</td><td>3 sellers</td>
+          <td><strong>Demo Seller 37</strong></td><td>Summit</td><td>3 sellers</td>
           <td>$2.05M</td><td>$2.12M</td>
           <td><strong style="color:#2e7d32">103%</strong>
             <div class="pb" style="width:120px;margin-top:4px"><div class="pf" style="width:100%;background:#2e7d32"></div></div>
@@ -532,23 +552,23 @@ select:focus,input:focus{border-color:var(--teal)}
           <td><span class="tb tg">✅ On Track</span></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="g2">
     <div class="card">
       <div class="card-title">🚨 Risk Flags</div>
       <div class="al al-d">
-        <strong>David Torres (Americas — Jennifer Brooks' team)</strong><br>
-        78% attainment · Pipeline coverage 1.2x (below 2.5x benchmark) · $144K gap to 100% · 12 days remaining.<br>
+        <strong>Demo Seller 12 (Northstar — Demo Seller 35' team)</strong><br>
+        78% attainment · Pipeline coverage 1.2x (below 2.5x benchmark) · $176K gap to 100% · 12 days remaining.<br>
         <strong>Action required: immediate coaching intervention and pull-in plan.</strong>
       </div>
       <div class="al al-w">
-        <strong>Jennifer Park (Americas)</strong><br>
+        <strong>Demo Seller 08 (Northstar)</strong><br>
         95% attainment — borderline Silver. Pipeline cover 2.1x. At risk of missing 100% without late-quarter push.
       </div>
       <div class="al al-i">
-        <strong>Priya Singh (APJ)</strong><br>
+        <strong>Demo Seller 11 (Summit)</strong><br>
         86% attainment — monitoring required. 3 deals at Propose stage with close dates in Q4.
       </div>
     </div>
@@ -556,21 +576,21 @@ select:focus,input:focus{border-color:var(--teal)}
     <div class="card">
       <div class="card-title">Team Win Rate vs. Benchmark (30%)</div>
       <div class="peer-row">
-        <div class="peer-lbl">Jennifer Brooks' Team (Americas)</div>
+        <div class="peer-lbl">Demo Seller 35' Team (Northstar)</div>
         <div class="peer-wrap">
           <div class="peer-bg"><div class="peer-fill" style="background:#e08a45;width:47%">28%</div></div>
           <div class="peer-num">28%</div>
         </div>
       </div>
       <div class="peer-row">
-        <div class="peer-lbl">Thomas Schmidt's Team (EMEA)</div>
+        <div class="peer-lbl">Demo Seller 36's Team (Aurora)</div>
         <div class="peer-wrap">
           <div class="peer-bg"><div class="peer-fill" style="background:#0f4c5c;width:50%">30%</div></div>
           <div class="peer-num">30%</div>
         </div>
       </div>
       <div class="peer-row">
-        <div class="peer-lbl">Yuki Tanaka's Team (APJ)</div>
+        <div class="peer-lbl">Demo Seller 37's Team (Summit)</div>
         <div class="peer-wrap">
           <div class="peer-bg"><div class="peer-fill" style="background:#2e7d32;width:62%">37%</div></div>
           <div class="peer-num">37%</div>
@@ -599,19 +619,19 @@ select:focus,input:focus{border-color:var(--teal)}
 
   <div class="g3" style="margin-bottom:20px">
     <div class="rc">
-      <div class="rc-name">🌎 Americas</div>
+      <div class="rc-name">🌎 Northstar</div>
       <div class="rc-att">101%</div>
       <div class="rc-sub">5 sellers · $4.00M quota · $4.04M actuals</div>
       <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
         <span class="tb tg">🥇 Platinum 1</span>
-        <span class="tb tg">🥈 Gold 2</span>
-        <span class="tb ts">🥉 Silver 1</span>
+        <span class="tb tg">🥈 Gold 1</span>
+        <span class="tb ts">🥉 Silver 2</span>
         <span class="tb tr">🔴 Bronze 1</span>
       </div>
     </div>
     <div class="rc">
-      <div class="rc-name">🌍 EMEA</div>
-      <div class="rc-att" style="color:#2e7d32">103%</div>
+      <div class="rc-name">🌍 Aurora</div>
+      <div class="rc-att" style="color:#2e7d32">102%</div>
       <div class="rc-sub">4 sellers · $3.15M quota · $3.22M actuals</div>
       <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
         <span class="tb tg">🥈 Gold 2</span>
@@ -619,7 +639,7 @@ select:focus,input:focus{border-color:var(--teal)}
       </div>
     </div>
     <div class="rc">
-      <div class="rc-name">🌏 APJ</div>
+      <div class="rc-name">🌏 Summit</div>
       <div class="rc-att" style="color:#2e7d32">103%</div>
       <div class="rc-sub">3 sellers · $2.05M quota · $2.12M actuals</div>
       <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
@@ -646,71 +666,71 @@ select:focus,input:focus{border-color:var(--teal)}
       <text x="75" y="103" font-size="10" fill="#888" text-anchor="end">100%</text>
       <text x="75" y="143" font-size="10" fill="#888" text-anchor="end">90%</text>
       <text x="75" y="183" font-size="10" fill="#888" text-anchor="end">80%</text>
-      <!-- Americas bar: 101% → (101-80)/(120-80)*160 = 21/40*160=84px height, top=100-84=16+20=...
+      <!-- Northstar bar: 101% → (101-80)/(120-80)*160 = 21/40*160=84px height, top=100-84=16+20=...
            Let's map: 80%=180, 120%=20; scale: (att-80)/40 * 160 = height from bottom (180)
-           Americas 101%: (21/40)*160=84, bar top = 180-84=96 height=84 -->
+           Northstar 101%: (21/40)*160=84, bar top = 180-84=96 height=84 -->
       <rect x="120" y="96" width="80" height="84" fill="#0f4c5c" rx="4"/>
       <text x="160" y="91" font-size="12" font-weight="800" fill="#0f4c5c" text-anchor="middle">101%</text>
-      <text x="160" y="198" font-size="12" fill="#555" text-anchor="middle">Americas</text>
-      <!-- EMEA 103%: (23/40)*160=92, top=180-92=88 -->
+      <text x="160" y="198" font-size="12" fill="#555" text-anchor="middle">Northstar</text>
+      <!-- Aurora 103%: (23/40)*160=92, top=180-92=88 -->
       <rect x="250" y="88" width="80" height="92" fill="#1a6b7f" rx="4"/>
-      <text x="290" y="83" font-size="12" font-weight="800" fill="#1a6b7f" text-anchor="middle">103%</text>
-      <text x="290" y="198" font-size="12" fill="#555" text-anchor="middle">EMEA</text>
-      <!-- APJ 103% -->
+      <text x="290" y="87" font-size="12" font-weight="800" fill="#1a6b7f" text-anchor="middle">102%</text>
+      <text x="290" y="198" font-size="12" fill="#555" text-anchor="middle">Aurora</text>
+      <!-- Summit 103% -->
       <rect x="380" y="88" width="80" height="92" fill="#f4a261" rx="4"/>
       <text x="420" y="83" font-size="12" font-weight="800" fill="#e08a45" text-anchor="middle">103%</text>
-      <text x="420" y="198" font-size="12" fill="#555" text-anchor="middle">APJ</text>
+      <text x="420" y="198" font-size="12" fill="#555" text-anchor="middle">Summit</text>
     </svg>
   </div>
 
   <div class="g3">
     <div class="card">
-      <div class="card-title">Americas — Seller Breakdown</div>
-      <table class="dt">
+      <div class="card-title">Northstar — Seller Breakdown</div>
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
         <thead><tr><th>Seller</th><th>Att%</th><th>Tier</th></tr></thead>
         <tbody>
-          <tr><td>Sarah Chen</td><td><strong>128%</strong></td><td><span class="tb tp">🥇</span></td></tr>
-          <tr><td>Marcus Williams</td><td><strong>108%</strong></td><td><span class="tb tg">🥈</span></td></tr>
-          <tr><td>Ana Lima</td><td><strong>96%</strong></td><td><span class="tb ts">🥉</span></td></tr>
-          <tr><td>Jennifer Park</td><td><strong>95%</strong></td><td><span class="tb ts">🥉</span></td></tr>
-          <tr><td>David Torres</td><td><strong style="color:#c62828">78%</strong></td><td><span class="tb tr">🔴</span></td></tr>
+          <tr><td>Demo Seller 01</td><td><strong>128%</strong></td><td><span class="tb tp">🥇</span></td></tr>
+          <tr><td>Demo Seller 04</td><td><strong>108%</strong></td><td><span class="tb tg">🥈</span></td></tr>
+          <tr><td>Demo Seller 07</td><td><strong>96%</strong></td><td><span class="tb ts">🥉</span></td></tr>
+          <tr><td>Demo Seller 08</td><td><strong>95%</strong></td><td><span class="tb ts">🥉</span></td></tr>
+          <tr><td>Demo Seller 12</td><td><strong style="color:#c62828">78%</strong></td><td><span class="tb tr">🔴</span></td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
     <div class="card">
-      <div class="card-title">EMEA — Seller Breakdown</div>
-      <table class="dt">
+      <div class="card-title">Aurora — Seller Breakdown</div>
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
         <thead><tr><th>Seller</th><th>Att%</th><th>Tier</th></tr></thead>
         <tbody>
-          <tr><td>Klaus Weber</td><td><strong>118%</strong></td><td><span class="tb tg">🥈</span></td></tr>
-          <tr><td>Marie Dupont</td><td><strong>103%</strong></td><td><span class="tb tg">🥈</span></td></tr>
-          <tr><td>James Bennett</td><td><strong>93%</strong></td><td><span class="tb ts">🥉</span></td></tr>
-          <tr><td>Petra Kovacs</td><td><strong>91%</strong></td><td><span class="tb ts">🥉</span></td></tr>
+          <tr><td>Demo Seller 02</td><td><strong>118%</strong></td><td><span class="tb tg">🥈</span></td></tr>
+          <tr><td>Demo Seller 06</td><td><strong>103%</strong></td><td><span class="tb tg">🥈</span></td></tr>
+          <tr><td>Demo Seller 09</td><td><strong>93%</strong></td><td><span class="tb ts">🥉</span></td></tr>
+          <tr><td>Demo Seller 10</td><td><strong>91%</strong></td><td><span class="tb ts">🥉</span></td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
     <div class="card">
-      <div class="card-title">APJ — Seller Breakdown</div>
-      <table class="dt">
+      <div class="card-title">Summit — Seller Breakdown</div>
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
         <thead><tr><th>Seller</th><th>Att%</th><th>Tier</th></tr></thead>
         <tbody>
-          <tr><td>Kenji Yamamoto</td><td><strong>115%</strong></td><td><span class="tb tg">🥈</span></td></tr>
-          <tr><td>Raj Patel</td><td><strong>106%</strong></td><td><span class="tb tg">🥈</span></td></tr>
-          <tr><td>Priya Singh</td><td><strong>86%</strong></td><td><span class="tb ts">🥉</span></td></tr>
+          <tr><td>Demo Seller 03</td><td><strong>115%</strong></td><td><span class="tb tg">🥈</span></td></tr>
+          <tr><td>Demo Seller 05</td><td><strong>106%</strong></td><td><span class="tb tg">🥈</span></td></tr>
+          <tr><td>Demo Seller 11</td><td><strong>86%</strong></td><td><span class="tb ts">🥉</span></td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 </section>
 
 
 <!-- ════════════════════════════════════════
-     TAB 5 — SELLER DETAILS (Sarah Chen)
+     TAB 5 — SELLER DETAILS (Demo Seller 01)
 ════════════════════════════════════════ -->
 <section id="tab-details" class="tab-panel">
   <div class="sh">
-    <div class="st">Seller Details — Sarah Chen 🥇</div>
-    <div class="ss">Americas · Q3 FY2026 · Platinum</div>
+    <div class="st">Seller Details — Demo Seller 01 🥇</div>
+    <div class="ss">Northstar · Q3 FY2026 · Platinum</div>
   </div>
 
   <div class="g5" style="margin-bottom:18px">
@@ -725,7 +745,7 @@ select:focus,input:focus{border-color:var(--teal)}
     <div>
       <div class="card" style="padding:0;overflow:hidden">
         <div style="padding:14px 16px;font-size:12px;font-weight:800;color:var(--teal);text-transform:uppercase;border-bottom:1px solid var(--border)">All Open Deals (8)</div>
-        <table class="dt">
+        <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
           <thead><tr><th>Account</th><th>ARR</th><th>Stage</th><th>Close Date</th><th>Forecast</th></tr></thead>
           <tbody>
             <tr><td><strong>CloudTech Enterprise</strong></td><td>$340K</td><td>Negotiate</td><td>Sep 28</td><td><span style="color:#2e7d32;font-weight:700">Commit</span></td></tr>
@@ -737,13 +757,13 @@ select:focus,input:focus{border-color:var(--teal)}
             <tr><td><strong>StratoManufacture</strong></td><td>$230K</td><td>Solution</td><td>Oct 22</td><td><span style="color:#0f4c5c;font-weight:700">Best Case</span></td></tr>
             <tr><td><strong>OceanPort Logistics</strong></td><td>$120K</td><td>Validate</td><td>Sep 30</td><td><span style="color:#2e7d32;font-weight:700">Commit</span></td></tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
     </div>
     <div>
       <div class="card" style="padding:0;overflow:hidden">
         <div style="padding:14px 16px;font-size:12px;font-weight:800;color:var(--teal);text-transform:uppercase;border-bottom:1px solid var(--border)">Closed Won This Quarter (6 deals · $824K)</div>
-        <table class="dt">
+        <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
           <thead><tr><th>Account</th><th>ARR</th><th>Close Date</th></tr></thead>
           <tbody>
             <tr><td><strong>AlphaStream Corp</strong></td><td>$185K</td><td>Jul 14</td></tr>
@@ -753,7 +773,7 @@ select:focus,input:focus{border-color:var(--teal)}
             <tr><td><strong>GlobeShip Inc.</strong></td><td>$115K</td><td>Sep 3</td></tr>
             <tr><td><strong>TerraEnergy LLC</strong></td><td>$75K</td><td>Sep 11</td></tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
       <div class="al al-s" style="margin-top:14px">
         🏆 Sarah is 28% above quota with 12 days remaining. No pull-in required — 3 commits totaling $548K in pipeline.
@@ -873,9 +893,9 @@ select:focus,input:focus{border-color:var(--teal)}
       <line x1="70" y1="120" x2="590" y2="120" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="5,4"/>
       <text x="592" y="118" font-size="9" fill="#aaa">30%</text>
       <!-- Scale: x: ($sz-50K)/200K * 520 + 70; y: 220 - (wr/60)*200
-           Sarah Chen: $170K WR34% → x=70+(120/200)*520=382, y=220-(34/60)*200=107 -->
+           Demo Seller 01: $170K WR34% → x=70+(120/200)*520=382, y=220-(34/60)*200=107 -->
       <!-- Data points: deal_size, win_rate, name, color -->
-      <!-- Sarah Chen: 170K, 34% → x=382, y=107 -->
+      <!-- Demo Seller 01: 170K, 34% → x=382, y=107 -->
       <circle cx="382" cy="107" r="9" fill="#0f4c5c" opacity=".85"/>
       <text x="382" y="96" font-size="9" fill="#0f4c5c" text-anchor="middle">Sarah</text>
       <!-- Klaus: 200K, 29% → x=(150/200)*520+70=459, y=220-(29/60)*200=123 -->
@@ -931,11 +951,11 @@ select:focus,input:focus{border-color:var(--teal)}
       <div class="card">
         <div class="card-title">Seller</div>
         <select style="width:100%;margin-bottom:16px">
-          <option>Sarah Chen — Americas</option>
-          <option>Klaus Weber — EMEA</option>
-          <option>David Torres — Americas</option>
+          <option>Demo Seller 01 — Northstar</option>
+          <option>Demo Seller 02 — Aurora</option>
+          <option>Demo Seller 12 — Northstar</option>
         </select>
-        <div class="al al-s">✅ Declaration submitted by Sarah Chen — Week 35</div>
+        <div class="al al-s">✅ Declaration submitted by Demo Seller 01 — Week 35</div>
         <div style="margin-top:12px;display:flex;align-items:center;gap:8px">
           <span class="lock">🔒 Declarations locked after Week 8 of quarter</span>
         </div>
@@ -988,13 +1008,13 @@ select:focus,input:focus{border-color:var(--teal)}
             <span style="font-size:22px;font-weight:900;color:#0f4c5c">128% 🥇</span>
           </div>
           <div class="al al-s">Sarah is already above 100% — declaration is informational and supports upside forecasting.</div>
-          <button class="btn btn-p" style="width:100%;padding:12px;font-size:14px" onclick="alert('Declaration saved for Sarah Chen — Week 35')">Submit Declaration</button>
+          <button class="btn btn-p" style="width:100%;padding:12px;font-size:14px" onclick="alert('Declaration saved for Demo Seller 01 — Week 35')">Submit Declaration</button>
         </div>
       </div>
 
       <div class="card">
         <div class="card-title">Declaration History</div>
-        <table class="dt">
+        <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
           <thead><tr><th>Week</th><th>Committed</th><th>Actuals at Lock</th><th>Status</th></tr></thead>
           <tbody>
             <tr><td>W32</td><td>$680K</td><td>$590K</td><td><span class="sa s-act">Closed</span></td></tr>
@@ -1002,7 +1022,7 @@ select:focus,input:focus{border-color:var(--teal)}
             <tr><td>W34</td><td>$810K</td><td>$880K</td><td><span class="sa s-act">Closed</span></td></tr>
             <tr><td>W35</td><td>$549K</td><td>—</td><td><span class="sa" style="background:#e8f4f8;color:#0f4c5c">Active</span></td></tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
     </div>
   </div>
@@ -1014,13 +1034,13 @@ select:focus,input:focus{border-color:var(--teal)}
 ════════════════════════════════════════ -->
 <section id="tab-recovery" class="tab-panel">
   <div class="sh">
-    <div class="st">🚨 Plan to Recover — David Torres</div>
-    <div class="ss">Americas · 78% attainment · 12 days remaining</div>
+    <div class="st">🚨 Plan to Recover — Demo Seller 12</div>
+    <div class="ss">Northstar · 78% attainment · 12 days remaining</div>
   </div>
 
   <div class="g5" style="margin-bottom:18px">
     <div class="mc"><div class="mc-lbl">Attainment</div><div class="mc-val" style="color:#c62828">78%</div></div>
-    <div class="mc"><div class="mc-lbl">Gap to 100%</div><div class="mc-val" style="color:#c62828">$144K</div></div>
+    <div class="mc"><div class="mc-lbl">Gap to 100%</div><div class="mc-val" style="color:#c62828">$176K</div></div>
     <div class="mc"><div class="mc-lbl">Pipeline Cover</div><div class="mc-val" style="color:#c62828">1.2x</div><div class="mc-sub">Below 2.5x benchmark</div></div>
     <div class="mc"><div class="mc-lbl">Recovery Confidence</div><div class="mc-val" style="color:#e08a45">58%</div></div>
     <div class="mc"><div class="mc-lbl">Days Remaining</div><div class="mc-val">12</div></div>
@@ -1035,27 +1055,27 @@ select:focus,input:focus{border-color:var(--teal)}
           <div style="height:100%;width:78%;background:linear-gradient(90deg,#c62828,#e57373);border-radius:10px;display:flex;align-items:center;padding-left:10px;font-size:12px;font-weight:700;color:#fff">78% ($624K actuals)</div>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)">
-          <span>$0</span><span style="color:#c62828;font-weight:700">← $144K gap →</span><span>$800K quota</span>
+          <span>$0</span><span style="color:#c62828;font-weight:700">← $176K gap →</span><span>$800K quota</span>
         </div>
       </div>
 
       <div class="card">
         <div class="card-title">Pull-In Candidates (Deals That Could Close Early)</div>
-        <table class="dt">
+        <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
           <thead><tr><th>Account</th><th>ARR</th><th>Stage</th><th>Accelerator</th><th>Probability</th></tr></thead>
           <tbody>
             <tr>
-              <td><strong>Coca-Cola LATAM</strong></td><td>$89K</td><td>Negotiate</td>
+              <td><strong>Demo Account 012 LATAM</strong></td><td>$89K</td><td>Negotiate</td>
               <td style="font-size:12px">Legal exception approval</td>
               <td><span style="color:#2e7d32;font-weight:700">72%</span></td>
             </tr>
             <tr>
-              <td><strong>ServiceNow EMEA</strong></td><td>$67K</td><td>Propose</td>
+              <td><strong>Demo Account 038 Aurora</strong></td><td>$67K</td><td>Propose</td>
               <td style="font-size:12px">Price concession + exec sponsor</td>
               <td><span style="color:#e08a45;font-weight:700">45%</span></td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
         <div style="margin-top:10px;font-size:12px;color:var(--muted)">Combined pull-in potential: <strong>$156K</strong> — sufficient to close gap if both land</div>
       </div>
     </div>
@@ -1080,12 +1100,12 @@ select:focus,input:focus{border-color:var(--teal)}
         <div class="card-title">Action Log</div>
         <div style="display:flex;flex-direction:column;gap:10px">
           <div style="padding:10px;background:var(--bg);border-radius:8px;border-left:3px solid var(--teal)">
-            <div style="font-size:11px;color:var(--muted)">Sep 17 — Jennifer Brooks (Manager)</div>
-            <div style="font-size:13px;margin-top:3px">David committed to accelerate Coca-Cola LATAM by leveraging legal exception pathway. Exec sponsor engaged.</div>
+            <div style="font-size:11px;color:var(--muted)">Sep 17 — Demo Seller 35 (Manager)</div>
+            <div style="font-size:13px;margin-top:3px">David committed to accelerate Demo Account 012 LATAM by leveraging legal exception pathway. Exec sponsor engaged.</div>
           </div>
           <div style="padding:10px;background:var(--bg);border-radius:8px;border-left:3px solid var(--acc)">
-            <div style="font-size:11px;color:var(--muted)">Sep 15 — Yuki Tanaka (Deal Assist)</div>
-            <div style="font-size:13px;margin-top:3px">ServiceNow price concession approved at 8% discount. Awaiting customer signature.</div>
+            <div style="font-size:11px;color:var(--muted)">Sep 15 — Demo Seller 37 (Deal Assist)</div>
+            <div style="font-size:13px;margin-top:3px">Demo Account 038 price concession approved at 8% discount. Awaiting customer signature.</div>
           </div>
           <div style="padding:10px;background:var(--bg);border-radius:8px;border-left:3px solid #c62828">
             <div style="font-size:11px;color:var(--muted)">Sep 14 — Flag raised by SI system</div>
@@ -1093,7 +1113,7 @@ select:focus,input:focus{border-color:var(--teal)}
           </div>
         </div>
         <div class="al al-w" style="margin-top:12px">
-          ⚠️ If Coca-Cola LATAM slips, David will end Q3 below 80% — triggering PIP review per compensation policy.
+          ⚠️ If Demo Account 012 LATAM slips, David will end Q3 below 80% — triggering PIP review per compensation policy.
         </div>
       </div>
     </div>
@@ -1119,41 +1139,41 @@ select:focus,input:focus{border-color:var(--teal)}
   <div class="g2" style="align-items:start">
     <div class="card" style="padding:0;overflow:hidden">
       <div style="padding:14px 16px;font-size:12px;font-weight:800;color:var(--teal);text-transform:uppercase;border-bottom:1px solid var(--border)">Q3 FY2026 — Lost Deals (6)</div>
-      <table class="dt">
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
         <thead><tr><th>Account</th><th>ARR</th><th>Loss Reason</th><th>Competitor</th><th>Seller</th><th>Date</th></tr></thead>
         <tbody>
           <tr>
             <td><strong>TechCorp Global</strong></td><td>$180K</td>
             <td><span class="al al-d" style="margin:0;padding:2px 8px;display:inline-block;font-size:11px">Price</span></td>
-            <td>CloudMetrics Corp</td><td>Sarah Chen</td><td>Aug 15</td>
+            <td>CloudMetrics Corp</td><td>Demo Seller 01</td><td>Aug 15</td>
           </tr>
           <tr>
             <td><strong>ManuFacture Ltd</strong></td><td>$240K</td>
             <td><span class="al al-w" style="margin:0;padding:2px 8px;display:inline-block;font-size:11px">Product Gap</span></td>
-            <td>InfraCloud</td><td>Klaus Weber</td><td>Aug 22</td>
+            <td>InfraCloud</td><td>Demo Seller 02</td><td>Aug 22</td>
           </tr>
           <tr>
             <td><strong>RetailPlus Corp</strong></td><td>$95K</td>
             <td><span class="al al-d" style="margin:0;padding:2px 8px;display:inline-block;font-size:11px">Price</span></td>
-            <td>CloudMetrics Corp</td><td>Ana Lima</td><td>Jul 30</td>
+            <td>CloudMetrics Corp</td><td>Demo Seller 07</td><td>Jul 30</td>
           </tr>
           <tr>
             <td><strong>HealthData Inc.</strong></td><td>$165K</td>
             <td><span class="al al-i" style="margin:0;padding:2px 8px;display:inline-block;font-size:11px">No Decision</span></td>
-            <td>—</td><td>Jennifer Park</td><td>Sep 1</td>
+            <td>—</td><td>Demo Seller 08</td><td>Sep 1</td>
           </tr>
           <tr>
             <td><strong>GlobalShip Ltd</strong></td><td>$200K</td>
             <td><span class="al al-w" style="margin:0;padding:2px 8px;display:inline-block;font-size:11px">Product Gap</span></td>
-            <td>DataVault</td><td>David Torres</td><td>Aug 18</td>
+            <td>DataVault</td><td>Demo Seller 12</td><td>Aug 18</td>
           </tr>
           <tr>
             <td><strong>PayTech Solutions</strong></td><td>$140K</td>
             <td><span class="al al-d" style="margin:0;padding:2px 8px;display:inline-block;font-size:11px">Competition</span></td>
-            <td>CloudMetrics Corp</td><td>Raj Patel</td><td>Aug 28</td>
+            <td>CloudMetrics Corp</td><td>Demo Seller 05</td><td>Aug 28</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
     <div>
@@ -1177,14 +1197,14 @@ select:focus,input:focus{border-color:var(--teal)}
       </div>
       <div class="card">
         <div class="card-title">Competitor Intelligence</div>
-        <table class="dt">
-          <thead><tr><th>Competitor</th><th>Q3 Wins vs. Vantara</th><th>Avg Deal</th></tr></thead>
+        <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
+          <thead><tr><th>Competitor</th><th>Q3 Wins vs. Aurora Demo</th><th>Avg Deal</th></tr></thead>
           <tbody>
             <tr><td><strong>CloudMetrics Corp</strong></td><td><span class="rf">3 deals</span></td><td>$138K</td></tr>
             <tr><td><strong>InfraCloud</strong></td><td>1 deal</td><td>$240K</td></tr>
             <tr><td><strong>DataVault</strong></td><td>1 deal</td><td>$200K</td></tr>
           </tbody>
-        </table>
+        </table></div>
         <div class="al al-w" style="margin-top:12px">CloudMetrics Corp dominates Q3 losses — primary threat in price-sensitive mid-market. Product team notified.</div>
       </div>
     </div>
@@ -1204,48 +1224,48 @@ select:focus,input:focus{border-color:var(--teal)}
   <div class="al al-i" style="margin-bottom:16px">📌 Data quality note: Last synced from CRM: Week 36. Manager assignments reflect current org structure as of Q3 FY2026.</div>
 
   <div class="card" style="padding:0;overflow:hidden">
-    <table class="dt">
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
       <thead>
         <tr><th>#</th><th>Name</th><th>Email</th><th>Region</th><th>Role</th><th>Manager</th><th>Tier</th><th>Status</th></tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td><strong>Sarah Chen</strong></td><td>sarah.chen@vantara-fictional.demo</td><td>Americas</td><td>Senior AE</td><td>Jennifer Brooks</td><td><span class="tb tp">🥇 Platinum</span></td><td><span class="sa s-act">Active</span></td></tr>
-        <tr><td>2</td><td><strong>Klaus Weber</strong></td><td>klaus.weber@vantara-fictional.demo</td><td>EMEA</td><td>Senior AE</td><td>Thomas Schmidt</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
-        <tr><td>3</td><td><strong>Kenji Yamamoto</strong></td><td>kenji.yamamoto@vantara-fictional.demo</td><td>APJ</td><td>Senior AE</td><td>Yuki Tanaka</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
-        <tr><td>4</td><td><strong>Marcus Williams</strong></td><td>marcus.williams@vantara-fictional.demo</td><td>Americas</td><td>AE</td><td>Jennifer Brooks</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
-        <tr><td>5</td><td><strong>Raj Patel</strong></td><td>raj.patel@vantara-fictional.demo</td><td>APJ</td><td>AE</td><td>Yuki Tanaka</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
-        <tr><td>6</td><td><strong>Marie Dupont</strong></td><td>marie.dupont@vantara-fictional.demo</td><td>EMEA</td><td>AE</td><td>Thomas Schmidt</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
-        <tr><td>7</td><td><strong>Ana Lima</strong></td><td>ana.lima@vantara-fictional.demo</td><td>Americas</td><td>AE</td><td>Jennifer Brooks</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-act">Active</span></td></tr>
-        <tr><td>8</td><td><strong>Jennifer Park</strong></td><td>jennifer.park@vantara-fictional.demo</td><td>Americas</td><td>AE</td><td>Jennifer Brooks</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-act">Active</span></td></tr>
-        <tr><td>9</td><td><strong>James Bennett</strong></td><td>james.bennett@vantara-fictional.demo</td><td>EMEA</td><td>AE</td><td>Thomas Schmidt</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-act">Active</span></td></tr>
-        <tr><td>10</td><td><strong>Petra Kovacs</strong></td><td>petra.kovacs@vantara-fictional.demo</td><td>EMEA</td><td>AE</td><td>Thomas Schmidt</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-lv">Leave</span></td></tr>
-        <tr><td>11</td><td><strong>Priya Singh</strong></td><td>priya.singh@vantara-fictional.demo</td><td>APJ</td><td>AE</td><td>Yuki Tanaka</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-act">Active</span></td></tr>
-        <tr><td>12</td><td><strong>David Torres</strong></td><td>david.torres@vantara-fictional.demo</td><td>Americas</td><td>AE</td><td>Jennifer Brooks</td><td><span class="tb tr">🔴 Bronze</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>1</td><td><strong>Demo Seller 01</strong></td><td>identity49@example.invalid</td><td>Northstar</td><td>Senior AE</td><td>Demo Seller 35</td><td><span class="tb tp">🥇 Platinum</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>2</td><td><strong>Demo Seller 02</strong></td><td>identity28@example.invalid</td><td>Aurora</td><td>Senior AE</td><td>Demo Seller 36</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>3</td><td><strong>Demo Seller 03</strong></td><td>identity27@example.invalid</td><td>Summit</td><td>Senior AE</td><td>Demo Seller 37</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>4</td><td><strong>Demo Seller 04</strong></td><td>identity33@example.invalid</td><td>Northstar</td><td>AE</td><td>Demo Seller 35</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>5</td><td><strong>Demo Seller 05</strong></td><td>identity45@example.invalid</td><td>Summit</td><td>AE</td><td>Demo Seller 37</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>6</td><td><strong>Demo Seller 06</strong></td><td>identity34@example.invalid</td><td>Aurora</td><td>AE</td><td>Demo Seller 36</td><td><span class="tb tg">🥈 Gold</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>7</td><td><strong>Demo Seller 07</strong></td><td>identity04@example.invalid</td><td>Northstar</td><td>AE</td><td>Demo Seller 35</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>8</td><td><strong>Demo Seller 08</strong></td><td>identity24@example.invalid</td><td>Northstar</td><td>AE</td><td>Demo Seller 35</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>9</td><td><strong>Demo Seller 09</strong></td><td>identity21@example.invalid</td><td>Aurora</td><td>AE</td><td>Demo Seller 36</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>10</td><td><strong>Demo Seller 10</strong></td><td>identity41@example.invalid</td><td>Aurora</td><td>AE</td><td>Demo Seller 36</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-lv">Leave</span></td></tr>
+        <tr><td>11</td><td><strong>Demo Seller 11</strong></td><td>identity42@example.invalid</td><td>Summit</td><td>AE</td><td>Demo Seller 37</td><td><span class="tb ts">🥉 Silver</span></td><td><span class="sa s-act">Active</span></td></tr>
+        <tr><td>12</td><td><strong>Demo Seller 12</strong></td><td>daviidentity10@example.invalid</td><td>Northstar</td><td>AE</td><td>Demo Seller 35</td><td><span class="tb tr">🔴 Bronze</span></td><td><span class="sa s-act">Active</span></td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="g3" style="margin-top:18px">
     <div class="card"><div class="card-title">Managers</div>
       <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>Jennifer Brooks</strong><br><span style="font-size:12px;color:var(--muted)">jennifer.brooks@vantara-fictional.demo · Americas · 4 direct reports</span></div>
-        <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>Thomas Schmidt</strong><br><span style="font-size:12px;color:var(--muted)">thomas.schmidt@vantara-fictional.demo · EMEA · 4 direct reports</span></div>
-        <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>Yuki Tanaka</strong><br><span style="font-size:12px;color:var(--muted)">yuki.tanaka@vantara-fictional.demo · APJ · 3 direct reports</span></div>
+        <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>Demo Seller 35</strong><br><span style="font-size:12px;color:var(--muted)">identity23@example.invalid · Northstar · 4 direct reports</span></div>
+        <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>Demo Seller 36</strong><br><span style="font-size:12px;color:var(--muted)">identity52@example.invalid · Aurora · 4 direct reports</span></div>
+        <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>Demo Seller 37</strong><br><span style="font-size:12px;color:var(--muted)">identity56@example.invalid · Summit · 3 direct reports</span></div>
       </div>
     </div>
     <div class="card"><div class="card-title">Headcount by Region</div>
       <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
-        <div style="display:flex;justify-content:space-between"><span>Americas</span><strong>5 sellers</strong></div>
+        <div style="display:flex;justify-content:space-between"><span>Northstar</span><strong>5 sellers</strong></div>
         <div class="pb"><div class="pf" style="width:42%;background:var(--teal)"></div></div>
-        <div style="display:flex;justify-content:space-between"><span>EMEA</span><strong>4 sellers</strong></div>
+        <div style="display:flex;justify-content:space-between"><span>Aurora</span><strong>4 sellers</strong></div>
         <div class="pb"><div class="pf" style="width:33%;background:#1a6b7f"></div></div>
-        <div style="display:flex;justify-content:space-between"><span>APJ</span><strong>3 sellers</strong></div>
+        <div style="display:flex;justify-content:space-between"><span>Summit</span><strong>3 sellers</strong></div>
         <div class="pb"><div class="pf" style="width:25%;background:var(--acc)"></div></div>
       </div>
     </div>
     <div class="card"><div class="card-title">Active vs. Leave</div>
       <div style="font-size:42px;font-weight:900;color:var(--teal);text-align:center;padding:10px 0">11 <span style="font-size:16px;color:var(--muted)">Active</span></div>
-      <div style="text-align:center;font-size:14px;color:#e08a45">1 <span style="color:var(--muted)">on Leave</span> (Petra Kovacs)</div>
+      <div style="text-align:center;font-size:14px;color:#e08a45">1 <span style="color:var(--muted)">on Leave</span> (Demo Seller 10)</div>
     </div>
   </div>
 </section>
@@ -1289,7 +1309,7 @@ select:focus,input:focus{border-color:var(--teal)}
   <div class="card">
     <div class="card-title">Capacity Model — 5-Quarter View</div>
     <div style="overflow-x:auto">
-      <table class="dt">
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
         <thead>
           <tr>
             <th>Metric</th>
@@ -1338,7 +1358,7 @@ select:focus,input:focus{border-color:var(--teal)}
             <td style="text-align:center"><span style="background:#fff3cd;color:#856404;padding:2px 9px;border-radius:10px;font-size:11px;font-weight:800">&#9888; Under</span></td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 
@@ -1391,43 +1411,9 @@ select:focus,input:focus{border-color:var(--teal)}
 
     <!-- Attainment Distribution Histogram -->
     <div class="cc">
-      <div class="ct">Attainment Distribution — Current Quarter</div>
-      <svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg" style="width:100%">
-        <line x1="50" y1="20" x2="50" y2="162" stroke="#e0e0e0" stroke-width="1"/>
-        <line x1="50" y1="162" x2="400" y2="162" stroke="#e0e0e0" stroke-width="1"/>
-        <line x1="50" y1="127" x2="400" y2="127" stroke="#ececec" stroke-width="0.7" stroke-dasharray="4,3"/>
-        <line x1="50" y1="92" x2="400" y2="92" stroke="#ececec" stroke-width="0.7" stroke-dasharray="4,3"/>
-        <line x1="50" y1="57" x2="400" y2="57" stroke="#ececec" stroke-width="0.7" stroke-dasharray="4,3"/>
-        <line x1="50" y1="22" x2="400" y2="22" stroke="#ececec" stroke-width="0.7" stroke-dasharray="4,3"/>
-        <text x="44" y="165" text-anchor="end" font-size="9" fill="#bbb">0</text>
-        <text x="44" y="130" text-anchor="end" font-size="9" fill="#bbb">1</text>
-        <text x="44" y="95" text-anchor="end" font-size="9" fill="#bbb">2</text>
-        <text x="44" y="60" text-anchor="end" font-size="9" fill="#bbb">3</text>
-        <text x="44" y="25" text-anchor="end" font-size="9" fill="#bbb">4</text>
-        <text x="12" y="95" text-anchor="middle" font-size="9" fill="#999" transform="rotate(-90 12 95)"># Reps</text>
-        <!-- 0-50%: 1 rep → h=35, y=162-35=127 -->
-        <rect x="62" y="127" width="52" height="35" fill="#f8d7da" stroke="#f5c6cb" stroke-width="1" rx="3"/>
-        <text x="88" y="121" text-anchor="middle" font-size="10" fill="#842029" font-weight="800">1</text>
-        <text x="88" y="178" text-anchor="middle" font-size="8.5" fill="#888">0–50%</text>
-        <!-- 50-80%: 2 reps → h=70, y=162-70=92 -->
-        <rect x="124" y="92" width="52" height="70" fill="#fff3cd" stroke="#ffc107" stroke-width="1" rx="3"/>
-        <text x="150" y="86" text-anchor="middle" font-size="10" fill="#856404" font-weight="800">2</text>
-        <text x="150" y="178" text-anchor="middle" font-size="8.5" fill="#888">50–80%</text>
-        <!-- 80-100%: 3 reps → h=105, y=162-105=57 -->
-        <rect x="186" y="57" width="52" height="105" fill="#e4f8ff" stroke="#7dd3ea" stroke-width="1" rx="3"/>
-        <text x="212" y="51" text-anchor="middle" font-size="10" fill="#0f4c5c" font-weight="800">3</text>
-        <text x="212" y="178" text-anchor="middle" font-size="8.5" fill="#888">80–100%</text>
-        <!-- 100-120%: 4 reps → h=140, y=162-140=22 -->
-        <rect x="248" y="22" width="52" height="140" fill="#d1fae5" stroke="#6ee7b7" stroke-width="1" rx="3"/>
-        <text x="274" y="16" text-anchor="middle" font-size="10" fill="#065f46" font-weight="800">4</text>
-        <text x="274" y="178" text-anchor="middle" font-size="8.5" fill="#888">100–120%</text>
-        <!-- 120%+: 2 reps → h=70, y=162-70=92 -->
-        <rect x="310" y="92" width="52" height="70" fill="#e8f4f8" stroke="#bee5eb" stroke-width="1" rx="3"/>
-        <text x="336" y="86" text-anchor="middle" font-size="10" fill="#0a3340" font-weight="800">2</text>
-        <text x="336" y="178" text-anchor="middle" font-size="8.5" fill="#888">120%+</text>
-        <text x="55" y="200" font-size="8.5" fill="#999">Single mode around 100–120%. No bimodal pattern detected (quota miscalibration signal absent).</text>
-      </svg>
-      <div style="font-size:11.5px;color:var(--muted);margin-top:4px">0–50% bucket: David Torres &nbsp;&bull;&nbsp; Distribution is healthy.</div>
+      <div class="ct">Attainment Distribution — Current Quarter (12 demo sellers)</div>
+      <div id="attainment-distribution"></div>
+      <p style="font-size:12px;color:var(--muted)">Computed from the same 12 seller records as the scorecard. This small synthetic sample does not establish quota calibration or population health.</p>
     </div>
   </div>
 
@@ -1435,7 +1421,7 @@ select:focus,input:focus{border-color:var(--teal)}
   <div class="card" style="margin-bottom:18px">
     <div class="card-title">Scenario Analysis — FY27 Planning</div>
     <div style="overflow-x:auto">
-      <table class="dt">
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="dt">
         <thead>
           <tr>
             <th>Metric</th>
@@ -1470,7 +1456,7 @@ select:focus,input:focus{border-color:var(--teal)}
             <td style="text-align:center;color:#c62828;font-weight:700">81%</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 
@@ -1478,10 +1464,10 @@ select:focus,input:focus{border-color:var(--teal)}
   <div style="background:linear-gradient(135deg,var(--teal-dk) 0%,var(--teal) 100%);color:#fff;border-radius:12px;padding:22px 26px;margin-bottom:18px">
     <div style="font-size:15px;font-weight:800;margin-bottom:12px;letter-spacing:-.2px">📋 FY27 Hiring Recommendation</div>
     <div style="font-size:13px;line-height:1.8;opacity:.95">
-      To meet Q2 FY27 targets with a 12-month ramp cycle, Enterprise AE hiring must begin by <strong>Q1 FY27 Week 1</strong>.<br>
+      A 12-month ramp requires hiring around Q2 FY26 to reach full productivity by Q2 FY27. Q1 FY27 hires would still be ramping against that target.<br>
       &mdash; 2 Enterprise AEs required (cost: ~$440K OTE + ramp overhead)<br>
-      &mdash; At current Magic Number of 0.82, each $440K investment is expected to yield $3.2M in new bookings over 24 months.<br>
-      &mdash; If hiring is delayed to Q2 FY27, the earliest impact is Q4 FY27 &mdash; creating a <strong>$1.2M plan gap</strong>.
+      &mdash; Illustrative hiring assumptions require a separate cohort ramp, cost, margin and retention model; a Magic Number alone does not establish a hiring return.<br>
+      &mdash; Hires may contribute during ramp, but neither the timing nor the size of a plan gap is established by the supplied scenario.
     </div>
   </div>
 
@@ -1491,7 +1477,7 @@ select:focus,input:focus{border-color:var(--teal)}
 
 <!-- ═══ FOOTER ═══ -->
 <footer class="app-footer">
-  Vantara Sales Portfolio &nbsp;|&nbsp; All data fictional &nbsp;|&nbsp; Access controlled by RLS in production &nbsp;|&nbsp; Q3 FY2026 · Week 36
+  Aurora Demo Portfolio &nbsp;|&nbsp; All data fictional &nbsp;|&nbsp; Public synthetic demo; no access control &nbsp;|&nbsp; Q3 FY2026 · Week 36
 </footer>
 
 <script>
@@ -1506,31 +1492,40 @@ function showTab(id, btn) {
 
 // ── SELLER DATA ──
 const SD = {
-  'sarah-chen':    { name:'Sarah Chen',      region:'Americas', quota:'$800K', actuals:'$1.02M', att:128, tier:'Platinum', tierCls:'tp', tierIco:'🥇', pipeline:'$2.4M', wr:34, hyg:81, cov:3.0, covOk:true,  regAvgAtt:101, regAvgWR:26,
+  'sarah-chen':    { name:'Demo Seller 01',      region:'Northstar', quota:'$800K', actuals:'$1.02M', att:128, tier:'Platinum', tierCls:'tp', tierIco:'🥇', pipeline:'$2.4M', wr:34, hyg:81, cov:3.0, covOk:true,  regAvgAtt:101, regAvgWR:26,
     deals:[{a:'CloudTech Enterprise',v:'$340K',s:'Negotiate',d:'Sep 28',f:'Commit'},{a:'DataSystems Inc.',v:'$210K',s:'Solution',d:'Oct 15',f:'Best Case'},{a:'RetailGiant Corp',v:'$180K',s:'Propose',d:'Oct 30',f:'Pipeline'},{a:'FinanceHub LLC',v:'$89K',s:'Validate',d:'Sep 25',f:'Commit'}] },
-  'klaus-weber':   { name:'Klaus Weber',     region:'EMEA',     quota:'$900K', actuals:'$1.06M', att:118, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$2.1M', wr:29, hyg:76, cov:2.8, covOk:true,  regAvgAtt:102, regAvgWR:30,
+  'klaus-weber':   { name:'Demo Seller 02',     region:'Aurora',     quota:'$900K', actuals:'$1.06M', att:118, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$2.1M', wr:29, hyg:76, cov:2.8, covOk:true,  regAvgAtt:102, regAvgWR:30,
     deals:[{a:'EuroTech GmbH',v:'$280K',s:'Negotiate',d:'Sep 26',f:'Commit'},{a:'NordPharma AG',v:'$195K',s:'Solution',d:'Oct 10',f:'Best Case'},{a:'Francais Holding',v:'$145K',s:'Propose',d:'Nov 2',f:'Pipeline'},{a:'ViennaSoft GmbH',v:'$89K',s:'Validate',d:'Sep 28',f:'Commit'}] },
-  'kenji-yamamoto':{ name:'Kenji Yamamoto',  region:'APJ',      quota:'$750K', actuals:'$862K',  att:115, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$1.8M', wr:38, hyg:84, cov:2.7, covOk:true,  regAvgAtt:103, regAvgWR:37,
+  'kenji-yamamoto':{ name:'Demo Seller 03',  region:'Summit',      quota:'$750K', actuals:'$862K',  att:115, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$1.8M', wr:38, hyg:84, cov:2.7, covOk:true,  regAvgAtt:103, regAvgWR:37,
     deals:[{a:'TokyoDigital Corp',v:'$220K',s:'Negotiate',d:'Sep 24',f:'Commit'},{a:'SingTech Pte',v:'$160K',s:'Solution',d:'Oct 8',f:'Best Case'},{a:'KoreaBiz Ltd',v:'$95K',s:'Propose',d:'Oct 25',f:'Pipeline'},{a:'Sydney Systems',v:'$72K',s:'Validate',d:'Sep 29',f:'Commit'}] },
-  'marcus-williams':{ name:'Marcus Williams', region:'Americas', quota:'$850K', actuals:'$918K',  att:108, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$1.9M', wr:31, hyg:79, cov:2.5, covOk:true,  regAvgAtt:101, regAvgWR:26,
+  'marcus-williams':{ name:'Demo Seller 04', region:'Northstar', quota:'$850K', actuals:'$918K',  att:108, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$1.9M', wr:31, hyg:79, cov:2.5, covOk:true,  regAvgAtt:101, regAvgWR:26,
     deals:[{a:'NexaCorp USA',v:'$310K',s:'Negotiate',d:'Sep 27',f:'Commit'},{a:'TexasLogistics',v:'$175K',s:'Solution',d:'Oct 12',f:'Best Case'},{a:'ChicagoFinTech',v:'$130K',s:'Propose',d:'Nov 1',f:'Pipeline'},{a:'FloridiaTech',v:'$92K',s:'Validate',d:'Sep 30',f:'Commit'}] },
-  'raj-patel':     { name:'Raj Patel',       region:'APJ',      quota:'$700K', actuals:'$742K',  att:106, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$1.6M', wr:42, hyg:88, cov:2.6, covOk:true,  regAvgAtt:103, regAvgWR:37,
+  'raj-patel':     { name:'Demo Seller 05',       region:'Summit',      quota:'$700K', actuals:'$742K',  att:106, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$1.6M', wr:42, hyg:88, cov:2.6, covOk:true,  regAvgAtt:103, regAvgWR:37,
     deals:[{a:'MumbaiCloud Ltd',v:'$185K',s:'Negotiate',d:'Sep 25',f:'Commit'},{a:'BangaloreAI Inc',v:'$142K',s:'Solution',d:'Oct 14',f:'Best Case'},{a:'ChennaiSoft',v:'$98K',s:'Propose',d:'Oct 28',f:'Pipeline'},{a:'DelhiData Corp',v:'$68K',s:'Validate',d:'Sep 29',f:'Commit'}] },
-  'marie-dupont':  { name:'Marie Dupont',    region:'EMEA',     quota:'$800K', actuals:'$824K',  att:103, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$1.7M', wr:28, hyg:74, cov:2.4, covOk:false, regAvgAtt:102, regAvgWR:30,
+  'marie-dupont':  { name:'Demo Seller 06',    region:'Aurora',     quota:'$800K', actuals:'$824K',  att:103, tier:'Gold',     tierCls:'tg', tierIco:'🥈', pipeline:'$1.7M', wr:28, hyg:74, cov:2.4, covOk:false, regAvgAtt:102, regAvgWR:30,
     deals:[{a:'ParisRetail SA',v:'$230K',s:'Negotiate',d:'Sep 29',f:'Commit'},{a:'BrusselsBank NV',v:'$155K',s:'Solution',d:'Oct 16',f:'Best Case'},{a:'AmsterdamTech BV',v:'$110K',s:'Propose',d:'Nov 3',f:'Pipeline'},{a:'MadridSystems SL',v:'$78K',s:'Validate',d:'Sep 28',f:'Commit'}] },
-  'ana-lima':      { name:'Ana Lima',        region:'Americas', quota:'$650K', actuals:'$624K',  att:96,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.4M', wr:35, hyg:77, cov:2.3, covOk:false, regAvgAtt:101, regAvgWR:26,
+  'ana-lima':      { name:'Demo Seller 07',        region:'Northstar', quota:'$650K', actuals:'$624K',  att:96,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.4M', wr:35, hyg:77, cov:2.3, covOk:false, regAvgAtt:101, regAvgWR:26,
     deals:[{a:'BrasilCorp SA',v:'$145K',s:'Negotiate',d:'Sep 30',f:'Commit'},{a:'MexicoTech SRL',v:'$110K',s:'Solution',d:'Oct 18',f:'Best Case'},{a:'BogotaSystems',v:'$85K',s:'Propose',d:'Nov 5',f:'Pipeline'},{a:'SantiagoCloud',v:'$62K',s:'Validate',d:'Sep 27',f:'Commit'}] },
-  'jennifer-park': { name:'Jennifer Park',   region:'Americas', quota:'$900K', actuals:'$855K',  att:95,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.9M', wr:24, hyg:71, cov:2.1, covOk:false, regAvgAtt:101, regAvgWR:26,
+  'jennifer-park': { name:'Demo Seller 08',   region:'Northstar', quota:'$900K', actuals:'$855K',  att:95,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.9M', wr:24, hyg:71, cov:2.1, covOk:false, regAvgAtt:101, regAvgWR:26,
     deals:[{a:'SeattleTech Inc',v:'$290K',s:'Negotiate',d:'Sep 30',f:'Best Case'},{a:'PortlandData',v:'$200K',s:'Solution',d:'Oct 20',f:'Pipeline'},{a:'SanFranSaaS',v:'$165K',s:'Propose',d:'Nov 8',f:'Pipeline'},{a:'LABiz Corp',v:'$88K',s:'Validate',d:'Sep 28',f:'Commit'}] },
-  'james-bennett': { name:'James Bennett',   region:'EMEA',     quota:'$750K', actuals:'$698K',  att:93,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.5M', wr:32, hyg:73, cov:2.3, covOk:false, regAvgAtt:102, regAvgWR:30,
+  'james-bennett': { name:'Demo Seller 09',   region:'Aurora',     quota:'$750K', actuals:'$698K',  att:93,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.5M', wr:32, hyg:73, cov:2.3, covOk:false, regAvgAtt:102, regAvgWR:30,
     deals:[{a:'LondonFinance Ltd',v:'$195K',s:'Negotiate',d:'Sep 30',f:'Commit'},{a:'ManchesterTech',v:'$145K',s:'Solution',d:'Oct 15',f:'Best Case'},{a:'EdinburghSoft',v:'$98K',s:'Propose',d:'Oct 29',f:'Pipeline'},{a:'BristolData',v:'$72K',s:'Validate',d:'Sep 26',f:'Commit'}] },
-  'petra-kovacs':  { name:'Petra Kovacs',    region:'EMEA',     quota:'$700K', actuals:'$638K',  att:91,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.4M', wr:29, hyg:68, cov:2.1, covOk:false, regAvgAtt:102, regAvgWR:30,
+  'petra-kovacs':  { name:'Demo Seller 10',    region:'Aurora',     quota:'$700K', actuals:'$638K',  att:91,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.4M', wr:29, hyg:68, cov:2.1, covOk:false, regAvgAtt:102, regAvgWR:30,
     deals:[{a:'BudapestSoft Kft',v:'$168K',s:'Negotiate',d:'Sep 30',f:'Commit'},{a:'PragueCloud AS',v:'$125K',s:'Solution',d:'Oct 18',f:'Best Case'},{a:'VarsoviaData',v:'$92K',s:'Propose',d:'Nov 4',f:'Pipeline'},{a:'BucharestIT SRL',v:'$58K',s:'Validate',d:'Sep 28',f:'Commit'}] },
-  'priya-singh':   { name:'Priya Singh',     region:'APJ',      quota:'$600K', actuals:'$516K',  att:86,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.2M', wr:38, hyg:80, cov:2.0, covOk:false, regAvgAtt:103, regAvgWR:37,
+  'priya-singh':   { name:'Demo Seller 11',     region:'Summit',      quota:'$600K', actuals:'$516K',  att:86,  tier:'Silver',   tierCls:'ts', tierIco:'🥉', pipeline:'$1.2M', wr:38, hyg:80, cov:2.0, covOk:false, regAvgAtt:103, regAvgWR:37,
     deals:[{a:'SydneyCloud Pty',v:'$155K',s:'Negotiate',d:'Sep 30',f:'Best Case'},{a:'MelbourneSaaS',v:'$115K',s:'Solution',d:'Oct 16',f:'Pipeline'},{a:'PerthData',v:'$78K',s:'Propose',d:'Oct 28',f:'Pipeline'},{a:'AucklandTech',v:'$58K',s:'Validate',d:'Sep 30',f:'Commit'}] },
-  'david-torres':  { name:'David Torres',    region:'Americas', quota:'$800K', actuals:'$624K',  att:78,  tier:'Bronze',   tierCls:'tr', tierIco:'🔴', pipeline:'$960K',  wr:22, hyg:61, cov:1.2, covOk:false, regAvgAtt:101, regAvgWR:26,
-    deals:[{a:'Coca-Cola LATAM',v:'$89K',s:'Negotiate',d:'Sep 28',f:'Best Case'},{a:'ServiceNow EMEA',v:'$67K',s:'Propose',d:'Oct 5',f:'Pipeline'},{a:'TampaTech Inc',v:'$95K',s:'Solution',d:'Oct 18',f:'Pipeline'},{a:'OrlandoData',v:'$55K',s:'Validate',d:'Sep 30',f:'Commit'}] },
+  'david-torres':  { name:'Demo Seller 12',    region:'Northstar', quota:'$800K', actuals:'$624K',  att:78,  tier:'Bronze',   tierCls:'tr', tierIco:'🔴', pipeline:'$960K',  wr:22, hyg:61, cov:1.2, covOk:false, regAvgAtt:101, regAvgWR:26,
+    deals:[{a:'Demo Account 012 LATAM',v:'$89K',s:'Negotiate',d:'Sep 28',f:'Best Case'},{a:'Demo Account 038 Aurora',v:'$67K',s:'Propose',d:'Oct 5',f:'Pipeline'},{a:'TampaTech Inc',v:'$95K',s:'Solution',d:'Oct 18',f:'Pipeline'},{a:'OrlandoData',v:'$55K',s:'Validate',d:'Sep 30',f:'Commit'}] },
 };
+
+
+function renderAttainmentDistribution() {
+  const bins = [{label:'0–<50%',min:0,max:50},{label:'50–<80%',min:50,max:80},{label:'80–<100%',min:80,max:100},{label:'100–<120%',min:100,max:120},{label:'120%+',min:120,max:Infinity}];
+  const counts = bins.map(b => Object.values(SD).filter(d => d.att >= b.min && d.att < b.max).length);
+  const max = Math.max(...counts,1);
+  document.getElementById('attainment-distribution').innerHTML = bins.map((b,i) => `<div style="display:grid;grid-template-columns:90px 1fr 24px;align-items:center;gap:8px;margin:10px 0;font-size:12px"><span>${b.label}</span><span style="height:18px;background:#0f4c5c;width:${counts[i]/max*100}%"></span><strong>${counts[i]}</strong></div>`).join('');
+}
+renderAttainmentDistribution();
 
 // ── GAUGE SVG ──
 function gaugesvg(att, tier) {
@@ -1565,9 +1560,13 @@ function updateScorecard(key) {
   document.getElementById('mc-winrate').textContent = d.wr + '%';
   document.getElementById('mc-hygiene').textContent = d.hyg + '%';
   const cval = document.getElementById('coverage-val');
-  cval.textContent = d.cov + 'x';
-  cval.style.color = d.covOk ? '#2e7d32' : '#c62828';
-  document.getElementById('coverage-lbl').textContent = 'Pipeline ' + d.pipeline + ' vs. Remaining Quota';
+  const money = value => Number(value.replace(/[$,KM]/g, '')) * (value.endsWith('M') ? 1000000 : 1000);
+  const remaining = Math.max(0, money(d.quota) - money(d.actuals));
+  const coverage = remaining > 0 ? money(d.pipeline) / remaining : null;
+  cval.textContent = coverage === null ? 'N/A' : coverage.toFixed(1) + 'x';
+  cval.style.color = coverage === null || coverage >= 2.5 ? '#2e7d32' : '#c62828';
+  document.getElementById('coverage-lbl').textContent = 'Pipeline ' + d.pipeline + ' / remaining quota $' + (remaining / 1000).toFixed(0) + 'K';
+  document.getElementById('coverage-status').textContent = coverage === null ? 'Target already achieved; coverage has no remaining-target denominator.' : (coverage >= 2.5 ? 'Above' : 'Below') + ' the illustrative 2.5x benchmark. Deal timing still requires review.';
   // Deals
   const tbody = document.getElementById('opp-tbody');
   tbody.innerHTML = d.deals.map(dd => {

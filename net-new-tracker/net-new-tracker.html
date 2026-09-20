@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Net New Tracker | Vantara Sales</title>
+<title>Net New Tracker | Aurora Demo</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -530,6 +530,27 @@
     footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
+<style>
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #1675b5;outline-offset:3px}
+</style>
+<style>
+/* Keep dense data tables scrollable without widening the page. */
+.table-scroll{max-width:100%;overflow-x:auto}
+.panel,.card,.db-card,.chart-card,.two-col>*,.three-col>*,.g2>*,.g3>*,.g5>*,.chart-row>*,.db-grid>*{min-width:0}
+@media(max-width:768px){
+  [style*="grid-template-columns"]{grid-template-columns:minmax(0,1fr)!important}
+  .two-col,.three-col,.layers,.principles,.stack-cards,.db-grid,.qa-grid,.metrics-row{grid-template-columns:minmax(0,1fr)}
+  .kpi-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tab-content{padding:20px 16px}
+  .header,.app-header{flex-wrap:wrap;gap:12px;padding:16px}
+  .sh{flex-wrap:wrap;gap:8px}
+  .code-section,.code-section>*{min-width:0;max-width:100%}
+  pre{max-width:100%;overflow-x:auto}
+}
+@media(max-width:480px){.kpi-row,.howto-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:768px){.site-header{position:static;height:auto;min-height:56px;flex-wrap:wrap;gap:10px;padding:12px 16px}.context-bar{position:static;height:auto;min-height:30px;flex-wrap:wrap;row-gap:8px;padding:10px 16px}.context-bar .cb-item{padding:0 8px}.tab-bar{top:0;overflow-x:auto}}
+</style>
 </head>
 <body>
 
@@ -537,17 +558,17 @@
 <header class="site-header">
   <div class="brand">
     <div class="brand-dot"></div>
-    Vantara Sales
+    Aurora Demo
     <span class="subtitle">GTM Portfolio Intelligence</span>
   </div>
-  <div style="font-size:12px;color:rgba(255,255,255,.55);">FY2026 Q3 &bull; Live View</div>
+  <div style="font-size:12px;color:rgba(255,255,255,.55);">FY2026 Q3 &bull; Local Demo</div>
 </header>
 
 <!-- ── Context Bar ──────────────────────────────── -->
 <div class="context-bar">
   <div class="cb-item"><strong>Q3 FY2026</strong></div>
   <div class="cb-item">Week <strong>37</strong></div>
-  <div class="cb-item">Classification accuracy: <span class="cb-accuracy">94.2%</span></div>
+  <div class="cb-item">Illustrative audit rate: <span class="cb-accuracy">94.2%</span></div>
   <div class="cb-item" style="border-right:none;">Last updated: <strong>Sept 19, 2026</strong></div>
 </div>
 
@@ -569,19 +590,18 @@
      ══════════════════════════════════════════════════ -->
 <div id="tab-overview" class="tab-panel active">
 
-  <div class="page-title">Net New Revenue Tracker — FY2026 Q3</div>
+  <div class="page-title" id="overview-title">Net New Revenue Tracker — FY2026 Q3</div>
   <div class="page-subtitle">All figures in USD millions &bull; Revenue classification as of Sept 19, 2026</div>
 
   <!-- Executive Insight Box -->
   <div class="exec-insight">
     <div class="ei-label"><span class="ei-icon">i</span> Executive Insight</div>
-    Net New revenue represents <strong>34% of total bookings vs. a 38% target</strong>. The gap is driven by EMEA
-    (29% Net New share vs. 35% target). Top opportunity: 5 unclassified deals totaling <strong>$1.1M pending review</strong>.
+    <span id="overview-insight">Q3 Net New ARR is $38.2M against a $45.0M target; $6.8M remains to close. Unclassified ARR is $1.1M.</span>
   </div>
 
   <!-- Quarter Selector -->
   <div class="quarter-bar">
-    <label for="q-select">View Quarter:</label>
+    <label for="q-select">KPI and mix quarter:</label>
     <select id="q-select" class="quarter-select" onchange="updateQuarter(this.value)">
       <option value="Q1">Q1 FY2026</option>
       <option value="Q2">Q2 FY2026</option>
@@ -590,6 +610,8 @@
     </select>
     <span class="q-forecast-note" id="q-fcst-note">Forecast data — not yet confirmed</span>
   </div>
+
+  <p style="font-size:12px;color:var(--muted)">The selector updates the KPI cards and ARR mix below. Regional, deal and historical panels retain their explicitly labeled periods. All values are synthetic scenarios.</p>
 
   <!-- KPI Cards -->
   <div class="kpi-row">
@@ -601,7 +623,7 @@
     <div class="kpi-card" style="border-left:4px solid var(--accent)">
       <div class="label">Installed Base ARR</div>
       <div class="value" id="kpi-ib" style="color:var(--accent)">$73.4M</div>
-      <div class="meta" id="kpi-ib-meta">66% of total recognized ARR</div>
+      <div class="meta" id="kpi-ib-meta">65% of total recognized ARR</div>
     </div>
     <div class="kpi-card" style="border-left:4px solid #aab6bc">
       <div class="label">Unclassified</div>
@@ -611,13 +633,13 @@
     <div class="kpi-card" style="border-left:4px solid var(--green)">
       <div class="label">Net New Target</div>
       <div class="value" id="kpi-tgt" style="color:var(--green)">$45.0M</div>
-      <div class="meta" id="kpi-tgt-meta">85% attainment — 11% gap to close</div>
+      <div class="meta" id="kpi-tgt-meta">85% attainment — 15% gap to close</div>
     </div>
   </div>
 
   <!-- Coverage Progress Bar -->
   <div class="coverage-bar-wrap">
-    <div class="cov-label">Progress to $45M Target</div>
+    <div class="cov-label" id="cov-label">Progress to $45.0M Target</div>
     <div class="cov-track" id="cov-track">
       <div class="cov-fill" id="cov-fill" style="width:84.9%"></div>
       <div class="cov-target-marker" style="left:100%"></div>
@@ -635,37 +657,8 @@
     <div class="chart-card">
       <div class="chart-title">ARR Mix — Net New vs. Installed Base</div>
       <div class="donut-wrap">
-        <svg width="180" height="180" viewBox="0 0 180 180" aria-label="Donut chart: 34% Net New, 66% Installed Base">
-          <circle cx="90" cy="90" r="62" fill="none" stroke="#eef1f3" stroke-width="26"/>
-          <!-- IB segment 66%: circumference r=62 = 389.6; 66% = 257.1 -->
-          <circle cx="90" cy="90" r="62" fill="none" stroke="#f4a261" stroke-width="26"
-            stroke-dasharray="257.1 389.6"
-            stroke-dashoffset="0"
-            transform="rotate(-90 90 90)"/>
-          <!-- Net New 34%: 132.5 -->
-          <circle cx="90" cy="90" r="62" fill="none" stroke="#0f4c5c" stroke-width="26"
-            stroke-dasharray="132.5 389.6"
-            stroke-dashoffset="-257.1"
-            transform="rotate(-90 90 90)"/>
-          <!-- Center label: total ARR -->
-          <circle cx="90" cy="90" r="36" fill="white"/>
-          <text x="90" y="85" text-anchor="middle" font-size="13" font-weight="800" fill="#0f4c5c">$112.7M</text>
-          <text x="90" y="100" text-anchor="middle" font-size="10" fill="#6b7f87">Total ARR</text>
-        </svg>
-        <div class="donut-legend" style="max-width:210px">
-          <div class="legend-item">
-            <div class="legend-swatch" style="background:var(--teal)"></div>
-            <div><strong>Net New ARR</strong> — $38.2M (34%)</div>
-          </div>
-          <div class="legend-item">
-            <div class="legend-swatch" style="background:var(--accent)"></div>
-            <div><strong>Installed Base</strong> — $73.4M (66%)</div>
-          </div>
-          <div class="legend-item">
-            <div class="legend-swatch" style="background:#aab6bc"></div>
-            <div><strong>Unclassified</strong> — $1.1M (1%)</div>
-          </div>
-        </div>
+        <svg id="arr-mix-chart" width="180" height="180" viewBox="0 0 180 180" role="img" aria-label="ARR mix"></svg>
+        <div class="donut-legend" id="arr-mix-legend" style="max-width:210px"></div>
       </div>
     </div>
 
@@ -791,7 +784,7 @@
         Net New ARR by Region — Q3 FY2026
         <span style="font-size:11px;font-weight:400;color:var(--muted)">% = Net New share of regional total &bull; ▲▼ vs. Q2</span>
       </div>
-      <table>
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table>
         <thead>
           <tr>
             <th>Region</th>
@@ -802,7 +795,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><strong>Americas</strong></td>
+            <td><strong>Northstar</strong></td>
             <td>$18.4M</td>
             <td>
               <div class="pct-bar-cell">
@@ -813,7 +806,7 @@
             <td><span class="trend-up">▲ +6%</span></td>
           </tr>
           <tr>
-            <td><strong>EMEA</strong></td>
+            <td><strong>Aurora</strong></td>
             <td>$12.1M</td>
             <td>
               <div class="pct-bar-cell">
@@ -824,7 +817,7 @@
             <td><span class="trend-up">▲ +3%</span></td>
           </tr>
           <tr>
-            <td><strong>APJ</strong></td>
+            <td><strong>Summit</strong></td>
             <td>$7.7M</td>
             <td>
               <div class="pct-bar-cell">
@@ -846,37 +839,37 @@
             <td><span class="trend-up">▲ +3%</span></td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
     <!-- Top 5 Deals -->
     <div class="chart-card">
-      <div class="chart-title">Top 5 Net New Deals — Q3 FY2026</div>
+      <div class="chart-title">Top 5 Confirmed Net New Deals — Q3 Detail Sample</div>
       <ul class="deal-list">
         <li class="deal-item">
           <div class="deal-rank">1</div>
-          <div class="deal-name">HubSpot</div>
+          <div class="deal-name">Demo Account 022</div>
           <div class="deal-arr">$1.8M <span>ARR</span></div>
         </li>
         <li class="deal-item">
           <div class="deal-rank">2</div>
-          <div class="deal-name">Workday</div>
+          <div class="deal-name">Demo Account 053</div>
           <div class="deal-arr">$1.4M <span>ARR</span></div>
         </li>
         <li class="deal-item">
           <div class="deal-rank">3</div>
-          <div class="deal-name">ASML</div>
+          <div class="deal-name">Demo Account 001</div>
           <div class="deal-arr">$1.1M <span>ARR</span></div>
         </li>
         <li class="deal-item">
           <div class="deal-rank">4</div>
-          <div class="deal-name">ServiceNow</div>
+          <div class="deal-name">Demo Account 038</div>
           <div class="deal-arr">$0.9M <span>ARR</span></div>
         </li>
         <li class="deal-item">
           <div class="deal-rank">5</div>
-          <div class="deal-name">Zendesk</div>
-          <div class="deal-arr">$0.7M <span>ARR</span></div>
+          <div class="deal-name">Demo Account 020</div>
+          <div class="deal-arr">$0.85M <span>ARR</span></div>
         </li>
       </ul>
     </div>
@@ -892,13 +885,12 @@
 <div id="tab-details" class="tab-panel">
 
   <div class="page-title">Net New Deal Details</div>
-  <div class="page-subtitle">15 classified opportunities &bull; Q3 FY2026</div>
+  <div class="page-subtitle">15 illustrative opportunities &bull; Q3 FY2026 detail sample, not a reconciliation to the overview totals</div>
 
   <!-- Executive Insight Box -->
   <div class="exec-insight">
     <div class="ei-label"><span class="ei-icon">i</span> Executive Insight</div>
-    6 of 15 Net New deals were system-classified. Seller-declared deals have a <strong>94% confirmation rate vs. 87%</strong>
-    for system-generated — consider expanding seller self-classification as a governance lever.
+    In this unfiltered 15-deal sample, 6 of 9 Net New deals are system-classified. Confirmed status covers <strong>1 of 3 seller-declared deals (33%)</strong> and <strong>8 of 10 system-classified deals (80%)</strong>. These small synthetic samples do not establish classification accuracy or justify a policy change.
   </div>
 
   <!-- Filter Bar -->
@@ -907,9 +899,9 @@
       <label for="f-region">Region</label>
       <select id="f-region" onchange="applyFilters()">
         <option value="">All Regions</option>
-        <option value="Americas">Americas</option>
-        <option value="EMEA">EMEA</option>
-        <option value="APJ">APJ</option>
+        <option value="Northstar">Northstar</option>
+        <option value="Aurora">Aurora</option>
+        <option value="Summit">Summit</option>
       </select>
     </div>
     <div>
@@ -948,7 +940,7 @@
       <span id="row-count" style="font-size:11px;font-weight:400;color:var(--muted)">Showing 15 of 15</span>
     </div>
     <div style="overflow-x:auto">
-      <table id="details-table">
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table id="details-table">
         <thead>
           <tr>
             <th>Account</th>
@@ -964,7 +956,7 @@
         <tbody id="details-tbody">
           <!-- rows injected by JS -->
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 
@@ -982,7 +974,7 @@
       <div class="audit-time">Sept 18, 2026</div>
       <div class="audit-dot-wrap"><div class="audit-dot" style="background:#f4a261"></div></div>
       <div>
-        <div class="audit-account">UiPath</div>
+        <div class="audit-account">Demo Account 047</div>
         <div class="audit-change">Unclassified &rarr; <strong>Net New</strong> (disputed — 5+ years prior rev. gap requires verification)</div>
         <div class="audit-by">Changed by: Rev Ops &bull; Ticket #RC-0441</div>
       </div>
@@ -991,7 +983,7 @@
       <div class="audit-time">Sept 16, 2026</div>
       <div class="audit-dot-wrap"><div class="audit-dot" style="background:#0f4c5c"></div></div>
       <div>
-        <div class="audit-account">SAP</div>
+        <div class="audit-account">Demo Account 035</div>
         <div class="audit-change">Net New &rarr; <strong>Installed Base</strong> (system override — prior contract found in legacy CRM)</div>
         <div class="audit-by">Changed by: System Rule Engine &bull; Rule R-14</div>
       </div>
@@ -1000,7 +992,7 @@
       <div class="audit-time">Sept 14, 2026</div>
       <div class="audit-dot-wrap"><div class="audit-dot" style="background:#2d8a55"></div></div>
       <div>
-        <div class="audit-account">ASML</div>
+        <div class="audit-account">Demo Account 001</div>
         <div class="audit-change">Unclassified &rarr; <strong>Net New</strong> (confirmed — M&amp;A review completed, parent entity gap &gt;5 years)</div>
         <div class="audit-by">Changed by: Rev Ops &bull; Manual Review &bull; Ticket #RC-0438</div>
       </div>
@@ -1029,11 +1021,11 @@
   <div class="accuracy-callout">
     <div>
       <div class="big-num">94.2%</div>
-      <div class="callout-label">Classification accuracy rate — Audit Q2 FY2026</div>
+      <div class="callout-label">Illustrative accuracy assumption — Q2 FY2026</div>
     </div>
     <div style="width:1px;background:rgba(255,255,255,.25);align-self:stretch"></div>
     <div style="font-size:13px;opacity:.85;line-height:1.6">
-      Accuracy measured against manual re-review of 1,200 closed deals.<br>
+      Scenario assumes a manual re-review of 1,200 fictional deals; no audit dataset is implemented.<br>
       Remaining 5.8% attributed to M&amp;A events (3.1%) and data gaps (2.7%).
     </div>
   </div>
@@ -1133,7 +1125,7 @@
     <!-- Rule Exceptions -->
     <div class="chart-card">
       <div class="rule-section-title">Rule Exceptions &amp; Edge Cases</div>
-      <table>
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table>
         <thead>
           <tr>
             <th>Scenario</th>
@@ -1168,7 +1160,7 @@
             <td style="color:var(--muted)">Depends on parent relationship</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
   </div><!-- /rules-grid -->
@@ -1181,24 +1173,24 @@
      ══════════════════════════════════════════════════ -->
 <div id="tab-unit-econ" class="tab-panel">
   <div class="page-title">&#x1F4D0; Unit Economics</div>
-  <div class="page-subtitle">GTM efficiency, LTV:CAC ratios, and payback performance &mdash; Q3 FY26</div>
+  <div class="page-subtitle">Synthetic unit-economics scenarios &mdash; Q3 FY26. Headline inputs are shown in Formula Reference; segment examples are independent cohorts and do not reconcile to the headline. Revenue-based LTV excludes gross-margin adjustment.</div>
 
   <!-- KPI Row -->
   <div class="kpi-row">
     <div class="kpi-card">
       <div class="label">Magic Number (GM-Adjusted)</div>
       <div class="value" style="color:#2d8a55">0.82</div>
-      <div class="meta"><span class="badge badge-confirmed">Scale: invest aggressively</span></div>
+      <div class="meta"><span class="badge badge-confirmed">Grow thoughtfully; validate retention and payback</span></div>
     </div>
     <div class="kpi-card">
-      <div class="label">LTV:CAC Ratio</div>
-      <div class="value" style="color:#2d8a55">5.4x</div>
+      <div class="label">LTV:CAC (revenue-based)</div>
+      <div class="value" style="color:#2d8a55">6.8x</div>
       <div class="meta"><span class="badge badge-confirmed">Strong</span>&nbsp; Benchmark: &gt;3x viable &middot; &gt;5x strong &middot; &gt;7x elite</div>
     </div>
     <div class="kpi-card">
       <div class="label">CAC Payback</div>
-      <div class="value" style="color:#2d8a55">11.2 mo</div>
-      <div class="meta"><span class="badge badge-confirmed">Excellent</span>&nbsp; Benchmark: &lt;12 mo</div>
+      <div class="value" style="color:var(--red)">88.0 mo</div>
+      <div class="meta"><span class="badge badge-disputed">Above payback benchmark</span>&nbsp; Scenario target: &lt;12 mo</div>
     </div>
     <div class="kpi-card">
       <div class="label">SaaS Quick Ratio</div>
@@ -1212,10 +1204,10 @@
     <div class="chart-title">Magic Number by Segment</div>
     <svg viewBox="0 0 580 200" width="100%" style="display:block;max-height:200px">
       <!-- threshold lines -->
-      <line x1="230" y1="10" x2="230" y2="182" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
-      <text x="230" y="8" font-size="9" fill="#b07800" text-anchor="middle">0.5 warn</text>
-      <line x1="363" y1="10" x2="363" y2="182" stroke="#2d8a55" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
-      <text x="363" y="8" font-size="9" fill="#2d8a55" text-anchor="middle">0.75 invest</text>
+      <line x1="258.6" y1="10" x2="258.6" y2="182" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+      <text x="258.6" y="8" font-size="9" fill="#b07800" text-anchor="middle">0.5 warn</text>
+      <line x1="322.9" y1="10" x2="322.9" y2="182" stroke="#2d8a55" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+      <text x="322.9" y="8" font-size="9" fill="#2d8a55" text-anchor="middle">0.75 invest</text>
       <!-- bars: x=130, max scale 1.4 -> 360px, bar height 22, gap 10 -->
       <!-- Ent Inbound 1.24 -> 319px -> green -->
       <rect x="130" y="20" width="319" height="22" rx="3" fill="#2d8a55" opacity="0.85"/>
@@ -1276,38 +1268,10 @@
     </div>
 
     <div class="chart-card">
-      <div class="chart-title">CAC Payback Trend (Months)</div>
-      <!-- scale: 10-16mo, height 120, baseline y=155, y=155-(v-10)/6*120 -->
-      <!-- 12mo threshold -> y=155-2/6*120=155-40=115 -->
-      <!-- Q3FY25 14.1 -> y=155-4.1/6*120=155-82=73 -->
-      <!-- Q4FY25 13.2 -> y=155-3.2/6*120=155-64=91 -->
-      <!-- Q1FY26 12.8 -> y=155-2.8/6*120=155-56=99 -->
-      <!-- Q2FY26 11.9 -> y=155-1.9/6*120=155-38=117 -->
-      <!-- Q3FY26 11.2 -> y=155-1.2/6*120=155-24=131 -->
-      <!-- x: 45,95,145,195,245 -->
-      <svg viewBox="0 0 300 190" width="100%" style="display:block;max-height:190px">
-        <line x1="30" y1="115" x2="270" y2="115" stroke="#2d8a55" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
-        <text x="272" y="118" font-size="8" fill="#2d8a55">12mo</text>
-        <polygon points="45,73 95,91 145,99 195,117 245,131 245,155 45,155" fill="#0f4c5c" opacity="0.07"/>
-        <polyline points="45,73 95,91 145,99 195,117 245,131" fill="none" stroke="#0f4c5c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-        <circle cx="45" cy="73" r="4" fill="#0f4c5c"/>
-        <circle cx="95" cy="91" r="4" fill="#0f4c5c"/>
-        <circle cx="145" cy="99" r="4" fill="#0f4c5c"/>
-        <circle cx="195" cy="117" r="4" fill="#0f4c5c"/>
-        <circle cx="245" cy="131" r="4" fill="#2d8a55"/>
-        <text x="45" y="66" font-size="9" fill="#0f4c5c" text-anchor="middle">14.1</text>
-        <text x="95" y="84" font-size="9" fill="#0f4c5c" text-anchor="middle">13.2</text>
-        <text x="145" y="92" font-size="9" fill="#0f4c5c" text-anchor="middle">12.8</text>
-        <text x="195" y="110" font-size="9" fill="#0f4c5c" text-anchor="middle">11.9</text>
-        <text x="245" y="124" font-size="9" fill="#2d8a55" font-weight="700" text-anchor="middle">11.2</text>
-        <text x="45" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q3FY25</text>
-        <text x="95" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q4FY25</text>
-        <text x="145" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q1FY26</text>
-        <text x="195" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q2FY26</text>
-        <text x="245" y="170" font-size="8.5" fill="#6b7f87" text-anchor="middle">Q3FY26</text>
-        <line x1="30" y1="155" x2="270" y2="155" stroke="#dde2e6" stroke-width="1.5"/>
-      </svg>
-      <div style="font-size:11.5px;color:var(--green);margin-top:8px;font-weight:600">&#x2193; Declining &mdash; improving GTM efficiency each quarter</div>
+      <div class="chart-title">CAC Payback — Reconciled Current Scenario</div>
+      <div style="font-size:40px;font-weight:800;color:var(--red);margin:24px 0">88.0 months</div>
+      <p style="font-size:13px;line-height:1.6;color:var(--muted)">$249K CAC ÷ ($3.93K monthly ARPA × 72% gross margin). The result is in months, because the denominator is monthly gross profit.</p>
+      <p style="font-size:12px;line-height:1.6;color:var(--muted)">This is above the illustrative 12-month target. Historical CAC, monthly ARPA and gross-margin inputs are unavailable, so no comparable trend is asserted.</p>
     </div>
 
   </div>
@@ -1332,9 +1296,9 @@
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--teal);margin-bottom:8px">LTV:CAC</div>
           <div style="font-size:12px;color:var(--text);line-height:1.75">
             <strong>Formula:</strong> (ARPA &divide; Churn Rate) &divide; CAC<br>
-            <strong>ARPA:</strong> $47.2K &nbsp;&nbsp; <strong>Churn:</strong> 2.8%/yr<br>
+            <strong>Annual ARPA:</strong> $47.2K &nbsp;&nbsp; <strong>Churn:</strong> 2.8%/yr<br>
             <strong>CAC:</strong> $249K<br>
-            <strong style="color:var(--teal)">&equals; 5.4x</strong>
+            <strong style="color:var(--teal)">&equals; 6.8x</strong>
           </div>
         </div>
         <div style="background:var(--teal-pale);border-radius:8px;padding:14px">
@@ -1342,8 +1306,8 @@
           <div style="font-size:12px;color:var(--text);line-height:1.75">
             <strong>Formula:</strong> CAC &divide; (Monthly ARPA &times; GM%)<br>
             <strong>Calc:</strong> $249K &divide; ($3.93K &times; 72%)<br>
-            &equals; 88 days<br>
-            <strong style="color:var(--teal)">&equals; 11.2 months</strong>
+            &equals; 88.0 months<br>
+            <strong style="color:var(--red)">Above the 12-month illustrative target</strong>
           </div>
         </div>
       </div>
@@ -1363,7 +1327,7 @@
   <!-- TAM Penetration Table -->
   <div class="table-card" style="margin-bottom:22px">
     <div class="table-card-header">TAM Penetration by Segment</div>
-    <table>
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table>
       <thead>
         <tr>
           <th>Segment</th>
@@ -1415,7 +1379,7 @@
           <td><span class="badge badge-pending">Early</span></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
   <div class="exec-insight" style="margin-bottom:22px">
     <div class="ei-label"><span class="ei-icon">!</span> Insight</div>
@@ -1473,7 +1437,7 @@
   <!-- Vertical Penetration Heatmap -->
   <div class="table-card" style="margin-bottom:22px">
     <div class="table-card-header">Win Rate by Vertical &times; Segment (%)</div>
-    <table>
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table>
       <thead>
         <tr>
           <th>Vertical</th>
@@ -1514,7 +1478,7 @@
           <td style="text-align:center;background:#fef0f0;color:#b03030;font-weight:600">9%</td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <!-- Logo Velocity Trend -->
@@ -1589,7 +1553,7 @@
       NRR Cohort Grid &mdash; Expansion by Month
       <span style="font-size:11px;font-weight:400;color:var(--muted)">Values = Net Revenue Retention %</span>
     </div>
-    <table>
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table>
       <thead>
         <tr>
           <th>Cohort</th>
@@ -1704,7 +1668,7 @@
           <td style="text-align:center;background:#eef1f3;color:#5a6772">&mdash;</td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
   <div class="exec-insight" style="margin-bottom:22px">
     <div class="ei-label"><span class="ei-icon">!</span> Insight</div>
@@ -1808,7 +1772,7 @@
         <text x="257" y="71" font-size="8.5" fill="#0f4c5c" text-anchor="middle" font-weight="700">$351M</text>
         <text x="257" y="197" font-size="8" fill="#6b7f87" text-anchor="middle">End</text>
       </svg>
-      <div style="font-size:11.5px;color:var(--teal);margin-top:8px">Net new + expansion exceeds churn+contraction by 8.7&times; &mdash; healthy growth trajectory</div>
+      <div style="font-size:11.5px;color:var(--teal);margin-top:8px">Net new + expansion exceeds churn+contraction by 6.5&times; &mdash; healthy growth trajectory</div>
     </div>
 
   </div>
@@ -1818,7 +1782,7 @@
 
 <!-- ── Footer ──────────────────────────────────── -->
 <footer>
-  <strong>Vantara Sales Portfolio</strong> &bull; All data fictional &bull; Internal use only
+  <strong>Aurora Demo Portfolio</strong> &bull; All data fictional &bull; Internal use only
 </footer>
 
 <script>
@@ -1844,19 +1808,29 @@ function switchTab(name, btn) {
   }
 }
 
-// ── Animated counter ───────────────────────────
-function animateValue(el, from, to, duration, prefix, suffix, decimals) {
-  var start = null;
-  function step(timestamp) {
-    if (!start) start = timestamp;
-    var progress = Math.min((timestamp - start) / duration, 1);
-    var eased = 1 - Math.pow(1 - progress, 3);
-    var current = from + (to - from) * eased;
-    el.textContent = prefix + current.toFixed(decimals) + suffix;
-    if (progress < 1) requestAnimationFrame(step);
-    else el.textContent = prefix + to.toFixed(decimals) + suffix;
-  }
-  requestAnimationFrame(step);
+// Metric values update together so labels and figures always match.
+function renderArrMix(d, q) {
+  var parts = [
+    {label: 'Net New ARR', value: d.nn, color: '#0f4c5c'},
+    {label: 'Installed Base', value: d.ib, color: '#f4a261'},
+    {label: 'Unclassified', value: d.unc, color: '#aab6bc'}
+  ];
+  var total = parts.reduce(function(sum, part) { return sum + part.value; }, 0);
+  var circumference = 2 * Math.PI * 62;
+  var offset = 0;
+  var rings = parts.map(function(part) {
+    var length = total > 0 ? part.value / total * circumference : 0;
+    var ring = '<circle cx="90" cy="90" r="62" fill="none" stroke="' + part.color + '" stroke-width="26" stroke-dasharray="' + length + ' ' + circumference + '" stroke-dashoffset="' + (-offset) + '" transform="rotate(-90 90 90)"/>';
+    offset += length;
+    return ring;
+  }).join('');
+  var chart = document.getElementById('arr-mix-chart');
+  chart.innerHTML = rings + '<text x="90" y="85" text-anchor="middle" font-size="13" font-weight="800" fill="#0f4c5c">$' + total.toFixed(1) + 'M</text><text x="90" y="100" text-anchor="middle" font-size="10" fill="#6b7f87">' + q + ' Total ARR</text>';
+  chart.setAttribute('aria-label', q + ' ARR mix: ' + parts.map(function(part) { return part.label + ' $' + part.value.toFixed(1) + 'M'; }).join(', '));
+  document.getElementById('arr-mix-legend').innerHTML = parts.map(function(part) {
+    var share = total > 0 ? part.value / total * 100 : 0;
+    return '<div class="legend-item"><div class="legend-swatch" style="background:' + part.color + '"></div><div><strong>' + part.label + '</strong> — $' + part.value.toFixed(1) + 'M (' + share.toFixed(1) + '%)</div></div>';
+  }).join('');
 }
 
 // ── Update quarter ─────────────────────────────
@@ -1864,14 +1838,20 @@ function updateQuarter(q) {
   var d = quarterData[q];
   if (!d) return;
 
+  document.getElementById('overview-title').textContent = 'Net New Revenue Tracker — FY2026 ' + q;
+  document.getElementById('overview-insight').textContent = q + (d.forecast ? ' forecast' : '') + ' Net New ARR is $' + d.nn.toFixed(1) + 'M against a $' + d.target.toFixed(1) + 'M target; $' + Math.max(0, d.target - d.nn).toFixed(1) + 'M remains to close. Unclassified ARR is $' + d.unc.toFixed(1) + 'M.';
+  document.getElementById('kpi-tgt').textContent = '$' + d.target.toFixed(1) + 'M';
+  document.getElementById('cov-label').textContent = 'Progress to $' + d.target.toFixed(1) + 'M Target';
+  renderArrMix(d, q);
+
   // Forecast note
   var note = document.getElementById('q-fcst-note');
   note.className = 'q-forecast-note' + (d.forecast ? ' visible' : '');
 
   // KPI cards
-  animateValue(document.getElementById('kpi-nn'), 0, d.nn, 800, '$', 'M', 1);
-  animateValue(document.getElementById('kpi-ib'), 0, d.ib, 800, '$', 'M', 1);
-  animateValue(document.getElementById('kpi-unc'), 0, d.unc, 800, '$', 'M', 1);
+  document.getElementById('kpi-nn').textContent = '$' + d.nn.toFixed(1) + 'M';
+  document.getElementById('kpi-ib').textContent = '$' + d.ib.toFixed(1) + 'M';
+  document.getElementById('kpi-unc').textContent = '$' + d.unc.toFixed(1) + 'M';
 
   var ibPct = Math.round(d.ib / d.total * 100);
   var nnPct = Math.round(d.nn / d.total * 100);
@@ -1880,7 +1860,7 @@ function updateQuarter(q) {
   document.getElementById('kpi-unc-meta').textContent = Math.round(d.unc / d.total * 100) + '% — pending manual review';
 
   var gap = Math.round((1 - d.nn / d.target) * 100);
-  document.getElementById('kpi-tgt-meta').textContent = d.attainment + '% attainment' + (gap > 0 ? ' — ' + gap + '% gap to close' : ' — on track');
+  document.getElementById('kpi-tgt-meta').textContent = Math.round(d.nn / d.target * 100) + '% attainment' + (gap > 0 ? ' — ' + gap + '% gap to close' : ' — on track');
 
   // Coverage bar
   var pct = Math.round(d.nn / d.target * 100);
@@ -1914,21 +1894,21 @@ document.addEventListener('mousemove', function(evt) {
 
 // ── Deal data ──────────────────────────────────
 var deals = [
-  { account:'HubSpot',    region:'Americas', arr:'$1,800K', close:'2026-08-15', cls:'Net New',       source:'System',         yrs:'8',  status:'Confirmed' },
-  { account:'Workday',    region:'Americas', arr:'$1,400K', close:'2026-09-01', cls:'Net New',       source:'System',         yrs:'7',  status:'Confirmed' },
-  { account:'ServiceNow', region:'Americas', arr:'$900K',   close:'2026-09-10', cls:'Net New',       source:'Seller Declared',yrs:'6',  status:'Confirmed' },
-  { account:'Zendesk',    region:'EMEA',     arr:'$700K',   close:'2026-08-28', cls:'Net New',       source:'System',         yrs:'9',  status:'Confirmed' },
-  { account:'Okta',       region:'Americas', arr:'$600K',   close:'2026-09-15', cls:'Net New',       source:'System',         yrs:'—',  status:'Confirmed' },
-  { account:'Grab',       region:'APJ',      arr:'$850K',   close:'2026-09-05', cls:'Net New',       source:'System',         yrs:'—',  status:'Confirmed' },
-  { account:'ASML',       region:'EMEA',     arr:'$1,100K', close:'2026-08-20', cls:'Net New',       source:'Override',       yrs:'6',  status:'Confirmed' },
-  { account:'Klarna',     region:'EMEA',     arr:'$450K',   close:'2026-09-18', cls:'Net New',       source:'System',         yrs:'—',  status:'Pending'   },
-  { account:'UiPath',     region:'EMEA',     arr:'$620K',   close:'2026-09-12', cls:'Net New',       source:'Seller Declared',yrs:'5+', status:'Disputed'  },
-  { account:'Adyen',      region:'EMEA',     arr:'$780K',   close:'2026-08-30', cls:'Installed Base',source:'System',         yrs:'2',  status:'Confirmed' },
-  { account:'TCS',        region:'APJ',      arr:'$930K',   close:'2026-09-08', cls:'Installed Base',source:'System',         yrs:'1',  status:'Confirmed' },
-  { account:'Infosys',    region:'APJ',      arr:'$410K',   close:'2026-09-14', cls:'Installed Base',source:'System',         yrs:'3',  status:'Confirmed' },
-  { account:'SAP',        region:'EMEA',     arr:'$1,250K', close:'2026-08-25', cls:'Installed Base',source:'Override',       yrs:'2',  status:'Disputed'  },
-  { account:'Monday.com', region:'Americas', arr:'$330K',   close:'2026-09-17', cls:'Unclassified',  source:'Seller Declared',yrs:'?',  status:'Pending'   },
-  { account:'GitHub',     region:'Americas', arr:'$290K',   close:'2026-09-19', cls:'Unclassified',  source:'System',         yrs:'?',  status:'Pending'   }
+  { account:'Demo Account 022',    region:'Northstar', arr:'$1,800K', close:'2026-08-15', cls:'Net New',       source:'System',         yrs:'8',  status:'Confirmed' },
+  { account:'Demo Account 053',    region:'Northstar', arr:'$1,400K', close:'2026-09-01', cls:'Net New',       source:'System',         yrs:'7',  status:'Confirmed' },
+  { account:'Demo Account 038', region:'Northstar', arr:'$900K',   close:'2026-09-10', cls:'Net New',       source:'Seller Declared',yrs:'6',  status:'Confirmed' },
+  { account:'Demo Account 054',    region:'Aurora',     arr:'$700K',   close:'2026-08-28', cls:'Net New',       source:'System',         yrs:'9',  status:'Confirmed' },
+  { account:'Demo Account 032',       region:'Northstar', arr:'$600K',   close:'2026-09-15', cls:'Net New',       source:'System',         yrs:'—',  status:'Confirmed' },
+  { account:'Demo Account 020',       region:'Summit',      arr:'$850K',   close:'2026-09-05', cls:'Net New',       source:'System',         yrs:'—',  status:'Confirmed' },
+  { account:'Demo Account 001',       region:'Aurora',     arr:'$1,100K', close:'2026-08-20', cls:'Net New',       source:'Override',       yrs:'6',  status:'Confirmed' },
+  { account:'Demo Account 026',     region:'Aurora',     arr:'$450K',   close:'2026-09-18', cls:'Net New',       source:'System',         yrs:'—',  status:'Pending'   },
+  { account:'Demo Account 047',     region:'Aurora',     arr:'$620K',   close:'2026-09-12', cls:'Net New',       source:'Seller Declared',yrs:'5+', status:'Disputed'  },
+  { account:'Demo Account 005',      region:'Aurora',     arr:'$780K',   close:'2026-08-30', cls:'Installed Base',source:'System',         yrs:'2',  status:'Confirmed' },
+  { account:'Demo Account 044',        region:'Summit',      arr:'$930K',   close:'2026-09-08', cls:'Installed Base',source:'System',         yrs:'1',  status:'Confirmed' },
+  { account:'Demo Account 023',    region:'Summit',      arr:'$410K',   close:'2026-09-14', cls:'Installed Base',source:'System',         yrs:'3',  status:'Confirmed' },
+  { account:'Demo Account 035',        region:'Aurora',     arr:'$1,250K', close:'2026-08-25', cls:'Installed Base',source:'Override',       yrs:'2',  status:'Disputed'  },
+  { account:'Demo Account 028', region:'Northstar', arr:'$330K',   close:'2026-09-17', cls:'Unclassified',  source:'Seller Declared',yrs:'?',  status:'Pending'   },
+  { account:'Demo Account 019',     region:'Northstar', arr:'$290K',   close:'2026-09-19', cls:'Unclassified',  source:'System',         yrs:'?',  status:'Pending'   }
 ];
 
 function classBadge(c) {

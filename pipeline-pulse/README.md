@@ -1,120 +1,53 @@
 # Pipeline Pulse
 
-> **Stack:** Power BI · DAX · TMDL (PBIP format)
-> **Pages:** 15 visible · 3 hidden (Help, Info, Feedback) | **Semantic model:** ~70 tables
+**Status: existing HTML reference prototype; audit and repair scope.**
 
-The most comprehensive pipeline intelligence report in the suite. Tracks pipeline sufficiency using a 3x coverage methodology, week-over-week delta changes, funnel hygiene scores, and multi-horizon views spanning the current quarter through the full fiscal year. Designed for daily use by regional managers and weekly executive review cadences.
+[Open HTML](./pipeline-pulse.html) · [Existing hosted demo](https://renatorbruxel.github.io/projects/pipeline-pulse/pipeline-pulse.html) · [Portfolio](../README.md)
 
-Built in PBIP format with full source-control decomposition. Includes Power BI Q&A with trained verified answers for natural language pipeline queries.
+Hosted content may precede this local revision.
 
----
+## Purpose and users
 
-## Report Pages
+Regional leaders and operations analysts need to judge whether pipeline depth, timing and quality support the plan. This prototype brings coverage, movement, activity and stage aging into a common review interface, illustrating questions for the next sales review.
 
-### 1. The Pulse — Current View
-The flagship landing page. Summarizes pipeline health across all regions with a single sufficiency score and traffic-light status per region. Designed to surface the most important signals in under 30 seconds.
+## Implemented scope
 
-Key visuals:
-- 3x sufficiency gauge by region: pipeline value / (quota × 3) ratio
-- Week-over-week net pipeline change with directional arrows
-- Stage distribution waterfall: how is pipeline distributed across stages?
-- Call-out tiles: largest new adds, largest drops, most improved region, biggest deterioration
+The standalone HTML includes current and historical snapshots, quarter/horizon examples, coverage, activity, movement, hygiene, a deal scatterplot and raw detail. Scatterplot filters operate on the embedded deal sample. Other charts and narratives are fixed scenarios, not live CRM summaries or a replayable 52-week history.
 
-### 2. The Pulse — Historical View
-Same layout as the current view, navigable by any prior week. Allows managers to replay pipeline evolution and explain what changed between reviews.
+## Architecture and metrics
 
-Key visuals:
-- Week selector (rolling 52-week lookback)
-- Pipeline trend chart: total pipeline vs. 3x coverage requirement line (rolling 12 weeks)
-- All current-view visuals rendered for the selected historical week
+HTML/CSS/SVG and JavaScript render embedded values and local controls. The page has no connected data backend.
 
-### 3. Current Quarter Funnel
-All opportunities expected to close in the current quarter — summarized by stage, region, and seller.
+| Metric | Definition to inspect | Important limit |
+|---|---|---|
+| Pipeline coverage | Open pipeline ÷ quota for the stated horizon | A quota denominator must refer to the same period as the numerator |
+| Gap to coverage target | Threshold × quota − pipeline | The 3x threshold is a scenario assumption, not a universal guarantee |
+| Week-over-week movement | Current pipeline − prior pipeline | Additions and removals must reconcile to that delta |
+| Stage aging | Days in the current stage | Distinct from a past-due close date |
+| Median deal size / aging | Median of the filtered deal sample | Sample figures are not full-portfolio statistics |
 
-Key visuals:
-- Funnel by stage: count and dollar value at each stage
-- Coverage ratio: current quarter pipeline / current quarter quota
-- Seller-level pipeline ranking with quota context
-- Stage velocity: average days an opportunity spends at each stage
+Annual and rolling multi-quarter views must not be interpreted interchangeably. Fixed cohorts and scenario series do not establish forecast accuracy, calibrated hygiene risk or causal links between activity and revenue. Consult the audit for unresolved reconciliation issues.
 
-### 4. Detailed Current Quarter Funnel
-Opportunity-level drill-through for the current quarter. Every open deal with close date, stage, seller, region, product line, value, and last-activity date.
+## Run and validate
 
-### 5. Next Quarter Funnel
-Early pipeline view for the following quarter — critical for identifying whether sufficient pipeline is being built 8–12 weeks ahead of the revenue target.
+From the repository root:
 
-Key visuals:
-- NQ pipeline vs. 3× NQ quota target
-- NQ pipeline build rate trend: how fast is next quarter's pipeline growing week over week?
-- Early-stage vs. late-stage split: is pipeline maturing or just being created?
+```bash
+python3 -m http.server 8000
+```
 
-### 6. Detailed Next Quarter Funnel
-Opportunity-level view of next quarter pipeline. Same fields as the current quarter detail page with a future-quarter filter.
+Open [the local Pipeline Pulse](http://localhost:8000/pipeline-pulse/pipeline-pulse.html). The HTML demonstration requires no paid service or API token.
 
-### 7. Full Year Funnel
-FY pipeline aggregated across all open quarters — used in annual business reviews, QBR preparation, and board-facing forecasts.
+```bash
+python3 tests/run_checks.py
+```
 
-Key visuals:
-- FY pipeline by quarter bucket (CQ, NQ, NQ+2, NQ+3)
-- FY coverage vs. remaining quota
-- YTD bookings + pipeline-to-close projection vs. FY target
+The [repository audit](../docs/FINAL_PORTFOLIO_AUDIT.md) records what was actually checked. [Brief alignment](../docs/MASTER_PROMPT_ALIGNMENT.md) records remaining requirements.
 
-### 8. Detailed Full Year Funnel
-Full opportunity list spanning the fiscal year with quarter-bucket filter and product line breakdown.
+## Governance and production evolution
 
-### 9. 3x Sufficiency Analysis
-Deep-dive into the 3x coverage framework. Shows exactly how each region and seller compares to the minimum pipeline requirement across time horizons.
+The scenarios are presented as synthetic; their original provenance has not been independently certified. Do not treat them as employee, customer, compensation or financial records. The existing source is not certified as independent of employer material. Review the audit before external release.
 
-Key visuals:
-- Coverage ratio matrix: region × horizon (CQ / NQ / FY) with threshold color coding
-- Sellers below 3x threshold (red zone) with manager ownership
-- Sufficiency trend: how coverage has evolved over the past 8 weeks
-- Gap-to-3x by region in dollar terms — how much pipeline needs to be added to reach threshold
+Production work would unify dated snapshots, fiscal horizons, quota definitions and activity history; derive chart values and narratives from the same selected data; validate movement reconciliation and empty/filter states.
 
-### 10. Activity Management
-Tracks seller activity signals — meetings, calls, opportunities touched — as a leading indicator of future pipeline health and a coaching tool for managers.
-
-Key visuals:
-- Activity volume by seller vs. peer average (z-score normalized)
-- Activity-to-pipeline correlation: sellers with high activity showing pipeline growth
-- Inactive opportunities: no activity logged in 14+ days with owner and value
-- Activity trend: is the team's overall activity level increasing or declining?
-
-### 11. Week-over-Week Changes
-The "what changed" page. Shows every pipeline movement from prior week to current week — adds, removes, value increases/decreases, stage advances, and close date changes.
-
-Key visuals:
-- Change event feed sorted by value impact
-- Net pipeline change by region: did regions add or lose net pipeline?
-- Stage advancement vs. regression: are deals moving forward or backward?
-- Top movers: the 10 largest value changes in either direction
-
-### 12. Funnel Hygiene Score
-A composite score measuring pipeline data quality. Identifies stale close dates, missing required fields, unlikely stage-to-close-date combinations, and overdue opportunities that inflate coverage metrics.
-
-Key visuals:
-- Hygiene score by region and seller (0–100 composite)
-- Score component breakdown: stale dates weight / missing data weight / overdue deals weight
-- Worst offenders: sellers with lowest hygiene scores ranked for manager action
-- Trend: hygiene improvement or deterioration over 8 weeks (is coaching working?)
-
-### 13. Analysis
-Free-form analytical workspace with parameterized charts for ad-hoc pipeline investigation. Full filter panel: seller, product, stage, region, territory, date range, deal size band.
-
-### 14. Current Opportunity
-Single-deal deep-dive. Enter an opportunity name or account to see its complete history across all weekly snapshots — every stage change, close date revision, value update, and owner change since the opportunity was created.
-
-### 15. Raw Data — Day by Day
-Daily-granularity opportunity extract. Shows the state of each opportunity as of each business day — enables custom time-series analysis, exports for external BI tools, or audit workflows outside the report.
-
----
-
-## Data Model Highlights
-
-- **~70 tables** — the largest semantic model in the suite
-- **Multi-snapshot architecture:** current state, weekly snapshots, and prior-day tables — enabling day-over-day and week-over-week comparisons at any dimension intersection
-- **Territory mapping:** full geographic hierarchy from individual opportunity through seller, territory, sub-region, region — including ZIP code-level assignment tables and AOP territory overlays
-- **Cockpit manual override:** ops team can adjust pipeline figures for known data gaps without modifying source systems — preserves auditability
-- **Q&A with Verified Answers:** natural language query interface trained with confirmed answers for the most common executive pipeline questions
-- **Data freshness tracking:** dedicated refresh metadata table surfaces last-updated timestamp directly in the report header
-- **Self-documenting model:** embedded `Model Measures` and `Model Tables` documentation tables — the semantic model describes itself
+This example relates to Renato's experience in pipeline progression, forecast categories, funnel health, productivity analysis and executive decision support. Career outcomes in the [portfolio overview](../README.md#professional-evidence) are separate from the prototype's scenario values and are not measured by this code.

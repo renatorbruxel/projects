@@ -1,56 +1,68 @@
-# GTM Analytics & Revenue Operations Portfolio
+# Renato Rodrigo Bruxel — Commercial Excellence & AI/Data Transformation
 
-A collection of enterprise data products built to support a global B2B SaaS commercial motion — covering forecast governance, pipeline management, seller performance, and quota operations.
+I connect commercial strategy, forecasting, CRM, governed analytics and workflow automation to help leaders understand performance and act on it. My work spans Commercial Excellence, GTM Operations, sales performance, incentive governance and executive decision support, with hands-on SQL, Power BI, Python and Salesforce experience.
 
-All tools were designed for **Vantara Sales**, a fictional ~$800M ARR enterprise software company with GTM teams across Americas, EMEA, and APJ.
+Based in Blumenau, Brazil. [LinkedIn](https://www.linkedin.com/in/renato-rodrigo-bruxel) · [Contact](mailto:renato.bruxel@hotmail.com)
 
-> **Live demos** — open directly in browser, no installation required:
-> [`weekly-checkin-portal`](https://renatorbruxel.github.io/projects/weekly-checkin-portal/weekly-checkin-portal.html) · [`pipeline-intelligence`](https://renatorbruxel.github.io/projects/funnel-management/pipeline-intelligence.html) · [`net-new-tracker`](https://renatorbruxel.github.io/projects/net-new-tracker/net-new-tracker.html) · [`pipeline-pulse`](https://renatorbruxel.github.io/projects/pipeline-pulse/pipeline-pulse.html) · [`sales-league`](https://renatorbruxel.github.io/projects/sales-league/sales-league.html)
+## Professional evidence
 
----
+The following outcomes come from Renato's supplied professional profile. They describe employment experience, **not results produced or independently verified by these demonstration files**.
 
-## Projects
+| Experience | Supplied evidence |
+|---|---|
+| AI-assisted executive reporting workflow | 83% reduction in weekly preparation time |
+| Leadership review process | 50% shorter review cycle |
+| Governed quota and actuals consolidation | Up to 75% faster than the previous multi-week operating cycle |
+| Sales incentive governance and quota-setting analytics | Approximately 450 sellers |
 
-| # | Project | Live Demo | Description | Stack |
-|---|---------|-----------|-------------|-------|
-| 1 | [Weekly Check-In Portal](./weekly-checkin-portal/) | [▶ weekly-checkin-portal.html](./weekly-checkin-portal/weekly-checkin-portal.html) | AI-assisted forecast submission and narrative generation for regional sales leaders | HTML · CSS · Vanilla JS · AWS |
-| 2 | [Pipeline Intelligence](./funnel-management/) | [▶ pipeline-intelligence.html](./funnel-management/pipeline-intelligence.html) | Pipeline push/pull dynamics, actuals weekly pacing, and overdue opportunity governance | HTML · SVG · Power BI · TMDL |
-| 3 | [Net New Tracker](./net-new-tracker/) | [▶ net-new-tracker.html](./net-new-tracker/net-new-tracker.html) | Net-new revenue classification engine for incentive compensation accuracy | HTML · SVG · Power BI · TMDL |
-| 4 | [Pipeline Pulse](./pipeline-pulse/) | [▶ pipeline-pulse.html](./pipeline-pulse/pipeline-pulse.html) | Pipeline sufficiency (3x coverage), WoW delta tracking, funnel hygiene, and Q/FY views | HTML · SVG · Power BI · TMDL |
-| 5 | [Sales League](./sales-league/) | [▶ sales-league.html](./sales-league/sales-league.html) | Gamified seller leaderboard with RLS, individual scorecards, and recovery planning | HTML · SVG · Power BI · TMDL |
+My contribution is to establish shared definitions, connect fragmented inputs, identify decision gaps, automate repeatable work and introduce validation and review mechanisms. These prototypes illustrate parts of that approach; they do not establish authorship or production readiness of an employer system.
 
----
+## Explore the existing prototypes
 
-## Skills Demonstrated
+**Current review status: Needs revision.** Source provenance and production readiness remain unverified; the [final audit](./docs/FINAL_PORTFOLIO_AUDIT.md) records the release conditions.
 
-**Commercial Analytics**
-- KPI framework design for enterprise B2B sales (bookings, pipeline coverage, forecast accuracy)
-- Multi-region attainment analysis with drill-through by seller, product, and territory
-- Funnel health scoring and sufficiency modeling (3x coverage methodology)
-- Incentive compensation data modeling and classification governance
+Start with the [portfolio index](./index.html). Hosted links below point to existing demos and may show an earlier revision until an approved release is published.
 
-**Power BI & Data Modeling**
-- Semantic modeling in PBIP/TMDL format (source-control-friendly, Git-compatible)
-- Complex DAX: time intelligence, snapshot comparisons, WoW deltas, RLS filter patterns
-- Row-Level Security for multi-tier sales hierarchies (seller → manager → region → global)
-- Multi-snapshot fact tables for point-in-time funnel analysis
+| Project | Decision illustrated | What is in this repository | Existing hosted demo |
+|---|---|---|---|
+| [Weekly Check-In Portal](./weekly-checkin-portal/) | What changed in the forecast, and what requires leadership review? | Standalone HTML workflow and scripted chat prototype | [Open demo](https://renatorbruxel.github.io/projects/weekly-checkin-portal/weekly-checkin-portal.html) |
+| [Pipeline Intelligence](./funnel-management/) | Where are slippage, pacing and conversion risks concentrated? | Standalone HTML dashboard | [Open demo](https://renatorbruxel.github.io/projects/funnel-management/pipeline-intelligence.html) |
+| [Net New Tracker](./net-new-tracker/) | Which classifications need review, and what do the unit economics imply? | Standalone HTML dashboard | [Open demo](https://renatorbruxel.github.io/projects/net-new-tracker/net-new-tracker.html) |
+| [Pipeline Pulse](./pipeline-pulse/) | Does pipeline coverage support the selected planning horizon? | Standalone HTML dashboard | [Open demo](https://renatorbruxel.github.io/projects/pipeline-pulse/pipeline-pulse.html) |
+| [Sales League](./sales-league/) | Which seller and team performance gaps merit coaching? | Standalone HTML dashboard | [Open demo](https://renatorbruxel.github.io/projects/sales-league/sales-league.html) |
 
-**Frontend & Operations Tooling**
-- Self-contained single-file HTML applications deployable without infrastructure
-- AI narrative generation integrated directly into operational workflows
-- Word document export from browser-based applications (no server required)
-- Forecast submission workflow with approval state management
+This review covers the seven HTML pages and their supporting documentation and checks. Power BI files are outside the requested scope and remain unchanged.
 
-**GTM Strategy & Operations**
-- Weekly forecast governance design and regional cadence management
-- Push/pull pipeline behavior analysis and sales coaching signals
-- Sales gamification mechanics (leaderboards, commitments, recovery plans)
-- Quota-to-actuals reconciliation and attainment band analysis
+## Run and check locally
 
----
+From the repository root, with Python 3 installed:
 
-## Context
+```bash
+python3 -m http.server 8000
+```
 
-These tools support a GTM organization with ~200 quota-carrying sellers distributed across 3 major regions (Americas, EMEA, APJ), 6 sub-regions, and multiple product lines. The portfolio reflects a full-stack RevOps approach — from individual seller scorecards to executive-level forecast governance.
+Open [the local portfolio](http://localhost:8000/). No paid service, account or API token is required for the HTML demonstration. Stop the server with Ctrl+C.
 
-> All data, names, and company references in this portfolio are entirely fictional and created for portfolio demonstration purposes.
+Run the repository's automated checks with Python 3 and Node.js from the same directory:
+
+```bash
+python3 tests/run_checks.py
+```
+
+Read the [final audit](./docs/FINAL_PORTFOLIO_AUDIT.md) for the actual checks performed and their limits. Passing automated checks does not certify visual layout, source provenance or production security.
+
+## Architecture and metric scope
+
+Each HTML file contains its own markup, styles, JavaScript and embedded scenario values. Browser controls operate on local state or fixed examples. There is no shared governed dataset connecting the five demos. Some sections are independent illustrative scenarios; their periods and denominators must be read before comparing values.
+
+The examples cover attainment, gap to target, pipeline coverage, movement, classification, velocity and unit economics. Relevant formulas and limitations are documented in each project. Illustrative thresholds are assumptions, not approved commercial or compensation policies.
+
+There is no connected live AI service, AWS backend, durable submission store, Word generation service or enforced authentication/RLS in these HTML prototypes. Workflow buttons are demonstrations; they must not be used to submit business records.
+
+## Governance and next steps
+
+The files present their datasets as synthetic. Original provenance has not been independently certified, and the audit must be consulted before external release. This repository does not claim that all existing material has been proven independent of employer code or data. Do not add confidential records, internal architecture, credentials or personal employee information.
+
+A production evolution would require a documented source contract, reproducible synthetic fixtures, consistent metric definitions, authenticated persistence, access-control tests, narrative evaluation and verified exports. The current work reviews and repairs five existing prototypes. It does not deliver the three new flagship repositories described in the broader brief.
+
+See [master-prompt alignment](./docs/MASTER_PROMPT_ALIGNMENT.md) for completed scope, remaining requirements and release conditions.

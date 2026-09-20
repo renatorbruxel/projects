@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pipeline Intelligence | Vantara Sales</title>
+<title>Pipeline Intelligence | Aurora Demo</title>
 <style>
   :root {
     --teal: #0f4c5c;
@@ -167,12 +167,12 @@
   .od-tile { flex: 1; border-radius: 8px; padding: 14px; text-align: center; }
   .od-tile-am { background: #fdecea; border: 1px solid #f5c6c6; }
   .od-tile-em { background: #fff8e6; border: 1px solid #f5e0a3; }
-  .od-tile-apj { background: #e8f5ee; border: 1px solid #b8dfc8; }
+  .od-tile-summit { background: #e8f5ee; border: 1px solid #b8dfc8; }
   .od-tile .od-count { font-size: 28px; font-weight: 800; }
   .od-tile .od-region { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
   .od-tile-am .od-count { color: var(--red); }
   .od-tile-em .od-count { color: var(--yellow); }
-  .od-tile-apj .od-count { color: var(--green); }
+  .od-tile-summit .od-count { color: var(--green); }
 
   /* ── Footer ── */
   .footer { background: var(--teal); color: rgba(255,255,255,0.55); text-align: center; padding: 12px; font-size: 11px; margin-top: 32px; }
@@ -204,13 +204,34 @@
     .tab-content + .tab-content { page-break-before: always; }
   }
 </style>
+<style>
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #1675b5;outline-offset:3px}
+</style>
+<style>
+/* Keep dense data tables scrollable without widening the page. */
+.table-scroll{max-width:100%;overflow-x:auto}
+.panel,.card,.db-card,.chart-card,.two-col>*,.three-col>*,.g2>*,.g3>*,.g5>*,.chart-row>*,.db-grid>*{min-width:0}
+@media(max-width:768px){
+  [style*="grid-template-columns"]{grid-template-columns:minmax(0,1fr)!important}
+  .two-col,.three-col,.layers,.principles,.stack-cards,.db-grid,.qa-grid,.metrics-row{grid-template-columns:minmax(0,1fr)}
+  .kpi-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tab-content{padding:20px 16px}
+  .header,.app-header{flex-wrap:wrap;gap:12px;padding:16px}
+  .sh{flex-wrap:wrap;gap:8px}
+  .code-section,.code-section>*{min-width:0;max-width:100%}
+  pre{max-width:100%;overflow-x:auto}
+}
+@media(max-width:480px){.kpi-row,.howto-grid{grid-template-columns:minmax(0,1fr)}}
+</style>
+<style>@media(max-width:768px){.pp-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tl-row{flex-direction:column}.pp-tile{min-width:0;padding:14px 10px}}</style>
 </head>
 <body>
 
 <!-- HEADER -->
 <div class="header">
   <div>
-    <div class="header-title">Pipeline Intelligence | Vantara Sales</div>
+    <div class="header-title">Pipeline Intelligence | Aurora Demo</div>
     <div class="header-sub">GTM Portfolio Dashboard &mdash; Enterprise Accounts</div>
   </div>
   <div class="header-badge">LIVE &bull; FY2026</div>
@@ -234,7 +255,7 @@
 ══════════════════════════════════════ -->
 <div id="tab-summary" class="tab-content active">
   <div class="section-title">Pipeline Intelligence &mdash; Week 37, FY2026</div>
-  <div class="section-sub">Americas / EMEA / APJ &bull; Snapshot as of end of business Friday</div>
+  <div class="section-sub">Northstar / Aurora / Summit &bull; Snapshot as of end of business Friday</div>
 
   <!-- Quarter at a Glance -->
   <div class="qag-panel">
@@ -260,7 +281,7 @@
     </div>
     <div class="qag-item">
       <span class="qag-label">Attainment</span>
-      <span class="qag-val qag-val-accent">94%</span>
+      <span class="qag-val qag-val-accent">93%</span>
     </div>
     <div class="qag-item">
       <span class="qag-label">Gap to Quota</span>
@@ -271,7 +292,7 @@
   <!-- Insight box -->
   <div class="insight-box orange">
     <div class="insight-title">&#128202; Key Insight &mdash; Pipeline Coverage</div>
-    <div class="insight-body">Overall coverage sits at <strong>2.9x</strong> &mdash; below the 3x governance threshold. EMEA and APJ need <strong>$4.1M</strong> and <strong>$9.0M</strong> in net new pipeline respectively to reach target. With 12 days remaining and $8.4M pushed out in W37, pipeline generation must accelerate immediately or quota must be reforecast.</div>
+    <div class="insight-body">Overall coverage sits at <strong>2.8x</strong> &mdash; below the 3x governance threshold. Aurora and Summit need <strong>$4.3M</strong> and <strong>$9.0M</strong> in net new pipeline respectively to reach target. With 12 days remaining and $8.4M pushed out in W37, pipeline generation must accelerate immediately or quota must be reforecast.</div>
   </div>
 
   <!-- KPI Cards (animated) -->
@@ -283,13 +304,13 @@
     </div>
     <div class="kpi-card" style="border-left-color:var(--accent)">
       <div class="kpi-label">Coverage Ratio</div>
-      <div class="kpi-value" style="color:var(--accent)" data-prefix="" data-suffix="x" data-target="2.9" data-decimals="1">2.9x</div>
+      <div class="kpi-value" style="color:var(--accent)" data-prefix="" data-suffix="x" data-target="2.8" data-decimals="1">2.8x</div>
       <div class="kpi-delta delta-warn">&#9888; Below 3x target</div>
     </div>
     <div class="kpi-card" style="border-left-color:var(--green)">
       <div class="kpi-label">Attainment</div>
-      <div class="kpi-value" style="color:var(--green)" data-prefix="" data-suffix="%" data-target="94" data-decimals="0">94%</div>
-      <div class="kpi-delta" style="color:var(--muted);font-weight:500;">Q3 FY2026 YTD</div>
+      <div class="kpi-value" style="color:var(--green)" data-prefix="" data-suffix="%" data-target="93" data-decimals="0">93%</div>
+      <div class="kpi-delta" style="color:var(--muted);font-weight:500;">Q3 FY2026 quarter-to-date</div>
     </div>
     <div class="kpi-card" style="border-left-color:var(--blue)">
       <div class="kpi-label">WoW Pipeline Delta</div>
@@ -336,24 +357,24 @@
           <text x="62" y="164" text-anchor="end" font-size="10" fill="#888">$45M</text>
           <text x="62" y="234" text-anchor="end" font-size="10" fill="#888">$22M</text>
           <text x="62" y="274" text-anchor="end" font-size="10" fill="#888">$0</text>
-          <!-- Americas: $89M, 3.1x, green -->
+          <!-- Northstar: $89M, 3.1x, green -->
           <rect x="110" y="22" width="90" height="248" fill="#27ae60" rx="4">
-            <title>Americas: $89M pipeline | Coverage 3.1x | Quota $28.7M</title>
+            <title>Northstar: $89M pipeline | Coverage 3.1x | Quota $28.7M</title>
           </rect>
           <text x="155" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#1e7e45">$89M</text>
-          <!-- EMEA: $62M, 2.8x, orange -->
+          <!-- Aurora: $62M, 2.8x, orange -->
           <rect x="230" y="98" width="90" height="172" fill="#f4a261" rx="4">
-            <title>EMEA: $62M pipeline | Coverage 2.8x | Quota $22.1M</title>
+            <title>Aurora: $62M pipeline | Coverage 2.8x | Quota $22.1M</title>
           </rect>
           <text x="275" y="92" text-anchor="middle" font-size="11" font-weight="700" fill="#c0622a">$62M</text>
-          <!-- APJ: $36M, 2.4x, orange-red -->
+          <!-- Summit: $36M, 2.4x, orange-red -->
           <rect x="350" y="170" width="90" height="100" fill="#f4a261" rx="4">
-            <title>APJ: $36M pipeline | Coverage 2.4x | Quota $15.0M</title>
+            <title>Summit: $36M pipeline | Coverage 2.4x | Quota $15.0M</title>
           </rect>
           <text x="395" y="164" text-anchor="middle" font-size="11" font-weight="700" fill="#c0622a">$36M</text>
-          <text x="155" y="288" text-anchor="middle" font-size="12" font-weight="600" fill="#2c3e50">Americas</text>
-          <text x="275" y="288" text-anchor="middle" font-size="12" font-weight="600" fill="#2c3e50">EMEA</text>
-          <text x="395" y="288" text-anchor="middle" font-size="12" font-weight="600" fill="#2c3e50">APJ</text>
+          <text x="155" y="288" text-anchor="middle" font-size="12" font-weight="600" fill="#2c3e50">Northstar</text>
+          <text x="275" y="288" text-anchor="middle" font-size="12" font-weight="600" fill="#2c3e50">Aurora</text>
+          <text x="395" y="288" text-anchor="middle" font-size="12" font-weight="600" fill="#2c3e50">Summit</text>
           <rect x="72" y="4" width="10" height="10" fill="#27ae60" rx="2"/>
           <text x="85" y="13" font-size="10" fill="#555">&#8805;3x Coverage</text>
           <rect x="150" y="4" width="10" height="10" fill="#f4a261" rx="2"/>
@@ -365,13 +386,13 @@
     <!-- Coverage Table with sparklines -->
     <div class="panel">
       <div class="panel-title">Coverage Ratio by Region</div>
-      <table class="cov-table">
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table class="cov-table">
         <thead>
           <tr><th>Region</th><th>Pipeline</th><th>Quota</th><th>Coverage</th><th>8-Wk Trend</th><th>Status</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Americas</strong></td>
+            <td><strong>Northstar</strong></td>
             <td>$89M</td>
             <td>$28.7M</td>
             <td><strong>3.1x</strong></td>
@@ -385,7 +406,7 @@
             <td><span class="tl-badge tl-badge-green">&#129001; On Track</span></td>
           </tr>
           <tr>
-            <td><strong>EMEA</strong></td>
+            <td><strong>Aurora</strong></td>
             <td>$62M</td>
             <td>$22.1M</td>
             <td><strong>2.8x</strong></td>
@@ -399,7 +420,7 @@
             <td><span class="tl-badge tl-badge-yellow">&#128993; At Risk</span></td>
           </tr>
           <tr>
-            <td><strong>APJ</strong></td>
+            <td><strong>Summit</strong></td>
             <td>$36M</td>
             <td>$15.0M</td>
             <td><strong>2.4x</strong></td>
@@ -416,7 +437,7 @@
             <td><strong>Total</strong></td>
             <td><strong>$187M</strong></td>
             <td><strong>$65.8M</strong></td>
-            <td><strong>2.9x</strong></td>
+            <td><strong>2.8x</strong></td>
             <td>
               <svg viewBox="0 0 60 20" width="60" height="20" style="overflow:visible;">
                 <polyline points="0,9 8,9 16,10 24,11 32,11 40,12 48,12 58,13" fill="none" stroke="#f39c12" stroke-width="1.8" stroke-linejoin="round"/>
@@ -426,9 +447,9 @@
             <td><span class="tl-badge tl-badge-yellow">&#9888; Below 3x</span></td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
       <div style="margin-top:14px;font-size:12px;color:var(--muted);font-weight:500;">
-        <strong>Target:</strong> 3.0x minimum coverage. EMEA and APJ require pipeline generation focus or quota reforecast.
+        <strong>Target:</strong> 3.0x minimum coverage. Aurora and Summit require pipeline generation focus or quota reforecast.
       </div>
     </div>
   </div>
@@ -443,7 +464,7 @@
 
   <div class="insight-box red">
     <div class="insight-title">&#128202; Key Insight &mdash; Push/Pull Balance</div>
-    <div class="insight-body">Push-out velocity is <strong>accelerating</strong> &mdash; W37 is the 8-week high at <strong>$8.4M</strong>, while pull-ins have plateaued at $3.1M. The push-to-pull ratio of 2.7:1 indicates deteriorating forecast discipline. Americas accounts for 63% of push-out volume. &#9888; Immediate manager review on Accenture, Dell, and Citigroup is required.</div>
+    <div class="insight-body">Push-out velocity is <strong>accelerating</strong> &mdash; W37 is the 8-week high at <strong>$8.4M</strong>, while pull-ins have plateaued at $3.1M. The push-to-pull ratio of 2.7:1 indicates deteriorating forecast discipline. Northstar accounts for 63% of push-out volume. &#9888; Immediate manager review on Demo Account 003, Dell, and Citigroup is required.</div>
   </div>
 
   <div class="two-col">
@@ -530,13 +551,13 @@
   <!-- Top Push-Outs table -->
   <div class="panel">
     <div class="panel-title">Top Push-Outs This Week (W37)</div>
-    <table>
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table>
       <thead>
         <tr><th>Account</th><th>ARR Value</th><th>Seller</th><th>Original Close</th><th>New Close Date</th><th>Reason</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>Accenture</strong></td><td><strong>$2.3M</strong></td><td>James Wright</td>
+          <td><strong>Demo Account 003</strong></td><td><strong>$2.3M</strong></td><td>James Wright</td>
           <td>Aug 31, 2026</td><td>Sep 20, 2026</td><td><span class="badge badge-teal">Competition</span></td>
         </tr>
         <tr>
@@ -544,24 +565,24 @@
           <td>Sep 1, 2026</td><td>Sep 25, 2026</td><td><span class="badge badge-orange">Procurement Delay</span></td>
         </tr>
         <tr>
-          <td><strong>SAP</strong></td><td><strong>$1.1M</strong></td><td>Tom Bradley</td>
+          <td><strong>Demo Account 035</strong></td><td><strong>$1.1M</strong></td><td>Tom Bradley</td>
           <td>Sep 10, 2026</td><td>Oct 10, 2026</td><td><span class="badge badge-yellow">Price</span></td>
         </tr>
         <tr>
-          <td><strong>NTT</strong></td><td><strong>$0.9M</strong></td><td>Aiko Tanaka</td>
+          <td><strong>Demo Account 029</strong></td><td><strong>$0.9M</strong></td><td>Aiko Tanaka</td>
           <td>Sep 12, 2026</td><td>Oct 5, 2026</td><td><span class="badge badge-red">Budget Freeze</span></td>
         </tr>
         <tr>
-          <td><strong>Infosys</strong></td><td><strong>$0.7M</strong></td><td>Raj Patel</td>
+          <td><strong>Demo Account 023</strong></td><td><strong>$0.7M</strong></td><td>Demo Seller 05</td>
           <td>Sep 15, 2026</td><td>Oct 15, 2026</td><td><span class="badge badge-teal">Competition</span></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="alert alert-danger">
     <span>&#9888;</span>
-    <span>Total pushed-out value W37: <strong>$8.4M</strong> &mdash; vs. remaining quota gap of <strong>$7.2M</strong>. Push-out volume exceeds gap; immediate action required on commits at risk.</span>
+    <span>Total pushed-out value W37: <strong>$8.4M</strong> &mdash; vs. remaining quota gap of <strong>$4.8M</strong>. Push-out volume exceeds gap; immediate action required on commits at risk.</span>
   </div>
 </div>
 
@@ -570,18 +591,18 @@
 ══════════════════════════════════════ -->
 <div id="tab-pacing" class="tab-content">
   <div class="section-title">Actuals Pacing &mdash; Q3 FY2026</div>
-  <div class="section-sub">Cumulative bookings vs. required pace &bull; Target $80M</div>
+  <div class="section-sub">Independent stretch-target scenario: cumulative bookings vs. an $80M target. The summary uses the $65.8M base quota.</div>
 
   <div class="insight-box">
     <div class="insight-title">&#128202; Key Insight &mdash; Quarter Pacing</div>
-    <div class="insight-body">At W11, actuals of <strong>$61M</strong> trail required pace by <strong>$7M</strong>. Closing the gap requires $19M in the final two weeks &mdash; a pace roughly <strong>3.5x</strong> the weekly run rate achieved to date. EMEA is the primary drag at 81% paced, contributing <strong>$4.5M</strong> of the total gap. &#128201; Americas is closest to recovery path at 93% paced.</div>
+    <div class="insight-body">At W11, actuals of <strong>$61M</strong> trail the linear stretch-target pace by <strong>$6.7M</strong>. Closing the gap requires $19M in the final two weeks &mdash; a pace roughly <strong>1.7x</strong> the weekly run rate achieved to date. Aurora is the primary drag at 81% paced, contributing <strong>$4.5M</strong> of the total gap. &#128201; Summit is closest to the illustrative regional pace at 98%; Northstar is at 93%.</div>
   </div>
 
   <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
     <div class="days-remaining">&#128197; 12 days remaining in Q3 FY2026</div>
     <div class="alert alert-warn" style="margin-bottom:0;flex:1;min-width:280px;">
       <span>&#9650;</span>
-      <span>Currently <strong>$7M behind required pace</strong> at Week 11. Requires $19M in final 2 weeks to close.</span>
+      <span>Currently <strong>$6.7M behind the linear stretch-target pace</strong> at Week 11. Requires $19M in final 2 weeks to close.</span>
     </div>
   </div>
 
@@ -645,7 +666,7 @@
         <circle cx="82" cy="300" r="3" fill="#0f4c5c"/>
         <text x="96" y="304" font-size="10" fill="#555">Actuals ($61M at W11)</text>
         <line x1="220" y1="300" x2="240" y2="300" stroke="#f4a261" stroke-width="2" stroke-dasharray="6,3"/>
-        <text x="244" y="304" font-size="10" fill="#555">Required Pace ($68M at W11)</text>
+        <text x="244" y="304" font-size="10" fill="#555">Required Pace ($67.7M at W11)</text>
         <text x="440" y="304" font-size="10" fill="#888">Target: $80M</text>
       </svg>
     </div>
@@ -654,12 +675,12 @@
   <hr class="section-divider">
 
   <!-- Traffic lights by region -->
-  <div class="panel-title" style="margin-bottom:12px;">Pacing Status by Region</div>
+  <div class="panel-title" style="margin-bottom:12px;">Regional pacing benchmarks (rounded; total $68.0M)</div>
   <div class="tl-row">
     <div class="tl-card">
       <div class="tl-dot tl-dot-yellow"></div>
       <div>
-        <div class="tl-region">Americas</div>
+        <div class="tl-region">Northstar</div>
         <div class="tl-status">$32.1M / $34.4M target &bull; 93% paced</div>
       </div>
       <span class="tl-badge tl-badge-yellow" style="margin-left:auto;">&#128993; At Risk</span>
@@ -667,7 +688,7 @@
     <div class="tl-card">
       <div class="tl-dot tl-dot-red"></div>
       <div>
-        <div class="tl-region">EMEA</div>
+        <div class="tl-region">Aurora</div>
         <div class="tl-status">$18.6M / $23.1M target &bull; 81% paced</div>
       </div>
       <span class="tl-badge tl-badge-red" style="margin-left:auto;">&#128308; Behind</span>
@@ -675,7 +696,7 @@
     <div class="tl-card">
       <div class="tl-dot tl-dot-green"></div>
       <div>
-        <div class="tl-region">APJ</div>
+        <div class="tl-region">Summit</div>
         <div class="tl-status">$10.3M / $10.5M target &bull; 98% paced</div>
       </div>
       <span class="tl-badge tl-badge-green" style="margin-left:auto;">&#129001; On Track</span>
@@ -692,7 +713,7 @@
 
   <div class="insight-box red">
     <div class="insight-title">&#128202; Key Insight &mdash; Push-Out Risk</div>
-    <div class="insight-body">&#9888; <strong>$24.3M</strong> pushed out QTD across 47 opportunities &mdash; equivalent to <strong>37%</strong> of quarterly target. Procurement delays dominate at $7.8M (32%). Three sellers account for <strong>58%</strong> of total push-out volume; escalation to VP-level required. Budget freeze activity concentrated in APJ suggests macro headwinds in that region.</div>
+    <div class="insight-body">&#9888; <strong>$24.3M</strong> pushed out QTD across 47 opportunities &mdash; equivalent to <strong>37%</strong> of quarterly target. Procurement delays dominate at $7.8M (32%). Three sellers account for <strong>58%</strong> of total push-out volume; escalation to VP-level required. Budget freeze activity concentrated in Summit suggests macro headwinds in that region.</div>
   </div>
 
   <div class="alert alert-danger">
@@ -707,59 +728,59 @@
       <label for="pushout-region-filter">Filter by Region:</label>
       <select id="pushout-region-filter" onchange="filterPushouts()">
         <option value="all">All Regions</option>
-        <option value="Americas">Americas</option>
-        <option value="EMEA">EMEA</option>
-        <option value="APJ">APJ</option>
+        <option value="Northstar">Northstar</option>
+        <option value="Aurora">Aurora</option>
+        <option value="Summit">Summit</option>
       </select>
       <button class="filter-clear" onclick="clearPushoutFilter()">&#10005; Clear</button>
     </div>
-    <table id="pushout-table">
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table id="pushout-table">
       <thead>
         <tr><th>Opportunity</th><th>Account</th><th>Region</th><th>ARR</th><th>Original Close</th><th>New Close</th><th>Days Pushed</th><th>Seller</th><th>Reason</th></tr>
       </thead>
       <tbody>
-        <tr data-region="Americas">
-          <td>OPP-007</td><td><strong>Dell Technologies</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-region="Northstar">
+          <td>OPP-007</td><td><strong>Dell Technologies</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td>$3.8M</td><td>Aug 15, 2026</td><td>Sep 30, 2026</td><td><span class="badge badge-red">46d</span></td>
           <td>Marcus Reed</td><td><span class="badge badge-orange">Procurement Delay</span></td>
         </tr>
-        <tr data-region="Americas">
-          <td>OPP-008</td><td><strong>Citigroup</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-region="Northstar">
+          <td>OPP-008</td><td><strong>Citigroup</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td>$2.9M</td><td>Aug 20, 2026</td><td>Oct 15, 2026</td><td><span class="badge badge-red">56d</span></td>
           <td>Lisa Park</td><td><span class="badge badge-red">Budget Freeze</span></td>
         </tr>
-        <tr data-region="Americas">
-          <td>OPP-009</td><td><strong>Accenture</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-region="Northstar">
+          <td>OPP-009</td><td><strong>Demo Account 003</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td>$2.3M</td><td>Aug 31, 2026</td><td>Sep 20, 2026</td><td><span class="badge badge-yellow">20d</span></td>
           <td>James Wright</td><td><span class="badge badge-teal">Competition</span></td>
         </tr>
-        <tr data-region="Americas">
-          <td>OPP-010</td><td><strong>Walmart</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-region="Northstar">
+          <td>OPP-010</td><td><strong>Demo Account 052</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td>$2.1M</td><td>Sep 5, 2026</td><td>Oct 1, 2026</td><td><span class="badge badge-yellow">26d</span></td>
-          <td>Sarah Chen</td><td><span class="badge badge-yellow">Price</span></td>
+          <td>Demo Seller 01</td><td><span class="badge badge-yellow">Price</span></td>
         </tr>
-        <tr data-region="Americas">
-          <td>OPP-011</td><td><strong>Microsoft</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-region="Northstar">
+          <td>OPP-011</td><td><strong>Microsoft</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td>$1.8M</td><td>Sep 1, 2026</td><td>Sep 25, 2026</td><td><span class="badge badge-yellow">24d</span></td>
           <td>Priya Kumar</td><td><span class="badge badge-orange">Procurement Delay</span></td>
         </tr>
-        <tr data-region="EMEA">
-          <td>OPP-012</td><td><strong>SAP</strong></td><td><span class="badge badge-orange">EMEA</span></td>
+        <tr data-region="Aurora">
+          <td>OPP-012</td><td><strong>Demo Account 035</strong></td><td><span class="badge badge-orange">Aurora</span></td>
           <td>$1.1M</td><td>Sep 10, 2026</td><td>Oct 10, 2026</td><td><span class="badge badge-yellow">30d</span></td>
           <td>Tom Bradley</td><td><span class="badge badge-yellow">Price</span></td>
         </tr>
-        <tr data-region="APJ">
-          <td>OPP-013</td><td><strong>NTT</strong></td><td><span class="badge badge-green">APJ</span></td>
+        <tr data-region="Summit">
+          <td>OPP-013</td><td><strong>Demo Account 029</strong></td><td><span class="badge badge-green">Summit</span></td>
           <td>$0.9M</td><td>Sep 12, 2026</td><td>Oct 5, 2026</td><td><span class="badge badge-yellow">23d</span></td>
           <td>Aiko Tanaka</td><td><span class="badge badge-red">Budget Freeze</span></td>
         </tr>
-        <tr data-region="APJ">
-          <td>OPP-014</td><td><strong>Infosys</strong></td><td><span class="badge badge-green">APJ</span></td>
+        <tr data-region="Summit">
+          <td>OPP-014</td><td><strong>Demo Account 023</strong></td><td><span class="badge badge-green">Summit</span></td>
           <td>$0.7M</td><td>Sep 15, 2026</td><td>Oct 15, 2026</td><td><span class="badge badge-yellow">30d</span></td>
-          <td>Raj Patel</td><td><span class="badge badge-teal">Competition</span></td>
+          <td>Demo Seller 05</td><td><span class="badge badge-teal">Competition</span></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <!-- Push-out by reason chart -->
@@ -808,14 +829,14 @@
       <span>&#9888;</span>
       <span>Three sellers account for <strong>$14.9M</strong> (61%) of total Q3 push-out value. Escalation and coaching required before end of quarter.</span>
     </div>
-    <table>
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table>
       <thead>
         <tr><th>Seller</th><th>Region</th><th>Push-Outs (Q3)</th><th>Total Value Pushed</th><th>Avg Days Pushed</th><th>Primary Reason</th><th>Risk Flag</th></tr>
       </thead>
       <tbody>
         <tr>
           <td><strong>Tom Bradley</strong></td>
-          <td><span class="badge badge-teal">Americas</span> / <span class="badge badge-orange">EMEA</span></td>
+          <td><span class="badge badge-teal">Northstar</span> / <span class="badge badge-orange">Aurora</span></td>
           <td style="font-weight:700;color:var(--red);">4</td>
           <td><strong>$6.8M</strong></td>
           <td>34 days</td>
@@ -823,8 +844,8 @@
           <td><span class="repeater-badge">&#128308; High</span></td>
         </tr>
         <tr>
-          <td><strong>Sarah Chen</strong></td>
-          <td><span class="badge badge-teal">Americas</span></td>
+          <td><strong>Demo Seller 01</strong></td>
+          <td><span class="badge badge-teal">Northstar</span></td>
           <td style="font-weight:700;color:var(--red);">3</td>
           <td><strong>$4.9M</strong></td>
           <td>28 days</td>
@@ -832,8 +853,8 @@
           <td><span class="repeater-badge">&#128308; High</span></td>
         </tr>
         <tr>
-          <td><strong>Raj Patel</strong></td>
-          <td><span class="badge badge-green">APJ</span></td>
+          <td><strong>Demo Seller 05</strong></td>
+          <td><span class="badge badge-green">Summit</span></td>
           <td style="font-weight:700;color:var(--yellow);">3</td>
           <td><strong>$3.2M</strong></td>
           <td>31 days</td>
@@ -841,7 +862,7 @@
           <td><span class="badge badge-yellow">&#128993; Medium</span></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
     <div style="margin-top:12px;font-size:12px;color:var(--muted);font-weight:500;">
       &#9432; Sellers with 3+ push-outs in a single quarter are flagged for mandatory manager review per forecast governance policy.
     </div>
@@ -871,38 +892,38 @@
 
   <div class="panel">
     <div class="panel-title">Pull-In Opportunities</div>
-    <table>
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table>
       <thead>
         <tr><th>Account</th><th>Region</th><th>ARR</th><th>Original Close</th><th>New Close</th><th>Days Pulled</th><th>Seller</th><th>Stage</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>Boeing</strong></td><td><span class="badge badge-teal">Americas</span></td><td>$2.1M</td>
+          <td><strong>Boeing</strong></td><td><span class="badge badge-teal">Northstar</span></td><td>$2.1M</td>
           <td>Oct 30, 2026</td><td>Sep 25, 2026</td><td><span class="badge badge-green">-35d</span></td>
           <td>Tom Bradley</td><td><span class="badge stage-5">Stage 5</span></td>
         </tr>
         <tr>
-          <td><strong>Goldman Sachs</strong></td><td><span class="badge badge-teal">Americas</span></td><td>$1.7M</td>
+          <td><strong>Goldman Sachs</strong></td><td><span class="badge badge-teal">Northstar</span></td><td>$1.7M</td>
           <td>Oct 20, 2026</td><td>Sep 26, 2026</td><td><span class="badge badge-green">-24d</span></td>
           <td>Lisa Park</td><td><span class="badge stage-4">Stage 4</span></td>
         </tr>
         <tr>
-          <td><strong>Vodafone</strong></td><td><span class="badge badge-orange">EMEA</span></td><td>$1.8M</td>
+          <td><strong>Demo Account 050</strong></td><td><span class="badge badge-orange">Aurora</span></td><td>$1.8M</td>
           <td>Oct 15, 2026</td><td>Sep 28, 2026</td><td><span class="badge badge-green">-17d</span></td>
           <td>Anna M&#252;ller</td><td><span class="badge stage-4">Stage 4</span></td>
         </tr>
         <tr>
-          <td><strong>Siemens</strong></td><td><span class="badge badge-orange">EMEA</span></td><td>$1.7M</td>
+          <td><strong>Demo Account 039</strong></td><td><span class="badge badge-orange">Aurora</span></td><td>$1.7M</td>
           <td>Oct 25, 2026</td><td>Sep 29, 2026</td><td><span class="badge badge-green">-26d</span></td>
           <td>Emma Wilson</td><td><span class="badge stage-3">Stage 3</span></td>
         </tr>
         <tr>
-          <td><strong>Toyota</strong></td><td><span class="badge badge-green">APJ</span></td><td>$1.4M</td>
+          <td><strong>Toyota</strong></td><td><span class="badge badge-green">Summit</span></td><td>$1.4M</td>
           <td>Nov 1, 2026</td><td>Sep 30, 2026</td><td><span class="badge badge-green">-32d</span></td>
           <td>Kenji Ito</td><td><span class="badge stage-5">Stage 5</span></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="three-col">
@@ -938,7 +959,7 @@
 
   <div class="insight-box red">
     <div class="insight-title">&#128202; Key Insight &mdash; Overdue Pipeline Risk</div>
-    <div class="insight-body">&#128308; <strong>$18.4M</strong> at risk across 31 overdue opportunities &mdash; 9.8% of total portfolio. Americas carries the highest exposure at $8.9M. Four deals (General Electric, Deutsche Bank, PepsiCo, HSBC) are 40+ days overdue and represent <strong>$10M combined</strong>. Deals this stale typically have a 35% close probability. Manager-level escalation required for all deals over 30 days.</div>
+    <div class="insight-body">&#128308; <strong>$18.4M</strong> at risk across 31 overdue opportunities &mdash; 9.8% of total portfolio. Northstar carries the highest exposure at $8.9M. Four deals (General Electric, Demo Account 014, PepsiCo, Demo Account 021) are 40+ days overdue and represent <strong>$10M combined</strong>. No calibrated close probability is available for this illustrative overdue cohort. Manager-level escalation required for all deals over 30 days.</div>
   </div>
 
   <div class="alert alert-danger">
@@ -948,7 +969,7 @@
 
   <div class="panel">
     <div class="panel-title">Worst Overdue Deals (ranked by days past due)</div>
-    <table>
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table>
       <thead>
         <tr><th>Account</th><th>ARR</th><th>Original Close</th><th>Days Overdue</th><th>Seller</th><th>Region</th><th>Stage</th></tr>
       </thead>
@@ -956,35 +977,35 @@
         <tr class="row-overdue">
           <td><strong>General Electric</strong></td><td><strong>$3.2M</strong></td><td>Jul 15, 2026</td>
           <td><span class="badge badge-red">66 days</span></td><td>Tom Bradley</td>
-          <td><span class="badge badge-teal">Americas</span></td><td><span class="badge stage-4">Stage 4</span></td>
+          <td><span class="badge badge-teal">Northstar</span></td><td><span class="badge stage-4">Stage 4</span></td>
         </tr>
         <tr class="row-overdue">
-          <td><strong>Deutsche Bank</strong></td><td><strong>$2.8M</strong></td><td>Jul 28, 2026</td>
+          <td><strong>Demo Account 014</strong></td><td><strong>$2.8M</strong></td><td>Jul 28, 2026</td>
           <td><span class="badge badge-red">53 days</span></td><td>Anna M&#252;ller</td>
-          <td><span class="badge badge-orange">EMEA</span></td><td><span class="badge stage-3">Stage 3</span></td>
+          <td><span class="badge badge-orange">Aurora</span></td><td><span class="badge stage-3">Stage 3</span></td>
         </tr>
         <tr class="row-overdue">
           <td><strong>PepsiCo</strong></td><td><strong>$2.1M</strong></td><td>Aug 5, 2026</td>
-          <td><span class="badge badge-red">45 days</span></td><td>Sarah Chen</td>
-          <td><span class="badge badge-teal">Americas</span></td><td><span class="badge stage-4">Stage 4</span></td>
+          <td><span class="badge badge-red">45 days</span></td><td>Demo Seller 01</td>
+          <td><span class="badge badge-teal">Northstar</span></td><td><span class="badge stage-4">Stage 4</span></td>
         </tr>
         <tr class="row-overdue">
-          <td><strong>HSBC</strong></td><td><strong>$1.9M</strong></td><td>Aug 10, 2026</td>
+          <td><strong>Demo Account 021</strong></td><td><strong>$1.9M</strong></td><td>Aug 10, 2026</td>
           <td><span class="badge badge-red">40 days</span></td><td>Pierre Duval</td>
-          <td><span class="badge badge-orange">EMEA</span></td><td><span class="badge stage-5">Stage 5</span></td>
+          <td><span class="badge badge-orange">Aurora</span></td><td><span class="badge stage-5">Stage 5</span></td>
         </tr>
         <tr class="row-overdue">
           <td><strong>Samsung Electronics</strong></td><td><strong>$1.6M</strong></td><td>Aug 15, 2026</td>
           <td><span class="badge badge-yellow">35 days</span></td><td>Hiroshi Tanaka</td>
-          <td><span class="badge badge-green">APJ</span></td><td><span class="badge stage-3">Stage 3</span></td>
+          <td><span class="badge badge-green">Summit</span></td><td><span class="badge stage-3">Stage 3</span></td>
         </tr>
         <tr class="row-overdue">
-          <td><strong>Unilever</strong></td><td><strong>$1.4M</strong></td><td>Aug 20, 2026</td>
+          <td><strong>Demo Account 048</strong></td><td><strong>$1.4M</strong></td><td>Aug 20, 2026</td>
           <td><span class="badge badge-yellow">30 days</span></td><td>Emma Wilson</td>
-          <td><span class="badge badge-orange">EMEA</span></td><td><span class="badge stage-4">Stage 4</span></td>
+          <td><span class="badge badge-orange">Aurora</span></td><td><span class="badge stage-4">Stage 4</span></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="panel">
@@ -992,17 +1013,17 @@
     <div class="od-row">
       <div class="od-tile od-tile-am">
         <div class="od-count">14</div>
-        <div class="od-region">Americas</div>
+        <div class="od-region">Northstar</div>
         <div style="font-size:11px;color:#9b1c1c;margin-top:4px;font-weight:600;">$8.9M at risk</div>
       </div>
       <div class="od-tile od-tile-em">
         <div class="od-count">10</div>
-        <div class="od-region">EMEA</div>
+        <div class="od-region">Aurora</div>
         <div style="font-size:11px;color:#9a6500;margin-top:4px;font-weight:600;">$6.4M at risk</div>
       </div>
-      <div class="od-tile od-tile-apj">
+      <div class="od-tile od-tile-summit">
         <div class="od-count">7</div>
-        <div class="od-region">APJ</div>
+        <div class="od-region">Summit</div>
         <div style="font-size:11px;color:#1a6033;margin-top:4px;font-weight:600;">$3.1M at risk</div>
       </div>
     </div>
@@ -1024,7 +1045,7 @@
   </div>
 
   <div class="panel" style="padding:0;overflow:hidden;">
-    <table id="raw-table">
+    <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table id="raw-table">
       <thead>
         <tr>
           <th class="sortable-th" onclick="sortTable('raw-table',0)">ID</th>
@@ -1039,108 +1060,108 @@
         </tr>
       </thead>
       <tbody>
-        <tr data-row="General Electric Americas Stage 4 Tom Bradley Commit">
-          <td>OPP-001</td><td><strong>General Electric</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-row="General Electric Northstar Stage 4 Tom Bradley Commit">
+          <td>OPP-001</td><td><strong>General Electric</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td><span class="badge stage-4">Stage 4</span></td><td data-val="3.2">$3.2M</td><td>Jul 15, 2026</td>
           <td>Tom Bradley</td><td><span class="fc-commit">Commit</span></td><td class="overdue-yes">&#9679; Yes</td>
         </tr>
-        <tr data-row="Deutsche Bank EMEA Stage 3 Anna Müller Pipeline">
-          <td>OPP-002</td><td><strong>Deutsche Bank</strong></td><td><span class="badge badge-orange">EMEA</span></td>
+        <tr data-row="Demo Account 014 Aurora Stage 3 Anna Müller Pipeline">
+          <td>OPP-002</td><td><strong>Demo Account 014</strong></td><td><span class="badge badge-orange">Aurora</span></td>
           <td><span class="badge stage-3">Stage 3</span></td><td data-val="2.8">$2.8M</td><td>Jul 28, 2026</td>
           <td>Anna M&#252;ller</td><td><span class="fc-pipeline">Pipeline</span></td><td class="overdue-yes">&#9679; Yes</td>
         </tr>
-        <tr data-row="PepsiCo Americas Stage 4 Sarah Chen Best Case">
-          <td>OPP-003</td><td><strong>PepsiCo</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-row="PepsiCo Northstar Stage 4 Demo Seller 01 Best Case">
+          <td>OPP-003</td><td><strong>PepsiCo</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td><span class="badge stage-4">Stage 4</span></td><td data-val="2.1">$2.1M</td><td>Aug 5, 2026</td>
-          <td>Sarah Chen</td><td><span class="fc-bestcase">Best Case</span></td><td class="overdue-yes">&#9679; Yes</td>
+          <td>Demo Seller 01</td><td><span class="fc-bestcase">Best Case</span></td><td class="overdue-yes">&#9679; Yes</td>
         </tr>
-        <tr data-row="HSBC EMEA Stage 5 Pierre Duval Commit">
-          <td>OPP-004</td><td><strong>HSBC</strong></td><td><span class="badge badge-orange">EMEA</span></td>
+        <tr data-row="Demo Account 021 Aurora Stage 5 Pierre Duval Commit">
+          <td>OPP-004</td><td><strong>Demo Account 021</strong></td><td><span class="badge badge-orange">Aurora</span></td>
           <td><span class="badge stage-5">Stage 5</span></td><td data-val="1.9">$1.9M</td><td>Aug 10, 2026</td>
           <td>Pierre Duval</td><td><span class="fc-commit">Commit</span></td><td class="overdue-yes">&#9679; Yes</td>
         </tr>
-        <tr data-row="Samsung APJ Stage 3 Hiroshi Tanaka Pipeline">
-          <td>OPP-005</td><td><strong>Samsung Electronics</strong></td><td><span class="badge badge-green">APJ</span></td>
+        <tr data-row="Samsung Summit Stage 3 Hiroshi Tanaka Pipeline">
+          <td>OPP-005</td><td><strong>Samsung Electronics</strong></td><td><span class="badge badge-green">Summit</span></td>
           <td><span class="badge stage-3">Stage 3</span></td><td data-val="1.6">$1.6M</td><td>Aug 15, 2026</td>
           <td>Hiroshi Tanaka</td><td><span class="fc-pipeline">Pipeline</span></td><td class="overdue-yes">&#9679; Yes</td>
         </tr>
-        <tr data-row="Unilever EMEA Stage 4 Emma Wilson Best Case">
-          <td>OPP-006</td><td><strong>Unilever</strong></td><td><span class="badge badge-orange">EMEA</span></td>
+        <tr data-row="Demo Account 048 Aurora Stage 4 Emma Wilson Best Case">
+          <td>OPP-006</td><td><strong>Demo Account 048</strong></td><td><span class="badge badge-orange">Aurora</span></td>
           <td><span class="badge stage-4">Stage 4</span></td><td data-val="1.4">$1.4M</td><td>Aug 20, 2026</td>
           <td>Emma Wilson</td><td><span class="fc-bestcase">Best Case</span></td><td class="overdue-yes">&#9679; Yes</td>
         </tr>
-        <tr data-row="Dell Technologies Americas Stage 3 Marcus Reed Best Case">
-          <td>OPP-007</td><td><strong>Dell Technologies</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-row="Dell Technologies Northstar Stage 3 Marcus Reed Best Case">
+          <td>OPP-007</td><td><strong>Dell Technologies</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td><span class="badge stage-3">Stage 3</span></td><td data-val="3.8">$3.8M</td><td>Sep 30, 2026</td>
           <td>Marcus Reed</td><td><span class="fc-bestcase">Best Case</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="Citigroup Americas Stage 4 Lisa Park Pipeline">
-          <td>OPP-008</td><td><strong>Citigroup</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-row="Citigroup Northstar Stage 4 Lisa Park Pipeline">
+          <td>OPP-008</td><td><strong>Citigroup</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td><span class="badge stage-4">Stage 4</span></td><td data-val="2.9">$2.9M</td><td>Oct 15, 2026</td>
           <td>Lisa Park</td><td><span class="fc-pipeline">Pipeline</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="Accenture Americas Stage 3 James Wright Best Case">
-          <td>OPP-009</td><td><strong>Accenture</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-row="Demo Account 003 Northstar Stage 3 James Wright Best Case">
+          <td>OPP-009</td><td><strong>Demo Account 003</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td><span class="badge stage-3">Stage 3</span></td><td data-val="2.3">$2.3M</td><td>Sep 20, 2026</td>
           <td>James Wright</td><td><span class="fc-bestcase">Best Case</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="Walmart Americas Stage 4 Sarah Chen Pipeline">
-          <td>OPP-010</td><td><strong>Walmart</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-row="Demo Account 052 Northstar Stage 4 Demo Seller 01 Pipeline">
+          <td>OPP-010</td><td><strong>Demo Account 052</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td><span class="badge stage-4">Stage 4</span></td><td data-val="2.1">$2.1M</td><td>Oct 1, 2026</td>
-          <td>Sarah Chen</td><td><span class="fc-pipeline">Pipeline</span></td><td class="overdue-no">&#9675; No</td>
+          <td>Demo Seller 01</td><td><span class="fc-pipeline">Pipeline</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="Microsoft Americas Stage 5 Priya Kumar Commit">
-          <td>OPP-011</td><td><strong>Microsoft</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-row="Microsoft Northstar Stage 5 Priya Kumar Commit">
+          <td>OPP-011</td><td><strong>Microsoft</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td><span class="badge stage-5">Stage 5</span></td><td data-val="1.8">$1.8M</td><td>Sep 25, 2026</td>
           <td>Priya Kumar</td><td><span class="fc-commit">Commit</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="SAP EMEA Stage 3 Tom Bradley Pipeline">
-          <td>OPP-012</td><td><strong>SAP</strong></td><td><span class="badge badge-orange">EMEA</span></td>
+        <tr data-row="Demo Account 035 Aurora Stage 3 Tom Bradley Pipeline">
+          <td>OPP-012</td><td><strong>Demo Account 035</strong></td><td><span class="badge badge-orange">Aurora</span></td>
           <td><span class="badge stage-3">Stage 3</span></td><td data-val="1.1">$1.1M</td><td>Oct 10, 2026</td>
           <td>Tom Bradley</td><td><span class="fc-pipeline">Pipeline</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="NTT APJ Stage 4 Aiko Tanaka Best Case">
-          <td>OPP-013</td><td><strong>NTT</strong></td><td><span class="badge badge-green">APJ</span></td>
+        <tr data-row="Demo Account 029 Summit Stage 4 Aiko Tanaka Best Case">
+          <td>OPP-013</td><td><strong>Demo Account 029</strong></td><td><span class="badge badge-green">Summit</span></td>
           <td><span class="badge stage-4">Stage 4</span></td><td data-val="0.9">$0.9M</td><td>Oct 5, 2026</td>
           <td>Aiko Tanaka</td><td><span class="fc-bestcase">Best Case</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="Infosys APJ Stage 3 Raj Patel Pipeline">
-          <td>OPP-014</td><td><strong>Infosys</strong></td><td><span class="badge badge-green">APJ</span></td>
+        <tr data-row="Demo Account 023 Summit Stage 3 Demo Seller 05 Pipeline">
+          <td>OPP-014</td><td><strong>Demo Account 023</strong></td><td><span class="badge badge-green">Summit</span></td>
           <td><span class="badge stage-3">Stage 3</span></td><td data-val="0.7">$0.7M</td><td>Oct 15, 2026</td>
-          <td>Raj Patel</td><td><span class="fc-pipeline">Pipeline</span></td><td class="overdue-no">&#9675; No</td>
+          <td>Demo Seller 05</td><td><span class="fc-pipeline">Pipeline</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="Boeing Americas Stage 5 Tom Bradley Commit">
-          <td>OPP-015</td><td><strong>Boeing</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-row="Boeing Northstar Stage 5 Tom Bradley Commit">
+          <td>OPP-015</td><td><strong>Boeing</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td><span class="badge stage-5">Stage 5</span></td><td data-val="2.1">$2.1M</td><td>Sep 25, 2026</td>
           <td>Tom Bradley</td><td><span class="fc-commit">Commit</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="Vodafone EMEA Stage 4 Anna Müller Best Case">
-          <td>OPP-016</td><td><strong>Vodafone</strong></td><td><span class="badge badge-orange">EMEA</span></td>
+        <tr data-row="Demo Account 050 Aurora Stage 4 Anna Müller Best Case">
+          <td>OPP-016</td><td><strong>Demo Account 050</strong></td><td><span class="badge badge-orange">Aurora</span></td>
           <td><span class="badge stage-4">Stage 4</span></td><td data-val="1.8">$1.8M</td><td>Sep 28, 2026</td>
           <td>Anna M&#252;ller</td><td><span class="fc-bestcase">Best Case</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="Toyota APJ Stage 5 Kenji Ito Commit">
-          <td>OPP-017</td><td><strong>Toyota</strong></td><td><span class="badge badge-green">APJ</span></td>
+        <tr data-row="Toyota Summit Stage 5 Kenji Ito Commit">
+          <td>OPP-017</td><td><strong>Toyota</strong></td><td><span class="badge badge-green">Summit</span></td>
           <td><span class="badge stage-5">Stage 5</span></td><td data-val="1.4">$1.4M</td><td>Sep 30, 2026</td>
           <td>Kenji Ito</td><td><span class="fc-commit">Commit</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="Goldman Sachs Americas Stage 4 Lisa Park Best Case">
-          <td>OPP-018</td><td><strong>Goldman Sachs</strong></td><td><span class="badge badge-teal">Americas</span></td>
+        <tr data-row="Goldman Sachs Northstar Stage 4 Lisa Park Best Case">
+          <td>OPP-018</td><td><strong>Goldman Sachs</strong></td><td><span class="badge badge-teal">Northstar</span></td>
           <td><span class="badge stage-4">Stage 4</span></td><td data-val="1.7">$1.7M</td><td>Sep 26, 2026</td>
           <td>Lisa Park</td><td><span class="fc-bestcase">Best Case</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="Siemens EMEA Stage 3 Emma Wilson Pipeline">
-          <td>OPP-019</td><td><strong>Siemens</strong></td><td><span class="badge badge-orange">EMEA</span></td>
+        <tr data-row="Demo Account 039 Aurora Stage 3 Emma Wilson Pipeline">
+          <td>OPP-019</td><td><strong>Demo Account 039</strong></td><td><span class="badge badge-orange">Aurora</span></td>
           <td><span class="badge stage-3">Stage 3</span></td><td data-val="1.7">$1.7M</td><td>Sep 29, 2026</td>
           <td>Emma Wilson</td><td><span class="fc-pipeline">Pipeline</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
-        <tr data-row="Tata Consultancy APJ Stage 4 Raj Patel Best Case">
-          <td>OPP-020</td><td><strong>Tata Consultancy</strong></td><td><span class="badge badge-green">APJ</span></td>
+        <tr data-row="Tata Consultancy Summit Stage 4 Demo Seller 05 Best Case">
+          <td>OPP-020</td><td><strong>Tata Consultancy</strong></td><td><span class="badge badge-green">Summit</span></td>
           <td><span class="badge stage-4">Stage 4</span></td><td data-val="2.4">$2.4M</td><td>Oct 20, 2026</td>
-          <td>Raj Patel</td><td><span class="fc-bestcase">Best Case</span></td><td class="overdue-no">&#9675; No</td>
+          <td>Demo Seller 05</td><td><span class="fc-bestcase">Best Case</span></td><td class="overdue-no">&#9675; No</td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 </div>
 
@@ -1153,7 +1174,7 @@
 
   <!-- Hero -->
   <div style="background:var(--teal);border-radius:12px;padding:24px 32px;margin-bottom:24px;text-align:center;">
-    <div style="font-size:56px;font-weight:900;color:#f4a261;letter-spacing:-1px;line-height:1;">$1,163<span style="font-size:28px;">/day</span></div>
+    <div style="font-size:56px;font-weight:900;color:#f4a261;letter-spacing:-1px;line-height:1;">$49,899<span style="font-size:28px;">/day</span></div>
     <div style="font-size:14px;color:rgba(255,255,255,0.8);margin-top:8px;font-weight:500;">Pipeline Velocity &mdash; Q3 FY2026 &bull; Composed of 4 levers</div>
   </div>
 
@@ -1183,12 +1204,12 @@
 
   <!-- Formula -->
   <div style="background:#e8f6f9;border:1px solid #b0d4df;border-radius:8px;padding:14px 20px;margin-bottom:24px;text-align:center;font-size:15px;font-weight:700;color:var(--teal);">
-    147 &times; $48.2K &times; 33.1% &divide; 47 days = <span style="color:var(--accent);font-size:18px;">$1,163/day</span>
+    147 &times; $48.2K &times; 33.1% &divide; 47 days = <span style="color:var(--accent);font-size:18px;">$49,899/day</span>
   </div>
 
   <!-- Velocity by Segment -->
   <div class="panel">
-    <div class="panel-title">Velocity by Segment</div>
+    <div class="panel-title">Velocity by Segment — Independent Illustrative Cohorts</div>
     <div class="chart-wrap">
       <svg viewBox="0 0 700 190" width="700" height="190">
         <line x1="140" y1="20" x2="140" y2="165" stroke="#dee2e6" stroke-width="1"/>
@@ -1196,71 +1217,36 @@
         <line x1="420" y1="20" x2="420" y2="165" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
         <line x1="560" y1="20" x2="560" y2="165" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
         <text x="135" y="175" text-anchor="end" font-size="10" fill="#6c757d">$0</text>
-        <text x="280" y="175" text-anchor="middle" font-size="10" fill="#6c757d">$700</text>
-        <text x="420" y="175" text-anchor="middle" font-size="10" fill="#6c757d">$1,400</text>
-        <text x="560" y="175" text-anchor="middle" font-size="10" fill="#6c757d">$2,100</text>
+        <text x="280" y="175" text-anchor="middle" font-size="10" fill="#6c757d">$7,000</text>
+        <text x="420" y="175" text-anchor="middle" font-size="10" fill="#6c757d">$14,000</text>
+        <text x="560" y="175" text-anchor="middle" font-size="10" fill="#6c757d">$21,000</text>
         <!-- Enterprise: 1664/2100*420=333px -->
         <text x="6" y="47" font-size="11" fill="#2c3e50" font-weight="600">Enterprise</text>
         <rect x="140" y="28" width="333" height="28" rx="3" fill="#0f4c5c"/>
-        <text x="479" y="46" font-size="12" fill="#0f4c5c" font-weight="700">$1,664/day</text>
+        <text x="479" y="46" font-size="12" fill="#0f4c5c" font-weight="700">$16,592/day</text>
         <text x="479" y="58" font-size="9" fill="#6c757d">28 opps &times; $182K &times; 28% &divide; 86 days</text>
         <!-- Mid-Market: 2086/2100*420=417px -->
         <text x="6" y="97" font-size="11" fill="#2c3e50" font-weight="600">Mid-Market</text>
         <rect x="140" y="78" width="417" height="28" rx="3" fill="#f4a261"/>
-        <text x="563" y="96" font-size="12" fill="#f4a261" font-weight="700">$2,086/day</text>
+        <text x="563" y="96" font-size="12" fill="#f4a261" font-weight="700">$20,825/day</text>
         <text x="563" y="108" font-size="9" fill="#6c757d">64 opps &times; $47K &times; 36% &divide; 52 days</text>
         <!-- SMB: 920/2100*420=184px -->
         <text x="6" y="147" font-size="11" fill="#2c3e50" font-weight="600">SMB</text>
         <rect x="140" y="128" width="184" height="28" rx="3" fill="#2980b9"/>
-        <text x="330" y="146" font-size="12" fill="#2980b9" font-weight="700">$920/day</text>
+        <text x="330" y="146" font-size="12" fill="#2980b9" font-weight="700">$9,193/day</text>
         <text x="330" y="158" font-size="9" fill="#6c757d">55 opps &times; $12K &times; 39% &divide; 28 days</text>
       </svg>
     </div>
     <div class="insight-box" style="margin-top:14px;margin-bottom:0;">
       <div class="insight-title">Segment Velocity Insight</div>
-      <div class="insight-body">Mid-Market has the highest velocity despite lower ACV &mdash; shorter cycle compensates. Enterprise velocity is constrained by cycle length (86 days avg). SMB velocity drag comes from low ACV, not cycle or win rate.</div>
+      <div class="insight-body">These separate illustrative cohorts do not reconcile to the headline inputs. Mid-Market has the highest velocity despite lower ACV &mdash; shorter cycle compensates. Enterprise velocity is constrained by cycle length (86 days avg). SMB velocity drag comes from low ACV, not cycle or win rate.</div>
     </div>
   </div>
 
-  <!-- Velocity Trend -->
+  <!-- Historical series requires comparable formula inputs. -->
   <div class="panel">
-    <div class="panel-title">Pipeline Velocity Trend &mdash; Last 4 Quarters</div>
-    <div class="chart-wrap">
-      <svg viewBox="0 0 700 230" width="700" height="230">
-        <line x1="60" y1="190" x2="640" y2="190" stroke="#dee2e6" stroke-width="1"/>
-        <line x1="60" y1="165" x2="640" y2="165" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
-        <line x1="60" y1="140" x2="640" y2="140" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
-        <line x1="60" y1="115" x2="640" y2="115" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
-        <line x1="60" y1="90" x2="640" y2="90" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
-        <line x1="60" y1="65" x2="640" y2="65" stroke="#dee2e6" stroke-width="0.5" stroke-dasharray="4,3"/>
-        <text x="55" y="193" text-anchor="end" font-size="10" fill="#6c757d">$1,000</text>
-        <text x="55" y="168" text-anchor="end" font-size="10" fill="#6c757d">$1,100</text>
-        <text x="55" y="143" text-anchor="end" font-size="10" fill="#6c757d">$1,200</text>
-        <text x="55" y="118" text-anchor="end" font-size="10" fill="#6c757d">$1,300</text>
-        <text x="55" y="93" text-anchor="end" font-size="10" fill="#6c757d">$1,400</text>
-        <text x="55" y="68" text-anchor="end" font-size="10" fill="#6c757d">$1,500</text>
-        <line x1="60" y1="60" x2="60" y2="195" stroke="#dee2e6" stroke-width="1"/>
-        <!-- y = 190 - (val-1000)/600*150 -->
-        <!-- Q4FY25 $1421: y=85 | Q1FY26 $1387: y=93 | Q2FY26 $1291: y=117 | Q3FY26 $1163: y=149 -->
-        <polygon points="130,85 290,93 450,117 610,149 610,190 130,190" fill="#0f4c5c" opacity="0.12"/>
-        <polyline points="130,85 290,93 450,117 610,149" fill="none" stroke="#0f4c5c" stroke-width="2.5" stroke-linejoin="round"/>
-        <circle cx="130" cy="85" r="5" fill="#0f4c5c"/>
-        <circle cx="290" cy="93" r="5" fill="#0f4c5c"/>
-        <circle cx="450" cy="117" r="5" fill="#f4a261"/>
-        <circle cx="610" cy="149" r="5" fill="#e74c3c"/>
-        <text x="130" y="78" text-anchor="middle" font-size="11" fill="#0f4c5c" font-weight="700">$1,421</text>
-        <text x="290" y="86" text-anchor="middle" font-size="11" fill="#0f4c5c" font-weight="700">$1,387</text>
-        <text x="450" y="110" text-anchor="middle" font-size="11" fill="#f4a261" font-weight="700">$1,291</text>
-        <text x="610" y="142" text-anchor="middle" font-size="11" fill="#e74c3c" font-weight="700">$1,163</text>
-        <text x="220" y="108" font-size="9" fill="#6c757d">Win rate &#8595;</text>
-        <text x="370" y="132" font-size="9" fill="#6c757d">ACV compression</text>
-        <text x="510" y="164" font-size="9" fill="#6c757d">Cycle &#8593;</text>
-        <text x="130" y="210" text-anchor="middle" font-size="11" fill="#6c757d" font-weight="600">Q4 FY25</text>
-        <text x="290" y="210" text-anchor="middle" font-size="11" fill="#6c757d" font-weight="600">Q1 FY26</text>
-        <text x="450" y="210" text-anchor="middle" font-size="11" fill="#6c757d" font-weight="600">Q2 FY26</text>
-        <text x="610" y="210" text-anchor="middle" font-size="11" fill="#e74c3c" font-weight="600">Q3 FY26</text>
-      </svg>
-    </div>
+    <div class="panel-title">Historical Velocity Comparison</div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.6">Comparable historical inputs are not supplied. The current scenario computes $49,899/day from 147 opportunities, $48.2K average value, a 33.1% win rate and a 47-day cycle. A historical trend is withheld until the same four inputs are available for each period.</p>
   </div>
 
   <!-- Lever Coaching Panel -->
@@ -1420,7 +1406,7 @@
   <div class="panel">
     <div class="panel-title">Stage Bottleneck Heatmap</div>
     <div class="chart-wrap">
-      <table>
+      <div class="table-scroll" tabindex="0" aria-label="Scrollable data table"><table>
         <thead>
           <tr>
             <th>Stage Transition</th>
@@ -1474,7 +1460,7 @@
             <td><span class="badge badge-yellow">Watch</span></td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
     <div class="insight-box red" style="margin-top:14px;margin-bottom:0;">
       <div class="insight-title">Primary Bottleneck &mdash; Qualify &rarr; Develop (24 Days Avg)</div>
@@ -1526,7 +1512,7 @@
 
 <!-- FOOTER -->
 <div class="footer">
-  Vantara Sales Portfolio &bull; All data fictional &bull; For internal demonstration purposes only
+  Aurora Demo Portfolio &bull; All data fictional &bull; For internal demonstration purposes only
 </div>
 
 <!-- JAVASCRIPT -->
@@ -1543,30 +1529,7 @@
     btn.classList.add('active');
   }
 
-  /* ── Animated KPI counters ── */
-  function animateCounter(el) {
-    var target = parseFloat(el.getAttribute('data-target'));
-    var prefix = el.getAttribute('data-prefix') || '';
-    var suffix = el.getAttribute('data-suffix') || '';
-    var decimals = parseInt(el.getAttribute('data-decimals') || '0');
-    var duration = 800;
-    var start = null;
-    function step(ts) {
-      if (!start) start = ts;
-      var elapsed = ts - start;
-      var progress = Math.min(elapsed / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3);
-      var current = target * eased;
-      el.textContent = prefix + current.toFixed(decimals) + suffix;
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
-  /* Run counters on page load for active tab */
-  window.addEventListener('load', function() {
-    document.querySelectorAll('#tab-summary .kpi-value[data-target]').forEach(animateCounter);
-  });
+  /* KPI figures are rendered at their final value to keep all labels consistent. */
 
   /* ── Push-out region filter ── */
   function filterPushouts() {
