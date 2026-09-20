@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "The_Pulse",
+    "The_Pulse_History",
+    "CQ_Funnel",
+    "NQ_Funnel",
+    "FY_Funnel",
+    "Sufficiency_3x",
+    "Activity_Mgmt",
+    "WoW_Changes",
+    "Funnel_Hygiene",
+    "Analysis",
+    "Raw_Data"
+  ],
+  "activePageName": "The_Pulse"
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Pipeline Intelligence"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a18b7d99-28ee-45ea-9fef-ff62700a3f17"
+  }
+}

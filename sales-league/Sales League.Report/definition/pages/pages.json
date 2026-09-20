@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "Home",
+    "Seller_Scorecard",
+    "Manager_View",
+    "Regional_View",
+    "Seller_Details",
+    "Charts",
+    "Declaration_Form",
+    "Recovery_Manager",
+    "Book_Lost",
+    "Seller_Info"
+  ],
+  "activePageName": "Home"
+}
