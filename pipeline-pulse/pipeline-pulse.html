@@ -8,7 +8,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fa;color:#1a1a2e;font-size:14px}
 /* ─── HEADER ─── */
-.header{background:#0f4c5c;color:#fff;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.header{background:linear-gradient(135deg,#0b3a47,#0f4c5c,#1a6a80);color:#fff;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.25)}
 .header-left{display:flex;align-items:center;gap:14px}
 .logo-mark{width:36px;height:36px;background:#f4a261;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#0f4c5c;flex-shrink:0}
 .header h1{font-size:18px;font-weight:700;letter-spacing:.3px}
@@ -16,7 +16,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .header-right{text-align:right}
 .header-badge{background:rgba(244,162,97,.2);border:1px solid rgba(244,162,97,.5);color:#f4a261;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600}
 /* ─── TABS ─── */
-.tab-bar{background:#0f4c5c;border-bottom:2px solid #0a3b48;overflow-x:auto;white-space:nowrap;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
+.tab-bar{background:#0f4c5c;border-bottom:2px solid #0a3b48;overflow-x:auto;white-space:nowrap;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent;position:sticky;top:0;z-index:100;}
 .tab-bar::-webkit-scrollbar{height:4px}
 .tab-bar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:2px}
 .tab-bar-inner{display:inline-flex;padding:0 12px;min-width:100%}
@@ -134,6 +134,14 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
   .gauge-row{flex-direction:column}
   .region-gauges{justify-content:center}
 }
+/* ─── TAB TRANSITION ─── */
+.tab-panel.active{animation:fadeSlide .2s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+/* ─── CARD HOVER ─── */
+.kpi-card,.stat-card{transition:transform .15s,box-shadow .15s;cursor:default}
+.kpi-card:hover,.stat-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.12)}
+/* ─── PRINT ─── */
+@media print{.tab-bar,footer{display:none}.tab-panel{display:block !important}}
 </style>
 </head>
 <body>
@@ -156,17 +164,17 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
 <!-- TAB BAR -->
 <div class="tab-bar">
   <div class="tab-bar-inner">
-    <button class="tab-btn active" onclick="switchTab(0)"><span class="tab-number">01</span>The Pulse</button>
-    <button class="tab-btn" onclick="switchTab(1)"><span class="tab-number">02</span>Pulse History</button>
-    <button class="tab-btn" onclick="switchTab(2)"><span class="tab-number">03</span>CQ Funnel</button>
-    <button class="tab-btn" onclick="switchTab(3)"><span class="tab-number">04</span>NQ Funnel</button>
-    <button class="tab-btn" onclick="switchTab(4)"><span class="tab-number">05</span>FY Funnel</button>
-    <button class="tab-btn" onclick="switchTab(5)"><span class="tab-number">06</span>3x Sufficiency</button>
-    <button class="tab-btn" onclick="switchTab(6)"><span class="tab-number">07</span>Activity Mgmt</button>
-    <button class="tab-btn" onclick="switchTab(7)"><span class="tab-number">08</span>WoW Changes</button>
-    <button class="tab-btn" onclick="switchTab(8)"><span class="tab-number">09</span>Funnel Hygiene</button>
-    <button class="tab-btn" onclick="switchTab(9)"><span class="tab-number">10</span>Analysis</button>
-    <button class="tab-btn" onclick="switchTab(10)"><span class="tab-number">11</span>Raw Data</button>
+    <button class="tab-btn active" onclick="switchTab(0)"><span class="tab-number">01</span>🎯 The Pulse</button>
+    <button class="tab-btn" onclick="switchTab(1)"><span class="tab-number">02</span>📅 History</button>
+    <button class="tab-btn" onclick="switchTab(2)"><span class="tab-number">03</span>📊 CQ Funnel</button>
+    <button class="tab-btn" onclick="switchTab(3)"><span class="tab-number">04</span>📈 NQ Funnel</button>
+    <button class="tab-btn" onclick="switchTab(4)"><span class="tab-number">05</span>🗓️ FY Funnel</button>
+    <button class="tab-btn" onclick="switchTab(5)"><span class="tab-number">06</span>⚡ 3x Sufficiency</button>
+    <button class="tab-btn" onclick="switchTab(6)"><span class="tab-number">07</span>👥 Activity</button>
+    <button class="tab-btn" onclick="switchTab(7)"><span class="tab-number">08</span>🔄 WoW Changes</button>
+    <button class="tab-btn" onclick="switchTab(8)"><span class="tab-number">09</span>🧹 Hygiene</button>
+    <button class="tab-btn" onclick="switchTab(9)"><span class="tab-number">10</span>🔍 Analysis</button>
+    <button class="tab-btn" onclick="switchTab(10)"><span class="tab-number">11</span>📋 Raw Data</button>
   </div>
 </div>
 
@@ -178,6 +186,16 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
 <div class="tab-panel active" id="tab-0">
   <div class="page-title">Pipeline Pulse — Week 37, FY2026</div>
   <div class="page-subtitle">Overall sufficiency assessment &amp; week-over-week summary</div>
+
+  <div style="background:#f3f4f6;border-radius:8px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:16px;font-size:13px">
+    <span style="font-weight:700;color:#0f4c5c">Q3 FY2026</span>
+    <span style="color:#6b7280">Week 11 of 13</span>
+    <div style="flex:1;background:#e5e7eb;border-radius:4px;height:8px">
+      <div style="background:#0f4c5c;height:8px;border-radius:4px;width:84.6%"></div>
+    </div>
+    <span style="color:#6b7280">12 days remaining</span>
+    <span style="font-weight:700;color:#f4a261">$61M / $64M quota</span>
+  </div>
 
   <div class="grid-2" style="align-items:start">
     <!-- LEFT: Gauges -->
@@ -263,6 +281,13 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
         <div style="font-size:12px;color:#6b7280">&#9888; Pipeline is <strong>$7M short</strong> of the 3x coverage threshold. Requires net new creation this week to reach green.</div>
       </div>
     </div>
+  </div>
+
+  <div style="border-left:4px solid #0f4c5c;background:#f0f9ff;padding:12px 16px;border-radius:6px;margin:16px 0;font-size:13px">
+    <strong>📊 Week 37 Key Insight:</strong> Overall coverage at 2.9x — below the 3x minimum.
+    APJ most at risk at 2.4x ($22.7M gap). EMEA needs $19.4M.
+    At current build rate (+$8M/week), EMEA reaches 3x NQ in 5 weeks.
+    <strong>Priority action: accelerate APJ late-stage deals before quarter close.</strong>
   </div>
 </div>
 
@@ -539,6 +564,12 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
     </table>
   </div>
 
+  <div style="border-left:4px solid #f4a261;background:#fff8f0;padding:12px 16px;border-radius:6px;margin:16px 0;font-size:13px">
+    <strong>⚡ Sufficiency Insight:</strong> Only Americas (3.1x CQ) is above the 3x threshold across all horizons.
+    APJ NQ at 1.9x is the single most critical gap — requires $28.4M pipeline addition to reach threshold.
+    NQ pipeline build is tracking at +$8M/week across all regions.
+  </div>
+
   <div class="grid-2">
     <div class="card">
       <div class="card-title">Gap-to-3x Analysis</div>
@@ -725,6 +756,11 @@ footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1p
             <div class="event-delta delta-pos">+$1.6M &nbsp;|&nbsp; Customer Success-sourced expansion</div>
           </div>
         </div>
+      </div>
+      <div style="border-left:4px solid #ef4444;background:#fff5f5;padding:12px 16px;border-radius:6px;margin:16px 0;font-size:13px">
+        <strong>🔄 WoW Insight:</strong> Stage regressions (2) concentrated in APJ — KDDI and Fujitsu both pushed
+        from Propose to Develop citing budget freeze. This accounts for $2.7M of the week's pipeline movement.
+        Net pipeline +$4.2M despite these regressions, driven by 3 Americas adds.
       </div>
     </div>
     <div>

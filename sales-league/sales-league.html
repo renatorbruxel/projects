@@ -32,7 +32,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 /* ── LAYOUT ── */
 .main{padding:22px 28px;max-width:1380px;margin:0 auto}
-.tab-panel{display:none}.tab-panel.active{display:block}
+.tab-panel{display:none}.tab-panel.active{display:block;animation:tabFadeIn 0.2s ease}
+@keyframes tabFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .g5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
@@ -68,7 +69,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .wu{color:#2e7d32;font-weight:700}.wd{color:#c62828;font-weight:700}.wn{color:var(--muted)}
 
 /* ── METRIC CARDS ── */
-.mc{background:#fff;border-radius:10px;padding:15px 16px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.mc{background:#fff;border-radius:10px;padding:15px 16px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform 0.15s ease,box-shadow 0.15s ease}
+.mc:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
 .mc-lbl{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
 .mc-val{font-size:24px;font-weight:900;color:var(--teal)}
 .mc-sub{font-size:11px;color:var(--muted);margin-top:3px}
@@ -137,6 +139,25 @@ select:focus,input:focus{border-color:var(--teal)}
 
 /* ── GAUGE WRAPPER ── */
 #gauge-wrap{text-align:center;padding:10px 0}
+
+/* ── KPI COUNTER ANIMATION ── */
+.kpi-num{display:inline-block}
+@keyframes kpiPop{0%{opacity:0;transform:scale(.85)}60%{transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}
+.kpi-pop{animation:kpiPop .35s ease forwards}
+
+/* ── INSIGHT BOX ── */
+.insight-box{border-left:4px solid #0f4c5c;background:#f0f9ff;padding:12px 16px;border-radius:6px;margin-bottom:16px;font-size:13px}
+
+/* ── BUBBLE SECTION ── */
+.bubble-section{margin-top:16px}
+.bubble-item{font-size:12.5px;padding:7px 12px;border-radius:6px;background:#f8f9fa;border:1px solid var(--border);margin-bottom:6px;color:var(--txt)}
+.bubble-item.warning{background:#fff3cd;border-color:#ffc107;color:#856404;font-weight:600}
+
+/* ── MILESTONES ── */
+.milestones{margin-top:18px;padding:16px 18px;background:#fff;border-radius:10px;border:1px solid var(--border);box-shadow:0 1px 5px rgba(0,0,0,.07)}
+.milestones h4{font-size:13px;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.milestone-item{font-size:13px;padding:6px 0;border-bottom:1px solid #f0f0f0;color:var(--txt)}
+.milestone-item:last-child{border-bottom:none}
 </style>
 </head>
 <body>
@@ -178,6 +199,12 @@ select:focus,input:focus{border-color:var(--teal)}
     <div class="ss">All 12 sellers ranked by attainment % · Week 36</div>
   </div>
 
+  <div class="insight-box">
+    <strong>📊 Week 36 Insight:</strong> 6 of 12 sellers at or above 100% attainment.
+    David Torres (78%) is the only Bronze-tier risk — $144K gap with 12 days remaining.
+    Team blended attainment: 101%. Americas leads at 101%, EMEA 103%, APJ 103%.
+  </div>
+
   <div class="g2" style="align-items:start">
     <!-- Leaderboard Table -->
     <div style="grid-column:1/2">
@@ -186,7 +213,7 @@ select:focus,input:focus{border-color:var(--teal)}
           <thead>
             <tr>
               <th>Rank</th><th>Seller</th><th>Region</th><th>Quota</th>
-              <th>Actuals</th><th>Att%</th><th>Tier</th><th>WoW</th>
+              <th style="cursor:pointer;user-select:none" onclick="sortLeaderboard(this)" title="Click to sort">Actuals ⇅</th><th style="cursor:pointer;user-select:none" onclick="sortLeaderboard(this)" title="Click to sort">Att% ⇅</th><th>Tier</th><th>WoW</th>
             </tr>
           </thead>
           <tbody>
@@ -289,6 +316,12 @@ select:focus,input:focus{border-color:var(--teal)}
           </tbody>
         </table>
       </div>
+
+      <div class="bubble-section">
+        <h4 style="margin:16px 0 8px;font-size:13px;font-weight:700;color:#0f4c5c;">🔥 On the Bubble</h4>
+        <div class="bubble-item">Marcus Williams is 7% from Platinum — $56K remaining</div>
+        <div class="bubble-item warning">⚠️ David Torres needs $144K to reach Silver — critical pipeline gap</div>
+      </div>
     </div>
 
     <!-- Donut + Stats -->
@@ -347,6 +380,13 @@ select:focus,input:focus{border-color:var(--teal)}
       </div>
     </div>
   </div>
+
+  <div class="milestones">
+    <h4>🏆 Quarter Milestones</h4>
+    <div class="milestone-item">🥇 Sarah Chen — First to reach 120% this quarter</div>
+    <div class="milestone-item">⚡ Klaus Weber — 5 deals closed in a single week (W34)</div>
+    <div class="milestone-item">🎯 Kenji Yamamoto — 3 consecutive quarters above 100%</div>
+  </div>
 </section>
 
 
@@ -403,6 +443,7 @@ select:focus,input:focus{border-color:var(--teal)}
         <div class="mc"><div class="mc-lbl">Pipeline</div><div id="mc-pipeline" class="mc-val">$2.4M</div></div>
         <div class="mc"><div class="mc-lbl">Win Rate</div><div id="mc-winrate" class="mc-val">34%</div></div>
         <div class="mc"><div class="mc-lbl">Hygiene</div><div id="mc-hygiene" class="mc-val">81%</div></div>
+        <div class="mc"><div class="mc-lbl">Peer Rank</div><div id="mc-peerrank" class="mc-val" style="font-size:18px">#1 of 5 in Americas</div></div>
       </div>
 
       <!-- Open Opportunities -->
@@ -1310,6 +1351,39 @@ function updateScorecard(key) {
   document.getElementById('peer-wr-self').textContent = d.wr + '%';
   document.getElementById('peer-wr-avg').style.width = avgWrPct + '%';
   document.getElementById('peer-wr-avg').textContent = d.regAvgWR + '%';
+  // Peer rank within region
+  const regionPeers = Object.values(SD).filter(s => s.region === d.region).sort((a,b) => b.att - a.att);
+  const rank = regionPeers.findIndex(s => s.name === d.name) + 1;
+  document.getElementById('mc-peerrank').textContent = '#' + rank + ' of ' + regionPeers.length + ' in ' + d.region;
+}
+
+// ── SORTABLE LEADERBOARD ──
+let _sortDir = {};
+function sortLeaderboard(th) {
+  const colIdx = th.cellIndex;
+  const tbody = th.closest('table').querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const dir = (_sortDir[colIdx] = !_sortDir[colIdx]);
+  rows.sort((a, b) => {
+    const va = parseFloat(a.cells[colIdx].textContent.replace(/[^0-9.]/g,'')) || 0;
+    const vb = parseFloat(b.cells[colIdx].textContent.replace(/[^0-9.]/g,'')) || 0;
+    return dir ? vb - va : va - vb;
+  });
+  rows.forEach(r => tbody.appendChild(r));
+}
+
+// ── KPI COUNTER ANIMATION ──
+function animateCounter(el, target, suffix, duration) {
+  suffix = suffix || '';
+  duration = duration || 600;
+  const start = performance.now();
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(target * ease) + suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 }
 
 // ── DECLARATION TOTAL ──
