@@ -11,6 +11,7 @@
 !.gitignore
 !README.md
 !index.html
+!portfolio-deep-dive.html
 
 # Allow all content inside the 5 portfolio project subfolders
 !weekly-checkin-portal/**

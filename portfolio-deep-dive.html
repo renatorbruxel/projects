@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GTM Analytics Portfolio — Technical Deep Dive</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f172a;--card:#1e293b;--card2:#162032;--border:#334155;
+  --teal:#0f4c5c;--teal-bright:#14b8a6;--orange:#f4a261;
+  --text:#e2e8f0;--muted:#94a3b8;--muted2:#64748b;
+  --code-bg:#0d1117;--green:#10b981;--red:#ef4444;--yellow:#f59e0b;
+  --purple:#8b5cf6;--blue:#3b82f6;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;font-size:15px}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 32px;display:flex;align-items:center;gap:0;overflow-x:auto}
+.nav-brand{font-weight:800;font-size:14px;color:var(--teal-bright);padding:14px 20px 14px 0;white-space:nowrap;border-right:1px solid var(--border);margin-right:8px}
+.nav a{color:var(--muted);text-decoration:none;font-size:12.5px;font-weight:600;padding:14px 14px;white-space:nowrap;transition:color .15s;border-bottom:2px solid transparent}
+.nav a:hover,.nav a.active{color:var(--teal-bright);border-bottom-color:var(--teal-bright)}
+
+/* ── HERO ── */
+.hero{padding:80px 32px 60px;max-width:1100px;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);color:var(--teal-bright);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:24px;letter-spacing:.5px}
+.hero h1{font-size:clamp(32px,5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:20px}
+.hero h1 span{background:linear-gradient(135deg,var(--teal-bright),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:17px;color:var(--muted);max-width:680px;line-height:1.7;margin-bottom:32px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.tag{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600}
+.tag.highlight{background:rgba(20,184,166,.1);border-color:rgba(20,184,166,.3);color:var(--teal-bright)}
+.demo-links{display:flex;flex-wrap:wrap;gap:12px}
+.demo-btn{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:#fff;text-decoration:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700;transition:all .15s}
+.demo-btn:hover{background:#0a3340;transform:translateY(-1px)}
+.demo-btn.outline{background:transparent;border:1.5px solid var(--border);color:var(--text)}
+.demo-btn.outline:hover{border-color:var(--teal-bright);color:var(--teal-bright)}
+
+/* ── SECTION ── */
+.section{padding:60px 32px;max-width:1100px;margin:0 auto}
+.section-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--teal-bright);margin-bottom:10px}
+.section h2{font-size:clamp(22px,3vw,32px);font-weight:800;letter-spacing:-.5px;margin-bottom:16px}
+.section-desc{color:var(--muted);font-size:15px;max-width:700px;margin-bottom:40px;line-height:1.7}
+.divider{border:none;border-top:1px solid var(--border);margin:0 32px}
+
+/* ── FRAMEWORK ── */
+.layers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+.layer{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+.layer-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;margin-bottom:14px}
+.layer-n1{background:rgba(16,185,129,.15);color:#10b981}
+.layer-n2{background:rgba(59,130,246,.15);color:#3b82f6}
+.layer-n3{background:rgba(244,162,97,.15);color:var(--orange)}
+.layer h4{font-size:14px;font-weight:800;margin-bottom:6px}
+.layer p{font-size:12.5px;color:var(--muted);line-height:1.5}
+.layer .l-kw{color:var(--muted2);font-size:11px;margin-top:8px;font-style:italic}
+
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.principle{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:20px}
+.principle .p-icon{font-size:22px;margin-bottom:10px}
+.principle h5{font-size:13px;font-weight:800;margin-bottom:6px;color:var(--teal-bright)}
+.principle p{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* ── ARCH ── */
+.arch-svg-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:32px;margin-bottom:32px;overflow-x:auto}
+.stack-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.stack-card{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:16px}
+.stack-card .sc-icon{font-size:20px;margin-bottom:8px}
+.stack-card h5{font-size:12px;font-weight:800;color:var(--teal-bright);margin-bottom:4px}
+.stack-card p{font-size:11px;color:var(--muted);line-height:1.4}
+
+/* ── DASHBOARD CASE STUDY ── */
+.db-section{padding:64px 32px;max-width:1100px;margin:0 auto}
+.db-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+.db-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.db-meta{flex:1}
+.db-badge{display:inline-block;background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);color:var(--teal-bright);padding:2px 10px;border-radius:10px;font-size:10px;font-weight:800;letter-spacing:.5px;margin-bottom:8px}
+.db-title{font-size:clamp(20px,3vw,28px);font-weight:900;letter-spacing:-.5px;margin-bottom:6px}
+.db-sub{color:var(--muted);font-size:13.5px}
+.db-links a{display:inline-flex;align-items:center;gap:4px;background:var(--card);border:1px solid var(--border);color:var(--text);text-decoration:none;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;margin-top:12px;margin-right:8px;transition:all .15s}
+.db-links a:hover{border-color:var(--teal-bright);color:var(--teal-bright)}
+
+.db-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+.db-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:22px}
+.db-card h4{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--teal-bright);margin-bottom:12px}
+.db-card p{font-size:13px;color:var(--muted);line-height:1.6}
+.db-card ul{list-style:none;padding:0}
+.db-card ul li{font-size:12.5px;color:var(--muted);padding:4px 0;padding-left:16px;position:relative;line-height:1.5}
+.db-card ul li::before{content:"→";position:absolute;left:0;color:var(--teal-bright);font-size:11px}
+
+/* ── SCHEMA TABLE ── */
+.schema-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:24px}
+.schema-table th{background:#0a1628;color:var(--muted);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;padding:9px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.schema-table td{padding:8px 14px;border-bottom:1px solid rgba(51,65,85,.4);color:var(--text);font-family:'Courier New',monospace;font-size:12px}
+.schema-table tr:hover td{background:rgba(30,41,59,.5)}
+.col-type{color:#8b5cf6;font-size:11px}
+.col-desc{color:var(--muted);font-family:-apple-system,sans-serif;font-size:11.5px}
+
+/* ── CODE BLOCKS ── */
+.code-section{margin-bottom:24px}
+.code-meta{background:#161b22;border:1px solid #30363d;border-bottom:none;border-radius:10px 10px 0 0;padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
+.code-question{font-size:12px;color:var(--muted);font-style:italic}
+.code-lang{background:#1e293b;color:var(--teal-bright);padding:2px 8px;border-radius:4px;font-size:10.5px;font-weight:800;letter-spacing:.5px}
+pre{background:var(--code-bg);border:1px solid #30363d;border-top:none;border-radius:0 0 10px 10px;padding:20px;overflow-x:auto;font-family:'Courier New',Consospace,monospace;font-size:12.5px;line-height:1.65;tab-size:2}
+/* SQL highlighting */
+.kw{color:#ff7b72} /* keywords */
+.fn{color:#d2a8ff} /* functions */
+.str{color:#a5d6ff} /* strings */
+.num{color:#79c0ff} /* numbers */
+.cmt{color:#8b949e;font-style:italic} /* comments */
+.col{color:#e3b341} /* column refs */
+.tbl{color:#7ee787} /* table refs */
+
+/* ── DECISIONS ── */
+.decisions{margin:24px 0}
+.decision-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(51,65,85,.3)}
+.decision-item:last-child{border-bottom:none}
+.d-bullet{width:24px;height:24px;border-radius:50%;background:rgba(20,184,166,.15);border:1px solid rgba(20,184,166,.3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--teal-bright);flex-shrink:0;margin-top:2px}
+.d-text h5{font-size:13px;font-weight:700;margin-bottom:3px}
+.d-text p{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* ── Q&A ── */
+.qa-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.qa-item{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:14px}
+.qa-q{font-size:12.5px;font-weight:700;margin-bottom:4px;color:var(--text)}
+.qa-a{font-size:11.5px;color:var(--muted);line-height:1.4}
+.qa-item.limit{border-color:#ef444440;background:rgba(239,68,68,.05)}
+.qa-item.limit .qa-q{color:#fca5a5}
+
+/* ── NEXT STEPS ── */
+.next-card{background:linear-gradient(135deg,rgba(20,184,166,.08),rgba(244,162,97,.08));border:1px solid rgba(20,184,166,.2);border-radius:12px;padding:20px;margin-top:24px}
+.next-card h4{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--teal-bright);margin-bottom:10px}
+.next-card p{font-size:12.5px;color:var(--muted);line-height:1.5}
+
+/* ── METRICS ROW ── */
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:32px}
+.metric-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center}
+.metric-val{font-size:28px;font-weight:900;line-height:1;margin-bottom:4px}
+.metric-lbl{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.metric-sub{font-size:10.5px;color:var(--muted2);margin-top:4px}
+.m-green{color:var(--green)}
+.m-orange{color:var(--orange)}
+.m-blue{color:var(--blue)}
+.m-purple{color:var(--purple)}
+
+/* ── FOOTER ── */
+footer{background:var(--card);border-top:1px solid var(--border);padding:40px 32px;text-align:center}
+footer p{color:var(--muted);font-size:13px;margin-bottom:8px}
+footer .disclaimer{font-size:11px;color:var(--muted2);max-width:500px;margin:16px auto 0}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .layers,.principles,.stack-cards,.db-grid,.qa-grid,.metrics-row{grid-template-columns:1fr}
+  .db-header{flex-direction:column}
+  .section,.db-section{padding:40px 20px}
+  .nav{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">GTM Analytics</div>
+  <a href="#philosophy">Philosophy</a>
+  <a href="#architecture">Architecture</a>
+  <a href="#glossary">Glossary</a>
+  <a href="#toolbox">Toolbox</a>
+  <a href="#pipeline-intel">Pipeline Intel</a>
+  <a href="#net-new">Net New</a>
+  <a href="#pulse">Pipeline Pulse</a>
+  <a href="#sales-league">Sales League</a>
+  <a href="#wci">WCI Portal</a>
+  <a href="#next">Next Steps</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">🚀 GTM STRATEGY &amp; OPERATIONS</div>
+  <h1>Revenue Analytics<br><span>Built to Answer</span><br>the Hard Questions</h1>
+  <p class="hero-sub">5 interconnected data products covering the full commercial stack — from individual seller performance to global forecast governance. Possibly the most complete RevOps analytics portfolio publicly available on GitHub: pipeline forecasting, CRM hygiene, revenue attribution, GTM motion analysis, and a production forecast portal that has run 83+ weekly cycles. Built to show how I think, not just what I built.</p>
+  <div class="tags">
+    <span class="tag highlight">Power BI · TMDL · DAX</span>
+    <span class="tag highlight">SQL · Python</span>
+    <span class="tag highlight">HTML/JS · AWS · LLM</span>
+    <span class="tag">RevOps</span>
+    <span class="tag">GTM Strategy</span>
+    <span class="tag">Forecast Governance</span>
+    <span class="tag">Pipeline Analytics</span>
+    <span class="tag">Sales Performance</span>
+  </div>
+  <div class="demo-links">
+    <a href="https://renatorbruxel.github.io/projects/" class="demo-btn" target="_blank">▶ Live Portfolio</a>
+    <a href="https://renatorbruxel.github.io/projects/weekly-checkin-portal/weekly-checkin-portal.html" class="demo-btn outline" target="_blank">📋 WCI Portal</a>
+    <a href="https://renatorbruxel.github.io/projects/pipeline-pulse/pipeline-pulse.html" class="demo-btn outline" target="_blank">⚡ Pipeline Pulse</a>
+    <a href="https://github.com/renatorbruxel/projects" class="demo-btn outline" target="_blank">⌥ GitHub Source</a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PHILOSOPHY -->
+<div class="section" id="philosophy">
+  <div class="section-label">Analytical Framework</div>
+  <h2>How I Think About GTM Analytics</h2>
+  <p class="section-desc">Most GTM dashboards report what happened. The gap to elite RevOps is building tools that predict what will happen and prescribe what to change. That requires a layered analytical architecture.</p>
+
+  <div class="layers">
+    <div class="layer">
+      <div class="layer-num layer-n1">1</div>
+      <h4>Operational Layer</h4>
+      <p>Is the machine running? Activity, hygiene, submission compliance, data quality. Necessary but not sufficient for strategic decisions.</p>
+      <div class="l-kw">Hygiene scores · Activity metrics · Submission rates · Field completeness</div>
+    </div>
+    <div class="layer">
+      <div class="layer-num layer-n2">2</div>
+      <h4>Performance Layer</h4>
+      <p>Is the machine producing? Attainment, pipeline coverage, forecast accuracy, velocity. What most RevOps teams stop at.</p>
+      <div class="l-kw">Quota attainment · 3x coverage · Win rates · Sales cycle length</div>
+    </div>
+    <div class="layer">
+      <div class="layer-num layer-n3">3</div>
+      <h4>Strategic Layer</h4>
+      <p>Is the machine building a durable advantage? ICP quality compounding, NRR, TAM penetration, GTM efficiency. Where differentiation lives.</p>
+      <div class="l-kw">Magic Number · LTV:CAC · NRR cohorts · TAM penetration · ICP win rate</div>
+    </div>
+  </div>
+
+  <div class="principles">
+    <div class="principle">
+      <div class="p-icon">🎯</div>
+      <h5>Every metric needs a decision</h5>
+      <p>If you can't name the action that changes when the metric changes, cut it. A metric without a decision is a number without a purpose.</p>
+    </div>
+    <div class="principle">
+      <div class="p-icon">📐</div>
+      <h5>Baselines matter more than absolutes</h5>
+      <p>A 34% win rate means nothing without segment, tenure, and benchmark context. Context is the analysis. The number is just the data.</p>
+    </div>
+    <div class="principle">
+      <div class="p-icon">⏰</div>
+      <h5>Build backward from the decision</h5>
+      <p>Start with the decision you need to make. Find the earliest leading indicator. Build the dashboard from there, not from the data you have.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ARCHITECTURE -->
+<div class="section" id="architecture">
+  <div class="section-label">Technical Stack</div>
+  <h2>System Architecture</h2>
+  <p class="section-desc">A multi-layer stack connecting raw CRM/ERP data through a semantic model to interactive dashboards and an AI-assisted forecast portal.</p>
+
+  <div class="arch-svg-wrap">
+    <svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:900px;display:block;margin:0 auto">
+      <!-- Boxes -->
+      <rect x="10" y="80" width="140" height="60" rx="8" fill="#1e293b" stroke="#334155"/>
+      <text x="80" y="106" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="700">CRM / ERP</text>
+      <text x="80" y="121" text-anchor="middle" fill="#64748b" font-size="9">Source Systems</text>
+      <text x="80" y="134" text-anchor="middle" fill="#64748b" font-size="9">Salesforce · SAP</text>
+
+      <rect x="200" y="80" width="140" height="60" rx="8" fill="#1e293b" stroke="#334155"/>
+      <text x="270" y="106" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="700">Data Warehouse</text>
+      <text x="270" y="121" text-anchor="middle" fill="#64748b" font-size="9">SQL · Python ETL</text>
+      <text x="270" y="134" text-anchor="middle" fill="#64748b" font-size="9">Snapshots · Cohorts</text>
+
+      <rect x="390" y="20" width="140" height="60" rx="8" fill="#0f4c5c" stroke="#14b8a6" stroke-width="1.5"/>
+      <text x="460" y="46" text-anchor="middle" fill="#14b8a6" font-size="10" font-weight="700">Power BI TMDL</text>
+      <text x="460" y="61" text-anchor="middle" fill="#94a3b8" font-size="9">Semantic Model</text>
+      <text x="460" y="74" text-anchor="middle" fill="#64748b" font-size="9">DAX · Relationships</text>
+
+      <rect x="390" y="140" width="140" height="60" rx="8" fill="#1e293b" stroke="#334155"/>
+      <text x="460" y="166" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="700">WCI Portal</text>
+      <text x="460" y="181" text-anchor="middle" fill="#64748b" font-size="9">HTML · JS · Python</text>
+      <text x="460" y="194" text-anchor="middle" fill="#64748b" font-size="9">Self-contained</text>
+
+      <rect x="590" y="80" width="140" height="60" rx="8" fill="#1e293b" stroke="#334155"/>
+      <text x="660" y="106" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="700">Dashboards</text>
+      <text x="660" y="121" text-anchor="middle" fill="#64748b" font-size="9">Interactive HTML</text>
+      <text x="660" y="134" text-anchor="middle" fill="#64748b" font-size="9">SVG Charts · Filters</text>
+
+      <rect x="750" y="140" width="140" height="60" rx="8" fill="#162032" stroke="#f4a261" stroke-width="1.5"/>
+      <text x="820" y="166" text-anchor="middle" fill="#f4a261" font-size="10" font-weight="700">AWS / LLM Layer</text>
+      <text x="820" y="181" text-anchor="middle" fill="#94a3b8" font-size="9">Bedrock · Lambda</text>
+      <text x="820" y="194" text-anchor="middle" fill="#64748b" font-size="9">AI Narratives</text>
+
+      <!-- Arrows -->
+      <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#334155"/></marker>
+      <marker id="ah2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#14b8a6"/></marker>
+      <marker id="ah3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#f4a261"/></marker></defs>
+      <line x1="152" y1="110" x2="198" y2="110" stroke="#334155" stroke-width="1.5" marker-end="url(#ah)"/>
+      <line x1="342" y1="100" x2="386" y2="60" stroke="#14b8a6" stroke-width="1.5" marker-end="url(#ah2)"/>
+      <line x1="342" y1="120" x2="386" y2="160" stroke="#334155" stroke-width="1.5" marker-end="url(#ah)"/>
+      <line x1="532" y1="50" x2="586" y2="100" stroke="#14b8a6" stroke-width="1.5" marker-end="url(#ah2)"/>
+      <line x1="460" y1="202" x2="750" y2="190" stroke="#f4a261" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ah3)"/>
+      <line x1="730" y1="110" x2="752" y2="155" stroke="#f4a261" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ah3)"/>
+    </svg>
+  </div>
+
+  <div class="stack-cards">
+    <div class="stack-card"><div class="sc-icon">🗄️</div><h5>Data Modeling</h5><p>Power BI TMDL (PBIP), multi-snapshot fact tables, DAX time intelligence, source-controlled semantic models</p></div>
+    <div class="stack-card"><div class="sc-icon">🔢</div><h5>SQL</h5><p>Pipeline snapshots, stage conversion cohorts, forecast accuracy tracking, push-out classification</p></div>
+    <div class="stack-card"><div class="sc-icon">🐍</div><h5>Python</h5><p>ETL automation, data validation pipelines, WoW context builders, LLM prompt orchestration</p></div>
+    <div class="stack-card"><div class="sc-icon">⚡</div><h5>HTML / JS</h5><p>Self-contained forecast portals with SVG charts, no infrastructure. Deployed anywhere.</p></div>
+    <div class="stack-card"><div class="sc-icon">🤖</div><h5>AI / AWS</h5><p>LLM-assisted narrative generation, anomaly detection, deal change context injection</p></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- METRICS GLOSSARY -->
+<div class="section" id="glossary">
+  <div class="section-label">Reference</div>
+  <h2>Metrics Glossary</h2>
+  <p class="section-desc">Canonical definitions for every key metric in this portfolio — formula, business interpretation, inclusion/exclusion rules, and known caveats. This is the operational contract that makes dashboards trustworthy.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px">
+      <div style="font-size:13px;font-weight:800;color:var(--teal-bright);margin-bottom:4px">Pipeline Velocity ($/day)</div>
+      <pre style="background:#0a1628;border:none;border-radius:6px;padding:10px;font-size:11.5px;margin:8px 0">(# Opps × Avg ACV × Win Rate) ÷ Avg Cycle Days</pre>
+      <p style="font-size:12px;color:var(--muted)"><strong>Interpretation:</strong> Dollars of closed revenue generated per selling day. The four-lever decomposition (volume, ACV, win rate, cycle) isolates the source of any degradation. <strong>Caveat:</strong> Must be segmented — blending Enterprise and SMB produces a meaningless average.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px">
+      <div style="font-size:13px;font-weight:800;color:var(--teal-bright);margin-bottom:4px">Magic Number (GM-adjusted)</div>
+      <pre style="background:#0a1628;border:none;border-radius:6px;padding:10px;font-size:11.5px;margin:8px 0">(Net New ARR × Gross Margin %) ÷ Prior Quarter S&M Spend</pre>
+      <p style="font-size:12px;color:var(--muted)"><strong>Benchmarks:</strong> >1.0 = scale aggressively | 0.75–1.0 = grow thoughtfully | 0.5–0.75 = improve efficiency | <0.5 = structural problem. <strong>Caveat:</strong> Use trailing-quarter spend in denominator (lag accounts for sales cycle). GM-adjust to avoid overstating efficiency in high-COGS products.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px">
+      <div style="font-size:13px;font-weight:800;color:var(--teal-bright);margin-bottom:4px">LTV : CAC</div>
+      <pre style="background:#0a1628;border:none;border-radius:6px;padding:10px;font-size:11.5px;margin:8px 0">LTV = (ARPA × GM%) ÷ Churn Rate
+CAC = Total S&M Spend ÷ New Customers Acquired</pre>
+      <p style="font-size:12px;color:var(--muted)"><strong>Benchmarks:</strong> >3:1 = minimum viable | >5:1 = strong | >7:1 = elite. <strong>Inclusion:</strong> ARPA is monthly average revenue per account. <strong>Caveat:</strong> Churn rate as denominator makes LTV extremely sensitive to small changes in churn — 2% vs. 3% monthly churn = 50% LTV difference.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px">
+      <div style="font-size:13px;font-weight:800;color:var(--teal-bright);margin-bottom:4px">Net Revenue Retention (NRR)</div>
+      <pre style="background:#0a1628;border:none;border-radius:6px;padding:10px;font-size:11.5px;margin:8px 0">(Starting ARR + Expansion - Churn - Contraction) ÷ Starting ARR</pre>
+      <p style="font-size:12px;color:var(--muted)"><strong>Benchmarks:</strong> >125% = elite | >110% = strong | 100–110% = healthy | <100% = leaky bucket. <strong>Caveat:</strong> NRR >100% does NOT mean you're growing — it means existing customers expand faster than they churn. You still need new logos to grow ARR.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px">
+      <div style="font-size:13px;font-weight:800;color:var(--teal-bright);margin-bottom:4px">CAC Payback Period</div>
+      <pre style="background:#0a1628;border:none;border-radius:6px;padding:10px;font-size:11.5px;margin:8px 0">CAC ÷ (Monthly ARPA × Gross Margin %)</pre>
+      <p style="font-size:12px;color:var(--muted)"><strong>Benchmarks:</strong> <6 months = excellent | <12 months = good | <18 months = viable | >24 months = high-risk growth. <strong>Caveat:</strong> Must segment by Enterprise/MM/SMB — enterprise naturally has longer payback due to higher CAC and longer sales cycles. Comparing blended to benchmarks is misleading.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px">
+      <div style="font-size:13px;font-weight:800;color:var(--teal-bright);margin-bottom:4px">3x Pipeline Coverage</div>
+      <pre style="background:#0a1628;border:none;border-radius:6px;padding:10px;font-size:11.5px;margin:8px 0">Total Open Pipeline ÷ Remaining Quota
+Threshold = 1 ÷ Historical Win Rate</pre>
+      <p style="font-size:12px;color:var(--muted)"><strong>The 3x is a proxy:</strong> At 33% win rate, 3x = 1.0 expected. At 40% win rate, 2.5x is sufficient. At 20% win rate, 5x is required. <strong>Caveat:</strong> Gross coverage includes phantom pipeline (overdue + stale). Always compare to Clean Coverage = gross minus hygiene-flagged deals.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px">
+      <div style="font-size:13px;font-weight:800;color:var(--teal-bright);margin-bottom:4px">Forecast Accuracy (MAE%)</div>
+      <pre style="background:#0a1628;border:none;border-radius:6px;padding:10px;font-size:11.5px;margin:8px 0">MAE% = |Called Value - Actual| ÷ Actual × 100
+Bias = (Called - Actual) ÷ Actual × 100</pre>
+      <p style="font-size:12px;color:var(--muted)"><strong>Benchmarks:</strong> ±5% at week 8 = top quartile | ±10% = good | ±15% = average. <strong>Bias vs. accuracy:</strong> MAE measures precision; bias measures systematic direction. A region can be accurate (low MAE) but consistently biased (always calls high). Both signals matter for calibration.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px">
+      <div style="font-size:13px;font-weight:800;color:var(--teal-bright);margin-bottom:4px">SaaS Quick Ratio</div>
+      <pre style="background:#0a1628;border:none;border-radius:6px;padding:10px;font-size:11.5px;margin:8px 0">(New MRR + Expansion MRR) ÷ (Churned MRR + Contraction MRR)</pre>
+      <p style="font-size:12px;color:var(--muted)"><strong>Benchmarks:</strong> >4.0 = high-growth | 2.0–4.0 = solid | <2.0 = concerning. <strong>Interpretation:</strong> Unlike NRR, Quick Ratio includes new logo MRR in the numerator — it measures the quality of total growth, not just expansion. A company growing at Quick Ratio 1.5 is barely keeping up with churn.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px">
+      <div style="font-size:13px;font-weight:800;color:var(--teal-bright);margin-bottom:4px">Commit Accuracy Rate</div>
+      <pre style="background:#0a1628;border:none;border-radius:6px;padding:10px;font-size:11.5px;margin:8px 0">Deals forecast as Commit that Closed ÷ Total Commit Deals Called</pre>
+      <p style="font-size:12px;color:var(--muted)"><strong>Benchmarks:</strong> >90% = excellent | >80% = good | <70% = commit definition is broken. <strong>Caveat:</strong> Low commit accuracy doesn't always mean sandbagging — it can mean the commit category definition varies by rep. Standardizing commit criteria is a prerequisite for accuracy measurement.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px">
+      <div style="font-size:13px;font-weight:800;color:var(--teal-bright);margin-bottom:4px">Rep Productivity (Ramp Multiplier)</div>
+      <pre style="background:#0a1628;border:none;border-radius:6px;padding:10px;font-size:11.5px;margin:8px 0">Avg Bookings (Month N) ÷ (Full Ramp Quota ÷ 12)
+Effective Capacity = Σ (Heads × Multiplier)</pre>
+      <p style="font-size:12px;color:var(--muted)"><strong>Typical curve:</strong> M1: 5% | M3: 22% | M6: 62% | M9: 90% | M12: 100%. <strong>Why it matters:</strong> Total headcount ≠ productive capacity. At 25% of staff ramping, effective capacity is ~20% lower than nominal. Ignoring ramp creates systematic capacity planning errors.</p>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- TECHNICAL TOOLBOX -->
+<div class="section" id="toolbox">
+  <div class="section-label">Capabilities</div>
+  <h2>Technical Toolbox</h2>
+  <p class="section-desc">Domain coverage across the full GTM data stack — from raw data transformation to executive-facing visualization and AI-assisted workflows.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px">
+      <div style="font-size:20px;margin-bottom:8px">🔢</div>
+      <div style="font-size:12px;font-weight:800;color:var(--teal-bright);margin-bottom:8px">SQL Patterns</div>
+      <ul style="list-style:none;padding:0">
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Window functions (LAG, LEAD, RANK)</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Self-joins for snapshot comparison</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Cohort analysis with date pivoting</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Funnel stage conversion CTEs</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Attribution / multi-touch joins</li>
+      </ul>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px">
+      <div style="font-size:20px;margin-bottom:8px">📊</div>
+      <div style="font-size:12px;font-weight:800;color:var(--teal-bright);margin-bottom:8px">DAX / Power BI</div>
+      <ul style="list-style:none;padding:0">
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Time intelligence (DATESYTD, DATEADD)</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Row-level security (RLS patterns)</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">TMDL / PBIP source control</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Multi-snapshot semantic models</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">M query (List.Dates, Table.FromRecords)</li>
+      </ul>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px">
+      <div style="font-size:20px;margin-bottom:8px">🐍</div>
+      <div style="font-size:12px;font-weight:800;color:var(--teal-bright);margin-bottom:8px">Python / ETL</div>
+      <ul style="list-style:none;padding:0">
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Pandas data transformation</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">LLM prompt orchestration</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Delta computation (WoW context)</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Data validation pipelines</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">SharePoint / REST API integration</li>
+      </ul>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px">
+      <div style="font-size:20px;margin-bottom:8px">🤖</div>
+      <div style="font-size:12px;font-weight:800;color:var(--teal-bright);margin-bottom:8px">AI / Analytics</div>
+      <ul style="list-style:none;padding:0">
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">LLM prompt engineering</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Context injection for grounded output</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Anomaly detection heuristics</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">Conversational analytics (CommOps AI)</li>
+        <li style="font-size:11.5px;color:var(--muted);padding:3px 0">AWS Bedrock / Lambda integration</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(20,184,166,.08),rgba(244,162,97,.05));border:1px solid rgba(20,184,166,.2);border-radius:12px;padding:20px">
+    <div style="font-size:12px;font-weight:800;color:var(--teal-bright);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">RevOps Theory Foundation</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <span style="background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);color:var(--teal-bright);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">Pipeline Velocity (4-lever)</span>
+      <span style="background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);color:var(--teal-bright);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">Bessemer GTM Efficiency</span>
+      <span style="background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);color:var(--teal-bright);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">SBI 5-Dimension Pipeline Health</span>
+      <span style="background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);color:var(--teal-bright);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">David Skok Unit Economics</span>
+      <span style="background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);color:var(--teal-bright);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">Gong Labs Activity Research</span>
+      <span style="background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);color:var(--teal-bright);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">OpenView SaaS Benchmarks</span>
+      <span style="background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);color:var(--teal-bright);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">Bridge Group SPM Benchmarks</span>
+      <span style="background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);color:var(--teal-bright);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">RFM ICP Scoring</span>
+      <span style="background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);color:var(--teal-bright);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">Kaplan-Meier Survival Analysis</span>
+      <span style="background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);color:var(--teal-bright);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">NRR Cohort Compounding</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ── DASHBOARD 1: PIPELINE INTELLIGENCE ── -->
+<div class="db-section" id="pipeline-intel">
+  <div class="db-header">
+    <div class="db-icon" style="background:rgba(20,184,166,.15)">📊</div>
+    <div class="db-meta">
+      <div class="db-badge">DASHBOARD 01</div>
+      <div class="db-title">Pipeline Intelligence</div>
+      <div class="db-sub">Push/pull dynamics · Actuals pacing · Funnel conversion · Velocity decomposition</div>
+      <div class="db-links">
+        <a href="https://renatorbruxel.github.io/projects/funnel-management/pipeline-intelligence.html" target="_blank">▶ Live Demo</a>
+        <a href="https://github.com/renatorbruxel/projects/tree/main/funnel-management" target="_blank">⌥ Source</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="db-grid">
+    <div class="db-card">
+      <h4>Problem Statement</h4>
+      <p>Push-outs are the #1 source of quarterly forecast misses in enterprise B2B sales. The challenge isn't detecting them — it's distinguishing <em>systemic</em> push-outs (broken process, wrong ICP, single-threaded deals) from <em>one-off</em> pushes (macro headwind, champion leave). Treating them the same leads to wrong interventions.</p>
+      <p style="margin-top:10px">This tool was built to answer: <strong>Which of our pipeline movements are signals vs. noise, and how do they combine to form the actuals pacing curve?</strong></p>
+    </div>
+    <div class="db-card">
+      <h4>Analytical Framework</h4>
+      <p><strong>Pipeline Velocity Model (4 levers):</strong><br><code style="font-size:12px;color:var(--teal-bright)">Velocity = (# Opps × ACV × Win Rate) ÷ Sales Cycle Days</code></p>
+      <p style="margin-top:8px">Any velocity degradation traces to exactly one (or more) levers. This decomposition makes coaching specific rather than generic. "Win rate dropped" → qualification problem. "Cycle lengthened" → multi-threading failure.</p>
+    </div>
+  </div>
+
+  <div class="db-card" style="margin-bottom:20px">
+    <h4>Data Architecture</h4>
+    <table class="schema-table">
+      <thead><tr><th>Table</th><th>Type</th><th>Key Columns</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td class="tbl">opportunities</td><td class="col-type">Fact</td><td class="col">opportunity_id, stage, arr_usd, close_date, updated_at</td><td class="col-desc">Raw CRM opportunity data</td></tr>
+        <tr><td class="tbl">pipeline_snapshot</td><td class="col-type">Fact (weekly)</td><td class="col">opportunity_id, snapshot_week, stage, arr_usd, close_date</td><td class="col-desc">Weekly point-in-time state for WoW delta</td></tr>
+        <tr><td class="tbl">pipeline_pushed</td><td class="col-type">Derived Fact</td><td class="col">opportunity_id, original_close, new_close, days_moved, root_cause</td><td class="col-desc">Push-outs with classification</td></tr>
+        <tr><td class="tbl">bookings_actuals</td><td class="col-type">Fact</td><td class="col">region, booking_date, aop_bookings, actual_bookings</td><td class="col-desc">Target vs. actuals for pacing</td></tr>
+        <tr><td class="tbl">calendar</td><td class="col-type">Dimension</td><td class="col">date, week_num, quarter, days_remaining_in_quarter</td><td class="col-desc">Time intelligence</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--muted)"><strong>Key join:</strong> pipeline_snapshot self-join on prior week to detect movement type. Partition strategy: import mode with M query <code>Table.FromRecords</code> for embedded data; directQuery for live CRM.</p>
+  </div>
+
+  <div class="code-section">
+    <div class="code-meta">
+      <span class="code-question">Question: Which opportunities moved close dates this week, and in which direction?</span>
+      <span class="code-lang">SQL</span>
+    </div>
+    <pre><span class="cmt">-- Weekly pipeline snapshot with push-out / pull-in detection</span>
+<span class="cmt">-- Multi-snapshot architecture: idempotent, reprocessable, no CRM audit log dependency</span>
+
+<span class="kw">WITH</span> <span class="tbl">weekly_snapshot</span> <span class="kw">AS</span> (
+  <span class="kw">SELECT</span>
+    <span class="col">opportunity_id</span>,
+    <span class="col">account_name</span>,
+    <span class="col">seller_email</span>,
+    <span class="col">region</span>,
+    <span class="col">segment</span>,
+    <span class="col">stage</span>,
+    <span class="col">arr_usd</span>,
+    <span class="col">close_date</span>,
+    <span class="fn">DATE_TRUNC</span>(<span class="str">'week'</span>, <span class="col">updated_at</span>) <span class="kw">AS</span> <span class="col">snapshot_week</span>,
+    <span class="fn">ROW_NUMBER</span>() <span class="kw">OVER</span> (
+      <span class="kw">PARTITION BY</span> <span class="col">opportunity_id</span>, <span class="fn">DATE_TRUNC</span>(<span class="str">'week'</span>, <span class="col">updated_at</span>)
+      <span class="kw">ORDER BY</span> <span class="col">updated_at</span> <span class="kw">DESC</span>
+    ) <span class="kw">AS</span> <span class="col">rn</span>
+  <span class="kw">FROM</span> <span class="tbl">opportunities</span>
+  <span class="kw">WHERE</span> <span class="col">is_deleted</span> = <span class="kw">FALSE</span>
+    <span class="kw">AND</span> <span class="col">stage</span> <span class="kw">NOT IN</span> (<span class="str">'Closed Won'</span>, <span class="str">'Closed Lost'</span>)
+),
+<span class="tbl">deduped</span> <span class="kw">AS</span> (
+  <span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">weekly_snapshot</span> <span class="kw">WHERE</span> <span class="col">rn</span> = <span class="num">1</span>
+)
+<span class="kw">SELECT</span>
+  d.<span class="col">opportunity_id</span>,
+  d.<span class="col">account_name</span>,
+  d.<span class="col">arr_usd</span>,
+  d.<span class="col">close_date</span>           <span class="kw">AS</span> <span class="col">current_close</span>,
+  p.<span class="col">close_date</span>           <span class="kw">AS</span> <span class="col">prior_close</span>,
+  <span class="kw">CASE</span>
+    <span class="kw">WHEN</span> d.<span class="col">close_date</span> > p.<span class="col">close_date</span> <span class="kw">THEN</span> <span class="str">'Push-Out'</span>
+    <span class="kw">WHEN</span> d.<span class="col">close_date</span> < p.<span class="col">close_date</span> <span class="kw">THEN</span> <span class="str">'Pull-In'</span>
+    <span class="kw">ELSE</span>                                      <span class="str">'No Change'</span>
+  <span class="kw">END</span>                      <span class="kw">AS</span> <span class="col">movement_type</span>,
+  d.<span class="col">close_date</span> - p.<span class="col">close_date</span> <span class="kw">AS</span> <span class="col">days_moved</span>
+<span class="kw">FROM</span> <span class="tbl">deduped</span> d
+<span class="kw">LEFT JOIN</span> <span class="tbl">deduped</span> p
+  <span class="kw">ON</span>  d.<span class="col">opportunity_id</span> = p.<span class="col">opportunity_id</span>
+  <span class="kw">AND</span> p.<span class="col">snapshot_week</span>  = d.<span class="col">snapshot_week</span> - <span class="fn">INTERVAL</span> <span class="str">'1 week'</span>
+<span class="kw">WHERE</span> d.<span class="col">snapshot_week</span> = <span class="fn">DATE_TRUNC</span>(<span class="str">'week'</span>, <span class="fn">CURRENT_DATE</span>)</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-meta">
+      <span class="code-question">Question: What is pipeline velocity per day by segment, and which lever is degrading?</span>
+      <span class="code-lang">SQL</span>
+    </div>
+    <pre><span class="cmt">-- Four-lever velocity decomposition by segment and quarter</span>
+<span class="kw">SELECT</span>
+  <span class="col">segment</span>,
+  <span class="col">fiscal_quarter</span>,
+  <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> <span class="col">opportunity_id</span>)                                  <span class="kw">AS</span> <span class="col">num_opps</span>,
+  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(<span class="col">arr_usd</span>), <span class="num">0</span>)                                           <span class="kw">AS</span> <span class="col">avg_acv</span>,
+  <span class="fn">ROUND</span>(<span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> <span class="col">outcome</span> = <span class="str">'Won'</span> <span class="kw">THEN</span> <span class="num">1.0</span> <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>)
+    / <span class="fn">NULLIF</span>(<span class="fn">COUNT</span>(*), <span class="num">0</span>), <span class="num">3</span>)                                    <span class="kw">AS</span> <span class="col">win_rate</span>,
+  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(<span class="col">sales_cycle_days</span>), <span class="num">0</span>)                                  <span class="kw">AS</span> <span class="col">avg_cycle_days</span>,
+  <span class="fn">ROUND</span>( <span class="cmt">/* Velocity = Volume × ACV × Win Rate ÷ Cycle */</span>
+    <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> <span class="col">opportunity_id</span>)
+    * <span class="fn">AVG</span>(<span class="col">arr_usd</span>)
+    * (<span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> <span class="col">outcome</span> = <span class="str">'Won'</span> <span class="kw">THEN</span> <span class="num">1.0</span> <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>)
+       / <span class="fn">NULLIF</span>(<span class="fn">COUNT</span>(*), <span class="num">0</span>))
+    / <span class="fn">NULLIF</span>(<span class="fn">AVG</span>(<span class="col">sales_cycle_days</span>), <span class="num">0</span>), <span class="num">0</span>
+  )                                                                  <span class="kw">AS</span> <span class="col">velocity_per_day</span>
+<span class="kw">FROM</span> <span class="tbl">closed_opportunities</span>
+<span class="kw">WHERE</span> <span class="col">close_date</span> >= <span class="fn">CURRENT_DATE</span> - <span class="fn">INTERVAL</span> <span class="str">'365 days'</span>
+<span class="kw">GROUP BY</span> <span class="num">1</span>, <span class="num">2</span>
+<span class="kw">ORDER BY</span> <span class="num">2</span> <span class="kw">DESC</span>, <span class="col">velocity_per_day</span> <span class="kw">DESC</span></pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-meta">
+      <span class="code-question">DAX: Push-out value in the trailing 7 days</span>
+      <span class="code-lang">DAX</span>
+    </div>
+    <pre><span class="cmt">// Push-out ARR this week — used in the weekly WoW summary tile</span>
+<span class="col">Push_Out_Value</span> =
+<span class="kw">CALCULATE</span>(
+    <span class="fn">SUMX</span>(
+        <span class="tbl">Pipeline_Pushed</span>,
+        <span class="tbl">Pipeline_Pushed</span>[<span class="col">ARR_USD</span>]
+    ),
+    <span class="tbl">Pipeline_Pushed</span>[<span class="col">Movement_Type</span>] = <span class="str">"Push-Out"</span>,
+    <span class="fn">DATESINPERIOD</span>(<span class="tbl">Calendar</span>[<span class="col">Date</span>], <span class="fn">LASTDATE</span>(<span class="tbl">Calendar</span>[<span class="col">Date</span>]), -<span class="num">7</span>, <span class="kw">DAY</span>)
+)</pre>
+  </div>
+
+  <div class="decisions">
+    <div class="decision-item"><div class="d-bullet">1</div><div class="d-text"><h5>Multi-snapshot over audit logs</h5><p>Most CRMs don't maintain granular history at the weekly level. Snapshots are idempotent (can be reprocessed), transparent (queryable), and replayable. Audit logs are append-only and often incomplete after data migrations.</p></div></div>
+    <div class="decision-item"><div class="d-bullet">2</div><div class="d-text"><h5>Separate push-out table from main pipeline</h5><p>Isolation avoids circular DAX dependency (Pipeline_Pushed references Pipeline). It also allows independent refresh schedules — pushouts are a derived calculation, not a CRM-updated entity.</p></div></div>
+    <div class="decision-item"><div class="d-bullet">3</div><div class="d-text"><h5>sourceColumn without brackets for M import tables</h5><p>In TMDL, <code>[ColumnName]</code> brackets in sourceColumn indicate calculated table references. Import tables use unbracketed column names. Getting this wrong silently fails at model load time.</p></div></div>
+  </div>
+
+  <div class="qa-grid">
+    <div class="qa-item"><div class="qa-q">Is our push-out problem systemic or a few bad actors?</div><div class="qa-a">Concentration analysis: if top 3 sellers = 60% of push-outs, it's a person problem. If evenly distributed, it's a process problem.</div></div>
+    <div class="qa-item"><div class="qa-q">Which lever in our velocity formula is degrading most?</div><div class="qa-a">Four-lever decomposition identifies whether to focus on qualification (win rate), pricing (ACV), prospecting (volume), or process (cycle).</div></div>
+    <div class="qa-item"><div class="qa-q">Are we on track to hit quota at current pacing?</div><div class="qa-a">Actuals pacing chart shows QTD actuals vs. required weekly run rate to hit plan.</div></div>
+    <div class="qa-item qa-limit"><div class="qa-q">⚠ Limitation: Root cause attribution</div><div class="qa-a">Push-out root cause (buyer vs. seller vs. macro) requires CRM field discipline. Without structured reason codes, classification defaults to rule-based heuristics.</div></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ── DASHBOARD 2: NET NEW ── -->
+<div class="db-section" id="net-new">
+  <div class="db-header">
+    <div class="db-icon" style="background:rgba(244,162,97,.15)">🎯</div>
+    <div class="db-meta">
+      <div class="db-badge">DASHBOARD 02</div>
+      <div class="db-title">Net New Tracker → GTM Strategy Platform</div>
+      <div class="db-sub">Revenue classification · ICP analytics · Unit economics · NRR cohort compounding</div>
+      <div class="db-links">
+        <a href="https://renatorbruxel.github.io/projects/net-new-tracker/net-new-tracker.html" target="_blank">▶ Live Demo</a>
+        <a href="https://github.com/renatorbruxel/projects/tree/main/net-new-tracker" target="_blank">⌥ Source</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="db-grid">
+    <div class="db-card">
+      <h4>Problem Statement</h4>
+      <p>Net New revenue carries higher commission multipliers. Without rigorous classification, incentive comp breaks down: under-classify and reps are under-paid (attrition risk); over-classify and the company overpays (financial risk).</p>
+      <p style="margin-top:8px">More strategically: without ICP scoring and unit economics segmentation, GTM investment decisions (where to hire, which channels to scale) are made on intuition rather than evidence.</p>
+    </div>
+    <div class="db-card">
+      <h4>Analytical Framework</h4>
+      <p><strong>Three strategic questions every GTM leader should answer quarterly:</strong></p>
+      <ul>
+        <li>Are we acquiring customers that will stay and expand? (ICP + NRR cohort)</li>
+        <li>Are we growing efficiently enough to compound? (Magic Number, LTV:CAC)</li>
+        <li>Are we running out of whitespace? (TAM penetration by segment)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="metrics-row">
+    <div class="metric-box"><div class="metric-val m-green">0.82</div><div class="metric-lbl">Magic Number</div><div class="metric-sub">GM-adjusted · Scale signal</div></div>
+    <div class="metric-box"><div class="metric-val m-orange">5.4x</div><div class="metric-lbl">LTV : CAC</div><div class="metric-sub">Strong · Benchmark >3x</div></div>
+    <div class="metric-box"><div class="metric-val m-blue">11.2mo</div><div class="metric-lbl">CAC Payback</div><div class="metric-sub">Excellent · Benchmark <12mo</div></div>
+    <div class="metric-box"><div class="metric-val m-purple">118%</div><div class="metric-lbl">NRR</div><div class="metric-sub">Strong · Benchmark >110%</div></div>
+  </div>
+
+  <div class="code-section">
+    <div class="code-meta">
+      <span class="code-question">Question: Does this deal qualify as Net New, or is it an Installed Base expansion?</span>
+      <span class="code-lang">SQL</span>
+    </div>
+    <pre><span class="cmt">-- Net New classification engine with 5-year lookback window</span>
+<span class="cmt">-- Edge cases: dormant reactivation (3-5yr gap), M&A account merges</span>
+
+<span class="kw">WITH</span> <span class="tbl">account_history</span> <span class="kw">AS</span> (
+  <span class="kw">SELECT</span>
+    <span class="col">account_id</span>,
+    <span class="fn">MAX</span>(<span class="col">close_date</span>)                                  <span class="kw">AS</span> <span class="col">last_revenue_date</span>,
+    <span class="fn">SUM</span>(<span class="col">arr_closed</span>)                                    <span class="kw">AS</span> <span class="col">prior_arr_total</span>,
+    <span class="fn">DATEDIFF</span>(<span class="str">'year'</span>, <span class="fn">MAX</span>(<span class="col">close_date</span>), <span class="fn">CURRENT_DATE</span>) <span class="kw">AS</span> <span class="col">yrs_since_revenue</span>
+  <span class="kw">FROM</span> <span class="tbl">closed_won_deals</span>
+  <span class="kw">WHERE</span> <span class="col">close_date</span> < <span class="fn">CURRENT_DATE</span>
+  <span class="kw">GROUP BY</span> <span class="col">account_id</span>
+)
+<span class="kw">SELECT</span>
+  d.<span class="col">opportunity_id</span>,
+  d.<span class="col">account_name</span>,
+  d.<span class="col">arr_usd</span>,
+  h.<span class="col">yrs_since_revenue</span>,
+  <span class="kw">CASE</span>
+    <span class="kw">WHEN</span> h.<span class="col">account_id</span> <span class="kw">IS NULL</span>             <span class="kw">THEN</span> <span class="str">'Net New'</span>        <span class="cmt">-- No history</span>
+    <span class="kw">WHEN</span> h.<span class="col">yrs_since_revenue</span> > <span class="num">5</span>          <span class="kw">THEN</span> <span class="str">'Net New'</span>        <span class="cmt">-- Dormant >5yr</span>
+    <span class="kw">WHEN</span> h.<span class="col">yrs_since_revenue</span> <span class="kw">BETWEEN</span> <span class="num">3</span> <span class="kw">AND</span> <span class="num">5</span> <span class="kw">THEN</span> <span class="str">'Reactivation'</span> <span class="cmt">-- Edge case</span>
+    <span class="kw">ELSE</span>                                        <span class="str">'Installed Base'</span>
+  <span class="kw">END</span> <span class="kw">AS</span> <span class="col">classification</span>
+<span class="kw">FROM</span> <span class="tbl">closed_won_deals</span> d
+<span class="kw">LEFT JOIN</span> <span class="tbl">account_history</span> h <span class="kw">USING</span> (<span class="col">account_id</span>)
+<span class="kw">WHERE</span> d.<span class="col">close_date</span> >= <span class="fn">DATE_TRUNC</span>(<span class="str">'quarter'</span>, <span class="fn">CURRENT_DATE</span>)</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-meta">
+      <span class="code-question">Question: What is our GTM efficiency — are we scaling productively or burning capital?</span>
+      <span class="code-lang">SQL</span>
+    </div>
+    <pre><span class="cmt">-- GM-adjusted Magic Number by segment and acquisition channel</span>
+<span class="cmt">-- Why GM-adjusted: raw Magic Number overstates efficiency for high-COGS products</span>
+<span class="cmt">-- Formula: (Net New ARR × Gross Margin %) / Prior Quarter S&M Spend</span>
+
+<span class="kw">WITH</span> <span class="tbl">bookings</span> <span class="kw">AS</span> (
+  <span class="kw">SELECT</span> <span class="col">fiscal_quarter</span>, <span class="col">segment</span>, <span class="col">channel</span>,
+         <span class="fn">SUM</span>(<span class="col">arr_usd</span>) <span class="kw">AS</span> <span class="col">new_arr</span>
+  <span class="kw">FROM</span> <span class="tbl">closed_won_deals</span>
+  <span class="kw">WHERE</span> <span class="col">classification</span> <span class="kw">IN</span> (<span class="str">'Net New'</span>, <span class="str">'Reactivation'</span>)
+  <span class="kw">GROUP BY</span> <span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>
+),
+<span class="tbl">spend</span> <span class="kw">AS</span> (
+  <span class="kw">SELECT</span> <span class="col">fiscal_quarter</span>, <span class="col">segment</span>, <span class="col">channel</span>,
+         <span class="fn">SUM</span>(<span class="col">spend_usd</span>) <span class="kw">AS</span> <span class="col">sm_spend</span>
+  <span class="kw">FROM</span> <span class="tbl">sales_marketing_spend</span>
+  <span class="kw">GROUP BY</span> <span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>
+)
+<span class="kw">SELECT</span>
+  b.<span class="col">fiscal_quarter</span>,
+  b.<span class="col">segment</span>,
+  b.<span class="col">channel</span>,
+  <span class="fn">ROUND</span>((b.<span class="col">new_arr</span> * <span class="num">0.72</span>) / <span class="fn">NULLIF</span>(s.<span class="col">sm_spend</span>, <span class="num">0</span>), <span class="num">2</span>) <span class="kw">AS</span> <span class="col">magic_number</span>,
+  <span class="kw">CASE</span>
+    <span class="kw">WHEN</span> (b.<span class="col">new_arr</span>*<span class="num">0.72</span>)/<span class="fn">NULLIF</span>(s.<span class="col">sm_spend</span>,<span class="num">0</span>) > <span class="num">1.0</span>  <span class="kw">THEN</span> <span class="str">'Scale aggressively'</span>
+    <span class="kw">WHEN</span> (b.<span class="col">new_arr</span>*<span class="num">0.72</span>)/<span class="fn">NULLIF</span>(s.<span class="col">sm_spend</span>,<span class="num">0</span>) > <span class="num">0.75</span> <span class="kw">THEN</span> <span class="str">'Grow thoughtfully'</span>
+    <span class="kw">WHEN</span> (b.<span class="col">new_arr</span>*<span class="num">0.72</span>)/<span class="fn">NULLIF</span>(s.<span class="col">sm_spend</span>,<span class="num">0</span>) > <span class="num">0.5</span>  <span class="kw">THEN</span> <span class="str">'Improve efficiency'</span>
+    <span class="kw">ELSE</span>                                                          <span class="str">'Fix GTM before hiring'</span>
+  <span class="kw">END</span> <span class="kw">AS</span> <span class="col">signal</span>
+<span class="kw">FROM</span> <span class="tbl">bookings</span> b
+<span class="kw">LEFT JOIN</span> <span class="tbl">spend</span> s
+  <span class="kw">ON</span> b.<span class="col">segment</span> = s.<span class="col">segment</span>
+  <span class="kw">AND</span> b.<span class="col">channel</span> = s.<span class="col">channel</span>
+  <span class="kw">AND</span> b.<span class="col">fiscal_quarter</span> = s.<span class="col">fiscal_quarter</span> + <span class="fn">INTERVAL</span> <span class="str">'1 quarter'</span>
+<span class="kw">ORDER BY</span> b.<span class="col">fiscal_quarter</span> <span class="kw">DESC</span>, <span class="col">magic_number</span> <span class="kw">DESC</span></pre>
+  </div>
+
+  <div class="qa-grid">
+    <div class="qa-item"><div class="qa-q">Is our Magic Number above 0.75 — should we keep hiring?</div><div class="qa-a">Segmented by Enterprise/MM/SMB and by channel. The insight emerges in cross-tabs: Enterprise Inbound 1.2, SMB Outbound 0.2 — different answers for different motions.</div></div>
+    <div class="qa-item"><div class="qa-q">Are newer acquisition cohorts expanding at higher NRR rates?</div><div class="qa-a">NRR Cohort Grid shows Month 0-24 expansion by acquisition quarter. Rising rows = ICP targeting improvement over time.</div></div>
+    <div class="qa-item"><div class="qa-q">Where do we have whitespace vs. saturation in our addressable market?</div><div class="qa-a">TAM penetration heatmap: current logos / total ICP accounts by segment × vertical. Guides where to invest in coverage.</div></div>
+    <div class="qa-item qa-limit"><div class="qa-q">⚠ Limitation: Real-time classification</div><div class="qa-a">Classification runs at deal close, not prospecting stage. Deals that convert to IB mid-cycle require re-classification logic. Requires CRM field discipline on account deduplication.</div></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ── DASHBOARD 3: PIPELINE PULSE ── -->
+<div class="db-section" id="pulse">
+  <div class="db-header">
+    <div class="db-icon" style="background:rgba(59,130,246,.15)">⚡</div>
+    <div class="db-meta">
+      <div class="db-badge">DASHBOARD 03</div>
+      <div class="db-title">Pipeline Pulse — Revenue Predictability Engine</div>
+      <div class="db-sub">3x coverage methodology · Forecast accuracy · Clean vs. phantom pipeline · CRO-level reporting</div>
+      <div class="db-links">
+        <a href="https://renatorbruxel.github.io/projects/pipeline-pulse/pipeline-pulse.html" target="_blank">▶ Live Demo</a>
+        <a href="https://github.com/renatorbruxel/projects/tree/main/pipeline-pulse" target="_blank">⌥ Source</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="db-grid">
+    <div class="db-card">
+      <h4>Problem Statement</h4>
+      <p>Pipeline coverage tells you <em>how much</em> pipeline you have. It says nothing about whether the forecast is trustworthy. Two teams can both show 3x coverage — one lands within 5% of actual every quarter, the other misses by 20%. The difference is forecast maturity, and it's invisible without accuracy history.</p>
+    </div>
+    <div class="db-card">
+      <h4>The 3x Rule — First Principles</h4>
+      <p>The 3x threshold is a proxy, not a constant:<br>
+      <code style="font-size:12px;color:var(--teal-bright)">Required Coverage = 1 / Historical Win Rate</code></p>
+      <p style="margin-top:6px">At 40% win rate, 2.5x is sufficient. At 20%, you need 5x. A dynamic threshold beats the static rule every time — it forces the analytical conversation instead of hiding behind a heuristic.</p>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <div class="code-meta">
+      <span class="code-question">Question: How accurate were our weekly forecast calls vs. what actually closed?</span>
+      <span class="code-lang">SQL</span>
+    </div>
+    <pre><span class="cmt">-- Forecast accuracy scorecard: called vs. actual, by region and week of quarter</span>
+<span class="cmt">-- Bias detection: regions that consistently call high or low need calibration factors</span>
+
+<span class="kw">WITH</span> <span class="tbl">forecast_log</span> <span class="kw">AS</span> (
+  <span class="kw">SELECT</span>
+    <span class="col">fiscal_quarter</span>,
+    <span class="fn">WEEKOFYEAR</span>(<span class="col">forecast_date</span>)
+      - <span class="fn">WEEKOFYEAR</span>(<span class="fn">DATE_TRUNC</span>(<span class="str">'quarter'</span>, <span class="col">forecast_date</span>)) + <span class="num">1</span>  <span class="kw">AS</span> <span class="col">week_of_quarter</span>,
+    <span class="col">region</span>,
+    <span class="col">forecast_type</span>,  <span class="cmt">-- 'Commit', 'Best Case', 'Weighted'</span>
+    <span class="col">forecast_value</span>
+  <span class="kw">FROM</span> <span class="tbl">forecast_calls</span>
+),
+<span class="tbl">actuals</span> <span class="kw">AS</span> (
+  <span class="kw">SELECT</span> <span class="col">fiscal_quarter</span>, <span class="col">region</span>, <span class="fn">SUM</span>(<span class="col">arr_usd</span>) <span class="kw">AS</span> <span class="col">actual_bookings</span>
+  <span class="kw">FROM</span> <span class="tbl">closed_won_deals</span> <span class="kw">GROUP BY</span> <span class="num">1</span>, <span class="num">2</span>
+)
+<span class="kw">SELECT</span>
+  f.<span class="col">fiscal_quarter</span>,
+  f.<span class="col">week_of_quarter</span>,
+  f.<span class="col">region</span>,
+  f.<span class="col">forecast_value</span>                                      <span class="kw">AS</span> <span class="col">called</span>,
+  a.<span class="col">actual_bookings</span>                                      <span class="kw">AS</span> <span class="col">actual</span>,
+  <span class="fn">ABS</span>(f.<span class="col">forecast_value</span> - a.<span class="col">actual_bookings</span>)
+    / <span class="fn">NULLIF</span>(a.<span class="col">actual_bookings</span>, <span class="num">0</span>)                      <span class="kw">AS</span> <span class="col">abs_error_pct</span>,
+  <span class="kw">CASE</span>
+    <span class="kw">WHEN</span> f.<span class="col">forecast_value</span> > a.<span class="col">actual_bookings</span> <span class="kw">THEN</span> <span class="str">'High (optimistic)'</span>
+    <span class="kw">WHEN</span> f.<span class="col">forecast_value</span> < a.<span class="col">actual_bookings</span> <span class="kw">THEN</span> <span class="str">'Low (conservative)'</span>
+    <span class="kw">ELSE</span>                                             <span class="str">'Accurate'</span>
+  <span class="kw">END</span>                                                    <span class="kw">AS</span> <span class="col">bias_direction</span>
+<span class="kw">FROM</span> <span class="tbl">forecast_log</span> f
+<span class="kw">JOIN</span> <span class="tbl">actuals</span> a <span class="kw">USING</span> (<span class="col">fiscal_quarter</span>, <span class="col">region</span>)
+<span class="kw">WHERE</span> f.<span class="col">forecast_type</span> = <span class="str">'Commit'</span>
+<span class="kw">ORDER BY</span> <span class="num">1</span> <span class="kw">DESC</span>, <span class="num">2</span>, <span class="num">3</span></pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-meta">
+      <span class="code-question">DAX: Hygiene-adjusted "clean" coverage vs. gross coverage</span>
+      <span class="code-lang">DAX</span>
+    </div>
+    <pre><span class="cmt">// Clean Coverage excludes overdue and stale pipeline (phantom pipeline)</span>
+<span class="cmt">// Gross coverage 4.1x with 30% phantom = Clean coverage 2.9x — a very different story</span>
+<span class="col">Clean_Coverage_Ratio</span> =
+<span class="kw">VAR</span> <span class="col">TotalPipeline</span> =
+    <span class="kw">CALCULATE</span>(<span class="fn">SUM</span>(<span class="tbl">Pipeline</span>[<span class="col">ARR_USD</span>]), <span class="tbl">Pipeline</span>[<span class="col">Is_Open</span>] = <span class="kw">TRUE</span>())
+<span class="kw">VAR</span> <span class="col">PhantomPipeline</span> =
+    <span class="kw">CALCULATE</span>(
+        <span class="fn">SUM</span>(<span class="tbl">Pipeline</span>[<span class="col">ARR_USD</span>]),
+        <span class="tbl">Pipeline</span>[<span class="col">Is_Open</span>] = <span class="kw">TRUE</span>(),
+        <span class="fn">OR</span>(
+            <span class="tbl">Pipeline</span>[<span class="col">Is_Overdue</span>] = <span class="kw">TRUE</span>(),
+            <span class="tbl">Pipeline</span>[<span class="col">Days_Since_Last_Activity</span>] > <span class="num">14</span>
+        )
+    )
+<span class="kw">VAR</span> <span class="col">CleanPipeline</span>   = <span class="col">TotalPipeline</span> - <span class="col">PhantomPipeline</span>
+<span class="kw">VAR</span> <span class="col">Quota</span>           = <span class="fn">SUM</span>(<span class="tbl">Bookings_Actuals</span>[<span class="col">AOP_Bookings</span>])
+<span class="kw">RETURN</span>
+    <span class="fn">DIVIDE</span>(<span class="col">CleanPipeline</span>, <span class="col">Quota</span>)
+
+
+<span class="cmt">// Stage-weighted probabilistic forecast — independent of rep commit category</span>
+<span class="col">Stage_Weighted_Forecast</span> =
+<span class="fn">SUMX</span>(
+    <span class="tbl">Pipeline</span>,
+    <span class="tbl">Pipeline</span>[<span class="col">ARR_USD</span>] *
+    <span class="fn">SWITCH</span>(<span class="tbl">Pipeline</span>[<span class="col">Stage</span>],
+        <span class="str">"Qualify"</span>,   <span class="num">0.10</span>,
+        <span class="str">"Develop"</span>,   <span class="num">0.20</span>,
+        <span class="str">"Validate"</span>,  <span class="num">0.35</span>,
+        <span class="str">"Propose"</span>,   <span class="num">0.50</span>,
+        <span class="str">"Negotiate"</span>, <span class="num">0.72</span>,
+        <span class="str">"Commit"</span>,    <span class="num">0.88</span>,
+        <span class="num">0</span>
+    )
+)</pre>
+  </div>
+
+  <div class="qa-grid">
+    <div class="qa-item"><div class="qa-q">Can I trust the EMEA forecast call this week?</div><div class="qa-a">Forecast Trust Score: EMEA has a 71% commit accuracy rate and +11% systematic bias (calls high). Discount EMEA commits by 9% in the global rollup.</div></div>
+    <div class="qa-item"><div class="qa-q">Is our 3x coverage actually 3x, or inflated by stale deals?</div><div class="qa-a">Clean Coverage metric isolates phantom pipeline (overdue + stale). Gross 4.1x may actually be 2.9x clean — a 29% overstatement.</div></div>
+    <div class="qa-item"><div class="qa-q">What does the pipeline model say we should close this quarter?</div><div class="qa-a">Stage-weighted predicted close provides a third forecast line alongside Commit (rep-reported) and Quota — where all three converge is where the CRO should commit.</div></div>
+    <div class="qa-item qa-limit"><div class="qa-q">⚠ Limitation: Forecast call log requirement</div><div class="qa-a">Forecast accuracy tracking requires a historical log of weekly calls. If the org doesn't currently capture this, the accuracy scorecard needs 2-3 quarters of new data before it becomes meaningful.</div></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ── DASHBOARD 4: SALES LEAGUE ── -->
+<div class="db-section" id="sales-league">
+  <div class="db-header">
+    <div class="db-icon" style="background:rgba(139,92,246,.15)">🏆</div>
+    <div class="db-meta">
+      <div class="db-badge">DASHBOARD 04</div>
+      <div class="db-title">Sales League — Performance & Capacity Platform</div>
+      <div class="db-sub">Gamified leaderboard · RLS security · Capacity planning model · Ramp analytics · Quality-adjusted attainment</div>
+      <div class="db-links">
+        <a href="https://renatorbruxel.github.io/projects/sales-league/sales-league.html" target="_blank">▶ Live Demo</a>
+        <a href="https://github.com/renatorbruxel/projects/tree/main/sales-league" target="_blank">⌥ Source</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="db-grid">
+    <div class="db-card">
+      <h4>Problem Statement</h4>
+      <p>Quota attainment % answers "did they hit quota?" It doesn't answer: Was the quota calibrated correctly? Is the distribution shape healthy? Are ramping reps on track? What happens to capacity if 20% of reps leave? And critically: are some reps closing deals that churn within 12 months — hitting quota while destroying NRR?</p>
+    </div>
+    <div class="db-card">
+      <h4>SPM Framework</h4>
+      <ul>
+        <li><strong>Calibration:</strong> Is quota design sound? TAM-adjusted or peanut butter?</li>
+        <li><strong>Distribution:</strong> Is the attainment histogram unimodal (healthy) or bimodal (broken comp)?</li>
+        <li><strong>Capacity:</strong> How does headcount translate to productive quota-carrying capacity?</li>
+        <li><strong>Quality:</strong> Are reps closing deals that expand, or deals that churn?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <div class="code-meta">
+      <span class="code-question">Question: How does rep productivity evolve by tenure month, and what are our ramp multipliers?</span>
+      <span class="code-lang">SQL</span>
+    </div>
+    <pre><span class="cmt">-- Ramp curve analysis: productivity multiplier by tenure month</span>
+<span class="cmt">-- Output feeds the capacity planning model (headcount × multiplier = effective quota capacity)</span>
+
+<span class="kw">SELECT</span>
+  <span class="fn">DATEDIFF</span>(<span class="str">'month'</span>, <span class="col">hire_date</span>, <span class="col">close_date</span>) <span class="kw">AS</span> <span class="col">tenure_month</span>,
+  <span class="col">segment</span>,
+  <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> <span class="col">seller_id</span>)                <span class="kw">AS</span> <span class="col">rep_count</span>,
+  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(<span class="col">arr_closed</span>), <span class="num">0</span>)               <span class="kw">AS</span> <span class="col">avg_monthly_bookings</span>,
+  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(<span class="col">attainment_pct</span>), <span class="num">3</span>)           <span class="kw">AS</span> <span class="col">avg_attainment</span>,
+  <span class="fn">ROUND</span>(                                    <span class="cmt">-- Normalized multiplier (1.0 = fully ramped)</span>
+    <span class="fn">AVG</span>(<span class="col">arr_closed</span>)
+    / <span class="fn">NULLIF</span>(<span class="fn">AVG</span>(<span class="col">full_ramp_quota</span> / <span class="num">12.0</span>), <span class="num">0</span>),
+  <span class="num">3</span>) <span class="kw">AS</span> <span class="col">productivity_multiplier</span>
+<span class="kw">FROM</span> <span class="tbl">rep_performance_monthly</span>
+<span class="kw">WHERE</span> <span class="col">hire_date</span> >= <span class="fn">CURRENT_DATE</span> - <span class="fn">INTERVAL</span> <span class="str">'3 years'</span>
+  <span class="kw">AND</span> <span class="col">tenure_month</span> <span class="kw">BETWEEN</span> <span class="num">0</span> <span class="kw">AND</span> <span class="num">18</span>
+<span class="kw">GROUP BY</span> <span class="num">1</span>, <span class="num">2</span>
+<span class="kw">ORDER BY</span> <span class="num">2</span>, <span class="num">1</span></pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-meta">
+      <span class="code-question">Question: Is our attainment distribution healthy (unimodal) or does it signal a broken quota design (bimodal)?</span>
+      <span class="code-lang">SQL</span>
+    </div>
+    <pre><span class="cmt">-- Attainment histogram with bimodal detection flag</span>
+<span class="cmt">-- A bimodal pattern (clusters at <50% AND >120%) = broken quota design or comp plan</span>
+
+<span class="kw">SELECT</span>
+  <span class="col">fiscal_quarter</span>,
+  <span class="col">segment</span>,
+  <span class="kw">CASE</span>
+    <span class="kw">WHEN</span> <span class="col">attainment_pct</span> < <span class="num">0.50</span>  <span class="kw">THEN</span> <span class="str">'0–50%'</span>
+    <span class="kw">WHEN</span> <span class="col">attainment_pct</span> < <span class="num">0.70</span>  <span class="kw">THEN</span> <span class="str">'50–70%'</span>
+    <span class="kw">WHEN</span> <span class="col">attainment_pct</span> < <span class="num">0.90</span>  <span class="kw">THEN</span> <span class="str">'70–90%'</span>
+    <span class="kw">WHEN</span> <span class="col">attainment_pct</span> < <span class="num">1.00</span>  <span class="kw">THEN</span> <span class="str">'90–100%'</span>
+    <span class="kw">WHEN</span> <span class="col">attainment_pct</span> < <span class="num">1.20</span>  <span class="kw">THEN</span> <span class="str">'100–120%'</span>
+    <span class="kw">ELSE</span>                               <span class="str">'120%+'</span>
+  <span class="kw">END</span>                                  <span class="kw">AS</span> <span class="col">band</span>,
+  <span class="fn">COUNT</span>(*)                             <span class="kw">AS</span> <span class="col">rep_count</span>,
+  <span class="fn">ROUND</span>(<span class="fn">COUNT</span>(*) * <span class="num">100.0</span>
+    / <span class="fn">SUM</span>(<span class="fn">COUNT</span>(*)) <span class="kw">OVER</span> (
+        <span class="kw">PARTITION BY</span> <span class="col">fiscal_quarter</span>, <span class="col">segment</span>
+      ), <span class="num">1</span>)                            <span class="kw">AS</span> <span class="col">pct_of_reps</span>
+<span class="kw">FROM</span> <span class="tbl">rep_attainment</span>
+<span class="kw">GROUP BY</span> <span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>
+<span class="kw">ORDER BY</span> <span class="num">1</span> <span class="kw">DESC</span>, <span class="num">2</span>, <span class="num">3</span></pre>
+  </div>
+
+  <div class="qa-grid">
+    <div class="qa-item"><div class="qa-q">How many productive AEs do we actually have vs. total headcount?</div><div class="qa-a">Capacity model: Fully ramped × 1.0 + M4-6 × 0.5 + M1-3 × 0.1 = effective capacity. Often 20-30% lower than nominal headcount during growth phases.</div></div>
+    <div class="qa-item"><div class="qa-q">Are some reps hitting quota by closing deals that churn in 12 months?</div><div class="qa-a">NRR attribution by AE sourcing cohort: quality-adjusted attainment. A rep at 120% whose logos churn at 80% GRR is a liability, not a top performer.</div></div>
+    <div class="qa-item"><div class="qa-q">Is our quota design calibrated correctly across territories?</div><div class="qa-a">Attainment histogram shape analysis. Unimodal (good). Bimodal — concentration at <50% AND >120% — signals territories with unfair quota allocation.</div></div>
+    <div class="qa-item qa-limit"><div class="qa-q">⚠ Limitation: Territory quality normalization</div><div class="qa-a">The capacity model assumes equal quota per headcount. Real-world TAM-adjusted quota design requires firmographic data per territory to normalize. Without it, attainment reflects territory quality as much as rep skill.</div></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ── DASHBOARD 5: WCI ── -->
+<div class="db-section" id="wci">
+  <div class="db-header">
+    <div class="db-icon" style="background:rgba(244,162,97,.15)">📋</div>
+    <div class="db-meta">
+      <div class="db-badge">DASHBOARD 05</div>
+      <div class="db-title">Weekly Check-In Portal — Forecast Operating System</div>
+      <div class="db-sub">Forecast governance · AI narrative generation · Submission workflow · Anomaly detection · V83.2</div>
+      <div class="db-links">
+        <a href="https://renatorbruxel.github.io/projects/weekly-checkin-portal/weekly-checkin-portal.html" target="_blank">▶ Live Demo</a>
+        <a href="https://github.com/renatorbruxel/projects/tree/main/weekly-checkin-portal" target="_blank">⌥ Source</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="db-grid">
+    <div class="db-card">
+      <h4>Problem Statement</h4>
+      <p>Six regional sales leaders need to submit forecast data every Friday — covering bookings, revenue, and B&amp;B plans across multiple business units and quarters. The previous process: email chains, inconsistent Excel formats, no audit trail, and narratives that were either late or copy-pasted from prior weeks.</p>
+      <p style="margin-top:8px">V83.2 reflects 83+ weekly production cycles. It's not a prototype — it's a deployed governance system.</p>
+    </div>
+    <div class="db-card">
+      <h4>Three Capabilities</h4>
+      <ul>
+        <li><strong>Input:</strong> Structured data capture with CQ/NQ quarterly blocks, R&amp;O tables, and business unit breakdowns</li>
+        <li><strong>Intelligence:</strong> AI narrative generation with WoW deal context injection, anomaly flagging on variance outliers</li>
+        <li><strong>Governance:</strong> Multi-state approval workflow (Pending → Submitted → Approved/Revision), audit trail, accuracy tracking</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <div class="code-meta">
+      <span class="code-question">Python: How is AI narrative context built — specifically, what WoW changes get injected into the prompt?</span>
+      <span class="code-lang">Python</span>
+    </div>
+    <pre><span class="cmt"># WoW deal context builder — injected into LLM narrative prompt</span>
+<span class="cmt"># Makes AI output accurate and grounded, not generic</span>
+
+<span class="kw">def</span> <span class="fn">build_deal_changes_context</span>(region: <span class="tbl">str</span>, quarter: <span class="tbl">str</span>, week: <span class="tbl">int</span>) -> <span class="tbl">dict</span>:
+    <span class="str">"""
+    Computes deal-level delta between current and prior week submission.
+    Returns structured context for the LLM narrative generation prompt.
+    """</span>
+    current  = <span class="fn">fetch_submissions</span>(region, quarter, week)
+    prior    = <span class="fn">fetch_submissions</span>(region, quarter, week - <span class="num">1</span>)
+
+    <span class="cmt"># Match deals by ID, classify each change type</span>
+    prior_ids = {d[<span class="str">'id'</span>] <span class="kw">for</span> d <span class="kw">in</span> prior}
+    added     = [d <span class="kw">for</span> d <span class="kw">in</span> current <span class="kw">if</span> d[<span class="str">'id'</span>] <span class="kw">not in</span> prior_ids]
+    removed   = [d <span class="kw">for</span> d <span class="kw">in</span> prior   <span class="kw">if</span> d[<span class="str">'id'</span>] <span class="kw">not in</span> {c[<span class="str">'id'</span>] <span class="kw">for</span> c <span class="kw">in</span> current}]
+    changed   = [
+        {<span class="str">'deal'</span>: c, <span class="str">'delta'</span>: c[<span class="str">'amount'</span>] - p[<span class="str">'amount'</span>]}
+        <span class="kw">for</span> c <span class="kw">in</span> current
+        <span class="kw">for</span> p <span class="kw">in</span> prior
+        <span class="kw">if</span>  c[<span class="str">'id'</span>] == p[<span class="str">'id'</span>]
+        <span class="kw">and</span> <span class="fn">abs</span>(c[<span class="str">'amount'</span>] - p[<span class="str">'amount'</span>]) > <span class="num">100_000</span>  <span class="cmt"># threshold: >100K change</span>
+    ]
+
+    net = (  <span class="fn">sum</span>(d[<span class="str">'amount'</span>] <span class="kw">for</span> d <span class="kw">in</span> added)
+           - <span class="fn">sum</span>(d[<span class="str">'amount'</span>] <span class="kw">for</span> d <span class="kw">in</span> removed)
+           + <span class="fn">sum</span>(d[<span class="str">'delta'</span>]  <span class="kw">for</span> d <span class="kw">in</span> changed) )
+
+    <span class="kw">return</span> {
+        <span class="str">'region'</span>:         region,
+        <span class="str">'week'</span>:           week,
+        <span class="str">'net_impact_M'</span>:   <span class="fn">round</span>(net / <span class="num">1_000_000</span>, <span class="num">1</span>),
+        <span class="str">'adds'</span>:           [f<span class="str">"{d['account']} +€{d['amount']/1e6:.1f}M"</span> <span class="kw">for</span> d <span class="kw">in</span> added[:<span class="num">3</span>]],
+        <span class="str">'drops'</span>:          [f<span class="str">"{d['account']} -€{d['amount']/1e6:.1f}M"</span> <span class="kw">for</span> d <span class="kw">in</span> removed[:<span class="num">3</span>]],
+        <span class="str">'prompt_context'</span>: (
+            f<span class="str">"WoW net: {'+' if net>0 else ''}{net/1e6:.1f}M — "</span>
+            f<span class="str">"{len(added)} adds, {len(removed)} drops, {len(changed)} significant changes."</span>
+        )
+    }</pre>
+  </div>
+
+  <div class="decisions">
+    <div class="decision-item"><div class="d-bullet">1</div><div class="d-text"><h5>Self-contained single-file architecture</h5><p>The portal is one HTML file with no external CDN dependencies. It opens in any browser with no server. This was a deliberate governance decision — the file is portable, auditable, and can be shared directly. V83.2 proves the pattern scales: 83 production cycles, no infrastructure incidents.</p></div></div>
+    <div class="decision-item"><div class="d-bullet">2</div><div class="d-text"><h5>Context injection over generic prompts</h5><p>AI narrative quality correlates directly with prompt specificity. The WoW context builder computes deal-level changes and injects them as structured data before the LLM generates text. Without this, narratives are generic templates; with it, they reference actual movement in the regional pipeline.</p></div></div>
+    <div class="decision-item"><div class="d-bullet">3</div><div class="d-text"><h5>Quarter-locked state machine per submission</h5><p>Once a submission is approved, all input fields are locked via CSS <code>pointer-events: none</code> + server-side flag. This prevents accidental edits that would corrupt the audit trail. The state machine (Pending → Submitted → Approved/Revision) is the governance backbone.</p></div></div>
+  </div>
+
+  <div class="qa-grid">
+    <div class="qa-item"><div class="qa-q">Which regions have submitted their forecast this week?</div><div class="qa-a">Real-time cycle status dashboard shows each region's submission state: Pending / Submitted / Approved / Needs Revision.</div></div>
+    <div class="qa-item"><div class="qa-q">Is the EMEA narrative consistent with the numbers they submitted?</div><div class="qa-a">AI-generated narratives are derived from the submitted data context — factual inconsistencies are structurally prevented by construction.</div></div>
+    <div class="qa-item"><div class="qa-q">What is our forecast accuracy trend over the last 8 quarters?</div><div class="qa-a">Forecast Accuracy tab: called vs. actual by week of quarter, commit accuracy by region, systematic bias detection.</div></div>
+    <div class="qa-item qa-limit"><div class="qa-q">⚠ Limitation: Real-time CRM sync</div><div class="qa-a">The portal accepts manual input by regional leaders. Without a CRM API integration, the submission data is self-reported — not auto-populated from opportunity records. The gap: what's submitted may not exactly match the live CRM state at submission time.</div></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- NEXT STEPS -->
+<div class="section" id="next">
+  <div class="section-label">Roadmap</div>
+  <h2>What I Would Build Next</h2>
+  <p class="section-desc">Every tool in this portfolio is intentionally bounded. These are the extensions that would move each dashboard from strong to exceptional.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
+    <div class="next-card">
+      <h4>📊 Pipeline Intelligence</h4>
+      <p>Predictive slippage model using gradient boosting on: stage age vs. P75 benchmark, push history count, multi-threading depth (contacts engaged), next-step recency. Output: probability-of-slip score per open deal, surfaced proactively 3 weeks before quarter close.</p>
+    </div>
+    <div class="next-card">
+      <h4>🎯 Net New Tracker</h4>
+      <p>Close the feedback loop: connect ICP fit score at acquisition to 12-month NRR outcome. Run a correlation regression to validate (or invalidate) the ICP model. High-ICP logos should show >115% NRR; low-ICP logos should show <95%. This makes the model auditable and continuously improvable.</p>
+    </div>
+    <div class="next-card">
+      <h4>⚡ Pipeline Pulse</h4>
+      <p>Dynamic 3x threshold using Bayesian updating. Instead of a fixed line, the required coverage threshold updates weekly using the current-quarter-to-date win rate and remaining selling days. The model converges to the actual close rate as the quarter progresses — far more accurate than the static heuristic.</p>
+    </div>
+    <div class="next-card">
+      <h4>🏆 Sales League</h4>
+      <p>Rep survival analysis using Kaplan-Meier estimator. Input features: tenure month, consecutive quarters below 50%, manager assignment, territory quality score. Output: 90-day attrition probability per rep. Flags at-risk reps before they resign, enabling preemptive coaching or backfill planning.</p>
+    </div>
+    <div class="next-card">
+      <h4>📋 WCI Portal</h4>
+      <p>Replace simulated AI with production LLM integration via API (streaming output). Add vector memory: narratives from prior weeks are retrieved and used as context to ensure consistency and progression across submissions. Accuracy scoring: each week's submission is scored against the eventual close, creating a feedback loop for narrative quality.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px">GTM Analytics & Revenue Operations Portfolio</p>
+  <p>Built to demonstrate how I think about commercial data — not just how I visualize it.</p>
+  <p style="margin-top:12px"><a href="https://renatorbruxel.github.io/projects/" style="color:var(--teal-bright);text-decoration:none;font-weight:700" target="_blank">▶ View Live Dashboards</a> &nbsp;·&nbsp; <a href="https://github.com/renatorbruxel/projects" style="color:var(--teal-bright);text-decoration:none;font-weight:700" target="_blank">⌥ GitHub Repository</a></p>
+  <p class="disclaimer">All data, company names, seller names, and financial figures in this portfolio are entirely fictional and created solely to demonstrate analytical methodology. No real commercial data has been used.</p>
+</footer>
+
+<script>
+// Highlight active nav item on scroll
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.nav a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`.nav a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, {threshold: 0.3});
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
