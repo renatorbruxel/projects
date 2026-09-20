@@ -2,21 +2,3 @@ model Model
 	culture: en-US
 	defaultPowerBIDataSourceVersion: powerBI_V3
 	discourageImplicitMeasures
-
-	ref table 'Pipeline'
-	ref table 'Pipeline_PriorDay'
-	ref table 'Pipeline_Snapshot'
-	ref table 'Bookings_Actuals'
-	ref table 'Territories'
-	ref table 'Territory_Mapping'
-	ref table 'Territory_Mapping_Snapshot'
-	ref table 'Activity_Log'
-	ref table 'Activity_Snapshot'
-	ref table 'Calendar'
-	ref table 'Calendar_Full'
-	ref table 'Regions'
-	ref table 'Forecast_Categories'
-	ref table 'Cockpit_Manual_Input'
-	ref table 'Dimension_Key'
-	ref table 'Conversion_Rate'
-	ref table '_Measures'
