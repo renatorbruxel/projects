@@ -1,5 +1,5 @@
 # Whitelist approach — portfolio subfolders are fully tracked
-# Root-level Philips files (PBIP, HTML, ABF) stay local only
+# Keep local source/reference files out of the public portfolio
 
 # Exclude everything by default
 *
@@ -9,6 +9,7 @@
 
 # Always allow
 !.gitignore
+!.gitattributes
 !README.md
 !index.html
 !portfolio-deep-dive.html
@@ -19,3 +20,27 @@
 !net-new-tracker/**
 !pipeline-pulse/**
 !sales-league/**
+
+# Standalone portfolio version (Astra build — Kaggle data + synthetic)
+!final/**
+
+# Review documentation and verification code
+!docs/**
+!tests/**
+!data/**
+!assets/**
+!scripts/**
+!notebooks/**
+!downloads/**
+# Never publish local secrets or generated source exports
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.key
+**/__pycache__/
+**/*.pyc
+
+!LICENSE
+# Optional browser QA outputs are not source
+tests/browser-artifacts/

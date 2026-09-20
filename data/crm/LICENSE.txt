@@ -1,0 +1,21 @@
+Dataset license: CC0 1.0 Universal (Public Domain)
+
+Source: CRM Sales Opportunities on Google Sheets, published on Kaggle by nilkamalsaha.
+https://www.kaggle.com/datasets/nilkamalsaha/crm-sales-opportunities-on-google-sheets
+Dataset version 1, retrieved September 20, 2026.
+
+The Kaggle dataset metadata identifies the license as "CC0: Public Domain".
+Maven Analytics also identifies the CRM Sales Opportunities dataset as Public Domain:
+https://mavenanalytics.io/data-playground/crm-sales-opportunities
+
+Official CC0 legal code:
+https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+CC0 permits copying, modification and redistribution, including commercial use,
+without requiring permission. Trademark, privacy and other rights are not waived
+by this notice, and no warranty or endorsement is implied. Consult the legal code
+for the controlling terms. This notice records the source's license; it does not
+relicense unrelated repository files or claim ownership of the source data.
+
+The cleaned CSVs and derived data retain their source attribution and CC0 notice.
+Preserved raw files can be verified with the hashes in source.json.

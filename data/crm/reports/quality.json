@@ -1,0 +1,45 @@
+{
+  "source_version": 1,
+  "rows_before_join": 8800,
+  "rows_after_join": 8800,
+  "duplicate_opportunity_ids": 0,
+  "unmatched_nonempty_account_keys": 0,
+  "unmatched_seller_keys": 0,
+  "unmatched_product_keys_after_normalization": 0,
+  "missing_source_fields": {
+    "opportunity_id": 0,
+    "sales_agent": 0,
+    "product": 0,
+    "account": 1425,
+    "deal_stage": 0,
+    "engage_date": 500,
+    "close_date": 2089,
+    "close_value": 2089
+  },
+  "product_alias_rows_fixed": 1480,
+  "account_sector_rows_fixed": 12,
+  "stage_counts": {
+    "Engaging": 1589,
+    "Lost": 2473,
+    "Prospecting": 500,
+    "Won": 4238
+  },
+  "closed_date_range": [
+    "2017-03-01",
+    "2017-12-31"
+  ],
+  "engage_date_range": [
+    "2016-10-20",
+    "2017-12-27"
+  ],
+  "won_value_reconciles_to_raw": true,
+  "missing_accounts_retained": true,
+  "open_close_values_remain_null": true,
+  "registered_sellers": 35,
+  "sellers_without_opportunities": 5,
+  "purchase_type_counts_won": {
+    "Repeat observed purchase": 4144,
+    "First observed purchase": 94
+  },
+  "critical_failures": []
+}

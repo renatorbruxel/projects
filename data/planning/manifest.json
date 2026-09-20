@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "seed": 20260920,
+  "scenario_id": "planning-v2-seed-20260920",
+  "as_of": "2026-09-18",
+  "source_kind": "synthetic",
+  "generator": "scripts/build_operating_model.py",
+  "engine": "SQLite 3 (Python stdlib)",
+  "tables": {
+    "snapshots": 9128,
+    "sellers": 35,
+    "accounts": 85,
+    "quotas": 390,
+    "revenue": 307,
+    "activities": 2320,
+    "forecast_calls": 21,
+    "subscriptions": 585,
+    "merchants": 60,
+    "payments": 500
+  },
+  "files": {
+    "accounts.csv": "29ec9d2757a1cb44094308e750602a6d4466ba7c4c0a56f90e96c3f15c5155a5",
+    "activities.csv": "55e48382df49b96e925be4798bf9275e43bd0097b88438c196b323ccc5a39e18",
+    "costs.csv": "a2bec24e24716630067514ed7e6400e6f112c601502a4966202ea34aa44e2c7b",
+    "data-test-results.json": "92afb8b9361243da4392f07f94a86770c53d3419cf16eaa57ee02a4776c084ef",
+    "forecast_calls.csv": "16f31c72cebf8b9fbee3f9b6509dc8497608e4e177a9c71696bfb5e7570e2c4a",
+    "merchants.csv": "129dc1ec004877e9c7423ad3f0c1cfc698dacde6e4a9fc31c3d3ad417990cbe5",
+    "model-test-results.json": "18668e2c403c07588763f9446b6f80381ae8c5a27f42cbd08a17691e68b7cb96",
+    "payments.csv": "1a34ac2c8dfcb9c69da40c227f7b7d08018b1c69afb5f57e974ee1ec1c2fdd73",
+    "quotas.csv": "cf2dbc62e7a76ed4314fffd570e6e6141e9a4b52066f85e75d434fa7996f542f",
+    "revenue.csv": "9ca38831b04613c68531382a0d8406c1231bcfa9fdf7d1fe97f14fd63db7647c",
+    "roster.csv": "5d43dcce6414b9364b66beda549dd133c62d98934b91a0f0105b19b82255dfad",
+    "scenario.json": "640fc097c1397269f9260fdb1e47534d03ed9879a336230a50f58009ff8439f0",
+    "sellers.csv": "497615a4162a3f2a132a4b8da43e81e7cee7419f941240345a62671403d2e5d2",
+    "snapshots.csv": "d417c1c41cd8e66e048a4c90234e2be6be2a3c8a4e22a61683eaf043441bbd2d",
+    "sql-results.json": "b0124dcf65626e6e93ab570864d1c10ef2b7652a328753ea0db60dac477fd93f",
+    "subscriptions.csv": "d18c9988744213c9d7ce2d21c5fce4914b2879c4367941b8e68542194090b9ef",
+    "test-results.json": "57b84856eada51f74fff1b441e42bd77ef8ee67ba5122340c02a6f8596fe3ba5"
+  }
+}

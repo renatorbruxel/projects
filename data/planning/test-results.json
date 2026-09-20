@@ -1,0 +1,133 @@
+{
+  "scenario_id": "planning-v2-seed-20260920",
+  "metric_version": "2.0.0",
+  "passed": 31,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Generator is byte-for-byte deterministic at the data-object level",
+      "status": "passed"
+    },
+    {
+      "name": "Snapshot grain is unique",
+      "status": "passed"
+    },
+    {
+      "name": "All snapshot opportunity and seller references resolve",
+      "status": "passed"
+    },
+    {
+      "name": "No snapshot uses future stage, activity or close events",
+      "status": "passed"
+    },
+    {
+      "name": "Stored generator events end at the declared as-of",
+      "status": "passed"
+    },
+    {
+      "name": "Forecast training closes precede or equal issuance",
+      "status": "passed"
+    },
+    {
+      "name": "All forecast horizons equal 28 days",
+      "status": "passed"
+    },
+    {
+      "name": "Every forecast reproduced solely from issue-time events",
+      "status": "passed"
+    },
+    {
+      "name": "Recurring accounting closes at each customer-month",
+      "status": "passed"
+    },
+    {
+      "name": "Recurring balances are non-negative",
+      "status": "passed"
+    },
+    {
+      "name": "Recognition schedule allocates each won contract exactly once",
+      "status": "passed"
+    },
+    {
+      "name": "Source nulls are preserved in deliberate planning edge cases",
+      "status": "passed"
+    },
+    {
+      "name": "Quota grain unique and productive FTE bounded",
+      "status": "passed"
+    },
+    {
+      "name": "Original Kaggle files retain the documented hashes",
+      "status": "passed"
+    },
+    {
+      "name": "Successful payment fees are separate from TPV and failed attempts",
+      "status": "passed"
+    },
+    {
+      "name": "Ratio distinguishes missing and zero denominator",
+      "status": "passed"
+    },
+    {
+      "name": "Closed CRM counts and observed currency values preserved",
+      "status": "passed"
+    },
+    {
+      "name": "Seller outcomes reconcile with independent SQLite temporal joins",
+      "status": "passed"
+    },
+    {
+      "name": "Regional totals equal all-region total at each quarter",
+      "status": "passed"
+    },
+    {
+      "name": "Unsupported quota grain returns N/A without imputing quota",
+      "status": "passed"
+    },
+    {
+      "name": "Bridge equals SQL and closes in every quarter / FY",
+      "status": "passed"
+    },
+    {
+      "name": "CQ-to-NQ date change preserves rolling total",
+      "status": "passed"
+    },
+    {
+      "name": "Classification unknown, complete, parent, tie and reactivation branches",
+      "status": "passed"
+    },
+    {
+      "name": "Unit economics preserve month units and zero handling",
+      "status": "passed"
+    },
+    {
+      "name": "Forecast errors use unrounded values and handle zero actual",
+      "status": "passed"
+    },
+    {
+      "name": "Forecast quality matches SQLite on all stored calls",
+      "status": "passed"
+    },
+    {
+      "name": "ARR bridge closes without new-customer contamination of NRR",
+      "status": "passed"
+    },
+    {
+      "name": "Capacity caps served demand and responds to ramp / hiring timing",
+      "status": "passed"
+    },
+    {
+      "name": "Workflow requires valid inputs, reviewer and return reason",
+      "status": "passed"
+    },
+    {
+      "name": "Copilot values, period, source and read-only role boundaries",
+      "status": "passed"
+    },
+    {
+      "name": "Quality exposure uses unique IDs despite overlapping rules",
+      "status": "passed"
+    }
+  ],
+  "limits": "Data and metric tests; browser interactions are verified separately by tests/operating_browser.cjs."
+}

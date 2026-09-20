@@ -1,0 +1,4 @@
+# Preserve source snapshot bytes, including original CRLF and whitespace.
+data/crm/raw/*.csv -text -whitespace
+# CSV exports use the standard CSV CRLF terminator on every platform.
+data/crm/clean/*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

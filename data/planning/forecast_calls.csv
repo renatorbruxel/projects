@@ -1,0 +1,22 @@
+id,issued_at,target_end,horizon_days,region,forecast,baseline,actual,training_n,training_max_close,historical_win_rate,method,source_kind,scenario_id
+FC-02-Central,2026-01-31,2026-02-28,28,Central,254000.0,0,357000,0,,0.5,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-02-East,2026-01-31,2026-02-28,28,East,272000.0,183000,73000,2,2026-01-29,1.0,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-02-West,2026-01-31,2026-02-28,28,West,458000.0,189000,52000,3,2026-01-28,1.0,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-03-Central,2026-03-03,2026-03-31,28,Central,488692.3077,357000,523000,13,2026-03-03,0.6153846153846154,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-03-East,2026-03-03,2026-03-31,28,East,255750.0,73000,232000,4,2026-03-02,0.75,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-03-West,2026-03-03,2026-03-31,28,West,104285.7143,52000,240000,14,2026-02-24,0.35714285714285715,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-04-Central,2026-04-02,2026-04-30,28,Central,318285.7143,523000,314000,28,2026-03-30,0.5714285714285714,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-04-East,2026-04-02,2026-04-30,28,East,249187.5,232000,318000,16,2026-03-29,0.5625,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-04-West,2026-04-02,2026-04-30,28,West,229285.7143,240000,315000,28,2026-03-28,0.42857142857142855,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-05-Central,2026-05-03,2026-05-31,28,Central,432350.0,314000,480000,40,2026-05-01,0.55,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-05-East,2026-05-03,2026-05-31,28,East,631333.3333,318000,405000,30,2026-05-03,0.6666666666666666,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-05-West,2026-05-03,2026-05-31,28,West,188536.5854,315000,167000,41,2026-05-02,0.4634146341463415,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-06-Central,2026-06-02,2026-06-30,28,Central,451730.7692,480000,531000,52,2026-05-29,0.5769230769230769,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-06-East,2026-06-02,2026-06-30,28,East,423837.2093,405000,556000,43,2026-06-02,0.627906976744186,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-06-West,2026-06-02,2026-06-30,28,West,197120.0,167000,130000,50,2026-06-02,0.44,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-07-Central,2026-07-03,2026-07-31,28,Central,374884.058,531000,376000,69,2026-07-02,0.5797101449275363,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-07-East,2026-07-03,2026-07-31,28,East,451161.2903,556000,409000,62,2026-07-01,0.5967741935483871,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-07-West,2026-07-03,2026-07-31,28,West,506737.7049,130000,427000,61,2026-07-02,0.47540983606557374,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-08-Central,2026-08-03,2026-08-31,28,Central,223814.8148,376000,380000,81,2026-08-03,0.5925925925925926,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-08-East,2026-08-03,2026-08-31,28,East,297440.0,409000,696000,75,2026-08-03,0.5866666666666667,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920
+FC-08-West,2026-08-03,2026-08-31,28,West,498000.0,427000,752000,74,2026-08-03,0.4864864864864865,As-of due pipeline × prior closed win rate + month actual to date,synthetic,planning-v2-seed-20260920

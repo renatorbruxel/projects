@@ -1,0 +1,69 @@
+{
+  "suite": "Independent JavaScript / SQL contract checks",
+  "results": [
+    {
+      "name": "Ratio distinguishes missing and zero denominator",
+      "status": "passed"
+    },
+    {
+      "name": "Closed CRM counts and observed currency values preserved",
+      "status": "passed"
+    },
+    {
+      "name": "Seller outcomes reconcile with independent SQLite temporal joins",
+      "status": "passed"
+    },
+    {
+      "name": "Regional totals equal all-region total at each quarter",
+      "status": "passed"
+    },
+    {
+      "name": "Unsupported quota grain returns N/A without imputing quota",
+      "status": "passed"
+    },
+    {
+      "name": "Bridge equals SQL and closes in every quarter / FY",
+      "status": "passed"
+    },
+    {
+      "name": "CQ-to-NQ date change preserves rolling total",
+      "status": "passed"
+    },
+    {
+      "name": "Classification unknown, complete, parent, tie and reactivation branches",
+      "status": "passed"
+    },
+    {
+      "name": "Unit economics preserve month units and zero handling",
+      "status": "passed"
+    },
+    {
+      "name": "Forecast errors use unrounded values and handle zero actual",
+      "status": "passed"
+    },
+    {
+      "name": "Forecast quality matches SQLite on all stored calls",
+      "status": "passed"
+    },
+    {
+      "name": "ARR bridge closes without new-customer contamination of NRR",
+      "status": "passed"
+    },
+    {
+      "name": "Capacity caps served demand and responds to ramp / hiring timing",
+      "status": "passed"
+    },
+    {
+      "name": "Workflow requires valid inputs, reviewer and return reason",
+      "status": "passed"
+    },
+    {
+      "name": "Copilot values, period, source and read-only role boundaries",
+      "status": "passed"
+    },
+    {
+      "name": "Quality exposure uses unique IDs despite overlapping rules",
+      "status": "passed"
+    }
+  ]
+}

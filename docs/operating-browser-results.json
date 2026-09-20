@@ -1,0 +1,41 @@
+{
+  "tabs": 39,
+  "planning_and_observed_modes": true,
+  "viewport_checks": [
+    1440,
+    390
+  ],
+  "checks": [
+    {
+      "check": "All planning and observed views render",
+      "passed": true,
+      "tabs": 39
+    },
+    {
+      "check": "Filters reconcile including All and unsupported quota grain",
+      "passed": true
+    },
+    {
+      "check": "Draft → submitted → returned → approved → frozen reload → revision + Word export",
+      "passed": true
+    },
+    {
+      "check": "Distinct review cadences, preparation events and cross-snapshot actions",
+      "passed": true
+    },
+    {
+      "check": "Copilot regression and untrusted-text rendering",
+      "passed": true
+    },
+    {
+      "check": "Capacity demand cap and unit-economics zero-churn boundary",
+      "passed": true
+    },
+    {
+      "check": "Search, empty state and exact filtered CSV export",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "overflow": []
+}

@@ -1,56 +1,34 @@
-# GTM Analytics & Revenue Operations Portfolio
+# Commercial Excellence and GTM Operations portfolio
 
-A collection of enterprise data products built to support a global B2B SaaS commercial motion — covering forecast governance, pipeline management, seller performance, and quota operations.
+Three independent case studies connect commercial diagnosis to forecast decisions, growth choices and accountable execution.
 
-All tools were designed for **Vantara Sales**, a fictional ~$800M ARR enterprise software company with GTM teams across Americas, EMEA, and APJ.
+- **Forecast Operating System:** [Forecast & Business Reviews](weekly-checkin-portal/weekly-checkin-portal.html) and [Executive Pulse](pipeline-pulse/pipeline-pulse.html).
+- **Funnel & Growth Intelligence:** [Pipeline Diagnostics](funnel-management/pipeline-intelligence.html), [Growth & Customer Economics](net-new-tracker/net-new-tracker.html), and [Sales Productivity & Resource Planning](sales-league/sales-league.html).
+- **Governed Commercial Copilot:** local, source-grounded retrieval within the forecast module, with evidence and executable regression checks.
 
-> **Live demos** — open directly in browser, no installation required:
-> [`weekly-checkin-portal`](https://renatorbruxel.github.io/projects/weekly-checkin-portal/weekly-checkin-portal.html) · [`pipeline-intelligence`](https://renatorbruxel.github.io/projects/funnel-management/pipeline-intelligence.html) · [`net-new-tracker`](https://renatorbruxel.github.io/projects/net-new-tracker/net-new-tracker.html) · [`pipeline-pulse`](https://renatorbruxel.github.io/projects/pipeline-pulse/pipeline-pulse.html) · [`sales-league`](https://renatorbruxel.github.io/projects/sales-league/sales-league.html)
+[Open the public portfolio](https://renatorbruxel.github.io/projects/) · [Inspect data](data/index.html) · [Read methodology](portfolio-deep-dive.html)
 
----
+## Business decisions
 
-## Projects
+What can leadership commit to? Which timing, conversion or capacity constraint matters? Who owns the response, and what happened at the next review? The interface retains drill-through evidence, modeled alternatives and local action tracking.
 
-| # | Project | Live Demo | Description | Stack |
-|---|---------|-----------|-------------|-------|
-| 1 | [Weekly Check-In Portal](./weekly-checkin-portal/) | [▶ weekly-checkin-portal.html](./weekly-checkin-portal/weekly-checkin-portal.html) | AI-assisted forecast submission and narrative generation for regional sales leaders | HTML · CSS · Vanilla JS · AWS |
-| 2 | [Pipeline Intelligence](./funnel-management/) | [▶ pipeline-intelligence.html](./funnel-management/pipeline-intelligence.html) | Pipeline push/pull dynamics, actuals weekly pacing, and overdue opportunity governance | HTML · SVG · Power BI · TMDL |
-| 3 | [Net New Tracker](./net-new-tracker/) | [▶ net-new-tracker.html](./net-new-tracker/net-new-tracker.html) | Net-new revenue classification engine for incentive compensation accuracy | HTML · SVG · Power BI · TMDL |
-| 4 | [Pipeline Pulse](./pipeline-pulse/) | [▶ pipeline-pulse.html](./pipeline-pulse/pipeline-pulse.html) | Pipeline sufficiency (3x coverage), WoW delta tracking, funnel hygiene, and Q/FY views | HTML · SVG · Power BI · TMDL |
-| 5 | [Sales League](./sales-league/) | [▶ sales-league.html](./sales-league/sales-league.html) | Gamified seller leaderboard with RLS, individual scorecards, and recovery planning | HTML · SVG · Power BI · TMDL |
+## Run and reproduce
 
----
+```bash
+python scripts/reproduce.py
+python -m http.server 8000
+```
 
-## Skills Demonstrated
+Python 3.11+ and Node.js 18+, no default package installation or API keys. See the [complete reproduction guide](docs/README_OPERATING_MODEL.md) for the optional browser suite, data model, architecture, business definitions, test coverage and production trade-offs.
 
-**Commercial Analytics**
-- KPI framework design for enterprise B2B sales (bookings, pipeline coverage, forecast accuracy)
-- Multi-region attainment analysis with drill-through by seller, product, and territory
-- Funnel health scoring and sufficiency modeling (3x coverage methodology)
-- Incentive compensation data modeling and classification governance
+## Evidence and scope
 
-**Power BI & Data Modeling**
-- Semantic modeling in PBIP/TMDL format (source-control-friendly, Git-compatible)
-- Complex DAX: time intelligence, snapshot comparisons, WoW deltas, RLS filter patterns
-- Row-Level Security for multi-tier sales hierarchies (seller → manager → region → global)
-- Multi-snapshot fact tables for point-in-time funnel analysis
+[Metric contracts](data/index.html?tab=contracts), [source and quality](data/index.html?tab=quality), [SQL](data/sql/operating_model.sql), [implementation status](docs/IMPLEMENTATION_STATUS.md), [coverage map](docs/COVERAGE_MAP.csv), [verification](docs/VERIFICATION.md), [data dictionary](docs/DATA_DICTIONARY.md), [decision log](docs/DECISION_LOG.md), [research references](docs/REFERENCES.md).
 
-**Frontend & Operations Tooling**
-- Self-contained single-file HTML applications deployable without infrastructure
-- AI narrative generation integrated directly into operational workflows
-- Word document export from browser-based applications (no server required)
-- Forecast submission workflow with approval state management
+The Kaggle CRM source is fictional educational data, preserved with CC0 provenance and original dates. Forecast planning, subscriptions, payments and workflow examples are independent deterministic scenarios. Missing values remain unavailable. Career outcomes are candidate-provided, separate from these synthetic results.
 
-**GTM Strategy & Operations**
-- Weekly forecast governance design and regional cadence management
-- Push/pull pipeline behavior analysis and sales coaching signals
-- Sales gamification mechanics (leaderboards, commitments, recovery plans)
-- Quota-to-actuals reconciliation and attainment band analysis
+The application uses shared JavaScript calculations and independent SQLite reconciliations. Local review approval, simulated role scope and notification previews are demonstrator behavior; no production authentication, messaging or external AI model is claimed. The earlier quota shell source remains unavailable. Power BI files were outside the HTML implementation scope.
 
----
+This independent reference implementation demonstrates analytical and operating-model patterns used in commercial performance work. It does not contain employer source code, records, proprietary schemas, prompts or screenshots. Professional experience and toolkit are described separately from tools chosen for the reference implementation.
 
-## Context
-
-These tools support a GTM organization with ~200 quota-carrying sellers distributed across 3 major regions (Americas, EMEA, APJ), 6 sub-regions, and multiple product lines. The portfolio reflects a full-stack RevOps approach — from individual seller scorecards to executive-level forecast governance.
-
-> All data, names, and company references in this portfolio are entirely fictional and created for portfolio demonstration purposes.
+Independent code and generated planning data: MIT. Preserved CRM source: CC0-1.0, with attribution in `data/crm/`.

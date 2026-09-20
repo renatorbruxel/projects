@@ -1,0 +1,7 @@
+{
+  "clean_extraction_reproduction": "passed",
+  "business_checks": 31,
+  "zip_members": 93,
+  "entrypoint_local_links_checked": 67,
+  "missing_links": []
+}

@@ -1,0 +1,28 @@
+# Research references
+
+These sources informed design choices in the review. No third-party application source was copied. Source availability and licenses were checked during the preceding research; this implementation does not claim endorsement or internal knowledge of Stripe.
+
+- S01 — Stripe — GTM Strategy & Operations Analyst, 8195483 — https://stripe.com/careers/listing/gtm-strategy-operations-analyst/8195483 — Vaga confirmada por Renato; referência dos requisitos, não evidência de experiência profissional.
+- S02 — McKinsey — How top performers outpace peers in sales productivity (2023) — https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/how-top-performers-outpace-peers-in-sales-productivity — Práticas de produtividade: liberar tempo, priorizar oportunidades e desenvolver capacidade comercial. Benchmarks externos não viram metas automáticas.
+- S03 — McKinsey — Sales & Channel Management — https://www.mckinsey.com/capabilities/growth-marketing-and-sales/how-we-help-clients/sales-and-channel-management/en — Segmentação granular, canais e alocação do esforço comercial. Referência de gestão, não prova causal dos cenários.
+- S04 — McKinsey — Five ways B2B sales leaders can win with tech and AI (2025) — https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/five-ways-b2b-sales-leaders-can-win-with-tech-and-ai — Aplicações de IA e automação conectadas a execução, adoção e medição de valor.
+- S05 — Hyndman e Athanasopoulos — Evaluating point forecast accuracy — https://otexts.com/fpp3/accuracy.html — Separação entre erro de treino e previsão; MAE, MAPE e limitações com valores zero.
+- S06 — Hyndman e Athanasopoulos — Time series cross-validation — https://otexts.com/fpp3/tscv.html — Validação temporal com origem móvel, sem usar o futuro no treinamento.
+- S07 — Stripe Docs — Acceptance analytics — https://docs.stripe.com/payments/analytics/acceptance — Taxas de sucesso e autorização têm denominadores distintos; tentativas e pagamentos deduplicados também.
+- S08 — Stripe Docs — Subscription analytics — https://docs.stripe.com/billing/subscriptions/analytics — Definições configuráveis e exploração dos eventos por trás das métricas recorrentes.
+- S09 — Frappe CRM — repositório e README — https://github.com/frappe/crm — Referência de interação para acompanhar oportunidades, tarefas e registros de atividade. AGPL-3.0.
+- S10 — Lightdash — repositório — https://github.com/lightdash/lightdash — Métricas compartilhadas, consultas inspecionáveis e analytics versionado; core aberto e recursos comerciais separados.
+- S11 — Fivetran — dbt_salesforce — https://github.com/fivetran/dbt_salesforce — Modelos de oportunidades, atividade, campanhas e histórico. Apache-2.0; espera esquema/conector próprio.
+- S12 — Fivetran — dbt_stripe — https://github.com/fivetran/dbt_stripe — Modelos de transações, invoices e assinaturas. Apache-2.0; perspectiva do usuário da Stripe, não da receita corporativa da Stripe.
+- S13 — Evidence — repositório — https://github.com/evidence-dev/evidence — Relatórios como código, com SQL e Markdown. MIT; alternativa opcional, sem obrigação de trocar a stack HTML.
+- S14 — Promptfoo — repositório — https://github.com/promptfoo/promptfoo — Avaliações declarativas e regressões de IA. MIT; usar adaptador local/mock no caminho padrão.
+- S15 — dbt Docs — Data tests — https://docs.getdbt.com/docs/build/data-tests — Testes de integridade e regras de negócio que retornam registros inválidos.
+- S16 — Google Research — Measuring the User Experience on a Large Scale (HEART) — https://research.google/pubs/measuring-the-user-experience-on-a-large-scale-user-centered-metrics-for-web-applications/ — Ligar objetivos de uso a sinais e métricas de experiência; não confundir acessos com valor gerado.
+- S17 — Lightdash — Metrics reference — https://docs.lightdash.com/semantic-layer/metrics — Definições centralizadas, filtros, agregações e SQL gerado.
+- S18 — Fivetran — opportunity_daily_history.sql — https://github.com/fivetran/dbt_salesforce/blob/main/models/salesforce_history/salesforce__opportunity_daily_history.sql — Código inspecionado: histórico por oportunidade/dia, intervalos de validade, calendário e chave única.
+- S19 — Fivetran — subscription_item_mrr_report.sql — https://github.com/fivetran/dbt_stripe/blob/main/models/stripe__subscription_item_mrr_report.sql — Trechos de código inspecionados: item por mês, moeda, calendário, histórico de quantidade e normalização de periodicidade.
+- S20 — Frappe CRM — Deal.vue — https://github.com/frappe/crm/blob/develop/frontend/src/pages/Deal.vue — Código inspecionado: atividades, comentários, tarefas, notas e motivo de perda ligado à mudança de status.
+- S21 — Promptfoo — Assertions & metrics — https://www.promptfoo.dev/docs/configuration/expected-outputs/ — Verificações de valores, estrutura e funções personalizadas, além de avaliadores por modelo.
+- S22 — Lightdash — LICENSE — https://github.com/lightdash/lightdash/blob/main/LICENSE — MIT fora das exclusões declaradas; diretório enterprise tem licença separada. Não classificar o repositório inteiro como MIT irrestrito.
+- S23 — lifelines — KaplanMeierFitter — https://lifelines.readthedocs.io/en/latest/fitters/univariate/KaplanMeierFitter.html — Estimador de sobrevivência univariado com duração e censura; não equivale a um modelo individual condicionado a múltiplas covariáveis.
+- S24 — Kaggle — CRM Sales Opportunities — https://www.kaggle.com/datasets/nilkamalsaha/crm-sales-opportunities-on-google-sheets — Dataset fictício de CRM, versão 1, CC0 conforme manifest preservado. Transformações reproduzíveis; gerador original não fornecido.

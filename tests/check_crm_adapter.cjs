@@ -1,0 +1,16 @@
+const fs=require('node:fs'), path=require('node:path'), vm=require('node:vm'), assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..'), context=vm.createContext({window:{}});
+for(const file of ['assets/crm-data.js','assets/portfolio-crm.js']) vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context,{filename:file});
+const api=context.window.PortfolioCRM, total=api.summarize();
+assert.equal(total.opportunities,8800);assert.equal(total.wonValue,10005534);assert.equal(total.won,4238);assert.equal(total.lost,2473);assert.equal(total.open,2089);
+assert.equal(total.closedWinRate,4238/6711);
+assert.equal(api.summarize([]).closedWinRate,null);
+assert.equal(api.filter({quarter:'2017-Q4',stage:'Engaging'}).length,0);
+assert.equal(api.filter({search:'no-such-opportunity-123456'}).length,0);
+assert.equal(api.sellers().length,30);
+assert.equal(api.sellers().reduce((n,r)=>n+r.wonValue,0),total.wonValue);
+assert.equal(api.weekly().reduce((n,r)=>n+r.wonValue,0),total.wonValue);
+assert.equal(total.firstObserved+total.repeatObserved,total.won);
+const west=api.filter({region:'West',quarter:'2017-Q4',stage:'Won'});
+assert.ok(west.length>0 && west.every(r=>r.regional_office==='West'&&r.close_quarter==='2017-Q4'&&r.deal_stage==='Won'));
+console.log('PASS: shared CRM adapter totals, denominators, filters, empty states, seller and weekly reconciliation.');
