@@ -1,0 +1,106 @@
+table Quota_Seller_Info
+	lineageTag: e5f6a7b8-c9d0-1234-efab-345678901234
+
+	column Seller_Email
+		dataType: string
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901235
+		summarizeBy: none
+
+	column Seller_Name
+		dataType: string
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901236
+		summarizeBy: none
+
+	column Preferred_Name
+		dataType: string
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901237
+		summarizeBy: none
+
+	column Job_Title
+		dataType: string
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901238
+		summarizeBy: none
+
+	column Region
+		dataType: string
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901239
+		summarizeBy: none
+
+	column Sub_Region
+		dataType: string
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901240
+		summarizeBy: none
+
+	column Market
+		dataType: string
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901241
+		summarizeBy: none
+
+	column Manager_Email
+		dataType: string
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901242
+		summarizeBy: none
+
+	column Manager_Name
+		dataType: string
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901243
+		summarizeBy: none
+
+	column Player
+		dataType: string
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901244
+		summarizeBy: none
+
+	column Player_Consent
+		dataType: boolean
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901245
+
+	column Quota_Seller_Key
+		dataType: string
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901246
+		summarizeBy: none
+
+	column Is_Active
+		dataType: boolean
+		lineageTag: e5f6a7b8-c9d0-1234-efab-345678901247
+
+	partition Quota_Seller_Info-Partition
+		mode: import
+		source
+			type: m
+			expression
+				= let
+				    Source = #table(
+				        type table [
+				            Seller_Email = text,
+				            Seller_Name = text,
+				            Preferred_Name = text,
+				            Job_Title = text,
+				            Region = text,
+				            Sub_Region = text,
+				            Market = text,
+				            Manager_Email = text,
+				            Manager_Name = text,
+				            Player = text,
+				            Player_Consent = logical,
+				            Quota_Seller_Key = text,
+				            Is_Active = logical
+				        ],
+				        {
+				            {"a.chen@vantara-fictional.demo","Alex Chen","Alex","Enterprise Account Executive","Americas","North America","North America","d.torres@vantara-fictional.demo","Diego Torres","Yes",true,"AMR-E1001",true},
+				            {"j.rivera@vantara-fictional.demo","Jordan Rivera","Jordan","Enterprise Account Executive","Americas","North America","North America","d.torres@vantara-fictional.demo","Diego Torres","Yes",true,"AMR-E1002",true},
+				            {"m.blake@vantara-fictional.demo","Morgan Blake","Morgan","Senior Account Executive","Americas","LATAM","LATAM","d.torres@vantara-fictional.demo","Diego Torres","Yes",true,"AMR-E1003",true},
+				            {"t.kim@vantara-fictional.demo","Taylor Kim","Taylor","Enterprise Account Executive","Americas","Canada","Canada","d.torres@vantara-fictional.demo","Diego Torres","Yes",true,"AMR-E1004",true},
+				            {"s.patel@vantara-fictional.demo","Sam Patel","Sam","Enterprise Account Executive","EMEA","UK & Ireland","UK & Ireland","l.dubois@vantara-fictional.demo","Leila Dubois","Yes",true,"EME-E2001",true},
+				            {"c.muller@vantara-fictional.demo","Chris Muller","Chris","Enterprise Account Executive","EMEA","DACH","DACH","l.dubois@vantara-fictional.demo","Leila Dubois","Yes",true,"EME-E2002",true},
+				            {"n.larsson@vantara-fictional.demo","Nina Larsson","Nina","Senior Account Executive","EMEA","Nordics","Nordics","l.dubois@vantara-fictional.demo","Leila Dubois","Yes",true,"EME-E2003",true},
+				            {"p.sharma@vantara-fictional.demo","Priya Sharma","Priya","Enterprise Account Executive","EMEA","Southern Europe","Southern Europe","l.dubois@vantara-fictional.demo","Leila Dubois","Yes",true,"EME-E2004",true},
+				            {"w.zhang@vantara-fictional.demo","Wei Zhang","Wei","Enterprise Account Executive","APJ","Greater China","Greater China","m.singh@vantara-fictional.demo","Maya Singh","Yes",true,"APJ-E3001",true},
+				            {"h.tanaka@vantara-fictional.demo","Hana Tanaka","Hana","Senior Account Executive","APJ","Japan","Japan","m.singh@vantara-fictional.demo","Maya Singh","Yes",true,"APJ-E3002",true},
+				            {"r.nair@vantara-fictional.demo","Raj Nair","Raj","Enterprise Account Executive","APJ","India & SEA","India & SEA","m.singh@vantara-fictional.demo","Maya Singh","Yes",true,"APJ-E3003",true},
+				            {"k.yamamoto@vantara-fictional.demo","Kai Yamamoto","Kai","Enterprise Account Executive","APJ","ANZ","ANZ","m.singh@vantara-fictional.demo","Maya Singh","Yes",true,"APJ-E3004",true}
+				        }
+				    )
+				in
+				    Source
+

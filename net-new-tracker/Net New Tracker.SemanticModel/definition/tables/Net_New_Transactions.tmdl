@@ -1,0 +1,141 @@
+table Net_New_Transactions
+	lineageTag: a0000002-0000-0000-0000-000000000001
+
+	column Transaction_ID
+		dataType: string
+		lineageTag: a0000002-0000-0000-0000-000000000002
+		summarizeBy: none
+		sourceColumn: Transaction_ID
+
+	column Opportunity_ID
+		dataType: string
+		lineageTag: a0000002-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: Opportunity_ID
+
+	column Account_Name
+		dataType: string
+		lineageTag: a0000002-0000-0000-0000-000000000004
+		summarizeBy: none
+		sourceColumn: Account_Name
+
+	column Seller_Name
+		dataType: string
+		lineageTag: a0000002-0000-0000-0000-000000000005
+		summarizeBy: none
+		sourceColumn: Seller_Name
+
+	column Region
+		dataType: string
+		lineageTag: a0000002-0000-0000-0000-000000000006
+		summarizeBy: none
+		sourceColumn: Region
+
+	column Market
+		dataType: string
+		lineageTag: a0000002-0000-0000-0000-000000000007
+		summarizeBy: none
+		sourceColumn: Market
+
+	column Product_Line_Code
+		dataType: string
+		lineageTag: a0000002-0000-0000-0000-000000000008
+		summarizeBy: none
+		sourceColumn: Product_Line_Code
+
+	column ARR_USD
+		dataType: double
+		lineageTag: a0000002-0000-0000-0000-000000000009
+		formatString: \$#,0
+		summarizeBy: sum
+		sourceColumn: ARR_USD
+
+	column Transaction_Date
+		dataType: dateTime
+		lineageTag: a0000002-0000-0000-0000-000000000010
+		formatString: yyyy-MM-dd
+		summarizeBy: none
+		sourceColumn: Transaction_Date
+
+	column Classification
+		dataType: string
+		lineageTag: a0000002-0000-0000-0000-000000000011
+		summarizeBy: none
+		sourceColumn: Classification
+
+	column Classification_Source
+		dataType: string
+		lineageTag: a0000002-0000-0000-0000-000000000012
+		summarizeBy: none
+		sourceColumn: Classification_Source
+
+	column Years_Since_Prior_Revenue
+		dataType: double
+		lineageTag: a0000002-0000-0000-0000-000000000013
+		summarizeBy: none
+		sourceColumn: Years_Since_Prior_Revenue
+
+	column Is_Disputed
+		dataType: boolean
+		lineageTag: a0000002-0000-0000-0000-000000000014
+		summarizeBy: none
+		sourceColumn: Is_Disputed
+
+	calculatedColumn Is_New_Logo_Flag
+		dataType: boolean
+		lineageTag: a0000002-0000-0000-0000-000000000015
+		summarizeBy: none
+		expression: = IF([Classification] = "Net New", TRUE(), FALSE())
+
+	partition 'Net_New_Transactions-Partition'
+		mode: import
+		source
+			let
+			    Source = Table.FromRecords(
+			        {
+			            [ Transaction_ID = "T-001", Opportunity_ID = "OPP-2024-001", Account_Name = "Nexflow Inc", Seller_Name = "Jordan Blake", Region = "Americas", Market = "US-East", Product_Line_Code = "PLT-001", ARR_USD = 320000, Transaction_Date = #date(2024, 1, 15), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-002", Opportunity_ID = "OPP-2024-002", Account_Name = "Driftwave Technologies", Seller_Name = "Morgan Ellis", Region = "Americas", Market = "US-West", Product_Line_Code = "PLT-002", ARR_USD = 175000, Transaction_Date = #date(2024, 1, 28), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-003", Opportunity_ID = "OPP-2024-003", Account_Name = "Stacklane Corp", Seller_Name = "Alex Rivera", Region = "EMEA", Market = "UK", Product_Line_Code = "PLT-003", ARR_USD = 480000, Transaction_Date = #date(2024, 2, 5), Classification = "Installed Base", Classification_Source = "System", Years_Since_Prior_Revenue = 1.5, Is_Disputed = false ],
+			            [ Transaction_ID = "T-004", Opportunity_ID = "OPP-2024-004", Account_Name = "Voxel AI", Seller_Name = "Casey Kim", Region = "APJ", Market = "Australia", Product_Line_Code = "PLT-001", ARR_USD = 250000, Transaction_Date = #date(2024, 2, 20), Classification = "Net New", Classification_Source = "Seller Declared", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-005", Opportunity_ID = "OPP-2024-005", Account_Name = "Meridian Systems", Seller_Name = "Jordan Blake", Region = "Americas", Market = "US-East", Product_Line_Code = "PLT-004", ARR_USD = 700000, Transaction_Date = #date(2024, 3, 10), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-006", Opportunity_ID = "OPP-2024-006", Account_Name = "Luminos Platform", Seller_Name = "Taylor Marsh", Region = "EMEA", Market = "Germany", Product_Line_Code = "PLT-005", ARR_USD = 390000, Transaction_Date = #date(2024, 3, 22), Classification = "Installed Base", Classification_Source = "System", Years_Since_Prior_Revenue = 2.1, Is_Disputed = false ],
+			            [ Transaction_ID = "T-007", Opportunity_ID = "OPP-2024-007", Account_Name = "CoreSync Ltd", Seller_Name = "Morgan Ellis", Region = "Americas", Market = "Canada", Product_Line_Code = "PLT-002", ARR_USD = 130000, Transaction_Date = #date(2024, 4, 8), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-008", Opportunity_ID = "OPP-2024-008", Account_Name = "Praxis Analytics", Seller_Name = "Alex Rivera", Region = "EMEA", Market = "France", Product_Line_Code = "PLT-001", ARR_USD = 560000, Transaction_Date = #date(2024, 4, 17), Classification = "Net New", Classification_Source = "Override", Years_Since_Prior_Revenue = 6.2, Is_Disputed = false ],
+			            [ Transaction_ID = "T-009", Opportunity_ID = "OPP-2024-009", Account_Name = "Orbium Solutions", Seller_Name = "Sam Torres", Region = "APJ", Market = "Singapore", Product_Line_Code = "PLT-006", ARR_USD = 200000, Transaction_Date = #date(2024, 5, 3), Classification = "Installed Base", Classification_Source = "System", Years_Since_Prior_Revenue = 0.8, Is_Disputed = false ],
+			            [ Transaction_ID = "T-010", Opportunity_ID = "OPP-2024-010", Account_Name = "Velodata Inc", Seller_Name = "Casey Kim", Region = "APJ", Market = "Japan", Product_Line_Code = "PLT-003", ARR_USD = 310000, Transaction_Date = #date(2024, 5, 19), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-011", Opportunity_ID = "OPP-2024-011", Account_Name = "Axiom Cloud", Seller_Name = "Jordan Blake", Region = "Americas", Market = "US-East", Product_Line_Code = "PLT-005", ARR_USD = 800000, Transaction_Date = #date(2024, 6, 7), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-012", Opportunity_ID = "OPP-2024-012", Account_Name = "Capsulate Systems", Seller_Name = "Taylor Marsh", Region = "EMEA", Market = "Netherlands", Product_Line_Code = "PLT-007", ARR_USD = 95000, Transaction_Date = #date(2024, 6, 24), Classification = "Installed Base", Classification_Source = "System", Years_Since_Prior_Revenue = 3.4, Is_Disputed = false ],
+			            [ Transaction_ID = "T-013", Opportunity_ID = "OPP-2024-013", Account_Name = "Stratify Group", Seller_Name = "Morgan Ellis", Region = "Americas", Market = "US-West", Product_Line_Code = "PLT-004", ARR_USD = 410000, Transaction_Date = #date(2024, 7, 11), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-014", Opportunity_ID = "OPP-2024-014", Account_Name = "Proxima Networks", Seller_Name = "Alex Rivera", Region = "EMEA", Market = "Spain", Product_Line_Code = "PLT-002", ARR_USD = 260000, Transaction_Date = #date(2024, 7, 30), Classification = "Unclassified", Classification_Source = "Seller Declared", Years_Since_Prior_Revenue = null, Is_Disputed = true ],
+			            [ Transaction_ID = "T-015", Opportunity_ID = "OPP-2024-015", Account_Name = "Rendex Corp", Seller_Name = "Sam Torres", Region = "APJ", Market = "India", Product_Line_Code = "PLT-001", ARR_USD = 120000, Transaction_Date = #date(2024, 8, 5), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-016", Opportunity_ID = "OPP-2024-016", Account_Name = "Talentify Platform", Seller_Name = "Casey Kim", Region = "APJ", Market = "Australia", Product_Line_Code = "PLT-008", ARR_USD = 145000, Transaction_Date = #date(2024, 8, 21), Classification = "Installed Base", Classification_Source = "System", Years_Since_Prior_Revenue = 1.9, Is_Disputed = false ],
+			            [ Transaction_ID = "T-017", Opportunity_ID = "OPP-2024-017", Account_Name = "Glyphworks", Seller_Name = "Jordan Blake", Region = "Americas", Market = "Brazil", Product_Line_Code = "PLT-003", ARR_USD = 85000, Transaction_Date = #date(2024, 9, 3), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-018", Opportunity_ID = "OPP-2024-018", Account_Name = "Loopboard AI", Seller_Name = "Taylor Marsh", Region = "EMEA", Market = "Sweden", Product_Line_Code = "PLT-006", ARR_USD = 375000, Transaction_Date = #date(2024, 9, 17), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-019", Opportunity_ID = "OPP-2024-019", Account_Name = "Nomadix Labs", Seller_Name = "Morgan Ellis", Region = "Americas", Market = "Mexico", Product_Line_Code = "PLT-001", ARR_USD = 190000, Transaction_Date = #date(2024, 10, 8), Classification = "Installed Base", Classification_Source = "System", Years_Since_Prior_Revenue = 2.7, Is_Disputed = false ],
+			            [ Transaction_ID = "T-020", Opportunity_ID = "OPP-2024-020", Account_Name = "Patchwork Inc", Seller_Name = "Sam Torres", Region = "APJ", Market = "Singapore", Product_Line_Code = "PLT-005", ARR_USD = 430000, Transaction_Date = #date(2024, 10, 25), Classification = "Net New", Classification_Source = "Override", Years_Since_Prior_Revenue = 7.1, Is_Disputed = false ],
+			            [ Transaction_ID = "T-021", Opportunity_ID = "OPP-2024-021", Account_Name = "Vaultly Security", Seller_Name = "Alex Rivera", Region = "EMEA", Market = "Germany", Product_Line_Code = "PLT-008", ARR_USD = 620000, Transaction_Date = #date(2024, 11, 5), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-022", Opportunity_ID = "OPP-2024-022", Account_Name = "Clearpath AI", Seller_Name = "Casey Kim", Region = "APJ", Market = "Japan", Product_Line_Code = "PLT-002", ARR_USD = 50000, Transaction_Date = #date(2024, 11, 18), Classification = "Installed Base", Classification_Source = "System", Years_Since_Prior_Revenue = 0.5, Is_Disputed = false ],
+			            [ Transaction_ID = "T-023", Opportunity_ID = "OPP-2024-023", Account_Name = "Signalwave Corp", Seller_Name = "Jordan Blake", Region = "Americas", Market = "US-East", Product_Line_Code = "PLT-007", ARR_USD = 275000, Transaction_Date = #date(2024, 12, 2), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ],
+			            [ Transaction_ID = "T-024", Opportunity_ID = "OPP-2024-024", Account_Name = "Bridgebox Technologies", Seller_Name = "Taylor Marsh", Region = "EMEA", Market = "UK", Product_Line_Code = "PLT-004", ARR_USD = 340000, Transaction_Date = #date(2024, 12, 16), Classification = "Installed Base", Classification_Source = "System", Years_Since_Prior_Revenue = 1.2, Is_Disputed = false ],
+			            [ Transaction_ID = "T-025", Opportunity_ID = "OPP-2024-025", Account_Name = "Tracepath Solutions", Seller_Name = "Morgan Ellis", Region = "Americas", Market = "Canada", Product_Line_Code = "PLT-006", ARR_USD = 490000, Transaction_Date = #date(2024, 12, 30), Classification = "Net New", Classification_Source = "System", Years_Since_Prior_Revenue = null, Is_Disputed = false ]
+			        },
+			        type table [
+			            Transaction_ID = text,
+			            Opportunity_ID = text,
+			            Account_Name = text,
+			            Seller_Name = text,
+			            Region = text,
+			            Market = text,
+			            Product_Line_Code = text,
+			            ARR_USD = number,
+			            Transaction_Date = date,
+			            Classification = text,
+			            Classification_Source = text,
+			            Years_Since_Prior_Revenue = number,
+			            Is_Disputed = logical
+			        ]
+			    )
+			in
+			    Source
+
+	annotation PBI_Id = Net_New_Transactions

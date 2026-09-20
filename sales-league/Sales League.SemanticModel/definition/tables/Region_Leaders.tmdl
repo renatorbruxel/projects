@@ -1,0 +1,45 @@
+table Region_Leaders
+	lineageTag: b8c9d0e1-f2a3-4567-bcde-678901234567
+
+	column Email
+		dataType: string
+		lineageTag: b8c9d0e1-f2a3-4567-bcde-678901234568
+		summarizeBy: none
+
+	column Name
+		dataType: string
+		lineageTag: b8c9d0e1-f2a3-4567-bcde-678901234569
+		summarizeBy: none
+
+	column Region
+		dataType: string
+		lineageTag: b8c9d0e1-f2a3-4567-bcde-678901234570
+		summarizeBy: none
+
+	column Region_Key
+		dataType: string
+		lineageTag: b8c9d0e1-f2a3-4567-bcde-678901234571
+		summarizeBy: none
+
+	partition Region_Leaders-Partition
+		mode: import
+		source
+			type: m
+			expression
+				= let
+				    Source = #table(
+				        type table [
+				            Email = text,
+				            Name = text,
+				            Region = text,
+				            Region_Key = text
+				        ],
+				        {
+				            {"v.ross@vantara-fictional.demo","Victoria Ross","Americas","AMR"},
+				            {"b.hartmann@vantara-fictional.demo","Boris Hartmann","EMEA","EME"},
+				            {"y.suzuki@vantara-fictional.demo","Yuki Suzuki","APJ","APJ"}
+				        }
+				    )
+				in
+				    Source
+

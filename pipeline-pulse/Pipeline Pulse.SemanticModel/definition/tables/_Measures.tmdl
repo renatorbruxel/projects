@@ -1,0 +1,340 @@
+table '_Measures'
+	lineageTag: msr-001
+
+	/// ─── Coverage ───────────────────────────────────────────────────────────
+
+	measure 'Total_Pipeline_ARR' =
+			SUM('Pipeline'[ARR_USD])
+		lineageTag: msr-002
+		displayFolder: Coverage
+		formatString: $#,0,,\M
+
+	measure 'Quota_AOP' =
+			SUM('Bookings_Actuals'[AOP_Bookings])
+		lineageTag: msr-003
+		displayFolder: Targets
+		formatString: $#,0,,\M
+
+	measure 'Coverage_3x_Ratio' =
+			DIVIDE([Total_Pipeline_ARR], [Quota_AOP])
+		lineageTag: msr-004
+		displayFolder: Coverage
+		formatString: 0.0"x"
+
+	measure 'Coverage_Status' =
+			IF(
+				[Coverage_3x_Ratio] >= 3,
+				"Above 3x ✓",
+				IF([Coverage_3x_Ratio] >= 2, "Below 3x ⚠", "Critical <2x ✗")
+			)
+		lineageTag: msr-005
+		displayFolder: Coverage
+
+	measure 'Gap_to_3x' =
+			MAX(0, [Quota_AOP] * 3 - [Total_Pipeline_ARR])
+		lineageTag: msr-006
+		displayFolder: Coverage
+		formatString: $#,0,,\M
+
+	measure 'CQ_Pipeline' =
+			CALCULATE(
+				[Total_Pipeline_ARR],
+				QUARTER('Pipeline'[Close_Date]) = QUARTER(TODAY())
+					&& YEAR('Pipeline'[Close_Date]) = YEAR(TODAY())
+			)
+		lineageTag: msr-007
+		displayFolder: Coverage
+		formatString: $#,0,,\M
+
+	measure 'NQ_Pipeline' =
+			CALCULATE(
+				[Total_Pipeline_ARR],
+				QUARTER('Pipeline'[Close_Date]) = QUARTER(TODAY()) + 1
+					&& YEAR('Pipeline'[Close_Date]) = YEAR(TODAY())
+			)
+		lineageTag: msr-008
+		displayFolder: Coverage
+		formatString: $#,0,,\M
+
+	measure 'FY_Pipeline' =
+			CALCULATE(
+				[Total_Pipeline_ARR],
+				YEAR('Pipeline'[Close_Date]) = YEAR(TODAY())
+			)
+		lineageTag: msr-009
+		displayFolder: Coverage
+		formatString: $#,0,,\M
+
+	measure 'Open_Opportunity_Count' =
+			CALCULATE(
+				COUNTROWS('Pipeline'),
+				'Pipeline'[Is_Won_Loss_Open] = "Open"
+			)
+		lineageTag: msr-010
+		displayFolder: Coverage
+
+	measure 'Avg_Deal_Size_ARR' =
+			DIVIDE([Total_Pipeline_ARR], [Open_Opportunity_Count])
+		lineageTag: msr-011
+		displayFolder: Coverage
+		formatString: $#,0,\K
+
+	/// ─── WoW Changes ────────────────────────────────────────────────────────
+
+	measure 'Pipeline_WoW_Delta' =
+			[Total_Pipeline_ARR]
+				- CALCULATE([Total_Pipeline_ARR], DATEADD('Calendar'[Date], -7, DAY))
+		lineageTag: msr-012
+		displayFolder: WoW Changes
+		formatString: $#,0,,\M
+
+	measure 'Pipeline_DoD_Delta' =
+			[Total_Pipeline_ARR]
+				- CALCULATE([Total_Pipeline_ARR], DATEADD('Calendar'[Date], -1, DAY))
+		lineageTag: msr-013
+		displayFolder: WoW Changes
+		formatString: $#,0,,\M
+
+	measure 'Pipeline_Build_Rate' =
+			DIVIDE(
+				[Pipeline_WoW_Delta],
+				CALCULATE([Total_Pipeline_ARR], DATEADD('Calendar'[Date], -7, DAY))
+			)
+		lineageTag: msr-014
+		displayFolder: WoW Changes
+		formatString: +0.0%;-0.0%
+
+	measure 'Opps_Added_WoW' =
+			CALCULATE(COUNTROWS('Pipeline'), NOT(ISBLANK('Pipeline'[Opportunity_ID])))
+				- CALCULATE(COUNTROWS('Pipeline'), DATEADD('Calendar'[Date], -7, DAY))
+		lineageTag: msr-015
+		displayFolder: WoW Changes
+
+	measure 'Opps_Removed_WoW' =
+			ABS(MIN(0, [Opps_Added_WoW]))
+		lineageTag: msr-016
+		displayFolder: WoW Changes
+
+	measure 'Pipeline_4W_Trend' =
+			VAR _current = [Total_Pipeline_ARR]
+			VAR _4w_ago = CALCULATE([Total_Pipeline_ARR], DATEADD('Calendar'[Date], -28, DAY))
+			RETURN DIVIDE(_current - _4w_ago, _4w_ago)
+		lineageTag: msr-017
+		displayFolder: WoW Changes
+		formatString: +0.0%;-0.0%
+
+	/// ─── Funnel Hygiene ─────────────────────────────────────────────────────
+
+	measure 'Hygiene_Score' =
+			DIVIDE(
+				CALCULATE(COUNTROWS('Pipeline'), 'Pipeline'[Is_Healthy] = TRUE()),
+				COUNTROWS('Pipeline')
+			)
+		lineageTag: msr-018
+		displayFolder: Hygiene
+		formatString: 0.0%
+
+	measure 'Overdue_Pipeline_ARR' =
+			CALCULATE([Total_Pipeline_ARR], 'Pipeline'[Is_Overdue] = TRUE())
+		lineageTag: msr-019
+		displayFolder: Hygiene
+		formatString: $#,0,,\M
+
+	measure 'Overdue_Pipeline_%' =
+			DIVIDE([Overdue_Pipeline_ARR], [Total_Pipeline_ARR])
+		lineageTag: msr-020
+		displayFolder: Hygiene
+		formatString: 0.0%
+
+	measure 'Stale_Opportunities' =
+			CALCULATE(
+				COUNTROWS('Pipeline'),
+				'Pipeline'[Days_Since_Last_Activity] > 14
+			)
+		lineageTag: msr-021
+		displayFolder: Hygiene
+
+	measure 'Composite_Hygiene_Score' =
+			INT(
+				(
+					[Hygiene_Score] * 0.4
+						+ (1 - [Overdue_Pipeline_%]) * 0.3
+						+ (
+							1
+								- DIVIDE(
+									[Stale_Opportunities],
+									COUNTROWS('Pipeline')
+								)
+						) * 0.3
+				) * 100
+			)
+		lineageTag: msr-022
+		displayFolder: Hygiene
+		formatString: 0
+
+	measure 'Push_Out_Pipeline_ARR' =
+			CALCULATE([Total_Pipeline_ARR], 'Pipeline'[Is_Push_Out] = TRUE())
+		lineageTag: msr-023
+		displayFolder: Hygiene
+		formatString: $#,0,,\M
+
+	measure 'Push_Out_%' =
+			DIVIDE([Push_Out_Pipeline_ARR], [Total_Pipeline_ARR])
+		lineageTag: msr-024
+		displayFolder: Hygiene
+		formatString: 0.0%
+
+	measure 'Net_New_Pipeline_ARR' =
+			CALCULATE([Total_Pipeline_ARR], 'Pipeline'[Is_Net_New] = TRUE())
+		lineageTag: msr-025
+		displayFolder: Hygiene
+		formatString: $#,0,,\M
+
+	/// ─── Activity ────────────────────────────────────────────────────────────
+
+	measure 'Total_Activities_WoW' =
+			CALCULATE(
+				COUNTROWS('Activity_Log'),
+				DATESINPERIOD('Calendar'[Date], TODAY(), -7, DAY)
+			)
+		lineageTag: msr-026
+		displayFolder: Activity
+
+	measure 'Avg_Activities_Per_Seller' =
+			DIVIDE(
+				[Total_Activities_WoW],
+				DISTINCTCOUNT('Pipeline'[Seller_Email])
+			)
+		lineageTag: msr-027
+		displayFolder: Activity
+		formatString: 0.0
+
+	measure 'Inactive_Opportunities' =
+			CALCULATE(
+				COUNTROWS('Pipeline'),
+				'Pipeline'[Days_Since_Last_Activity] > 14
+					&& 'Pipeline'[Is_Won_Loss_Open] = "Open"
+			)
+		lineageTag: msr-028
+		displayFolder: Activity
+
+	measure 'Meetings_Booked_WoW' =
+			CALCULATE(
+				COUNTROWS('Activity_Log'),
+				'Activity_Log'[Activity_Type] = "Meeting",
+				DATESINPERIOD('Calendar'[Date], TODAY(), -7, DAY)
+			)
+		lineageTag: msr-029
+		displayFolder: Activity
+
+	measure 'Calls_WoW' =
+			CALCULATE(
+				COUNTROWS('Activity_Log'),
+				'Activity_Log'[Activity_Type] = "Call",
+				DATESINPERIOD('Calendar'[Date], TODAY(), -7, DAY)
+			)
+		lineageTag: msr-030
+		displayFolder: Activity
+
+	/// ─── Attainment ──────────────────────────────────────────────────────────
+
+	measure 'Actuals_Bookings_YTD' =
+			CALCULATE(
+				SUM('Bookings_Actuals'[Actual_Bookings]),
+				DATESYTD('Calendar'[Date])
+			)
+		lineageTag: msr-031
+		displayFolder: Attainment
+		formatString: $#,0,,\M
+
+	measure 'Attainment_%' =
+			DIVIDE([Actuals_Bookings_YTD], [Quota_AOP])
+		lineageTag: msr-032
+		displayFolder: Attainment
+		formatString: 0.0%
+
+	measure 'Pacing_Required_Weekly' =
+			DIVIDE(
+				[Quota_AOP] - [Actuals_Bookings_YTD],
+				CALCULATE(
+					COUNTROWS('Calendar'),
+					'Calendar'[Date] >= TODAY()
+						&& 'Calendar'[Date] <= EOMONTH(TODAY(), 2)
+				) / 7
+			)
+		lineageTag: msr-033
+		displayFolder: Attainment
+		formatString: $#,0,,\M
+
+	measure 'Quota_Remaining' =
+			[Quota_AOP] - [Actuals_Bookings_YTD]
+		lineageTag: msr-034
+		displayFolder: Attainment
+		formatString: $#,0,,\M
+
+	measure 'Attainment_Band' =
+			SWITCH(
+				TRUE(),
+				[Attainment_%] >= 1.0, "Above Quota",
+				[Attainment_%] >= 0.9, "90–100%",
+				[Attainment_%] >= 0.75, "75–90%",
+				[Attainment_%] >= 0.5, "50–75%",
+				"Below 50%"
+			)
+		lineageTag: msr-035
+		displayFolder: Attainment
+
+	/// ─── Forecast ────────────────────────────────────────────────────────────
+
+	measure 'Commit_ARR' =
+			CALCULATE([Total_Pipeline_ARR], 'Forecast_Categories'[Forecast_Category] = "Commit")
+		lineageTag: msr-036
+		displayFolder: Forecast
+		formatString: $#,0,,\M
+
+	measure 'Best_Case_ARR' =
+			CALCULATE([Total_Pipeline_ARR], 'Forecast_Categories'[Forecast_Category] = "Best Case")
+		lineageTag: msr-037
+		displayFolder: Forecast
+		formatString: $#,0,,\M
+
+	measure 'Commit_Plus_BestCase' =
+			[Commit_ARR] + [Best_Case_ARR]
+		lineageTag: msr-038
+		displayFolder: Forecast
+		formatString: $#,0,,\M
+
+	measure 'Weighted_Forecast_ARR' =
+			SUMX(
+				RELATEDTABLE('Forecast_Categories'),
+				[Total_Pipeline_ARR] * 'Forecast_Categories'[Probability_%]
+			)
+		lineageTag: msr-039
+		displayFolder: Forecast
+		formatString: $#,0,,\M
+
+	measure 'Forecast_vs_Quota_%' =
+			DIVIDE([Commit_ARR], [Quota_AOP])
+		lineageTag: msr-040
+		displayFolder: Forecast
+		formatString: 0.0%
+
+	/// ─── Reference (blank table anchor) ──────────────────────────────────────
+
+	column '_Placeholder'
+		dataType: string
+		lineageTag: msr-col-001
+		summarizeBy: none
+		isHidden
+		sourceColumn: _Placeholder
+
+	partition '_Measures-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [_Placeholder = text],
+					{{""}}
+				)
+			in
+				Source

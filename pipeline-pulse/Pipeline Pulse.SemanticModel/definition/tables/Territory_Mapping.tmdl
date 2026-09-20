@@ -1,0 +1,88 @@
+table 'Territory_Mapping'
+	lineageTag: trm-001
+
+	column 'Territory'
+		dataType: string
+		lineageTag: trm-002
+		summarizeBy: none
+		isKey
+		sourceColumn: Territory
+
+	column 'Seller_Email'
+		dataType: string
+		lineageTag: trm-003
+		summarizeBy: none
+		sourceColumn: Seller_Email
+
+	column 'Seller_Name'
+		dataType: string
+		lineageTag: trm-004
+		summarizeBy: none
+		sourceColumn: Seller_Name
+
+	column 'Region'
+		dataType: string
+		lineageTag: trm-005
+		summarizeBy: none
+		sourceColumn: Region
+
+	column 'Sub_Region'
+		dataType: string
+		lineageTag: trm-006
+		summarizeBy: none
+		sourceColumn: Sub_Region
+
+	column 'Market'
+		dataType: string
+		lineageTag: trm-007
+		summarizeBy: none
+		sourceColumn: Market
+
+	column 'Account_Segment'
+		dataType: string
+		lineageTag: trm-008
+		summarizeBy: none
+		sourceColumn: Account_Segment
+
+	column 'AOP_Territory_ARR'
+		dataType: double
+		lineageTag: trm-009
+		summarizeBy: sum
+		sourceColumn: AOP_Territory_ARR
+		formatString: $#,0
+
+	partition 'Territory_Mapping-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						Territory = text,
+						Seller_Email = text,
+						Seller_Name = text,
+						Region = text,
+						Sub_Region = text,
+						Market = text,
+						Account_Segment = text,
+						AOP_Territory_ARR = number
+					],
+					{
+						{"NAM-ENT-WEST","alice.chen@vantara-fictional.demo","Alice Chen","Americas","NAM","Enterprise","ENT",1400000},
+						{"NAM-ENT-EAST","bob.turner@vantara-fictional.demo","Bob Turner","Americas","NAM","Enterprise","ENT",1550000},
+						{"NAM-MID","carol.patel@vantara-fictional.demo","Carol Patel","Americas","NAM","Mid-Market","MM",980000},
+						{"LATAM-BR","dan.nguyen@vantara-fictional.demo","Dan Nguyen","Americas","LATAM","Mid-Market","MM",720000},
+						{"LATAM-MEX","dan.nguyen@vantara-fictional.demo","Dan Nguyen","Americas","LATAM","Mid-Market","MM",540000},
+						{"EMEA-WEST-ENT","emma.fischer@vantara-fictional.demo","Emma Fischer","EMEA","EMEA West","Enterprise","ENT",1750000},
+						{"EMEA-WEST-MID","felix.martin@vantara-fictional.demo","Felix Martin","EMEA","EMEA West","Enterprise","ENT",1320000},
+						{"EMEA-SOUTH","gina.rossi@vantara-fictional.demo","Gina Rossi","EMEA","EMEA South","Enterprise","ENT",1100000},
+						{"EMEA-NORTH","emma.fischer@vantara-fictional.demo","Emma Fischer","EMEA","EMEA North","Mid-Market","MM",680000},
+						{"EMEA-CENTRAL","felix.martin@vantara-fictional.demo","Felix Martin","EMEA","EMEA Central","Mid-Market","MM",590000},
+						{"APJ-SEA","henry.park@vantara-fictional.demo","Henry Park","APJ","APJ North","Enterprise","ENT",1450000},
+						{"APJ-JAPAN","iris.tanaka@vantara-fictional.demo","Iris Tanaka","APJ","APJ North","Enterprise","ENT",1650000},
+						{"APJ-ANZ","james.lee@vantara-fictional.demo","James Lee","APJ","APJ South","Enterprise","ENT",1200000},
+						{"APJ-INDIA","james.lee@vantara-fictional.demo","James Lee","APJ","APJ South","Mid-Market","MM",760000},
+						{"APJ-KOREA","henry.park@vantara-fictional.demo","Henry Park","APJ","APJ North","Mid-Market","MM",620000}
+					}
+				)
+			in
+				Source

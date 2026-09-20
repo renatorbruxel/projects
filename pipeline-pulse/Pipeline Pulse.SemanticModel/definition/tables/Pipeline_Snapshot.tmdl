@@ -1,0 +1,202 @@
+table 'Pipeline_Snapshot'
+	lineageTag: pss-001
+
+	column 'Snapshot_Date'
+		dataType: dateTime
+		lineageTag: pss-002
+		summarizeBy: none
+		sourceColumn: Snapshot_Date
+		formatString: yyyy-MM-dd
+
+	column 'Region'
+		dataType: string
+		lineageTag: pss-003
+		summarizeBy: none
+		sourceColumn: Region
+
+	column 'Sub_Region'
+		dataType: string
+		lineageTag: pss-004
+		summarizeBy: none
+		sourceColumn: Sub_Region
+
+	column 'Product_Line'
+		dataType: string
+		lineageTag: pss-005
+		summarizeBy: none
+		sourceColumn: Product_Line
+
+	column 'Forecast_Category'
+		dataType: string
+		lineageTag: pss-006
+		summarizeBy: none
+		sourceColumn: Forecast_Category
+
+	column 'Stage'
+		dataType: string
+		lineageTag: pss-007
+		summarizeBy: none
+		sourceColumn: Stage
+
+	column 'Quarter'
+		dataType: string
+		lineageTag: pss-008
+		summarizeBy: none
+		sourceColumn: Quarter
+
+	column 'Year'
+		dataType: int64
+		lineageTag: pss-009
+		summarizeBy: none
+		sourceColumn: Year
+
+	column 'Total_ARR'
+		dataType: double
+		lineageTag: pss-010
+		summarizeBy: sum
+		sourceColumn: Total_ARR
+		formatString: $#,0
+
+	column 'Opportunity_Count'
+		dataType: int64
+		lineageTag: pss-011
+		summarizeBy: sum
+		sourceColumn: Opportunity_Count
+
+	column 'Territory'
+		dataType: string
+		lineageTag: pss-012
+		summarizeBy: none
+		sourceColumn: Territory
+
+	partition 'Pipeline_Snapshot-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						Snapshot_Date = date,
+						Region = text,
+						Sub_Region = text,
+						Product_Line = text,
+						Forecast_Category = text,
+						Stage = text,
+						Quarter = text,
+						Year = Int64.Type,
+						Total_ARR = number,
+						Opportunity_Count = Int64.Type,
+						Territory = text
+					],
+					{
+						{#date(2026,6,27),"Americas","NAM","All","Commit","All","Q3",2026,312000,3,"NAM"},
+						{#date(2026,6,27),"Americas","NAM","All","Best Case","All","Q3",2026,410000,4,"NAM"},
+						{#date(2026,6,27),"Americas","NAM","All","Pipeline","All","Q3",2026,625000,6,"NAM"},
+						{#date(2026,6,27),"EMEA","EMEA West","All","Commit","All","Q3",2026,295000,3,"EMEA-WEST"},
+						{#date(2026,6,27),"EMEA","EMEA West","All","Best Case","All","Q3",2026,380000,4,"EMEA-WEST"},
+						{#date(2026,6,27),"EMEA","EMEA West","All","Pipeline","All","Q3",2026,520000,5,"EMEA-WEST"},
+						{#date(2026,6,27),"APJ","APJ North","All","Commit","All","Q3",2026,270000,3,"APJ-NORTH"},
+						{#date(2026,6,27),"APJ","APJ North","All","Best Case","All","Q3",2026,315000,3,"APJ-NORTH"},
+						{#date(2026,6,27),"APJ","APJ North","All","Pipeline","All","Q3",2026,420000,4,"APJ-NORTH"},
+						{#date(2026,7,4),"Americas","NAM","All","Commit","All","Q3",2026,345000,3,"NAM"},
+						{#date(2026,7,4),"Americas","NAM","All","Best Case","All","Q3",2026,440000,5,"NAM"},
+						{#date(2026,7,4),"Americas","NAM","All","Pipeline","All","Q3",2026,660000,7,"NAM"},
+						{#date(2026,7,4),"EMEA","EMEA West","All","Commit","All","Q3",2026,320000,3,"EMEA-WEST"},
+						{#date(2026,7,4),"EMEA","EMEA West","All","Best Case","All","Q3",2026,405000,4,"EMEA-WEST"},
+						{#date(2026,7,4),"EMEA","EMEA West","All","Pipeline","All","Q3",2026,555000,5,"EMEA-WEST"},
+						{#date(2026,7,4),"APJ","APJ North","All","Commit","All","Q3",2026,290000,3,"APJ-NORTH"},
+						{#date(2026,7,4),"APJ","APJ North","All","Best Case","All","Q3",2026,340000,3,"APJ-NORTH"},
+						{#date(2026,7,4),"APJ","APJ North","All","Pipeline","All","Q3",2026,450000,5,"APJ-NORTH"},
+						{#date(2026,7,11),"Americas","NAM","All","Commit","All","Q3",2026,390000,4,"NAM"},
+						{#date(2026,7,11),"Americas","NAM","All","Best Case","All","Q3",2026,490000,5,"NAM"},
+						{#date(2026,7,11),"Americas","NAM","All","Pipeline","All","Q3",2026,710000,7,"NAM"},
+						{#date(2026,7,11),"EMEA","EMEA West","All","Commit","All","Q3",2026,360000,3,"EMEA-WEST"},
+						{#date(2026,7,11),"EMEA","EMEA West","All","Best Case","All","Q3",2026,435000,4,"EMEA-WEST"},
+						{#date(2026,7,11),"EMEA","EMEA West","All","Pipeline","All","Q3",2026,590000,6,"EMEA-WEST"},
+						{#date(2026,7,11),"APJ","APJ North","All","Commit","All","Q3",2026,320000,3,"APJ-NORTH"},
+						{#date(2026,7,11),"APJ","APJ North","All","Best Case","All","Q3",2026,375000,4,"APJ-NORTH"},
+						{#date(2026,7,11),"APJ","APJ North","All","Pipeline","All","Q3",2026,495000,5,"APJ-NORTH"},
+						{#date(2026,7,18),"Americas","NAM","All","Commit","All","Q3",2026,435000,4,"NAM"},
+						{#date(2026,7,18),"Americas","NAM","All","Best Case","All","Q3",2026,530000,5,"NAM"},
+						{#date(2026,7,18),"Americas","NAM","All","Pipeline","All","Q3",2026,760000,8,"NAM"},
+						{#date(2026,7,18),"EMEA","EMEA West","All","Commit","All","Q3",2026,410000,4,"EMEA-WEST"},
+						{#date(2026,7,18),"EMEA","EMEA West","All","Best Case","All","Q3",2026,475000,5,"EMEA-WEST"},
+						{#date(2026,7,18),"EMEA","EMEA West","All","Pipeline","All","Q3",2026,640000,6,"EMEA-WEST"},
+						{#date(2026,7,18),"APJ","APJ North","All","Commit","All","Q3",2026,365000,4,"APJ-NORTH"},
+						{#date(2026,7,18),"APJ","APJ North","All","Best Case","All","Q3",2026,415000,4,"APJ-NORTH"},
+						{#date(2026,7,18),"APJ","APJ North","All","Pipeline","All","Q3",2026,545000,6,"APJ-NORTH"},
+						{#date(2026,7,25),"Americas","NAM","All","Commit","All","Q3",2026,480000,4,"NAM"},
+						{#date(2026,7,25),"Americas","NAM","All","Best Case","All","Q3",2026,565000,5,"NAM"},
+						{#date(2026,7,25),"Americas","NAM","All","Pipeline","All","Q3",2026,810000,8,"NAM"},
+						{#date(2026,7,25),"EMEA","EMEA West","All","Commit","All","Q3",2026,455000,4,"EMEA-WEST"},
+						{#date(2026,7,25),"EMEA","EMEA West","All","Best Case","All","Q3",2026,515000,5,"EMEA-WEST"},
+						{#date(2026,7,25),"EMEA","EMEA West","All","Pipeline","All","Q3",2026,685000,6,"EMEA-WEST"},
+						{#date(2026,7,25),"APJ","APJ North","All","Commit","All","Q3",2026,410000,4,"APJ-NORTH"},
+						{#date(2026,7,25),"APJ","APJ North","All","Best Case","All","Q3",2026,460000,5,"APJ-NORTH"},
+						{#date(2026,7,25),"APJ","APJ North","All","Pipeline","All","Q3",2026,590000,6,"APJ-NORTH"},
+						{#date(2026,8,1),"Americas","NAM","All","Commit","All","Q3",2026,535000,5,"NAM"},
+						{#date(2026,8,1),"Americas","NAM","All","Best Case","All","Q3",2026,605000,6,"NAM"},
+						{#date(2026,8,1),"Americas","NAM","All","Pipeline","All","Q3",2026,870000,9,"NAM"},
+						{#date(2026,8,1),"EMEA","EMEA West","All","Commit","All","Q3",2026,510000,5,"EMEA-WEST"},
+						{#date(2026,8,1),"EMEA","EMEA West","All","Best Case","All","Q3",2026,565000,5,"EMEA-WEST"},
+						{#date(2026,8,1),"EMEA","EMEA West","All","Pipeline","All","Q3",2026,730000,7,"EMEA-WEST"},
+						{#date(2026,8,1),"APJ","APJ North","All","Commit","All","Q3",2026,460000,4,"APJ-NORTH"},
+						{#date(2026,8,1),"APJ","APJ North","All","Best Case","All","Q3",2026,510000,5,"APJ-NORTH"},
+						{#date(2026,8,1),"APJ","APJ North","All","Pipeline","All","Q3",2026,645000,7,"APJ-NORTH"},
+						{#date(2026,8,8),"Americas","NAM","All","Commit","All","Q3",2026,590000,5,"NAM"},
+						{#date(2026,8,8),"Americas","NAM","All","Best Case","All","Q3",2026,650000,6,"NAM"},
+						{#date(2026,8,8),"Americas","NAM","All","Pipeline","All","Q3",2026,930000,9,"NAM"},
+						{#date(2026,8,8),"EMEA","EMEA West","All","Commit","All","Q3",2026,570000,5,"EMEA-WEST"},
+						{#date(2026,8,8),"EMEA","EMEA West","All","Best Case","All","Q3",2026,615000,6,"EMEA-WEST"},
+						{#date(2026,8,8),"EMEA","EMEA West","All","Pipeline","All","Q3",2026,780000,7,"EMEA-WEST"},
+						{#date(2026,8,8),"APJ","APJ North","All","Commit","All","Q3",2026,510000,5,"APJ-NORTH"},
+						{#date(2026,8,8),"APJ","APJ North","All","Best Case","All","Q3",2026,560000,5,"APJ-NORTH"},
+						{#date(2026,8,8),"APJ","APJ North","All","Pipeline","All","Q3",2026,700000,7,"APJ-NORTH"},
+						{#date(2026,8,15),"Americas","NAM","All","Commit","All","Q3",2026,645000,6,"NAM"},
+						{#date(2026,8,15),"Americas","NAM","All","Best Case","All","Q3",2026,700000,6,"NAM"},
+						{#date(2026,8,15),"Americas","NAM","All","Pipeline","All","Q3",2026,990000,10,"NAM"},
+						{#date(2026,8,15),"EMEA","EMEA West","All","Commit","All","Q3",2026,640000,5,"EMEA-WEST"},
+						{#date(2026,8,15),"EMEA","EMEA West","All","Best Case","All","Q3",2026,660000,6,"EMEA-WEST"},
+						{#date(2026,8,15),"EMEA","EMEA West","All","Pipeline","All","Q3",2026,820000,8,"EMEA-WEST"},
+						{#date(2026,8,15),"APJ","APJ North","All","Commit","All","Q3",2026,565000,5,"APJ-NORTH"},
+						{#date(2026,8,15),"APJ","APJ North","All","Best Case","All","Q3",2026,605000,6,"APJ-NORTH"},
+						{#date(2026,8,15),"APJ","APJ North","All","Pipeline","All","Q3",2026,755000,8,"APJ-NORTH"},
+						{#date(2026,8,22),"Americas","NAM","All","Commit","All","Q3",2026,700000,6,"NAM"},
+						{#date(2026,8,22),"Americas","NAM","All","Best Case","All","Q3",2026,745000,7,"NAM"},
+						{#date(2026,8,22),"Americas","NAM","All","Pipeline","All","Q3",2026,1050000,10,"NAM"},
+						{#date(2026,8,22),"EMEA","EMEA West","All","Commit","All","Q3",2026,705000,6,"EMEA-WEST"},
+						{#date(2026,8,22),"EMEA","EMEA West","All","Best Case","All","Q3",2026,705000,6,"EMEA-WEST"},
+						{#date(2026,8,22),"EMEA","EMEA West","All","Pipeline","All","Q3",2026,860000,8,"EMEA-WEST"},
+						{#date(2026,8,22),"APJ","APJ North","All","Commit","All","Q3",2026,620000,6,"APJ-NORTH"},
+						{#date(2026,8,22),"APJ","APJ North","All","Best Case","All","Q3",2026,645000,6,"APJ-NORTH"},
+						{#date(2026,8,22),"APJ","APJ North","All","Pipeline","All","Q3",2026,800000,8,"APJ-NORTH"},
+						{#date(2026,8,29),"Americas","NAM","All","Commit","All","Q3",2026,760000,6,"NAM"},
+						{#date(2026,8,29),"Americas","NAM","All","Best Case","All","Q3",2026,790000,7,"NAM"},
+						{#date(2026,8,29),"Americas","NAM","All","Pipeline","All","Q3",2026,1100000,11,"NAM"},
+						{#date(2026,8,29),"EMEA","EMEA West","All","Commit","All","Q3",2026,770000,6,"EMEA-WEST"},
+						{#date(2026,8,29),"EMEA","EMEA West","All","Best Case","All","Q3",2026,745000,6,"EMEA-WEST"},
+						{#date(2026,8,29),"EMEA","EMEA West","All","Pipeline","All","Q3",2026,895000,8,"EMEA-WEST"},
+						{#date(2026,8,29),"APJ","APJ North","All","Commit","All","Q3",2026,680000,6,"APJ-NORTH"},
+						{#date(2026,8,29),"APJ","APJ North","All","Best Case","All","Q3",2026,680000,6,"APJ-NORTH"},
+						{#date(2026,8,29),"APJ","APJ North","All","Pipeline","All","Q3",2026,840000,8,"APJ-NORTH"},
+						{#date(2026,9,5),"Americas","NAM","All","Commit","All","Q3",2026,830000,7,"NAM"},
+						{#date(2026,9,5),"Americas","NAM","All","Best Case","All","Q3",2026,835000,7,"NAM"},
+						{#date(2026,9,5),"Americas","NAM","All","Pipeline","All","Q3",2026,1155000,11,"NAM"},
+						{#date(2026,9,5),"EMEA","EMEA West","All","Commit","All","Q3",2026,840000,7,"EMEA-WEST"},
+						{#date(2026,9,5),"EMEA","EMEA West","All","Best Case","All","Q3",2026,780000,7,"EMEA-WEST"},
+						{#date(2026,9,5),"EMEA","EMEA West","All","Pipeline","All","Q3",2026,925000,9,"EMEA-WEST"},
+						{#date(2026,9,5),"APJ","APJ North","All","Commit","All","Q3",2026,740000,7,"APJ-NORTH"},
+						{#date(2026,9,5),"APJ","APJ North","All","Best Case","All","Q3",2026,718000,7,"APJ-NORTH"},
+						{#date(2026,9,5),"APJ","APJ North","All","Pipeline","All","Q3",2026,878000,9,"APJ-NORTH"},
+						{#date(2026,9,12),"Americas","NAM","All","Commit","All","Q3",2026,895000,7,"NAM"},
+						{#date(2026,9,12),"Americas","NAM","All","Best Case","All","Q3",2026,870000,7,"NAM"},
+						{#date(2026,9,12),"Americas","NAM","All","Pipeline","All","Q3",2026,1210000,12,"NAM"},
+						{#date(2026,9,12),"EMEA","EMEA West","All","Commit","All","Q3",2026,900000,7,"EMEA-WEST"},
+						{#date(2026,9,12),"EMEA","EMEA West","All","Best Case","All","Q3",2026,815000,7,"EMEA-WEST"},
+						{#date(2026,9,12),"EMEA","EMEA West","All","Pipeline","All","Q3",2026,955000,9,"EMEA-WEST"},
+						{#date(2026,9,12),"APJ","APJ North","All","Commit","All","Q3",2026,800000,7,"APJ-NORTH"},
+						{#date(2026,9,12),"APJ","APJ North","All","Best Case","All","Q3",2026,755000,7,"APJ-NORTH"},
+						{#date(2026,9,12),"APJ","APJ North","All","Pipeline","All","Q3",2026,910000,9,"APJ-NORTH"}
+					}
+				)
+			in
+				Source

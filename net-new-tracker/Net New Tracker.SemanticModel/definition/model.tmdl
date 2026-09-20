@@ -1,0 +1,11 @@
+model Model
+	culture: en-US
+
+	ref table 'Net_New_Transactions'
+	ref table 'Account_History'
+	ref table 'Opportunity_Pipeline'
+	ref table 'Calendar'
+	ref table 'Regions'
+	ref table 'Product_Lines'
+	ref table 'Sales_Team'
+	ref table '_Measures'

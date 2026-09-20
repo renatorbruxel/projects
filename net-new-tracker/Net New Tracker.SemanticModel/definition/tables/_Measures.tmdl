@@ -1,0 +1,64 @@
+table _Measures
+	lineageTag: a0000001-0000-0000-0000-000000000001
+
+	measure Total_Net_New_ARR = CALCULATE(SUM('Net_New_Transactions'[ARR_USD]), 'Net_New_Transactions'[Classification] = "Net New")
+		formatString: $#,0,,\M
+		displayFolder: Net New
+		lineageTag: a0000001-0000-0000-0000-000000000002
+
+	measure Total_IB_ARR = CALCULATE(SUM('Net_New_Transactions'[ARR_USD]), 'Net_New_Transactions'[Classification] = "Installed Base")
+		formatString: $#,0,,\M
+		displayFolder: Installed Base
+		lineageTag: a0000001-0000-0000-0000-000000000003
+
+	measure Net_New_Share = DIVIDE([Total_Net_New_ARR], [Total_Net_New_ARR] + [Total_IB_ARR])
+		formatString: 0.0%
+		displayFolder: Net New
+		lineageTag: a0000001-0000-0000-0000-000000000004
+
+	measure IB_Share = DIVIDE([Total_IB_ARR], [Total_Net_New_ARR] + [Total_IB_ARR])
+		formatString: 0.0%
+		displayFolder: Installed Base
+		lineageTag: a0000001-0000-0000-0000-000000000005
+
+	measure Not_Classified_ARR = CALCULATE(SUM('Net_New_Transactions'[ARR_USD]), 'Net_New_Transactions'[Classification] = "Unclassified")
+		formatString: $#,0,,\M
+		displayFolder: Data Quality
+		lineageTag: a0000001-0000-0000-0000-000000000006
+
+	measure Classification_Coverage_Pct = DIVIDE([Total_Net_New_ARR] + [Total_IB_ARR], SUM('Net_New_Transactions'[ARR_USD]))
+		formatString: 0.0%
+		displayFolder: Data Quality
+		lineageTag: a0000001-0000-0000-0000-000000000007
+
+	measure Years_Since_Last_Revenue = MIN('Account_History'[Years_Since_Last_Revenue])
+		displayFolder: Classification Logic
+		lineageTag: a0000001-0000-0000-0000-000000000008
+
+	measure Is_New_Logo =
+			IF(
+			    [Years_Since_Last_Revenue] > 5 || ISBLANK([Years_Since_Last_Revenue]),
+			    1,
+			    0
+			)
+		displayFolder: Classification Logic
+		lineageTag: a0000001-0000-0000-0000-000000000009
+
+	measure Net_New_Deal_Count = CALCULATE(COUNTROWS('Net_New_Transactions'), 'Net_New_Transactions'[Classification] = "Net New")
+		displayFolder: Net New
+		lineageTag: a0000001-0000-0000-0000-000000000010
+
+	measure Avg_Net_New_Deal_Size = DIVIDE([Total_Net_New_ARR], [Net_New_Deal_Count])
+		formatString: $#,0\K
+		displayFolder: Net New
+		lineageTag: a0000001-0000-0000-0000-000000000011
+
+	partition _Measures
+		mode: import
+		source
+			let
+			    Source = #table({}, {{}})
+			in
+			    Source
+
+	annotation PBI_Id = _Measures

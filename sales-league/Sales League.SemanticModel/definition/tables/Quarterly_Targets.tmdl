@@ -1,0 +1,48 @@
+table Quarterly_Targets
+	lineageTag: a3b4c5d6-e7f8-9012-abcd-123456789012
+
+	column Region
+		dataType: string
+		lineageTag: a3b4c5d6-e7f8-9012-abcd-123456789013
+		summarizeBy: none
+
+	column Fiscal_Quarter
+		dataType: string
+		lineageTag: a3b4c5d6-e7f8-9012-abcd-123456789014
+		summarizeBy: none
+
+	column Quarterly_Target
+		dataType: double
+		lineageTag: a3b4c5d6-e7f8-9012-abcd-123456789015
+		formatString: $#,0
+
+	partition Quarterly_Targets-Partition
+		mode: import
+		source
+			type: m
+			expression
+				= let
+				    Source = #table(
+				        type table [
+				            Region = text,
+				            Fiscal_Quarter = text,
+				            Quarterly_Target = number
+				        ],
+				        {
+				            {"Americas","Q1 FY2026",750000},
+				            {"Americas","Q2 FY2026",800000},
+				            {"Americas","Q3 FY2026",875000},
+				            {"Americas","Q4 FY2026",875000},
+				            {"EMEA","Q1 FY2026",720000},
+				            {"EMEA","Q2 FY2026",780000},
+				            {"EMEA","Q3 FY2026",826050},
+				            {"EMEA","Q4 FY2026",826050},
+				            {"APJ","Q1 FY2026",800000},
+				            {"APJ","Q2 FY2026",850000},
+				            {"APJ","Q3 FY2026",867750},
+				            {"APJ","Q4 FY2026",867750}
+				        }
+				    )
+				in
+				    Source
+

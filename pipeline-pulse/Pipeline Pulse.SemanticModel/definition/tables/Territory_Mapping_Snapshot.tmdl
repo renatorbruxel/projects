@@ -1,0 +1,85 @@
+table 'Territory_Mapping_Snapshot'
+	lineageTag: tms-001
+
+	column 'Territory'
+		dataType: string
+		lineageTag: tms-002
+		summarizeBy: none
+		sourceColumn: Territory
+
+	column 'Seller_Email'
+		dataType: string
+		lineageTag: tms-003
+		summarizeBy: none
+		sourceColumn: Seller_Email
+
+	column 'Seller_Name'
+		dataType: string
+		lineageTag: tms-004
+		summarizeBy: none
+		sourceColumn: Seller_Name
+
+	column 'Region'
+		dataType: string
+		lineageTag: tms-005
+		summarizeBy: none
+		sourceColumn: Region
+
+	column 'Sub_Region'
+		dataType: string
+		lineageTag: tms-006
+		summarizeBy: none
+		sourceColumn: Sub_Region
+
+	column 'Effective_From'
+		dataType: dateTime
+		lineageTag: tms-007
+		summarizeBy: none
+		sourceColumn: Effective_From
+		formatString: yyyy-MM-dd
+
+	column 'Effective_To'
+		dataType: dateTime
+		lineageTag: tms-008
+		summarizeBy: none
+		sourceColumn: Effective_To
+		formatString: yyyy-MM-dd
+
+	column 'AOP_Territory_ARR'
+		dataType: double
+		lineageTag: tms-009
+		summarizeBy: sum
+		sourceColumn: AOP_Territory_ARR
+		formatString: $#,0
+
+	partition 'Territory_Mapping_Snapshot-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						Territory = text,
+						Seller_Email = text,
+						Seller_Name = text,
+						Region = text,
+						Sub_Region = text,
+						Effective_From = date,
+						Effective_To = date,
+						AOP_Territory_ARR = number
+					],
+					{
+						{"NAM-ENT-WEST","alice.chen@vantara-fictional.demo","Alice Chen","Americas","NAM",#date(2026,1,1),#date(2026,12,31),1400000},
+						{"NAM-ENT-EAST","bob.turner@vantara-fictional.demo","Bob Turner","Americas","NAM",#date(2026,1,1),#date(2026,12,31),1550000},
+						{"NAM-MID","carol.patel@vantara-fictional.demo","Carol Patel","Americas","NAM",#date(2026,1,1),#date(2026,12,31),980000},
+						{"LATAM-BR","dan.nguyen@vantara-fictional.demo","Dan Nguyen","Americas","LATAM",#date(2026,1,1),#date(2026,12,31),720000},
+						{"LATAM-MEX","dan.nguyen@vantara-fictional.demo","Dan Nguyen","Americas","LATAM",#date(2026,1,1),#date(2026,12,31),540000},
+						{"EMEA-WEST-ENT","emma.fischer@vantara-fictional.demo","Emma Fischer","EMEA","EMEA West",#date(2026,1,1),#date(2026,12,31),1750000},
+						{"EMEA-WEST-MID","felix.martin@vantara-fictional.demo","Felix Martin","EMEA","EMEA West",#date(2026,1,1),#date(2026,12,31),1320000},
+						{"EMEA-SOUTH","gina.rossi@vantara-fictional.demo","Gina Rossi","EMEA","EMEA South",#date(2026,1,1),#date(2026,12,31),1100000},
+						{"APJ-SEA","henry.park@vantara-fictional.demo","Henry Park","APJ","APJ North",#date(2026,1,1),#date(2026,12,31),1450000},
+						{"APJ-JAPAN","iris.tanaka@vantara-fictional.demo","Iris Tanaka","APJ","APJ North",#date(2026,1,1),#date(2026,12,31),1650000},
+						{"APJ-ANZ","james.lee@vantara-fictional.demo","James Lee","APJ","APJ South",#date(2026,1,1),#date(2026,12,31),1200000}
+					}
+				)
+			in
+				Source

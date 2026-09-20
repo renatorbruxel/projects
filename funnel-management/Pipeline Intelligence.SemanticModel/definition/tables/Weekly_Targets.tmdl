@@ -1,0 +1,57 @@
+table 'Weekly_Targets'
+	lineageTag: wkt-001
+
+	column Week_Start
+		dataType: dateTime
+		lineageTag: wkt-c-001
+		summarizeBy: none
+		sourceColumn: Week_Start
+		formatString: yyyy-MM-dd
+
+	column Region
+		dataType: string
+		lineageTag: wkt-c-002
+		summarizeBy: none
+		sourceColumn: Region
+
+	column Weekly_Booking_Target
+		dataType: double
+		lineageTag: wkt-c-003
+		summarizeBy: sum
+		sourceColumn: Weekly_Booking_Target
+		formatString: $#,0
+
+	column Weekly_Pipeline_Target
+		dataType: double
+		lineageTag: wkt-c-004
+		summarizeBy: sum
+		sourceColumn: Weekly_Pipeline_Target
+		formatString: $#,0
+
+	partition 'Weekly_Targets-partition'
+		mode: import
+		source
+			type: m
+			expression
+				= let
+					Source = Table.FromRecords(
+						{
+							[Week_Start = #date(2026, 9, 7), Region = "Americas", Weekly_Booking_Target = 7300000.0, Weekly_Pipeline_Target = 29200000.0],
+							[Week_Start = #date(2026, 9, 7), Region = "EMEA", Weekly_Booking_Target = 5000000.0, Weekly_Pipeline_Target = 20000000.0],
+							[Week_Start = #date(2026, 9, 7), Region = "APJ", Weekly_Booking_Target = 3100000.0, Weekly_Pipeline_Target = 12400000.0],
+							[Week_Start = #date(2026, 9, 14), Region = "Americas", Weekly_Booking_Target = 7300000.0, Weekly_Pipeline_Target = 29200000.0],
+							[Week_Start = #date(2026, 9, 14), Region = "EMEA", Weekly_Booking_Target = 5000000.0, Weekly_Pipeline_Target = 20000000.0],
+							[Week_Start = #date(2026, 9, 14), Region = "APJ", Weekly_Booking_Target = 3100000.0, Weekly_Pipeline_Target = 12400000.0],
+							[Week_Start = #date(2026, 9, 21), Region = "Americas", Weekly_Booking_Target = 7300000.0, Weekly_Pipeline_Target = 29200000.0],
+							[Week_Start = #date(2026, 9, 21), Region = "EMEA", Weekly_Booking_Target = 5000000.0, Weekly_Pipeline_Target = 20000000.0],
+							[Week_Start = #date(2026, 9, 21), Region = "APJ", Weekly_Booking_Target = 3100000.0, Weekly_Pipeline_Target = 12400000.0]
+						},
+						type table [
+							Week_Start = date,
+							Region = text,
+							Weekly_Booking_Target = number,
+							Weekly_Pipeline_Target = number
+						]
+					)
+				in
+					Source

@@ -1,0 +1,139 @@
+table 'Pipeline_PriorDay'
+	lineageTag: ppd-001
+
+	column 'Opportunity_ID'
+		dataType: string
+		lineageTag: ppd-002
+		summarizeBy: none
+		sourceColumn: Opportunity_ID
+
+	column 'Opportunity_Name'
+		dataType: string
+		lineageTag: ppd-003
+		summarizeBy: none
+		sourceColumn: Opportunity_Name
+
+	column 'Account_Name'
+		dataType: string
+		lineageTag: ppd-004
+		summarizeBy: none
+		sourceColumn: Account_Name
+
+	column 'Seller_Email'
+		dataType: string
+		lineageTag: ppd-005
+		summarizeBy: none
+		sourceColumn: Seller_Email
+
+	column 'Region'
+		dataType: string
+		lineageTag: ppd-006
+		summarizeBy: none
+		sourceColumn: Region
+
+	column 'Sub_Region'
+		dataType: string
+		lineageTag: ppd-007
+		summarizeBy: none
+		sourceColumn: Sub_Region
+
+	column 'Product_Line'
+		dataType: string
+		lineageTag: ppd-008
+		summarizeBy: none
+		sourceColumn: Product_Line
+
+	column 'Territory'
+		dataType: string
+		lineageTag: ppd-009
+		summarizeBy: none
+		sourceColumn: Territory
+
+	column 'Stage'
+		dataType: string
+		lineageTag: ppd-010
+		summarizeBy: none
+		sourceColumn: Stage
+
+	column 'Forecast_Category'
+		dataType: string
+		lineageTag: ppd-011
+		summarizeBy: none
+		sourceColumn: Forecast_Category
+
+	column 'Is_Won_Loss_Open'
+		dataType: string
+		lineageTag: ppd-012
+		summarizeBy: none
+		sourceColumn: Is_Won_Loss_Open
+
+	column 'ARR_USD'
+		dataType: double
+		lineageTag: ppd-013
+		summarizeBy: sum
+		sourceColumn: ARR_USD
+		formatString: $#,0
+
+	column 'Close_Date'
+		dataType: dateTime
+		lineageTag: ppd-014
+		summarizeBy: none
+		sourceColumn: Close_Date
+		formatString: yyyy-MM-dd
+
+	column 'AKey'
+		dataType: string
+		lineageTag: ppd-015
+		summarizeBy: none
+		sourceColumn: AKey
+
+	partition 'Pipeline_PriorDay-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						Opportunity_ID = text,
+						Opportunity_Name = text,
+						Account_Name = text,
+						Seller_Email = text,
+						Region = text,
+						Sub_Region = text,
+						Product_Line = text,
+						Territory = text,
+						Stage = text,
+						Forecast_Category = text,
+						Is_Won_Loss_Open = text,
+						ARR_USD = number,
+						Close_Date = date,
+						AKey = text
+					],
+					{
+						{"OPP-1001","HubSpot - Analytics Expansion","HubSpot","alice.chen@vantara-fictional.demo","Americas","NAM","Analytics","NAM-ENT-WEST","Negotiation","Commit","Open",265000,#date(2026,9,30),"AmericasNAMAnalyticsEnterprise"},
+						{"OPP-1002","Okta - Security Platform Deal","Okta","alice.chen@vantara-fictional.demo","Americas","NAM","Security","NAM-ENT-WEST","Proposal","Best Case","Open",195000,#date(2026,9,25),"AmericasNAMSecurityEnterprise"},
+						{"OPP-1003","Twilio - Workflow Automation","Twilio","bob.turner@vantara-fictional.demo","Americas","NAM","Workflow","NAM-ENT-EAST","Proposal","Best Case","Open",310000,#date(2026,9,28),"AmericasNAMWorkflowEnterprise"},
+						{"OPP-1004","GitHub - Platform Upgrade","GitHub","bob.turner@vantara-fictional.demo","Americas","NAM","Platform","NAM-ENT-EAST","Discovery","Pipeline","Open",145000,#date(2026,10,31),"AmericasNAMPlatformEnterprise"},
+						{"OPP-1005","Cloudflare - Security Bundle","Cloudflare","carol.patel@vantara-fictional.demo","Americas","NAM","Security","NAM-MID","Qualification","Pipeline","Open",88000,#date(2026,10,15),"AmericasNAMSecurityMid-Market"},
+						{"OPP-1006","HubSpot - Workflow Q4 Upsell","HubSpot","carol.patel@vantara-fictional.demo","Americas","NAM","Workflow","NAM-MID","Qualification","Pipeline","Open",112000,#date(2026,11,30),"AmericasNAMWorkflowEnterprise"},
+						{"OPP-1008","Twilio - Platform Renewal Plus","Twilio","bob.turner@vantara-fictional.demo","Americas","NAM","Platform","NAM-ENT-EAST","Negotiation","Commit","Open",410000,#date(2026,9,22),"AmericasNAMPlatformEnterprise"},
+						{"OPP-1009","Cloudflare - Enterprise Tier","Cloudflare","carol.patel@vantara-fictional.demo","Americas","NAM","Platform","NAM-ENT-EAST","Proposal","Best Case","Open",218000,#date(2026,10,31),"AmericasNAMPlatformEnterprise"},
+						{"OPP-1010","GitHub - Analytics Pipeline","GitHub","dan.nguyen@vantara-fictional.demo","Americas","LATAM","Analytics","LATAM-BR","Discovery","Pipeline","Open",54000,#date(2026,11,15),"AmericasLATAMAnalyticsMid-Market"},
+						{"OPP-1012","Twilio LATAM - Security","Twilio","dan.nguyen@vantara-fictional.demo","Americas","LATAM","Security","LATAM-MEX","Proposal","Best Case","Open",72000,#date(2026,10,31),"AmericasLATAMSecurityMid-Market"},
+						{"OPP-2001","SAP - Analytics Cloud Migration","SAP","emma.fischer@vantara-fictional.demo","EMEA","EMEA West","Analytics","EMEA-WEST-ENT","Negotiation","Commit","Open",520000,#date(2026,9,25),"EMEAEMEAWestAnalyticsEnterprise"},
+						{"OPP-2002","ASML - Platform Core","ASML","emma.fischer@vantara-fictional.demo","EMEA","EMEA West","Platform","EMEA-WEST-ENT","Negotiation","Commit","Open",365000,#date(2026,9,30),"EMEAEMEAWestPlatformEnterprise"},
+						{"OPP-2003","Adyen - Security Suite","Adyen","felix.martin@vantara-fictional.demo","EMEA","EMEA West","Security","EMEA-WEST-MID","Proposal","Best Case","Open",210000,#date(2026,10,31),"EMEAEMEAWestSecurityEnterprise"},
+						{"OPP-2004","Klarna - Workflow Integration","Klarna","felix.martin@vantara-fictional.demo","EMEA","EMEA West","Workflow","EMEA-WEST-MID","Discovery","Pipeline","Open",95000,#date(2026,11,15),"EMEAEMEAWestWorkflowMid-Market"},
+						{"OPP-2005","UiPath - Analytics Engine","UiPath","gina.rossi@vantara-fictional.demo","EMEA","EMEA South","Analytics","EMEA-SOUTH","Qualification","Pipeline","Open",155000,#date(2026,10,15),"EMEAEMEASouthAnalyticsEnterprise"},
+						{"OPP-2007","ASML - Workflow Module","ASML","felix.martin@vantara-fictional.demo","EMEA","EMEA West","Workflow","EMEA-WEST-ENT","Negotiation","Commit","Open",175000,#date(2026,9,22),"EMEAEMEAWestWorkflowEnterprise"},
+						{"OPP-2009","UiPath - Security Bundle","UiPath","gina.rossi@vantara-fictional.demo","EMEA","EMEA South","Security","EMEA-SOUTH","Proposal","Best Case","Open",88000,#date(2026,10,31),"EMEAEMEASouthSecurityMid-Market"},
+						{"OPP-3001","Sea Ltd - Platform Core","Sea Ltd","henry.park@vantara-fictional.demo","APJ","APJ North","Platform","APJ-SEA","Proposal","Best Case","Open",295000,#date(2026,9,25),"APJAPJNorthPlatformEnterprise"},
+						{"OPP-3002","Grab - Analytics Suite","Grab","henry.park@vantara-fictional.demo","APJ","APJ South","Analytics","APJ-SEA","Proposal","Best Case","Open",245000,#date(2026,10,15),"APJAPJSouthAnalyticsEnterprise"},
+						{"OPP-3003","KDDI - Security Suite","KDDI","iris.tanaka@vantara-fictional.demo","APJ","APJ North","Security","APJ-JAPAN","Negotiation","Commit","Open",420000,#date(2026,9,28),"APJAPJNorthSecurityEnterprise"},
+						{"OPP-3004","Fujitsu - Workflow Automation","Fujitsu","iris.tanaka@vantara-fictional.demo","APJ","APJ North","Workflow","APJ-JAPAN","Proposal","Best Case","Open",175000,#date(2026,10,31),"APJAPJNorthWorkflowEnterprise"},
+						{"OPP-3005","NTT - Platform Upgrade","NTT","james.lee@vantara-fictional.demo","APJ","APJ South","Platform","APJ-ANZ","Discovery","Pipeline","Open",275000,#date(2026,11,30),"APJAPJSouthPlatformEnterprise"},
+						{"OPP-3007","Grab - Security Enterprise","Grab","james.lee@vantara-fictional.demo","APJ","APJ South","Security","APJ-ANZ","Negotiation","Commit","Open",340000,#date(2026,9,30),"APJAPJSouthSecurityEnterprise"},
+						{"OPP-3008","KDDI - Workflow Plus","KDDI","iris.tanaka@vantara-fictional.demo","APJ","APJ North","Workflow","APJ-JAPAN","Proposal","Best Case","Open",98000,#date(2026,10,31),"APJAPJNorthWorkflowMid-Market"}
+					}
+				)
+			in
+				Source

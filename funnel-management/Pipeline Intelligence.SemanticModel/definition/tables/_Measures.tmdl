@@ -1,0 +1,96 @@
+table '_Measures'
+	lineageTag: msr-001
+
+	measure 'Total Pipeline ARR' = SUM('Pipeline'[ARR_USD])
+		formatString: $#,0,,\M
+		lineageTag: m-001
+		displayFolder: Pipeline
+
+	measure 'Pipeline Coverage' = DIVIDE([Total Pipeline ARR], [Quota_AOP])
+		formatString: 0.0x
+		lineageTag: m-002
+		displayFolder: Pipeline
+
+	measure 'Quota_AOP' = SUM('Bookings_Actuals'[AOP_Bookings])
+		formatString: $#,0,,\M
+		lineageTag: m-003
+		displayFolder: Targets
+
+	measure 'Actuals_Bookings' = SUM('Bookings_Actuals'[Actual_Bookings])
+		formatString: $#,0,,\M
+		lineageTag: m-004
+		displayFolder: Actuals
+
+	measure 'Attainment_%' = DIVIDE([Actuals_Bookings], [Quota_AOP])
+		formatString: 0.0%
+		lineageTag: m-005
+		displayFolder: Actuals
+
+	measure 'Push_Out_Value' = SUM('Pipeline_Pushed'[ARR_USD])
+		formatString: $#,0,,\M
+		lineageTag: m-006
+		displayFolder: Pipeline Dynamics
+
+	measure 'Push_Out_Count' = COUNTROWS('Pipeline_Pushed')
+		lineageTag: m-007
+		displayFolder: Pipeline Dynamics
+
+	measure 'Overdue_Pipeline' = CALCULATE([Total Pipeline ARR], 'Pipeline'[Is_Overdue] = TRUE())
+		formatString: $#,0,,\M
+		lineageTag: m-008
+		displayFolder: Hygiene
+
+	measure 'Win_Rate' = DIVIDE(CALCULATE(COUNTROWS('Pipeline'), 'Pipeline'[Stage] = "Closed Won"), CALCULATE(COUNTROWS('Pipeline'), 'Pipeline'[Stage] IN {"Closed Won", "Closed Lost"}))
+		formatString: 0.0%
+		lineageTag: m-009
+		displayFolder: Performance
+
+	measure 'Weekly_Pacing_Required' = DIVIDE([Quota_AOP] - [Actuals_Bookings], MAX('Calendar'[Days_Remaining_in_Quarter]))
+		formatString: $#,0,,\M
+		lineageTag: m-010
+		displayFolder: Actuals
+
+	measure 'Pipeline_WoW_Delta' = [Total Pipeline ARR] - CALCULATE([Total Pipeline ARR], DATEADD('Calendar'[Date], -7, DAY))
+		formatString: $#,0,,\M
+		lineageTag: m-011
+		displayFolder: Pipeline Dynamics
+
+	measure 'Current_Quarter_Coverage' = DIVIDE(CALCULATE([Total Pipeline ARR], QUARTER('Pipeline'[Close_Date]) = QUARTER(TODAY())), CALCULATE([Quota_AOP], QUARTER('Bookings_Actuals'[Booking_Date]) = QUARTER(TODAY())))
+		formatString: 0.0x
+		lineageTag: m-012
+		displayFolder: Pipeline
+
+	measure 'PullIn_Value' = SUM('Pipeline_PullIn'[ARR_USD])
+		formatString: $#,0,,\M
+		lineageTag: m-013
+		displayFolder: Pipeline Dynamics
+
+	measure 'PullIn_Count' = COUNTROWS('Pipeline_PullIn')
+		lineageTag: m-014
+		displayFolder: Pipeline Dynamics
+
+	measure 'Net_Push_Impact' = [Push_Out_Value] - [PullIn_Value]
+		formatString: $#,0,,\M
+		lineageTag: m-015
+		displayFolder: Pipeline Dynamics
+
+	measure 'Pipeline_Stage_Mix_%' = DIVIDE([Total Pipeline ARR], CALCULATE([Total Pipeline ARR], ALL('Pipeline'[Stage])))
+		formatString: 0.0%
+		lineageTag: m-016
+		displayFolder: Pipeline
+
+	measure 'Avg_Deal_Size' = AVERAGEX('Pipeline', 'Pipeline'[ARR_USD])
+		formatString: $#,0
+		lineageTag: m-017
+		displayFolder: Performance
+
+	measure 'Open_Opportunities' = CALCULATE(COUNTROWS('Pipeline'), 'Pipeline'[Stage] NOT IN {"Closed Won", "Closed Lost"})
+		lineageTag: m-018
+		displayFolder: Pipeline
+
+	partition '_Measures-partition'
+		mode: import
+		source
+			type: m
+			expression
+				= #table({"Placeholder"}, {{""}})

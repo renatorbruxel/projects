@@ -1,0 +1,58 @@
+table 'Forecast_Categories'
+	lineageTag: fct-001
+
+	column 'Forecast_Category'
+		dataType: string
+		lineageTag: fct-002
+		summarizeBy: none
+		isKey
+		sourceColumn: Forecast_Category
+
+	column 'Display_Name'
+		dataType: string
+		lineageTag: fct-003
+		summarizeBy: none
+		sourceColumn: Display_Name
+
+	column 'Probability_%'
+		dataType: double
+		lineageTag: fct-004
+		summarizeBy: none
+		sourceColumn: Probability_%
+		formatString: 0%
+
+	column 'Order'
+		dataType: int64
+		lineageTag: fct-005
+		summarizeBy: none
+		sourceColumn: Order
+
+	column 'Include_in_Forecast'
+		dataType: boolean
+		lineageTag: fct-006
+		summarizeBy: none
+		sourceColumn: Include_in_Forecast
+
+	partition 'Forecast_Categories-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						Forecast_Category = text,
+						Display_Name = text,
+						#"Probability_%" = number,
+						Order = Int64.Type,
+						Include_in_Forecast = logical
+					],
+					{
+						{"Commit","Commit",0.90,1,true},
+						{"Best Case","Best Case",0.70,2,true},
+						{"Pipeline","Pipeline",0.40,3,true},
+						{"Omitted","Omitted",0.00,4,false},
+						{"Closed Won","Closed Won",1.00,5,false},
+						{"Closed Lost","Closed Lost",0.00,6,false}
+					}
+				)
+			in
+				Source

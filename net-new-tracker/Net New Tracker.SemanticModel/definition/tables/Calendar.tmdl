@@ -1,0 +1,55 @@
+table Calendar
+	lineageTag: a0000004-0000-0000-0000-000000000001
+
+	column Date
+		dataType: dateTime
+		lineageTag: a0000004-0000-0000-0000-000000000002
+		formatString: yyyy-MM-dd
+		summarizeBy: none
+		isKey: true
+		sourceColumn: [Date]
+
+	column Year
+		dataType: int64
+		lineageTag: a0000004-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: [Year]
+
+	column Quarter
+		dataType: string
+		lineageTag: a0000004-0000-0000-0000-000000000004
+		summarizeBy: none
+		sourceColumn: [Quarter]
+
+	column Month
+		dataType: int64
+		lineageTag: a0000004-0000-0000-0000-000000000005
+		summarizeBy: none
+		sourceColumn: [Month]
+
+	column MonthName
+		dataType: string
+		lineageTag: a0000004-0000-0000-0000-000000000006
+		summarizeBy: none
+		sortByColumn: Month
+		sourceColumn: [MonthName]
+
+	column WeekNum
+		dataType: int64
+		lineageTag: a0000004-0000-0000-0000-000000000007
+		summarizeBy: none
+		sourceColumn: [WeekNum]
+
+	partition Calendar
+		mode: calculated
+		source
+			= ADDCOLUMNS(
+			    CALENDAR(DATE(2023, 1, 1), DATE(2027, 12, 31)),
+			    "Year", YEAR([Date]),
+			    "Quarter", "Q" & FORMAT(CEILING(MONTH([Date]) / 3, 1), "0"),
+			    "Month", MONTH([Date]),
+			    "MonthName", FORMAT([Date], "MMM"),
+			    "WeekNum", WEEKNUM([Date], 2)
+			)
+
+	annotation PBI_Id = Calendar

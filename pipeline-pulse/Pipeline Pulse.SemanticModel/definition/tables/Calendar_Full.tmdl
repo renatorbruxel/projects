@@ -1,0 +1,57 @@
+table 'Calendar_Full'
+	lineageTag: clf-001
+
+	column 'Date'
+		dataType: dateTime
+		lineageTag: clf-002
+		summarizeBy: none
+		isKey
+		sourceColumn: Date
+		formatString: yyyy-MM-dd
+
+	calculatedColumn 'Year'
+		dataType: int64
+		lineageTag: clf-003
+		summarizeBy: none
+		expression = YEAR([Date])
+
+	calculatedColumn 'Quarter'
+		dataType: int64
+		lineageTag: clf-004
+		summarizeBy: none
+		expression = QUARTER([Date])
+
+	calculatedColumn 'Month'
+		dataType: int64
+		lineageTag: clf-005
+		summarizeBy: none
+		expression = MONTH([Date])
+
+	calculatedColumn 'MonthName'
+		dataType: string
+		lineageTag: clf-006
+		summarizeBy: none
+		sortByColumn: Month
+		expression = FORMAT([Date], "MMM")
+
+	calculatedColumn 'WeekNum'
+		dataType: int64
+		lineageTag: clf-007
+		summarizeBy: none
+		expression = WEEKNUM([Date], 2)
+
+	calculatedColumn 'Quarter_Label'
+		dataType: string
+		lineageTag: clf-008
+		summarizeBy: none
+		expression = "Q" & QUARTER([Date]) & " " & YEAR([Date])
+
+	calculatedColumn 'Is_Snapshot_Week'
+		dataType: boolean
+		lineageTag: clf-009
+		summarizeBy: none
+		expression = WEEKDAY([Date], 2) = 6
+
+	partition 'Calendar_Full-partition-0' = calculated
+		mode: import
+		expression = CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))

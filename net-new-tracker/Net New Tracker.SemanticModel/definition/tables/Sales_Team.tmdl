@@ -1,0 +1,70 @@
+table Sales_Team
+	lineageTag: a0000008-0000-0000-0000-000000000001
+
+	column Seller_ID
+		dataType: string
+		lineageTag: a0000008-0000-0000-0000-000000000002
+		summarizeBy: none
+		isKey: true
+		sourceColumn: Seller_ID
+
+	column Seller_Name
+		dataType: string
+		lineageTag: a0000008-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: Seller_Name
+
+	column Region
+		dataType: string
+		lineageTag: a0000008-0000-0000-0000-000000000004
+		summarizeBy: none
+		sourceColumn: Region
+
+	column Manager
+		dataType: string
+		lineageTag: a0000008-0000-0000-0000-000000000005
+		summarizeBy: none
+		sourceColumn: Manager
+
+	column Role
+		dataType: string
+		lineageTag: a0000008-0000-0000-0000-000000000006
+		summarizeBy: none
+		sourceColumn: Role
+
+	column Annual_Quota_USD
+		dataType: double
+		lineageTag: a0000008-0000-0000-0000-000000000007
+		formatString: \$#,0
+		summarizeBy: sum
+		sourceColumn: Annual_Quota_USD
+
+	partition 'Sales_Team-Partition'
+		mode: import
+		source
+			let
+			    Source = Table.FromRecords(
+			        {
+			            [ Seller_ID = "S-001", Seller_Name = "Jordan Blake", Region = "Americas", Manager = "Dana Reyes", Role = "Account Executive", Annual_Quota_USD = 1500000 ],
+			            [ Seller_ID = "S-002", Seller_Name = "Morgan Ellis", Region = "Americas", Manager = "Dana Reyes", Role = "Account Executive", Annual_Quota_USD = 1200000 ],
+			            [ Seller_ID = "S-003", Seller_Name = "Alex Rivera", Region = "EMEA", Manager = "Chris Holt", Role = "Account Executive", Annual_Quota_USD = 1400000 ],
+			            [ Seller_ID = "S-004", Seller_Name = "Taylor Marsh", Region = "EMEA", Manager = "Chris Holt", Role = "Account Executive", Annual_Quota_USD = 1100000 ],
+			            [ Seller_ID = "S-005", Seller_Name = "Sam Torres", Region = "APJ", Manager = "Yuki Tanaka", Role = "Account Executive", Annual_Quota_USD = 1000000 ],
+			            [ Seller_ID = "S-006", Seller_Name = "Casey Kim", Region = "APJ", Manager = "Yuki Tanaka", Role = "Account Executive", Annual_Quota_USD = 950000 ],
+			            [ Seller_ID = "S-007", Seller_Name = "Dana Reyes", Region = "Americas", Manager = "VP Sales", Role = "Regional Manager", Annual_Quota_USD = 5000000 ],
+			            [ Seller_ID = "S-008", Seller_Name = "Chris Holt", Region = "EMEA", Manager = "VP Sales", Role = "Regional Manager", Annual_Quota_USD = 4500000 ],
+			            [ Seller_ID = "S-009", Seller_Name = "Yuki Tanaka", Region = "APJ", Manager = "VP Sales", Role = "Regional Manager", Annual_Quota_USD = 3500000 ]
+			        },
+			        type table [
+			            Seller_ID = text,
+			            Seller_Name = text,
+			            Region = text,
+			            Manager = text,
+			            Role = text,
+			            Annual_Quota_USD = number
+			        ]
+			    )
+			in
+			    Source
+
+	annotation PBI_Id = Sales_Team

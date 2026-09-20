@@ -1,0 +1,7 @@
+{
+  "name": "ReportSectionCharts",
+  "displayName": "Charts",
+  "ordinal": 5,
+  "filters": "[]",
+  "config": "{\"visibility\":0,\"type\":\"ReportSection\",\"displayOption\":1,\"width\":1280,\"height\":720,\"defaultDisplayOption\":1,\"style\":{\"verticalAlignment\":\"top\",\"horizontalAlignment\":\"left\"},\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1B1F2E'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"visualContainers\":[]}"
+}

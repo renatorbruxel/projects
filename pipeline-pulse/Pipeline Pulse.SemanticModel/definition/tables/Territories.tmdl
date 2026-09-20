@@ -1,0 +1,74 @@
+table 'Territories'
+	lineageTag: ter-001
+
+	column 'Territory'
+		dataType: string
+		lineageTag: ter-002
+		summarizeBy: none
+		isKey
+		sourceColumn: Territory
+
+	column 'Territory_Name'
+		dataType: string
+		lineageTag: ter-003
+		summarizeBy: none
+		sourceColumn: Territory_Name
+
+	column 'Region'
+		dataType: string
+		lineageTag: ter-004
+		summarizeBy: none
+		sourceColumn: Region
+
+	column 'Sub_Region'
+		dataType: string
+		lineageTag: ter-005
+		summarizeBy: none
+		sourceColumn: Sub_Region
+
+	column 'Account_Segment'
+		dataType: string
+		lineageTag: ter-006
+		summarizeBy: none
+		sourceColumn: Account_Segment
+
+	column 'AOP_ARR'
+		dataType: double
+		lineageTag: ter-007
+		summarizeBy: sum
+		sourceColumn: AOP_ARR
+		formatString: $#,0
+
+	partition 'Territories-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						Territory = text,
+						Territory_Name = text,
+						Region = text,
+						Sub_Region = text,
+						Account_Segment = text,
+						AOP_ARR = number
+					],
+					{
+						{"NAM-ENT-WEST","North America Enterprise West","Americas","NAM","Enterprise",1400000},
+						{"NAM-ENT-EAST","North America Enterprise East","Americas","NAM","Enterprise",1550000},
+						{"NAM-MID","North America Mid-Market","Americas","NAM","Mid-Market",980000},
+						{"LATAM-BR","Latin America Brazil","Americas","LATAM","Mid-Market",720000},
+						{"LATAM-MEX","Latin America Mexico","Americas","LATAM","Mid-Market",540000},
+						{"EMEA-WEST-ENT","EMEA West Enterprise","EMEA","EMEA West","Enterprise",1750000},
+						{"EMEA-WEST-MID","EMEA West Mid-Market","EMEA","EMEA West","Enterprise",1320000},
+						{"EMEA-SOUTH","EMEA South","EMEA","EMEA South","Enterprise",1100000},
+						{"EMEA-NORTH","EMEA North","EMEA","EMEA North","Mid-Market",680000},
+						{"EMEA-CENTRAL","EMEA Central","EMEA","EMEA Central","Mid-Market",590000},
+						{"APJ-SEA","APJ Southeast Asia","APJ","APJ North","Enterprise",1450000},
+						{"APJ-JAPAN","APJ Japan","APJ","APJ North","Enterprise",1650000},
+						{"APJ-ANZ","APJ Australia New Zealand","APJ","APJ South","Enterprise",1200000},
+						{"APJ-INDIA","APJ India","APJ","APJ South","Mid-Market",760000},
+						{"APJ-KOREA","APJ Korea","APJ","APJ North","Mid-Market",620000}
+					}
+				)
+			in
+				Source

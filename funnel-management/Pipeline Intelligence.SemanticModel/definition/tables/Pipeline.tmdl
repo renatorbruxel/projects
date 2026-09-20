@@ -1,0 +1,166 @@
+table 'Pipeline'
+	lineageTag: pip-001
+
+	column Opportunity_ID
+		dataType: string
+		lineageTag: pip-c-001
+		summarizeBy: none
+		sourceColumn: Opportunity_ID
+
+	column Opportunity_Name
+		dataType: string
+		lineageTag: pip-c-002
+		summarizeBy: none
+		sourceColumn: Opportunity_Name
+
+	column Seller_Name
+		dataType: string
+		lineageTag: pip-c-003
+		summarizeBy: none
+		sourceColumn: Seller_Name
+
+	column Region
+		dataType: string
+		lineageTag: pip-c-004
+		summarizeBy: none
+		sourceColumn: Region
+
+	column Sub_Region
+		dataType: string
+		lineageTag: pip-c-005
+		summarizeBy: none
+		sourceColumn: Sub_Region
+
+	column Product_Line
+		dataType: string
+		lineageTag: pip-c-006
+		summarizeBy: none
+		sourceColumn: Product_Line
+
+	column Market
+		dataType: string
+		lineageTag: pip-c-007
+		summarizeBy: none
+		sourceColumn: Market
+
+	column Country
+		dataType: string
+		lineageTag: pip-c-008
+		summarizeBy: none
+		sourceColumn: Country
+
+	column Stage
+		dataType: string
+		lineageTag: pip-c-009
+		summarizeBy: none
+		sourceColumn: Stage
+
+	column Forecast_Category
+		dataType: string
+		lineageTag: pip-c-010
+		summarizeBy: none
+		sourceColumn: Forecast_Category
+
+	column ARR_USD
+		dataType: double
+		lineageTag: pip-c-011
+		summarizeBy: sum
+		sourceColumn: ARR_USD
+		formatString: $#,0
+
+	column Close_Date
+		dataType: dateTime
+		lineageTag: pip-c-012
+		summarizeBy: none
+		sourceColumn: Close_Date
+		formatString: yyyy-MM-dd
+
+	column Created_Date
+		dataType: dateTime
+		lineageTag: pip-c-013
+		summarizeBy: none
+		sourceColumn: Created_Date
+		formatString: yyyy-MM-dd
+
+	column Last_Modified_Date
+		dataType: dateTime
+		lineageTag: pip-c-014
+		summarizeBy: none
+		sourceColumn: Last_Modified_Date
+		formatString: yyyy-MM-dd
+
+	column Is_Overdue
+		dataType: boolean
+		lineageTag: pip-c-015
+		summarizeBy: none
+		sourceColumn: Is_Overdue
+
+	column Is_Won
+		dataType: boolean
+		lineageTag: pip-c-016
+		summarizeBy: none
+		sourceColumn: Is_Won
+
+	column Is_Net_New
+		dataType: boolean
+		lineageTag: pip-c-017
+		summarizeBy: none
+		sourceColumn: Is_Net_New
+
+	column AKey
+		dataType: string
+		lineageTag: pip-c-018
+		summarizeBy: none
+		expression = [Region] & [Sub_Region] & [Product_Line] & [Market]
+
+	partition 'Pipeline-partition'
+		mode: import
+		source
+			type: m
+			expression
+				= let
+					Source = Table.FromRecords(
+						{
+							[Opportunity_ID = "OP-1001", Opportunity_Name = "Accenture Digital Platform", Seller_Name = "Sarah Chen", Region = "Americas", Sub_Region = "NAM", Product_Line = "Data Intelligence", Market = "Enterprise", Country = "USA", Stage = "Develop", Forecast_Category = "Commit", ARR_USD = 1250000.0, Close_Date = #date(2026, 9, 30), Created_Date = #date(2026, 2, 10), Last_Modified_Date = #date(2026, 8, 15), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-1002", Opportunity_Name = "Salesforce CRM Integration", Seller_Name = "Marcus Williams", Region = "Americas", Sub_Region = "NAM", Product_Line = "Analytics Cloud", Market = "Mid-Market", Country = "USA", Stage = "Validate", Forecast_Category = "Best Case", ARR_USD = 485000.0, Close_Date = #date(2026, 9, 30), Created_Date = #date(2026, 3, 5), Last_Modified_Date = #date(2026, 8, 20), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-1003", Opportunity_Name = "Microsoft Azure Expansion", Seller_Name = "Jennifer Park", Region = "Americas", Sub_Region = "NAM", Product_Line = "Storage Platform", Market = "Enterprise", Country = "USA", Stage = "Propose", Forecast_Category = "Commit", ARR_USD = 2300000.0, Close_Date = #date(2026, 12, 15), Created_Date = #date(2026, 1, 20), Last_Modified_Date = #date(2026, 9, 1), Is_Overdue = false, Is_Won = false, Is_Net_New = false],
+							[Opportunity_ID = "OP-1004", Opportunity_Name = "Adobe Analytics Suite", Seller_Name = "David Torres", Region = "Americas", Sub_Region = "NAM", Product_Line = "Analytics Cloud", Market = "Mid-Market", Country = "Canada", Stage = "Negotiate", Forecast_Category = "Commit", ARR_USD = 320000.0, Close_Date = #date(2026, 9, 15), Created_Date = #date(2026, 4, 12), Last_Modified_Date = #date(2026, 9, 10), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-1005", Opportunity_Name = "ServiceNow Workflow Platform", Seller_Name = "Emily Rodriguez", Region = "Americas", Sub_Region = "LATAM", Product_Line = "Data Intelligence", Market = "Commercial", Country = "Brazil", Stage = "Qualify", Forecast_Category = "Pipeline", ARR_USD = 150000.0, Close_Date = #date(2026, 12, 31), Created_Date = #date(2026, 6, 1), Last_Modified_Date = #date(2026, 9, 15), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-1006", Opportunity_Name = "JP Morgan Data Lake", Seller_Name = "Robert Kim", Region = "Americas", Sub_Region = "NAM", Product_Line = "Storage Platform", Market = "Enterprise", Country = "USA", Stage = "Develop", Forecast_Category = "Best Case", ARR_USD = 890000.0, Close_Date = #date(2026, 10, 31), Created_Date = #date(2026, 3, 15), Last_Modified_Date = #date(2026, 8, 28), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-1007", Opportunity_Name = "Coca-Cola LATAM Rollout", Seller_Name = "Ana Lima", Region = "Americas", Sub_Region = "LATAM", Product_Line = "Analytics Cloud", Market = "Commercial", Country = "Mexico", Stage = "Validate", Forecast_Category = "Best Case", ARR_USD = 175000.0, Close_Date = #date(2026, 11, 30), Created_Date = #date(2026, 5, 20), Last_Modified_Date = #date(2026, 9, 12), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-2001", Opportunity_Name = "SAP Enterprise License", Seller_Name = "Klaus Weber", Region = "EMEA", Sub_Region = "WEU", Product_Line = "Data Intelligence", Market = "Enterprise", Country = "Germany", Stage = "Develop", Forecast_Category = "Commit", ARR_USD = 1750000.0, Close_Date = #date(2026, 9, 30), Created_Date = #date(2026, 2, 1), Last_Modified_Date = #date(2026, 8, 15), Is_Overdue = false, Is_Won = false, Is_Net_New = false],
+							[Opportunity_ID = "OP-2002", Opportunity_Name = "Siemens Industrial Data Hub", Seller_Name = "Marie Dupont", Region = "EMEA", Sub_Region = "WEU", Product_Line = "Storage Platform", Market = "Enterprise", Country = "France", Stage = "Validate", Forecast_Category = "Best Case", ARR_USD = 650000.0, Close_Date = #date(2026, 10, 31), Created_Date = #date(2026, 3, 20), Last_Modified_Date = #date(2026, 9, 5), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-2003", Opportunity_Name = "Capgemini Analytics Tooling", Seller_Name = "James Bennett", Region = "EMEA", Sub_Region = "WEU", Product_Line = "Analytics Cloud", Market = "Mid-Market", Country = "UK", Stage = "Qualify", Forecast_Category = "Pipeline", ARR_USD = 285000.0, Close_Date = #date(2026, 12, 15), Created_Date = #date(2026, 7, 10), Last_Modified_Date = #date(2026, 9, 18), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-2004", Opportunity_Name = "Orange Telecom Platform", Seller_Name = "Sofia Martinez", Region = "EMEA", Sub_Region = "WEU", Product_Line = "Data Intelligence", Market = "Commercial", Country = "Spain", Stage = "Propose", Forecast_Category = "Commit", ARR_USD = 420000.0, Close_Date = #date(2026, 9, 30), Created_Date = #date(2026, 4, 5), Last_Modified_Date = #date(2026, 9, 1), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-2005", Opportunity_Name = "Deutsche Telekom Data Hub", Seller_Name = "Hans Mueller", Region = "EMEA", Sub_Region = "CEE", Product_Line = "Storage Platform", Market = "Enterprise", Country = "Germany", Stage = "Negotiate", Forecast_Category = "Commit", ARR_USD = 1100000.0, Close_Date = #date(2026, 9, 15), Created_Date = #date(2026, 1, 15), Last_Modified_Date = #date(2026, 9, 10), Is_Overdue = false, Is_Won = false, Is_Net_New = false],
+							[Opportunity_ID = "OP-2006", Opportunity_Name = "Allianz Analytics Upgrade", Seller_Name = "Petra Kovacs", Region = "EMEA", Sub_Region = "CEE", Product_Line = "Analytics Cloud", Market = "Enterprise", Country = "Poland", Stage = "Develop", Forecast_Category = "Best Case", ARR_USD = 380000.0, Close_Date = #date(2026, 11, 30), Created_Date = #date(2026, 5, 1), Last_Modified_Date = #date(2026, 9, 8), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-3001", Opportunity_Name = "Infosys Cloud Migration", Seller_Name = "Raj Patel", Region = "APJ", Sub_Region = "SEA", Product_Line = "Data Intelligence", Market = "Enterprise", Country = "India", Stage = "Develop", Forecast_Category = "Best Case", ARR_USD = 560000.0, Close_Date = #date(2026, 10, 31), Created_Date = #date(2026, 3, 10), Last_Modified_Date = #date(2026, 8, 25), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-3002", Opportunity_Name = "TCS Platform Expansion", Seller_Name = "Priya Singh", Region = "APJ", Sub_Region = "SEA", Product_Line = "Storage Platform", Market = "Mid-Market", Country = "India", Stage = "Validate", Forecast_Category = "Commit", ARR_USD = 290000.0, Close_Date = #date(2026, 9, 30), Created_Date = #date(2026, 4, 20), Last_Modified_Date = #date(2026, 9, 1), Is_Overdue = false, Is_Won = false, Is_Net_New = false],
+							[Opportunity_ID = "OP-3003", Opportunity_Name = "Fujitsu Enterprise Suite", Seller_Name = "Kenji Yamamoto", Region = "APJ", Sub_Region = "ANZ", Product_Line = "Analytics Cloud", Market = "Enterprise", Country = "Japan", Stage = "Propose", Forecast_Category = "Commit", ARR_USD = 975000.0, Close_Date = #date(2026, 9, 30), Created_Date = #date(2026, 2, 15), Last_Modified_Date = #date(2026, 9, 5), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-3004", Opportunity_Name = "NTT Digital Transformation", Seller_Name = "Yuki Tanaka", Region = "APJ", Sub_Region = "ANZ", Product_Line = "Data Intelligence", Market = "Commercial", Country = "Japan", Stage = "Negotiate", Forecast_Category = "Commit", ARR_USD = 1450000.0, Close_Date = #date(2026, 9, 15), Created_Date = #date(2026, 1, 8), Last_Modified_Date = #date(2026, 9, 12), Is_Overdue = false, Is_Won = false, Is_Net_New = false],
+							[Opportunity_ID = "OP-3005", Opportunity_Name = "KDDI Cloud Services", Seller_Name = "Soo-Jin Park", Region = "APJ", Sub_Region = "SEA", Product_Line = "Storage Platform", Market = "Commercial", Country = "South Korea", Stage = "Qualify", Forecast_Category = "Pipeline", ARR_USD = 125000.0, Close_Date = #date(2026, 12, 31), Created_Date = #date(2026, 6, 15), Last_Modified_Date = #date(2026, 9, 15), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-3006", Opportunity_Name = "Telstra Data Platform", Seller_Name = "Michael Chen", Region = "APJ", Sub_Region = "ANZ", Product_Line = "Analytics Cloud", Market = "Mid-Market", Country = "Australia", Stage = "Develop", Forecast_Category = "Best Case", ARR_USD = 340000.0, Close_Date = #date(2026, 11, 30), Created_Date = #date(2026, 4, 8), Last_Modified_Date = #date(2026, 9, 10), Is_Overdue = false, Is_Won = false, Is_Net_New = true],
+							[Opportunity_ID = "OP-3007", Opportunity_Name = "ANZ Banking Analytics", Seller_Name = "Sarah Thompson", Region = "APJ", Sub_Region = "ANZ", Product_Line = "Data Intelligence", Market = "Enterprise", Country = "Australia", Stage = "Closed Won", Forecast_Category = "Won", ARR_USD = 680000.0, Close_Date = #date(2026, 8, 31), Created_Date = #date(2026, 2, 20), Last_Modified_Date = #date(2026, 8, 30), Is_Overdue = false, Is_Won = true, Is_Net_New = true]
+						},
+						type table [
+							Opportunity_ID = text,
+							Opportunity_Name = text,
+							Seller_Name = text,
+							Region = text,
+							Sub_Region = text,
+							Product_Line = text,
+							Market = text,
+							Country = text,
+							Stage = text,
+							Forecast_Category = text,
+							ARR_USD = number,
+							Close_Date = date,
+							Created_Date = date,
+							Last_Modified_Date = date,
+							Is_Overdue = logical,
+							Is_Won = logical,
+							Is_Net_New = logical
+						]
+					)
+				in
+					Source

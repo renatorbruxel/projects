@@ -1,0 +1,54 @@
+table Product_Lines
+	lineageTag: a0000006-0000-0000-0000-000000000001
+
+	column Code
+		dataType: string
+		lineageTag: a0000006-0000-0000-0000-000000000002
+		summarizeBy: none
+		isKey: true
+		sourceColumn: Code
+
+	column Product_Line
+		dataType: string
+		lineageTag: a0000006-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: Product_Line
+
+	column Business_Group
+		dataType: string
+		lineageTag: a0000006-0000-0000-0000-000000000004
+		summarizeBy: none
+		sourceColumn: Business_Group
+
+	column Category
+		dataType: string
+		lineageTag: a0000006-0000-0000-0000-000000000005
+		summarizeBy: none
+		sourceColumn: Category
+
+	partition 'Product_Lines-Partition'
+		mode: import
+		source
+			let
+			    Source = Table.FromRecords(
+			        {
+			            [ Code = "PLT-001", Product_Line = "Analytics Core", Business_Group = "Business Intelligence", Category = "Core Platform" ],
+			            [ Code = "PLT-002", Product_Line = "Revenue Intelligence", Business_Group = "Sales Analytics", Category = "Add-on" ],
+			            [ Code = "PLT-003", Product_Line = "Workforce Insights", Business_Group = "HR Analytics", Category = "Add-on" ],
+			            [ Code = "PLT-004", Product_Line = "Data Connector Suite", Business_Group = "Integration", Category = "Core Platform" ],
+			            [ Code = "PLT-005", Product_Line = "Forecasting Engine", Business_Group = "Predictive Analytics", Category = "Premium" ],
+			            [ Code = "PLT-006", Product_Line = "Executive Dashboard", Business_Group = "Reporting", Category = "Core Platform" ],
+			            [ Code = "PLT-007", Product_Line = "API Platform", Business_Group = "Developer Tools", Category = "Add-on" ],
+			            [ Code = "PLT-008", Product_Line = "Compliance Module", Business_Group = "Governance", Category = "Premium" ]
+			        },
+			        type table [
+			            Code = text,
+			            Product_Line = text,
+			            Business_Group = text,
+			            Category = text
+			        ]
+			    )
+			in
+			    Source
+
+	annotation PBI_Id = Product_Lines

@@ -1,0 +1,142 @@
+table 'Bookings_Actuals'
+	lineageTag: bok-001
+
+	column 'Region'
+		dataType: string
+		lineageTag: bok-002
+		summarizeBy: none
+		sourceColumn: Region
+
+	column 'Sub_Region'
+		dataType: string
+		lineageTag: bok-003
+		summarizeBy: none
+		sourceColumn: Sub_Region
+
+	column 'Product_Line'
+		dataType: string
+		lineageTag: bok-004
+		summarizeBy: none
+		sourceColumn: Product_Line
+
+	column 'Market'
+		dataType: string
+		lineageTag: bok-005
+		summarizeBy: none
+		sourceColumn: Market
+
+	column 'Booking_Date'
+		dataType: dateTime
+		lineageTag: bok-006
+		summarizeBy: none
+		sourceColumn: Booking_Date
+		formatString: yyyy-MM-dd
+
+	column 'AOP_Bookings'
+		dataType: double
+		lineageTag: bok-007
+		summarizeBy: sum
+		sourceColumn: AOP_Bookings
+		formatString: $#,0
+
+	column 'Q1FC_Bookings'
+		dataType: double
+		lineageTag: bok-008
+		summarizeBy: sum
+		sourceColumn: Q1FC_Bookings
+		formatString: $#,0
+
+	column 'Q2FC_Bookings'
+		dataType: double
+		lineageTag: bok-009
+		summarizeBy: sum
+		sourceColumn: Q2FC_Bookings
+		formatString: $#,0
+
+	column 'Q3FC_Bookings'
+		dataType: double
+		lineageTag: bok-010
+		summarizeBy: sum
+		sourceColumn: Q3FC_Bookings
+		formatString: $#,0
+
+	column 'Q4FC_Bookings'
+		dataType: double
+		lineageTag: bok-011
+		summarizeBy: sum
+		sourceColumn: Q4FC_Bookings
+		formatString: $#,0
+
+	column 'Actual_Bookings'
+		dataType: double
+		lineageTag: bok-012
+		summarizeBy: sum
+		sourceColumn: Actual_Bookings
+		formatString: $#,0
+
+	column 'AKey'
+		dataType: string
+		lineageTag: bok-013
+		summarizeBy: none
+		sourceColumn: AKey
+
+	partition 'Bookings_Actuals-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						Region = text,
+						Sub_Region = text,
+						Product_Line = text,
+						Market = text,
+						Booking_Date = date,
+						AOP_Bookings = number,
+						Q1FC_Bookings = number,
+						Q2FC_Bookings = number,
+						Q3FC_Bookings = number,
+						Q4FC_Bookings = number,
+						Actual_Bookings = number,
+						AKey = text
+					],
+					{
+						{"Americas","NAM","All","All",#date(2026,1,31),27000000,25500000,0,0,0,24800000,"AmericasNAMAllAll"},
+						{"Americas","NAM","All","All",#date(2026,2,28),27000000,0,25000000,0,0,19600000,"AmericasNAMAllAll"},
+						{"Americas","NAM","All","All",#date(2026,3,31),27000000,0,0,26500000,0,31200000,"AmericasNAMAllAll"},
+						{"Americas","NAM","All","All",#date(2026,4,30),27000000,0,27000000,0,0,22100000,"AmericasNAMAllAll"},
+						{"Americas","NAM","All","All",#date(2026,5,31),27000000,0,0,26000000,0,21400000,"AmericasNAMAllAll"},
+						{"Americas","NAM","All","All",#date(2026,6,30),27000000,0,0,29000000,0,33800000,"AmericasNAMAllAll"},
+						{"Americas","NAM","All","All",#date(2026,7,31),27000000,0,0,27500000,0,18900000,"AmericasNAMAllAll"},
+						{"Americas","NAM","All","All",#date(2026,8,31),27000000,0,0,0,26500000,20500000,"AmericasNAMAllAll"},
+						{"Americas","NAM","All","All",#date(2026,9,30),27000000,0,0,0,28000000,0,"AmericasNAMAllAll"},
+						{"Americas","NAM","All","All",#date(2026,10,31),27000000,0,0,0,27000000,0,"AmericasNAMAllAll"},
+						{"Americas","NAM","All","All",#date(2026,11,30),27000000,0,0,0,27000000,0,"AmericasNAMAllAll"},
+						{"Americas","NAM","All","All",#date(2026,12,31),27000000,0,0,0,30000000,0,"AmericasNAMAllAll"},
+						{"EMEA","EMEA West","All","All",#date(2026,1,31),23000000,21500000,0,0,0,22100000,"EMEAEMEAWestAllAll"},
+						{"EMEA","EMEA West","All","All",#date(2026,2,28),23000000,0,22000000,0,0,20800000,"EMEAEMEAWestAllAll"},
+						{"EMEA","EMEA West","All","All",#date(2026,3,31),23000000,0,0,24000000,0,27500000,"EMEAEMEAWestAllAll"},
+						{"EMEA","EMEA West","All","All",#date(2026,4,30),23000000,0,23500000,0,0,19200000,"EMEAEMEAWestAllAll"},
+						{"EMEA","EMEA West","All","All",#date(2026,5,31),23000000,0,0,22000000,0,22800000,"EMEAEMEAWestAllAll"},
+						{"EMEA","EMEA West","All","All",#date(2026,6,30),23000000,0,0,25500000,0,30100000,"EMEAEMEAWestAllAll"},
+						{"EMEA","EMEA West","All","All",#date(2026,7,31),23000000,0,0,23000000,0,17400000,"EMEAEMEAWestAllAll"},
+						{"EMEA","EMEA West","All","All",#date(2026,8,31),23000000,0,0,0,23000000,24600000,"EMEAEMEAWestAllAll"},
+						{"EMEA","EMEA West","All","All",#date(2026,9,30),23000000,0,0,0,25000000,0,"EMEAEMEAWestAllAll"},
+						{"EMEA","EMEA West","All","All",#date(2026,10,31),23000000,0,0,0,23000000,0,"EMEAEMEAWestAllAll"},
+						{"EMEA","EMEA West","All","All",#date(2026,11,30),23000000,0,0,0,23000000,0,"EMEAEMEAWestAllAll"},
+						{"EMEA","EMEA West","All","All",#date(2026,12,31),23000000,0,0,0,26000000,0,"EMEAEMEAWestAllAll"},
+						{"APJ","APJ North","All","All",#date(2026,1,31),17000000,16000000,0,0,0,14900000,"APJAPJNorthAllAll"},
+						{"APJ","APJ North","All","All",#date(2026,2,28),17000000,0,16500000,0,0,13800000,"APJAPJNorthAllAll"},
+						{"APJ","APJ North","All","All",#date(2026,3,31),17000000,0,0,18000000,0,20200000,"APJAPJNorthAllAll"},
+						{"APJ","APJ North","All","All",#date(2026,4,30),17000000,0,17000000,0,0,14600000,"APJAPJNorthAllAll"},
+						{"APJ","APJ North","All","All",#date(2026,5,31),17000000,0,0,16500000,0,15100000,"APJAPJNorthAllAll"},
+						{"APJ","APJ North","All","All",#date(2026,6,30),17000000,0,0,19000000,0,21300000,"APJAPJNorthAllAll"},
+						{"APJ","APJ North","All","All",#date(2026,7,31),17000000,0,0,17000000,0,12800000,"APJAPJNorthAllAll"},
+						{"APJ","APJ North","All","All",#date(2026,8,31),17000000,0,0,0,17000000,16400000,"APJAPJNorthAllAll"},
+						{"APJ","APJ North","All","All",#date(2026,9,30),17000000,0,0,0,18500000,0,"APJAPJNorthAllAll"},
+						{"APJ","APJ North","All","All",#date(2026,10,31),17000000,0,0,0,17000000,0,"APJAPJNorthAllAll"},
+						{"APJ","APJ North","All","All",#date(2026,11,30),17000000,0,0,0,17000000,0,"APJAPJNorthAllAll"},
+						{"APJ","APJ North","All","All",#date(2026,12,31),17000000,0,0,0,20000000,0,"APJAPJNorthAllAll"}
+					}
+				)
+			in
+				Source

@@ -1,0 +1,67 @@
+table Quote_Mapping
+	lineageTag: b4c5d6e7-f8a9-0123-bcde-234567890123
+
+	column Opportunity_ID
+		dataType: string
+		lineageTag: b4c5d6e7-f8a9-0123-bcde-234567890124
+		summarizeBy: none
+
+	column Quote_ID
+		dataType: string
+		lineageTag: b4c5d6e7-f8a9-0123-bcde-234567890125
+		summarizeBy: none
+
+	column Quote_Status
+		dataType: string
+		lineageTag: b4c5d6e7-f8a9-0123-bcde-234567890126
+		summarizeBy: none
+
+	column Quote_ARR
+		dataType: double
+		lineageTag: b4c5d6e7-f8a9-0123-bcde-234567890127
+		formatString: $#,0
+
+	partition Quote_Mapping-Partition
+		mode: import
+		source
+			type: m
+			expression
+				= let
+				    Source = #table(
+				        type table [
+				            Opportunity_ID = text,
+				            Quote_ID = text,
+				            Quote_Status = text,
+				            Quote_ARR = number
+				        ],
+				        {
+				            {"OPP-1001","Q-10001","Accepted",420000},
+				            {"OPP-1002","Q-10002","Draft",150000},
+				            {"OPP-1003","Q-10003","Accepted",680000},
+				            {"OPP-1004","Q-10004","Pending",220000},
+				            {"OPP-1005","Q-10005","Rejected",310000},
+				            {"OPP-1006","Q-10006","Draft",195000},
+				            {"OPP-1007","Q-10007","Accepted",540000},
+				            {"OPP-1008","Q-10008","Draft",280000},
+				            {"OPP-2001","Q-20001","Accepted",390000},
+				            {"OPP-2002","Q-20002","Pending",175000},
+				            {"OPP-2003","Q-20003","Accepted",520000},
+				            {"OPP-2004","Q-20004","Draft",240000},
+				            {"OPP-2005","Q-20005","Rejected",460000},
+				            {"OPP-2006","Q-20006","Draft",330000},
+				            {"OPP-2007","Q-20007","Accepted",290000},
+				            {"OPP-2008","Q-20008","Draft",210000},
+				            {"OPP-3001","Q-30001","Accepted",610000},
+				            {"OPP-3002","Q-30002","Pending",200000},
+				            {"OPP-3003","Q-30003","Accepted",350000},
+				            {"OPP-3004","Q-30004","Draft",185000},
+				            {"OPP-3005","Q-30005","Accepted",480000},
+				            {"OPP-3006","Q-30006","Draft",140000},
+				            {"OPP-3007","Q-30007","Accepted",570000},
+				            {"OPP-3008","Q-30008","Draft",320000},
+				            {"OPP-1009","Q-10009","Accepted",260000}
+				        }
+				    )
+				in
+				    Source
+

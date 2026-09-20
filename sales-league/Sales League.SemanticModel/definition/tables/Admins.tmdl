@@ -1,0 +1,41 @@
+table Admins
+	lineageTag: a7b8c9d0-e1f2-3456-abcd-567890123456
+
+	column Email
+		dataType: string
+		lineageTag: a7b8c9d0-e1f2-3456-abcd-567890123457
+		summarizeBy: none
+
+	column Name
+		dataType: string
+		lineageTag: a7b8c9d0-e1f2-3456-abcd-567890123458
+		summarizeBy: none
+
+	column Access_Level
+		dataType: string
+		lineageTag: a7b8c9d0-e1f2-3456-abcd-567890123459
+		summarizeBy: none
+
+	partition Admins-Partition
+		mode: import
+		source
+			type: m
+			expression
+				= let
+				    Source = #table(
+				        type table [
+				            Email = text,
+				            Name = text,
+				            Access_Level = text
+				        ],
+				        {
+				            {"admin.ops@vantara-fictional.demo","Operations Admin","Full"},
+				            {"v.ross@vantara-fictional.demo","Victoria Ross","Regional VP"},
+				            {"b.hartmann@vantara-fictional.demo","Boris Hartmann","Regional VP"},
+				            {"y.suzuki@vantara-fictional.demo","Yuki Suzuki","Regional VP"},
+				            {"sales.ops@vantara-fictional.demo","Sales Operations","Full"}
+				        }
+				    )
+				in
+				    Source
+

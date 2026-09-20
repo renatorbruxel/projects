@@ -1,0 +1,25 @@
+relationship 'b1a2c3d4-e5f6-7890-abcd-ef1234567801'
+	fromTable: Net_New_Transactions
+	fromColumn: Market
+	toTable: Regions
+	toColumn: Market
+
+relationship 'b1a2c3d4-e5f6-7890-abcd-ef1234567802'
+	fromTable: Net_New_Transactions
+	fromColumn: Product_Line_Code
+	toTable: Product_Lines
+	toColumn: Code
+
+relationship 'b1a2c3d4-e5f6-7890-abcd-ef1234567803'
+	fromTable: Net_New_Transactions
+	fromColumn: Opportunity_ID
+	toTable: Opportunity_Pipeline
+	toColumn: Opportunity_ID
+	crossFilteringBehavior: bothDirections
+	joinOnDateBehavior: datePartOnly
+
+relationship 'b1a2c3d4-e5f6-7890-abcd-ef1234567804'
+	fromTable: Net_New_Transactions
+	fromColumn: Transaction_Date
+	toTable: Calendar
+	toColumn: Date

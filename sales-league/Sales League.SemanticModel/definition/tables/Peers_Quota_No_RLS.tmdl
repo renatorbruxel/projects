@@ -1,0 +1,60 @@
+table Peers_Quota_No_RLS
+	lineageTag: e7f8a9b0-c1d2-3456-efab-567890123456
+
+	column Seller_Email
+		dataType: string
+		lineageTag: e7f8a9b0-c1d2-3456-efab-567890123457
+		summarizeBy: none
+
+	column Region
+		dataType: string
+		lineageTag: e7f8a9b0-c1d2-3456-efab-567890123458
+		summarizeBy: none
+
+	column AOP_EUR
+		dataType: double
+		lineageTag: e7f8a9b0-c1d2-3456-efab-567890123459
+		formatString: $#,0
+
+	column Attainment_Pct
+		dataType: double
+		lineageTag: e7f8a9b0-c1d2-3456-efab-567890123460
+		formatString: 0.0%
+
+	column Peer_Band
+		dataType: string
+		lineageTag: e7f8a9b0-c1d2-3456-efab-567890123461
+		summarizeBy: none
+
+	partition Peers_Quota_No_RLS-Partition
+		mode: import
+		source
+			type: m
+			expression
+				= let
+				    Source = #table(
+				        type table [
+				            Seller_Email = text,
+				            Region = text,
+				            AOP_EUR = number,
+				            Attainment_Pct = number,
+				            Peer_Band = text
+				        ],
+				        {
+				            {"a.chen@vantara-fictional.demo","Americas",750000,0.91,"Senior"},
+				            {"j.rivera@vantara-fictional.demo","Americas",1000000,0.68,"Senior"},
+				            {"m.blake@vantara-fictional.demo","Americas",700000,0.00,"Mid"},
+				            {"t.kim@vantara-fictional.demo","Americas",850000,0.64,"Senior"},
+				            {"s.patel@vantara-fictional.demo","EMEA",386100,1.01,"Mid"},
+				            {"c.muller@vantara-fictional.demo","EMEA",850000,0.61,"Senior"},
+				            {"n.larsson@vantara-fictional.demo","EMEA",616000,0.00,"Mid"},
+				            {"p.sharma@vantara-fictional.demo","EMEA",700000,0.41,"Mid"},
+				            {"w.zhang@vantara-fictional.demo","APJ",1200000,0.51,"Elite"},
+				            {"h.tanaka@vantara-fictional.demo","APJ",742500,0.47,"Mid"},
+				            {"r.nair@vantara-fictional.demo","APJ",850000,0.56,"Senior"},
+				            {"k.yamamoto@vantara-fictional.demo","APJ",793000,0.72,"Senior"}
+				        }
+				    )
+				in
+				    Source
+

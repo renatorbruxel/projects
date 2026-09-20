@@ -1,0 +1,76 @@
+table Regions
+	lineageTag: a0000005-0000-0000-0000-000000000001
+
+	column Region
+		dataType: string
+		lineageTag: a0000005-0000-0000-0000-000000000002
+		summarizeBy: none
+		sourceColumn: Region
+
+	column Sub_Region
+		dataType: string
+		lineageTag: a0000005-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: Sub_Region
+
+	column Market
+		dataType: string
+		lineageTag: a0000005-0000-0000-0000-000000000004
+		summarizeBy: none
+		isKey: true
+		sourceColumn: Market
+
+	column Market_ID
+		dataType: string
+		lineageTag: a0000005-0000-0000-0000-000000000005
+		summarizeBy: none
+		sourceColumn: Market_ID
+
+	partition 'Regions-Partition'
+		mode: import
+		source
+			let
+			    Source = Table.FromRecords(
+			        {
+			            [ Region = "Americas", Sub_Region = "NAM", Market = "US-East", Market_ID = "AME-NAM-USE" ],
+			            [ Region = "Americas", Sub_Region = "NAM", Market = "US-West", Market_ID = "AME-NAM-USW" ],
+			            [ Region = "Americas", Sub_Region = "NAM", Market = "US-Central", Market_ID = "AME-NAM-USC" ],
+			            [ Region = "Americas", Sub_Region = "NAM", Market = "Canada", Market_ID = "AME-NAM-CAN" ],
+			            [ Region = "Americas", Sub_Region = "LATAM", Market = "Brazil", Market_ID = "AME-LAT-BRA" ],
+			            [ Region = "Americas", Sub_Region = "LATAM", Market = "Mexico", Market_ID = "AME-LAT-MEX" ],
+			            [ Region = "Americas", Sub_Region = "LATAM", Market = "Colombia", Market_ID = "AME-LAT-COL" ],
+			            [ Region = "Americas", Sub_Region = "LATAM", Market = "Argentina", Market_ID = "AME-LAT-ARG" ],
+			            [ Region = "Americas", Sub_Region = "LATAM", Market = "Chile", Market_ID = "AME-LAT-CHL" ],
+			            [ Region = "Americas", Sub_Region = "LATAM", Market = "Peru", Market_ID = "AME-LAT-PER" ],
+			            [ Region = "EMEA", Sub_Region = "WEU", Market = "UK", Market_ID = "EME-WEU-GBR" ],
+			            [ Region = "EMEA", Sub_Region = "WEU", Market = "Germany", Market_ID = "EME-WEU-DEU" ],
+			            [ Region = "EMEA", Sub_Region = "WEU", Market = "France", Market_ID = "EME-WEU-FRA" ],
+			            [ Region = "EMEA", Sub_Region = "WEU", Market = "Netherlands", Market_ID = "EME-WEU-NLD" ],
+			            [ Region = "EMEA", Sub_Region = "WEU", Market = "Sweden", Market_ID = "EME-WEU-SWE" ],
+			            [ Region = "EMEA", Sub_Region = "WEU", Market = "Spain", Market_ID = "EME-WEU-ESP" ],
+			            [ Region = "EMEA", Sub_Region = "WEU", Market = "Italy", Market_ID = "EME-WEU-ITA" ],
+			            [ Region = "EMEA", Sub_Region = "WEU", Market = "Switzerland", Market_ID = "EME-WEU-CHE" ],
+			            [ Region = "EMEA", Sub_Region = "CEE", Market = "Poland", Market_ID = "EME-CEE-POL" ],
+			            [ Region = "EMEA", Sub_Region = "CEE", Market = "Czech Republic", Market_ID = "EME-CEE-CZE" ],
+			            [ Region = "EMEA", Sub_Region = "CEE", Market = "Romania", Market_ID = "EME-CEE-ROU" ],
+			            [ Region = "EMEA", Sub_Region = "CEE", Market = "UAE", Market_ID = "EME-CEE-ARE" ],
+			            [ Region = "APJ", Sub_Region = "ANZ", Market = "Australia", Market_ID = "APJ-ANZ-AUS" ],
+			            [ Region = "APJ", Sub_Region = "ANZ", Market = "New Zealand", Market_ID = "APJ-ANZ-NZL" ],
+			            [ Region = "APJ", Sub_Region = "SEA", Market = "Singapore", Market_ID = "APJ-SEA-SGP" ],
+			            [ Region = "APJ", Sub_Region = "SEA", Market = "Japan", Market_ID = "APJ-SEA-JPN" ],
+			            [ Region = "APJ", Sub_Region = "SEA", Market = "India", Market_ID = "APJ-SEA-IND" ],
+			            [ Region = "APJ", Sub_Region = "SEA", Market = "South Korea", Market_ID = "APJ-SEA-KOR" ],
+			            [ Region = "APJ", Sub_Region = "SEA", Market = "Indonesia", Market_ID = "APJ-SEA-IDN" ],
+			            [ Region = "APJ", Sub_Region = "SEA", Market = "Malaysia", Market_ID = "APJ-SEA-MYS" ]
+			        },
+			        type table [
+			            Region = text,
+			            Sub_Region = text,
+			            Market = text,
+			            Market_ID = text
+			        ]
+			    )
+			in
+			    Source
+
+	annotation PBI_Id = Regions

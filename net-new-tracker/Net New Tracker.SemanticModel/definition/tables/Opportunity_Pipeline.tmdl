@@ -1,0 +1,100 @@
+table Opportunity_Pipeline
+	lineageTag: a0000007-0000-0000-0000-000000000001
+
+	column Opportunity_ID
+		dataType: string
+		lineageTag: a0000007-0000-0000-0000-000000000002
+		summarizeBy: none
+		isKey: true
+		sourceColumn: Opportunity_ID
+
+	column Account_Name
+		dataType: string
+		lineageTag: a0000007-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: Account_Name
+
+	column Stage
+		dataType: string
+		lineageTag: a0000007-0000-0000-0000-000000000004
+		summarizeBy: none
+		sourceColumn: Stage
+
+	column Expected_ARR_USD
+		dataType: double
+		lineageTag: a0000007-0000-0000-0000-000000000005
+		formatString: \$#,0
+		summarizeBy: sum
+		sourceColumn: Expected_ARR_USD
+
+	column Close_Date
+		dataType: dateTime
+		lineageTag: a0000007-0000-0000-0000-000000000006
+		formatString: yyyy-MM-dd
+		summarizeBy: none
+		sourceColumn: Close_Date
+
+	column Probability_Pct
+		dataType: double
+		lineageTag: a0000007-0000-0000-0000-000000000007
+		formatString: 0%
+		summarizeBy: none
+		sourceColumn: Probability_Pct
+
+	column Forecast_Category
+		dataType: string
+		lineageTag: a0000007-0000-0000-0000-000000000008
+		summarizeBy: none
+		sourceColumn: Forecast_Category
+
+	partition 'Opportunity_Pipeline-Partition'
+		mode: import
+		source
+			let
+			    Source = Table.FromRecords(
+			        {
+			            [ Opportunity_ID = "OPP-2024-001", Account_Name = "Nexflow Inc", Stage = "Closed Won", Expected_ARR_USD = 320000, Close_Date = #date(2024, 1, 15), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-002", Account_Name = "Driftwave Technologies", Stage = "Closed Won", Expected_ARR_USD = 175000, Close_Date = #date(2024, 1, 28), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-003", Account_Name = "Stacklane Corp", Stage = "Closed Won", Expected_ARR_USD = 480000, Close_Date = #date(2024, 2, 5), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-004", Account_Name = "Voxel AI", Stage = "Closed Won", Expected_ARR_USD = 250000, Close_Date = #date(2024, 2, 20), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-005", Account_Name = "Meridian Systems", Stage = "Closed Won", Expected_ARR_USD = 700000, Close_Date = #date(2024, 3, 10), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-006", Account_Name = "Luminos Platform", Stage = "Closed Won", Expected_ARR_USD = 390000, Close_Date = #date(2024, 3, 22), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-007", Account_Name = "CoreSync Ltd", Stage = "Closed Won", Expected_ARR_USD = 130000, Close_Date = #date(2024, 4, 8), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-008", Account_Name = "Praxis Analytics", Stage = "Closed Won", Expected_ARR_USD = 560000, Close_Date = #date(2024, 4, 17), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-009", Account_Name = "Orbium Solutions", Stage = "Closed Won", Expected_ARR_USD = 200000, Close_Date = #date(2024, 5, 3), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-010", Account_Name = "Velodata Inc", Stage = "Closed Won", Expected_ARR_USD = 310000, Close_Date = #date(2024, 5, 19), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-011", Account_Name = "Axiom Cloud", Stage = "Closed Won", Expected_ARR_USD = 800000, Close_Date = #date(2024, 6, 7), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-012", Account_Name = "Capsulate Systems", Stage = "Closed Won", Expected_ARR_USD = 95000, Close_Date = #date(2024, 6, 24), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-013", Account_Name = "Stratify Group", Stage = "Closed Won", Expected_ARR_USD = 410000, Close_Date = #date(2024, 7, 11), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-014", Account_Name = "Proxima Networks", Stage = "Closed Won", Expected_ARR_USD = 260000, Close_Date = #date(2024, 7, 30), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-015", Account_Name = "Rendex Corp", Stage = "Closed Won", Expected_ARR_USD = 120000, Close_Date = #date(2024, 8, 5), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-016", Account_Name = "Talentify Platform", Stage = "Closed Won", Expected_ARR_USD = 145000, Close_Date = #date(2024, 8, 21), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-017", Account_Name = "Glyphworks", Stage = "Closed Won", Expected_ARR_USD = 85000, Close_Date = #date(2024, 9, 3), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-018", Account_Name = "Loopboard AI", Stage = "Closed Won", Expected_ARR_USD = 375000, Close_Date = #date(2024, 9, 17), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-019", Account_Name = "Nomadix Labs", Stage = "Closed Won", Expected_ARR_USD = 190000, Close_Date = #date(2024, 10, 8), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-020", Account_Name = "Patchwork Inc", Stage = "Closed Won", Expected_ARR_USD = 430000, Close_Date = #date(2024, 10, 25), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-021", Account_Name = "Vaultly Security", Stage = "Closed Won", Expected_ARR_USD = 620000, Close_Date = #date(2024, 11, 5), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-022", Account_Name = "Clearpath AI", Stage = "Closed Won", Expected_ARR_USD = 50000, Close_Date = #date(2024, 11, 18), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-023", Account_Name = "Signalwave Corp", Stage = "Closed Won", Expected_ARR_USD = 275000, Close_Date = #date(2024, 12, 2), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-024", Account_Name = "Bridgebox Technologies", Stage = "Closed Won", Expected_ARR_USD = 340000, Close_Date = #date(2024, 12, 16), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2024-025", Account_Name = "Tracepath Solutions", Stage = "Closed Won", Expected_ARR_USD = 490000, Close_Date = #date(2024, 12, 30), Probability_Pct = 1.0, Forecast_Category = "Closed" ],
+			            [ Opportunity_ID = "OPP-2025-001", Account_Name = "Quantform Labs", Stage = "Proposal Submitted", Expected_ARR_USD = 380000, Close_Date = #date(2025, 2, 28), Probability_Pct = 0.6, Forecast_Category = "Best Case" ],
+			            [ Opportunity_ID = "OPP-2025-002", Account_Name = "Flotix Group", Stage = "Negotiation", Expected_ARR_USD = 520000, Close_Date = #date(2025, 1, 31), Probability_Pct = 0.8, Forecast_Category = "Commit" ],
+			            [ Opportunity_ID = "OPP-2025-003", Account_Name = "Hyperion Data", Stage = "Discovery", Expected_ARR_USD = 210000, Close_Date = #date(2025, 3, 15), Probability_Pct = 0.3, Forecast_Category = "Pipeline" ],
+			            [ Opportunity_ID = "OPP-2025-004", Account_Name = "Rimex Solutions", Stage = "Evaluation", Expected_ARR_USD = 640000, Close_Date = #date(2025, 2, 14), Probability_Pct = 0.5, Forecast_Category = "Best Case" ],
+			            [ Opportunity_ID = "OPP-2025-005", Account_Name = "Syncera Technologies", Stage = "Proposal Submitted", Expected_ARR_USD = 290000, Close_Date = #date(2025, 3, 31), Probability_Pct = 0.55, Forecast_Category = "Best Case" ]
+			        },
+			        type table [
+			            Opportunity_ID = text,
+			            Account_Name = text,
+			            Stage = text,
+			            Expected_ARR_USD = number,
+			            Close_Date = date,
+			            Probability_Pct = number,
+			            Forecast_Category = text
+			        ]
+			    )
+			in
+			    Source
+
+	annotation PBI_Id = Opportunity_Pipeline

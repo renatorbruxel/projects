@@ -1,0 +1,74 @@
+table 'Conversion_Rate'
+	lineageTag: cvr-001
+
+	column 'From_Stage'
+		dataType: string
+		lineageTag: cvr-002
+		summarizeBy: none
+		sourceColumn: From_Stage
+
+	column 'To_Stage'
+		dataType: string
+		lineageTag: cvr-003
+		summarizeBy: none
+		sourceColumn: To_Stage
+
+	column 'Product_Line'
+		dataType: string
+		lineageTag: cvr-004
+		summarizeBy: none
+		sourceColumn: Product_Line
+
+	column 'Market'
+		dataType: string
+		lineageTag: cvr-005
+		summarizeBy: none
+		sourceColumn: Market
+
+	column 'Conversion_%'
+		dataType: double
+		lineageTag: cvr-006
+		summarizeBy: average
+		sourceColumn: Conversion_%
+		formatString: 0.0%
+
+	column 'Avg_Days_in_Stage'
+		dataType: int64
+		lineageTag: cvr-007
+		summarizeBy: average
+		sourceColumn: Avg_Days_in_Stage
+
+	partition 'Conversion_Rate-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						From_Stage = text,
+						To_Stage = text,
+						Product_Line = text,
+						Market = text,
+						#"Conversion_%" = number,
+						Avg_Days_in_Stage = Int64.Type
+					],
+					{
+						{"Qualification","Discovery","All","Enterprise",0.72,18},
+						{"Discovery","Proposal","All","Enterprise",0.65,22},
+						{"Proposal","Negotiation","All","Enterprise",0.58,19},
+						{"Negotiation","Closed Won","All","Enterprise",0.81,12},
+						{"Qualification","Discovery","All","Mid-Market",0.68,14},
+						{"Discovery","Proposal","All","Mid-Market",0.61,16},
+						{"Proposal","Negotiation","All","Mid-Market",0.55,14},
+						{"Negotiation","Closed Won","All","Mid-Market",0.78,9},
+						{"Qualification","Discovery","Analytics","Enterprise",0.75,16},
+						{"Discovery","Proposal","Analytics","Enterprise",0.68,20},
+						{"Qualification","Discovery","Security","Enterprise",0.70,19},
+						{"Discovery","Proposal","Security","Enterprise",0.63,24},
+						{"Qualification","Discovery","Platform","Enterprise",0.73,17},
+						{"Discovery","Proposal","Platform","Enterprise",0.67,21},
+						{"Qualification","Discovery","Workflow","Enterprise",0.69,15},
+						{"Discovery","Proposal","Workflow","Enterprise",0.62,18}
+					}
+				)
+			in
+				Source

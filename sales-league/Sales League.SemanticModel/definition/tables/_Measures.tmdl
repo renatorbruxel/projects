@@ -1,0 +1,94 @@
+table _Measures
+	lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+
+	measure 'Total_Bookings' = SUM('Main'[ARR_Closed_Won])
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567801
+		displayFolder: Individual - Seller
+		formatString: $#,0,,\M
+
+	measure 'Quota_AOP' = SUM('Quota'[Q1_EUR]) + SUM('Quota'[Q2_EUR]) + SUM('Quota'[Q3_EUR]) + SUM('Quota'[Q4_EUR])
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567802
+		displayFolder: Individual - Seller
+		formatString: $#,0,,\M
+
+	measure 'Attainment_%' = DIVIDE([Total_Bookings], [Quota_AOP])
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567803
+		displayFolder: Individual - Seller
+		formatString: 0.0%
+
+	measure 'Pipeline_ARR' = CALCULATE(SUM('Main'[ARR_USD]), 'Main'[Is_Won_Loss_Open] = "Open")
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567804
+		displayFolder: Individual - Seller
+		formatString: $#,0,,\M
+
+	measure 'Win_Rate' = DIVIDE(CALCULATE(COUNTROWS('Main'), 'Main'[Is_Won_Loss_Open]="Won"), CALCULATE(COUNTROWS('Main'), 'Main'[Is_Won_Loss_Open] IN {"Won","Lost"}))
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567805
+		displayFolder: Individual - Seller
+		formatString: 0.0%
+
+	measure 'Funnel_Hygiene' = AVERAGE('Gamification'[Funnel_Hygiene_Score])
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567806
+		displayFolder: Individual - Seller
+		formatString: 0.0%
+
+	measure 'Open_Opportunities' = CALCULATE(COUNTROWS('Main'), 'Main'[Is_Won_Loss_Open] = "Open")
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567807
+		displayFolder: Individual - Seller
+
+	measure 'Color_Win_Rate' = IF([Win_Rate] >= 0.25, "#27AE60", IF([Win_Rate] >= 0.15, "#F39C12", "#E74C3C"))
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567810
+		displayFolder: Colors
+
+	measure 'Color_Funnel_Hygiene' = IF([Funnel_Hygiene] >= 0.70, "#27AE60", IF([Funnel_Hygiene] >= 0.50, "#F39C12", "#E74C3C"))
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567811
+		displayFolder: Colors
+
+	measure 'Color_Attainment' = IF([Attainment_%] >= 1.0, "#27AE60", IF([Attainment_%] >= 0.7, "#F39C12", "#E74C3C"))
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567812
+		displayFolder: Colors
+
+	measure 'Team_Total_Bookings' = CALCULATE([Total_Bookings], ALLEXCEPT('Main', 'Main'[Manager_Email]))
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567820
+		displayFolder: Manager
+		formatString: $#,0,,\M
+
+	measure 'Team_Attainment_%' = DIVIDE([Team_Total_Bookings], CALCULATE([Quota_AOP], ALLEXCEPT('Quota', 'Quota'[Manager_Email])))
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567821
+		displayFolder: Manager
+		formatString: 0.0%
+
+	measure 'Count_Sellers' = DISTINCTCOUNT('Quota_Seller_Info'[Seller_Email])
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567822
+		displayFolder: Manager
+
+	measure 'Sellers_Below_70pct' = CALCULATE([Count_Sellers], [Attainment_%] < 0.7)
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567823
+		displayFolder: Manager
+
+	measure 'Total_Points' = SUM('Gamification'[Acc_Points])
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567830
+		displayFolder: Gamification
+
+	measure 'Global_Ranking' = RANKX(ALL('Quota_Seller_Info'), [Total_Points],, DESC, Dense)
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567831
+		displayFolder: Gamification
+
+	measure 'Regional_Ranking' = RANKX(ALLEXCEPT('Quota_Seller_Info', 'Quota_Seller_Info'[Region]), [Total_Points],, DESC, Dense)
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567832
+		displayFolder: Gamification
+
+	measure 'Is_Admin' = IF(USERPRINCIPALNAME() IN VALUES('Admins'[Email]), 1, 0)
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567833
+		displayFolder: Gamification
+
+	measure 'Nav_To_Seller' = IF(USERPRINCIPALNAME() IN VALUES('Quota_Seller_Info'[Seller_Email]), 1, 0)
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567834
+		displayFolder: Gamification
+
+	partition _Measures-Partition
+		mode: import
+		source
+			type: m
+			expression
+				= #table({}, {{}})
+

@@ -1,0 +1,78 @@
+table 'Dimension_Key'
+	lineageTag: dky-001
+
+	column 'AKey'
+		dataType: string
+		lineageTag: dky-002
+		summarizeBy: none
+		isKey
+		sourceColumn: AKey
+
+	column 'Region'
+		dataType: string
+		lineageTag: dky-003
+		summarizeBy: none
+		sourceColumn: Region
+
+	column 'Sub_Region'
+		dataType: string
+		lineageTag: dky-004
+		summarizeBy: none
+		sourceColumn: Sub_Region
+
+	column 'Product_Line'
+		dataType: string
+		lineageTag: dky-005
+		summarizeBy: none
+		sourceColumn: Product_Line
+
+	column 'Market'
+		dataType: string
+		lineageTag: dky-006
+		summarizeBy: none
+		sourceColumn: Market
+
+	partition 'Dimension_Key-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						AKey = text,
+						Region = text,
+						Sub_Region = text,
+						Product_Line = text,
+						Market = text
+					],
+					{
+						{"AmericasNAMAnalyticsEnterprise","Americas","NAM","Analytics","Enterprise"},
+						{"AmericasNAMSecurityEnterprise","Americas","NAM","Security","Enterprise"},
+						{"AmericasNAMWorkflowEnterprise","Americas","NAM","Workflow","Enterprise"},
+						{"AmericasNAMPlatformEnterprise","Americas","NAM","Platform","Enterprise"},
+						{"AmericasNAMSecurityMid-Market","Americas","NAM","Security","Mid-Market"},
+						{"AmericasLATAMAnalyticsMid-Market","Americas","LATAM","Analytics","Mid-Market"},
+						{"AmericasLATAMWorkflowEnterprise","Americas","LATAM","Workflow","Enterprise"},
+						{"AmericasLATAMSecurityMid-Market","Americas","LATAM","Security","Mid-Market"},
+						{"AmericasNAMAllAll","Americas","NAM","All","All"},
+						{"EMEAEMEAWestAnalyticsEnterprise","EMEA","EMEA West","Analytics","Enterprise"},
+						{"EMEAEMEAWestPlatformEnterprise","EMEA","EMEA West","Platform","Enterprise"},
+						{"EMEAEMEAWestSecurityEnterprise","EMEA","EMEA West","Security","Enterprise"},
+						{"EMEAEMEAWestWorkflowEnterprise","EMEA","EMEA West","Workflow","Enterprise"},
+						{"EMEAEMEAWestWorkflowMid-Market","EMEA","EMEA West","Workflow","Mid-Market"},
+						{"EMEAEMEASouthAnalyticsEnterprise","EMEA","EMEA South","Analytics","Enterprise"},
+						{"EMEAEMEASouthPlatformEnterprise","EMEA","EMEA South","Platform","Enterprise"},
+						{"EMEAEMEASouthSecurityMid-Market","EMEA","EMEA South","Security","Mid-Market"},
+						{"EMEAEMEAWestAllAll","EMEA","EMEA West","All","All"},
+						{"APJAPJNorthPlatformEnterprise","APJ","APJ North","Platform","Enterprise"},
+						{"APJAPJSouthAnalyticsEnterprise","APJ","APJ South","Analytics","Enterprise"},
+						{"APJAPJNorthSecurityEnterprise","APJ","APJ North","Security","Enterprise"},
+						{"APJAPJNorthWorkflowEnterprise","APJ","APJ North","Workflow","Enterprise"},
+						{"APJAPJSouthPlatformEnterprise","APJ","APJ South","Platform","Enterprise"},
+						{"APJAPJNorthAnalyticsEnterprise","APJ","APJ North","Analytics","Enterprise"},
+						{"APJAPJSouthSecurityEnterprise","APJ","APJ South","Security","Enterprise"},
+						{"APJAPJNorthWorkflowMid-Market","APJ","APJ North","Workflow","Mid-Market"},
+						{"APJAPJNorthAllAll","APJ","APJ North","All","All"}
+					}
+				)
+			in
+				Source

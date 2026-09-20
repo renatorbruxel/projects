@@ -1,0 +1,79 @@
+table 'Pipeline_Snapshot'
+	lineageTag: psnap-001
+
+	column Snapshot_Date
+		dataType: dateTime
+		lineageTag: psnap-c-001
+		summarizeBy: none
+		sourceColumn: Snapshot_Date
+		formatString: yyyy-MM-dd
+
+	column Region
+		dataType: string
+		lineageTag: psnap-c-002
+		summarizeBy: none
+		sourceColumn: Region
+
+	column Stage
+		dataType: string
+		lineageTag: psnap-c-003
+		summarizeBy: none
+		sourceColumn: Stage
+
+	column Pipeline_ARR
+		dataType: double
+		lineageTag: psnap-c-004
+		summarizeBy: sum
+		sourceColumn: Pipeline_ARR
+		formatString: $#,0
+
+	column Opportunity_Count
+		dataType: int64
+		lineageTag: psnap-c-005
+		summarizeBy: sum
+		sourceColumn: Opportunity_Count
+
+	column AKey
+		dataType: string
+		lineageTag: psnap-c-006
+		summarizeBy: none
+		sourceColumn: AKey
+
+	partition 'Pipeline_Snapshot-partition'
+		mode: import
+		source
+			type: m
+			expression
+				= let
+					Source = Table.FromRecords(
+						{
+							[Snapshot_Date = #date(2026, 7, 6), Region = "Americas", Stage = "All Stages", Pipeline_ARR = 18500000.0, Opportunity_Count = 42, AKey = "AmericasAllAllAll"],
+							[Snapshot_Date = #date(2026, 7, 6), Region = "EMEA", Stage = "All Stages", Pipeline_ARR = 12300000.0, Opportunity_Count = 31, AKey = "EMEAAllAllAll"],
+							[Snapshot_Date = #date(2026, 7, 6), Region = "APJ", Stage = "All Stages", Pipeline_ARR = 9800000.0, Opportunity_Count = 25, AKey = "APJAllAllAll"],
+							[Snapshot_Date = #date(2026, 7, 13), Region = "Americas", Stage = "All Stages", Pipeline_ARR = 18900000.0, Opportunity_Count = 44, AKey = "AmericasAllAllAll"],
+							[Snapshot_Date = #date(2026, 7, 13), Region = "EMEA", Stage = "All Stages", Pipeline_ARR = 12700000.0, Opportunity_Count = 33, AKey = "EMEAAllAllAll"],
+							[Snapshot_Date = #date(2026, 7, 13), Region = "APJ", Stage = "All Stages", Pipeline_ARR = 10200000.0, Opportunity_Count = 26, AKey = "APJAllAllAll"],
+							[Snapshot_Date = #date(2026, 7, 20), Region = "Americas", Stage = "All Stages", Pipeline_ARR = 19400000.0, Opportunity_Count = 45, AKey = "AmericasAllAllAll"],
+							[Snapshot_Date = #date(2026, 7, 20), Region = "EMEA", Stage = "All Stages", Pipeline_ARR = 13100000.0, Opportunity_Count = 34, AKey = "EMEAAllAllAll"],
+							[Snapshot_Date = #date(2026, 7, 20), Region = "APJ", Stage = "All Stages", Pipeline_ARR = 10600000.0, Opportunity_Count = 27, AKey = "APJAllAllAll"],
+							[Snapshot_Date = #date(2026, 7, 27), Region = "Americas", Stage = "All Stages", Pipeline_ARR = 20100000.0, Opportunity_Count = 47, AKey = "AmericasAllAllAll"],
+							[Snapshot_Date = #date(2026, 7, 27), Region = "EMEA", Stage = "All Stages", Pipeline_ARR = 13500000.0, Opportunity_Count = 35, AKey = "EMEAAllAllAll"],
+							[Snapshot_Date = #date(2026, 7, 27), Region = "APJ", Stage = "All Stages", Pipeline_ARR = 10900000.0, Opportunity_Count = 28, AKey = "APJAllAllAll"],
+							[Snapshot_Date = #date(2026, 8, 3), Region = "Americas", Stage = "All Stages", Pipeline_ARR = 20800000.0, Opportunity_Count = 49, AKey = "AmericasAllAllAll"],
+							[Snapshot_Date = #date(2026, 8, 3), Region = "EMEA", Stage = "All Stages", Pipeline_ARR = 13200000.0, Opportunity_Count = 34, AKey = "EMEAAllAllAll"],
+							[Snapshot_Date = #date(2026, 8, 3), Region = "APJ", Stage = "All Stages", Pipeline_ARR = 11400000.0, Opportunity_Count = 29, AKey = "APJAllAllAll"],
+							[Snapshot_Date = #date(2026, 9, 14), Region = "Americas", Stage = "All Stages", Pipeline_ARR = 22300000.0, Opportunity_Count = 51, AKey = "AmericasAllAllAll"],
+							[Snapshot_Date = #date(2026, 9, 14), Region = "EMEA", Stage = "All Stages", Pipeline_ARR = 14600000.0, Opportunity_Count = 38, AKey = "EMEAAllAllAll"],
+							[Snapshot_Date = #date(2026, 9, 14), Region = "APJ", Stage = "All Stages", Pipeline_ARR = 12300000.0, Opportunity_Count = 32, AKey = "APJAllAllAll"]
+						},
+						type table [
+							Snapshot_Date = date,
+							Region = text,
+							Stage = text,
+							Pipeline_ARR = number,
+							Opportunity_Count = Int64.Type,
+							AKey = text
+						]
+					)
+				in
+					Source

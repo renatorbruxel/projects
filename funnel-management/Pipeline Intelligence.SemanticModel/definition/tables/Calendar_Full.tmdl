@@ -1,0 +1,44 @@
+table 'Calendar_Full'
+	lineageTag: calf-001
+
+	column Date
+		dataType: dateTime
+		isHidden
+		lineageTag: calf-c-001
+		summarizeBy: none
+		sourceColumn: [Date]
+
+	column Year
+		dataType: int64
+		lineageTag: calf-c-002
+		summarizeBy: none
+		expression = YEAR([Date])
+
+	column Quarter
+		dataType: string
+		lineageTag: calf-c-003
+		summarizeBy: none
+		expression = "Q" & FORMAT(QUARTER([Date]), "0") & " FY" & RIGHT(TEXT(YEAR([Date]), "0000"), 2)
+
+	column Month
+		dataType: int64
+		lineageTag: calf-c-004
+		summarizeBy: none
+		expression = MONTH([Date])
+
+	column WeekNum
+		dataType: int64
+		lineageTag: calf-c-005
+		summarizeBy: none
+		expression = WEEKNUM([Date], 2)
+
+	column ISO_Week_Label
+		dataType: string
+		lineageTag: calf-c-006
+		summarizeBy: none
+		expression = "W" & FORMAT(WEEKNUM([Date], 2), "00") & "-" & FORMAT(YEAR([Date]), "0000")
+
+	partition 'Calendar_Full-calc'
+		mode: calculated
+		source
+			= CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))

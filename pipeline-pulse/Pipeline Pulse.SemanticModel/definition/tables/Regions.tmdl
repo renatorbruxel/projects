@@ -1,0 +1,66 @@
+table 'Regions'
+	lineageTag: rgn-001
+
+	column 'Region'
+		dataType: string
+		lineageTag: rgn-002
+		summarizeBy: none
+		isKey
+		sourceColumn: Region
+
+	column 'Sub_Region'
+		dataType: string
+		lineageTag: rgn-003
+		summarizeBy: none
+		sourceColumn: Sub_Region
+
+	column 'Region_Head'
+		dataType: string
+		lineageTag: rgn-004
+		summarizeBy: none
+		sourceColumn: Region_Head
+
+	column 'Region_Head_Email'
+		dataType: string
+		lineageTag: rgn-005
+		summarizeBy: none
+		sourceColumn: Region_Head_Email
+
+	column 'Geo'
+		dataType: string
+		lineageTag: rgn-006
+		summarizeBy: none
+		sourceColumn: Geo
+
+	column 'FY26_ARR_Target'
+		dataType: double
+		lineageTag: rgn-007
+		summarizeBy: sum
+		sourceColumn: FY26_ARR_Target
+		formatString: $#,0,,\M
+
+	partition 'Regions-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						Region = text,
+						Sub_Region = text,
+						Region_Head = text,
+						Region_Head_Email = text,
+						Geo = text,
+						FY26_ARR_Target = number
+					],
+					{
+						{"Americas","NAM","Marcus Webb","m.webb@vantara-fictional.demo","Americas",324000000},
+						{"Americas","LATAM","Marcus Webb","m.webb@vantara-fictional.demo","Americas",324000000},
+						{"EMEA","EMEA West","Sophie Laurent","s.laurent@vantara-fictional.demo","EMEA",276000000},
+						{"EMEA","EMEA South","Sophie Laurent","s.laurent@vantara-fictional.demo","EMEA",276000000},
+						{"EMEA","EMEA North","Sophie Laurent","s.laurent@vantara-fictional.demo","EMEA",276000000},
+						{"APJ","APJ North","Kenji Mori","k.mori@vantara-fictional.demo","APJ",204000000},
+						{"APJ","APJ South","Kenji Mori","k.mori@vantara-fictional.demo","APJ",204000000}
+					}
+				)
+			in
+				Source

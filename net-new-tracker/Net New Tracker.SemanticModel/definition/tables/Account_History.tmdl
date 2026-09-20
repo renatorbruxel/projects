@@ -1,0 +1,90 @@
+table Account_History
+	lineageTag: a0000003-0000-0000-0000-000000000001
+
+	column Account_ID
+		dataType: string
+		lineageTag: a0000003-0000-0000-0000-000000000002
+		summarizeBy: none
+		sourceColumn: Account_ID
+
+	column Account_Name
+		dataType: string
+		lineageTag: a0000003-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: Account_Name
+
+	column Last_Revenue_Date
+		dataType: dateTime
+		lineageTag: a0000003-0000-0000-0000-000000000004
+		formatString: yyyy-MM-dd
+		summarizeBy: none
+		sourceColumn: Last_Revenue_Date
+
+	column Years_Since_Last_Revenue
+		dataType: double
+		lineageTag: a0000003-0000-0000-0000-000000000005
+		summarizeBy: none
+		sourceColumn: Years_Since_Last_Revenue
+
+	column Revenue_5yr_Count
+		dataType: int64
+		lineageTag: a0000003-0000-0000-0000-000000000006
+		summarizeBy: sum
+		sourceColumn: Revenue_5yr_Count
+
+	column Classification_Result
+		dataType: string
+		lineageTag: a0000003-0000-0000-0000-000000000007
+		summarizeBy: none
+		sourceColumn: Classification_Result
+
+	partition 'Account_History-Partition'
+		mode: import
+		source
+			let
+			    Source = Table.FromRecords(
+			        {
+			            [ Account_ID = "ACC-001", Account_Name = "Nexflow Inc", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-002", Account_Name = "Driftwave Technologies", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-003", Account_Name = "Stacklane Corp", Last_Revenue_Date = #date(2022, 8, 10), Years_Since_Last_Revenue = 1.5, Revenue_5yr_Count = 3, Classification_Result = "Installed Base" ],
+			            [ Account_ID = "ACC-004", Account_Name = "Voxel AI", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-005", Account_Name = "Meridian Systems", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-006", Account_Name = "Luminos Platform", Last_Revenue_Date = #date(2021, 11, 5), Years_Since_Last_Revenue = 2.1, Revenue_5yr_Count = 2, Classification_Result = "Installed Base" ],
+			            [ Account_ID = "ACC-007", Account_Name = "CoreSync Ltd", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-008", Account_Name = "Praxis Analytics", Last_Revenue_Date = #date(2017, 6, 20), Years_Since_Last_Revenue = 6.2, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-009", Account_Name = "Orbium Solutions", Last_Revenue_Date = #date(2023, 4, 15), Years_Since_Last_Revenue = 0.8, Revenue_5yr_Count = 5, Classification_Result = "Installed Base" ],
+			            [ Account_ID = "ACC-010", Account_Name = "Velodata Inc", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-011", Account_Name = "Axiom Cloud", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-012", Account_Name = "Capsulate Systems", Last_Revenue_Date = #date(2020, 9, 3), Years_Since_Last_Revenue = 3.4, Revenue_5yr_Count = 4, Classification_Result = "Installed Base" ],
+			            [ Account_ID = "ACC-013", Account_Name = "Stratify Group", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-014", Account_Name = "Proxima Networks", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Unclassified" ],
+			            [ Account_ID = "ACC-015", Account_Name = "Rendex Corp", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-016", Account_Name = "Talentify Platform", Last_Revenue_Date = #date(2022, 3, 18), Years_Since_Last_Revenue = 1.9, Revenue_5yr_Count = 2, Classification_Result = "Installed Base" ],
+			            [ Account_ID = "ACC-017", Account_Name = "Glyphworks", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-018", Account_Name = "Loopboard AI", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-019", Account_Name = "Nomadix Labs", Last_Revenue_Date = #date(2021, 5, 22), Years_Since_Last_Revenue = 2.7, Revenue_5yr_Count = 3, Classification_Result = "Installed Base" ],
+			            [ Account_ID = "ACC-020", Account_Name = "Patchwork Inc", Last_Revenue_Date = #date(2016, 12, 10), Years_Since_Last_Revenue = 7.1, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-021", Account_Name = "Vaultly Security", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-022", Account_Name = "Clearpath AI", Last_Revenue_Date = #date(2023, 7, 5), Years_Since_Last_Revenue = 0.5, Revenue_5yr_Count = 6, Classification_Result = "Installed Base" ],
+			            [ Account_ID = "ACC-023", Account_Name = "Signalwave Corp", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-024", Account_Name = "Bridgebox Technologies", Last_Revenue_Date = #date(2022, 10, 14), Years_Since_Last_Revenue = 1.2, Revenue_5yr_Count = 4, Classification_Result = "Installed Base" ],
+			            [ Account_ID = "ACC-025", Account_Name = "Tracepath Solutions", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-026", Account_Name = "Quantform Labs", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-027", Account_Name = "Flotix Group", Last_Revenue_Date = #date(2021, 1, 30), Years_Since_Last_Revenue = 3.0, Revenue_5yr_Count = 1, Classification_Result = "Installed Base" ],
+			            [ Account_ID = "ACC-028", Account_Name = "Hyperion Data", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-029", Account_Name = "Rimex Solutions", Last_Revenue_Date = #date(2015, 5, 5), Years_Since_Last_Revenue = 8.7, Revenue_5yr_Count = 0, Classification_Result = "Net New" ],
+			            [ Account_ID = "ACC-030", Account_Name = "Syncera Technologies", Last_Revenue_Date = null, Years_Since_Last_Revenue = null, Revenue_5yr_Count = 0, Classification_Result = "Net New" ]
+			        },
+			        type table [
+			            Account_ID = text,
+			            Account_Name = text,
+			            Last_Revenue_Date = date,
+			            Years_Since_Last_Revenue = number,
+			            Revenue_5yr_Count = Int64.Type,
+			            Classification_Result = text
+			        ]
+			    )
+			in
+			    Source
+
+	annotation PBI_Id = Account_History

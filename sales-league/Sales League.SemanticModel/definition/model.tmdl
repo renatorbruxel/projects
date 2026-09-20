@@ -1,0 +1,46 @@
+model Model
+	culture: en-US
+
+	ref table 'Main'
+	ref table 'Quota'
+	ref table 'Quota_Seller_Info'
+	ref table 'Gamification'
+	ref table 'Gamification_No_RLS'
+	ref table 'Peers_Fact_No_RLS'
+	ref table 'Peers_Quota_No_RLS'
+	ref table 'Active_Player_Consent'
+	ref table 'Global_Bookings'
+	ref table 'Annual_Targets'
+	ref table 'Quarterly_Targets'
+	ref table 'BU_Leaders'
+	ref table 'Region_Leaders'
+	ref table 'Admins'
+	ref table 'Quote_Mapping'
+	ref table 'Calendar'
+	ref table '_Measures'
+
+	role 'Seller'
+		tablePermissions
+			table 'Main'
+				filterExpression
+					= 'Main'[Seller_Email] = USERPRINCIPALNAME()
+			table 'Gamification'
+				filterExpression
+					= 'Gamification'[Email] = USERPRINCIPALNAME()
+			table 'Quota'
+				filterExpression
+					= 'Quota'[Seller_Email] = USERPRINCIPALNAME()
+
+	role 'Manager'
+		tablePermissions
+			table 'Main'
+				filterExpression
+					= 'Main'[Manager_Email] = USERPRINCIPALNAME() || 'Main'[Seller_Email] = USERPRINCIPALNAME()
+
+	role 'Regional_VP'
+		tablePermissions
+			table 'Main'
+				filterExpression
+					= 'Main'[Region_VP_Email] = USERPRINCIPALNAME() || 'Main'[Manager_Email] = USERPRINCIPALNAME() || 'Main'[Seller_Email] = USERPRINCIPALNAME()
+
+	role 'Admin'

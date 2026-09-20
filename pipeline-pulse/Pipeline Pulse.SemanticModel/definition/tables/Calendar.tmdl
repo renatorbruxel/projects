@@ -1,0 +1,81 @@
+table 'Calendar'
+	lineageTag: cal-001
+
+	column 'Date'
+		dataType: dateTime
+		lineageTag: cal-002
+		summarizeBy: none
+		isKey
+		sourceColumn: Date
+		formatString: yyyy-MM-dd
+
+	calculatedColumn 'Year'
+		dataType: int64
+		lineageTag: cal-003
+		summarizeBy: none
+		expression = YEAR([Date])
+
+	calculatedColumn 'Quarter'
+		dataType: int64
+		lineageTag: cal-004
+		summarizeBy: none
+		expression = QUARTER([Date])
+
+	calculatedColumn 'Month'
+		dataType: int64
+		lineageTag: cal-005
+		summarizeBy: none
+		expression = MONTH([Date])
+
+	calculatedColumn 'MonthName'
+		dataType: string
+		lineageTag: cal-006
+		summarizeBy: none
+		sortByColumn: Month
+		expression = FORMAT([Date], "MMM")
+
+	calculatedColumn 'WeekNum'
+		dataType: int64
+		lineageTag: cal-007
+		summarizeBy: none
+		expression = WEEKNUM([Date], 2)
+
+	calculatedColumn 'Is_Current_Quarter'
+		dataType: boolean
+		lineageTag: cal-008
+		summarizeBy: none
+		expression =
+				QUARTER([Date]) = QUARTER(TODAY())
+					&& YEAR([Date]) = YEAR(TODAY())
+
+	calculatedColumn 'Days_Remaining_in_Quarter'
+		dataType: int64
+		lineageTag: cal-009
+		summarizeBy: none
+		expression =
+				VAR _qEnd =
+					DATE(
+						YEAR([Date]),
+						QUARTER([Date]) * 3,
+						DAY(
+							EOMONTH(DATE(YEAR([Date]), QUARTER([Date]) * 3, 1), 0)
+						)
+					)
+				RETURN
+					MAX(0, INT(_qEnd - TODAY()))
+
+	calculatedColumn 'Quarter_Label'
+		dataType: string
+		lineageTag: cal-010
+		summarizeBy: none
+		expression = "Q" & QUARTER([Date]) & " " & YEAR([Date])
+
+	calculatedColumn 'Month_Label'
+		dataType: string
+		lineageTag: cal-011
+		summarizeBy: none
+		expression = FORMAT([Date], "MMM YY")
+
+	partition 'Calendar-partition-0' = calculated
+		mode: import
+		expression = CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))

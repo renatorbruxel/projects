@@ -1,0 +1,12 @@
+{
+  "name": "Overdue_Opportunities",
+  "displayName": "Overdue Opportunities",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "background": {"transparency": 100},
+  "wallpaper": {"transparency": 100},
+  "visualContainers": [],
+  "filters": "[]",
+  "config": "{}"
+}

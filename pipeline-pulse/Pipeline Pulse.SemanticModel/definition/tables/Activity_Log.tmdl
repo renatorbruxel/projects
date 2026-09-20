@@ -1,0 +1,131 @@
+table 'Activity_Log'
+	lineageTag: act-001
+
+	column 'Activity_ID'
+		dataType: string
+		lineageTag: act-002
+		summarizeBy: none
+		isKey
+		sourceColumn: Activity_ID
+
+	column 'Opportunity_ID'
+		dataType: string
+		lineageTag: act-003
+		summarizeBy: none
+		sourceColumn: Opportunity_ID
+
+	column 'Seller_Email'
+		dataType: string
+		lineageTag: act-004
+		summarizeBy: none
+		sourceColumn: Seller_Email
+
+	column 'Subject'
+		dataType: string
+		lineageTag: act-005
+		summarizeBy: none
+		sourceColumn: Subject
+
+	column 'Activity_Type'
+		dataType: string
+		lineageTag: act-006
+		summarizeBy: none
+		sourceColumn: Activity_Type
+
+	column 'Activity_Date'
+		dataType: dateTime
+		lineageTag: act-007
+		summarizeBy: none
+		sourceColumn: Activity_Date
+		formatString: yyyy-MM-dd
+
+	column 'Created_Date'
+		dataType: dateTime
+		lineageTag: act-008
+		summarizeBy: none
+		sourceColumn: Created_Date
+		formatString: yyyy-MM-dd
+
+	column 'Status'
+		dataType: string
+		lineageTag: act-009
+		summarizeBy: none
+		sourceColumn: Status
+
+	column 'Is_Closed'
+		dataType: boolean
+		lineageTag: act-010
+		summarizeBy: none
+		sourceColumn: Is_Closed
+
+	partition 'Activity_Log-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						Activity_ID = text,
+						Opportunity_ID = text,
+						Seller_Email = text,
+						Subject = text,
+						Activity_Type = text,
+						Activity_Date = date,
+						Created_Date = date,
+						Status = text,
+						Is_Closed = logical
+					],
+					{
+						{"ACT-001","OPP-1001","alice.chen@vantara-fictional.demo","Discovery call – analytics roadmap","Call",#date(2026,9,14),#date(2026,9,14),"Completed",true},
+						{"ACT-002","OPP-1001","alice.chen@vantara-fictional.demo","Executive sponsor meeting","Meeting",#date(2026,9,10),#date(2026,9,10),"Completed",true},
+						{"ACT-003","OPP-1001","alice.chen@vantara-fictional.demo","Proposal follow-up email","Email",#date(2026,9,8),#date(2026,9,8),"Completed",true},
+						{"ACT-004","OPP-1002","alice.chen@vantara-fictional.demo","Security architecture review","Meeting",#date(2026,9,9),#date(2026,9,9),"Completed",true},
+						{"ACT-005","OPP-1002","alice.chen@vantara-fictional.demo","POC kickoff call","Call",#date(2026,9,5),#date(2026,9,5),"Completed",true},
+						{"ACT-006","OPP-1003","bob.turner@vantara-fictional.demo","Negotiation session – commercial terms","Meeting",#date(2026,9,15),#date(2026,9,15),"Completed",true},
+						{"ACT-007","OPP-1003","bob.turner@vantara-fictional.demo","Legal review follow-up","Email",#date(2026,9,12),#date(2026,9,12),"Completed",true},
+						{"ACT-008","OPP-1003","bob.turner@vantara-fictional.demo","Demo – workflow automation","Meeting",#date(2026,9,2),#date(2026,9,2),"Completed",true},
+						{"ACT-009","OPP-1004","bob.turner@vantara-fictional.demo","Platform architecture deck sent","Email",#date(2026,9,2),#date(2026,9,2),"Completed",true},
+						{"ACT-010","OPP-1005","carol.patel@vantara-fictional.demo","Intro call – security bundle","Call",#date(2026,9,11),#date(2026,9,11),"Completed",true},
+						{"ACT-011","OPP-1005","carol.patel@vantara-fictional.demo","Follow-up on pricing","Email",#date(2026,9,8),#date(2026,9,8),"Completed",true},
+						{"ACT-012","OPP-1007","alice.chen@vantara-fictional.demo","Initial qualification call","Call",#date(2026,8,28),#date(2026,8,28),"Completed",true},
+						{"ACT-013","OPP-1008","bob.turner@vantara-fictional.demo","Contract redline review","Meeting",#date(2026,9,17),#date(2026,9,17),"Completed",true},
+						{"ACT-014","OPP-1008","bob.turner@vantara-fictional.demo","VP sign-off call","Call",#date(2026,9,14),#date(2026,9,14),"Completed",true},
+						{"ACT-015","OPP-1009","carol.patel@vantara-fictional.demo","Enterprise proposal submitted","Email",#date(2026,9,7),#date(2026,9,7),"Completed",true},
+						{"ACT-016","OPP-1009","carol.patel@vantara-fictional.demo","Technical deep-dive call","Call",#date(2026,9,4),#date(2026,9,4),"Completed",true},
+						{"ACT-017","OPP-1010","dan.nguyen@vantara-fictional.demo","Initial needs analysis","Call",#date(2026,8,29),#date(2026,8,29),"Completed",true},
+						{"ACT-018","OPP-1012","dan.nguyen@vantara-fictional.demo","Security demo – LATAM team","Meeting",#date(2026,9,4),#date(2026,9,4),"Completed",true},
+						{"ACT-019","OPP-1012","dan.nguyen@vantara-fictional.demo","Proposal delivery email","Email",#date(2026,9,1),#date(2026,9,1),"Completed",true},
+						{"ACT-020","OPP-2001","emma.fischer@vantara-fictional.demo","Legal and procurement sync","Meeting",#date(2026,9,15),#date(2026,9,15),"Completed",true},
+						{"ACT-021","OPP-2001","emma.fischer@vantara-fictional.demo","Commercial terms call","Call",#date(2026,9,12),#date(2026,9,12),"Completed",true},
+						{"ACT-022","OPP-2001","emma.fischer@vantara-fictional.demo","Migration roadmap presentation","Meeting",#date(2026,9,5),#date(2026,9,5),"Completed",true},
+						{"ACT-023","OPP-2002","emma.fischer@vantara-fictional.demo","Platform fit call","Call",#date(2026,9,13),#date(2026,9,13),"Completed",true},
+						{"ACT-024","OPP-2002","emma.fischer@vantara-fictional.demo","Executive briefing","Meeting",#date(2026,9,8),#date(2026,9,8),"Completed",true},
+						{"ACT-025","OPP-2003","felix.martin@vantara-fictional.demo","Security assessment review","Meeting",#date(2026,9,8),#date(2026,9,8),"Completed",true},
+						{"ACT-026","OPP-2003","felix.martin@vantara-fictional.demo","Follow-up call – CISO team","Call",#date(2026,9,3),#date(2026,9,3),"Completed",true},
+						{"ACT-027","OPP-2004","felix.martin@vantara-fictional.demo","Discovery email","Email",#date(2026,8,30),#date(2026,8,30),"Completed",true},
+						{"ACT-028","OPP-2005","gina.rossi@vantara-fictional.demo","Analytics live demo","Meeting",#date(2026,9,10),#date(2026,9,10),"Completed",true},
+						{"ACT-029","OPP-2005","gina.rossi@vantara-fictional.demo","Proposal email sent","Email",#date(2026,9,6),#date(2026,9,6),"Completed",true},
+						{"ACT-030","OPP-2007","felix.martin@vantara-fictional.demo","Workflow POC result review","Meeting",#date(2026,9,14),#date(2026,9,14),"Completed",true},
+						{"ACT-031","OPP-2007","felix.martin@vantara-fictional.demo","Negotiation kickoff","Call",#date(2026,9,10),#date(2026,9,10),"Completed",true},
+						{"ACT-032","OPP-2009","gina.rossi@vantara-fictional.demo","Security product walkthrough","Meeting",#date(2026,9,5),#date(2026,9,5),"Completed",true},
+						{"ACT-033","OPP-2009","gina.rossi@vantara-fictional.demo","Pricing call","Call",#date(2026,9,2),#date(2026,9,2),"Completed",true},
+						{"ACT-034","OPP-3001","henry.park@vantara-fictional.demo","Contract finalization call","Call",#date(2026,9,15),#date(2026,9,15),"Completed",true},
+						{"ACT-035","OPP-3001","henry.park@vantara-fictional.demo","Platform deployment planning","Meeting",#date(2026,9,10),#date(2026,9,10),"Completed",true},
+						{"ACT-036","OPP-3002","henry.park@vantara-fictional.demo","Analytics roadmap session","Meeting",#date(2026,9,10),#date(2026,9,10),"Completed",true},
+						{"ACT-037","OPP-3002","henry.park@vantara-fictional.demo","Proposal follow-up","Email",#date(2026,9,6),#date(2026,9,6),"Completed",true},
+						{"ACT-038","OPP-3003","iris.tanaka@vantara-fictional.demo","Security certification review","Meeting",#date(2026,9,16),#date(2026,9,16),"Completed",true},
+						{"ACT-039","OPP-3003","iris.tanaka@vantara-fictional.demo","Final commercial call","Call",#date(2026,9,12),#date(2026,9,12),"Completed",true},
+						{"ACT-040","OPP-3003","iris.tanaka@vantara-fictional.demo","CISO executive meeting","Meeting",#date(2026,9,8),#date(2026,9,8),"Completed",true},
+						{"ACT-041","OPP-3004","iris.tanaka@vantara-fictional.demo","Workflow integration demo","Meeting",#date(2026,9,7),#date(2026,9,7),"Completed",true},
+						{"ACT-042","OPP-3004","iris.tanaka@vantara-fictional.demo","ROI model presentation","Email",#date(2026,9,4),#date(2026,9,4),"Completed",true},
+						{"ACT-043","OPP-3005","james.lee@vantara-fictional.demo","Platform discovery call","Call",#date(2026,8,30),#date(2026,8,30),"Completed",true},
+						{"ACT-044","OPP-3007","james.lee@vantara-fictional.demo","Contract negotiation session","Meeting",#date(2026,9,13),#date(2026,9,13),"Completed",true},
+						{"ACT-045","OPP-3007","james.lee@vantara-fictional.demo","Security architecture sign-off","Call",#date(2026,9,10),#date(2026,9,10),"Completed",true},
+						{"ACT-046","OPP-3007","james.lee@vantara-fictional.demo","Final proposal submitted","Email",#date(2026,9,7),#date(2026,9,7),"Completed",true},
+						{"ACT-047","OPP-3008","iris.tanaka@vantara-fictional.demo","Workflow pricing review","Call",#date(2026,9,9),#date(2026,9,9),"Completed",true},
+						{"ACT-048","OPP-3008","iris.tanaka@vantara-fictional.demo","Technical validation meeting","Meeting",#date(2026,9,5),#date(2026,9,5),"Completed",true},
+						{"ACT-049","OPP-1011","dan.nguyen@vantara-fictional.demo","Initial outreach email","Email",#date(2026,8,25),#date(2026,8,25),"Completed",true},
+						{"ACT-050","OPP-2010","felix.martin@vantara-fictional.demo","Analytics value discussion","Call",#date(2026,8,26),#date(2026,8,26),"Completed",true}
+					}
+				)
+			in
+				Source

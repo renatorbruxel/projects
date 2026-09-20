@@ -1,0 +1,47 @@
+relationship 'rel_001'
+	fromTable: 'Pipeline'
+	fromColumn: AKey
+	toTable: 'Dimension_Key'
+	toColumn: AKey
+
+relationship 'rel_002'
+	fromTable: 'Bookings_Actuals'
+	fromColumn: AKey
+	toTable: 'Dimension_Key'
+	toColumn: AKey
+
+relationship 'rel_003'
+	fromTable: 'Pipeline'
+	fromColumn: Close_Date
+	toTable: 'Calendar'
+	toColumn: Date
+
+relationship 'rel_004'
+	fromTable: 'Bookings_Actuals'
+	fromColumn: Booking_Date
+	toTable: 'Calendar'
+	toColumn: Date
+
+relationship 'rel_005'
+	fromTable: 'Pipeline_Snapshot'
+	fromColumn: Snapshot_Date
+	toTable: 'Calendar_Full'
+	toColumn: Date
+
+relationship 'rel_006'
+	fromTable: 'Pipeline'
+	fromColumn: Region
+	toTable: 'Regions'
+	toColumn: Region
+
+relationship 'rel_007'
+	fromTable: 'Pipeline_Pushed'
+	fromColumn: AKey
+	toTable: 'Dimension_Key'
+	toColumn: AKey
+
+relationship 'rel_008'
+	fromTable: 'Booking_Details'
+	fromColumn: Opportunity_ID
+	toTable: 'Pipeline'
+	toColumn: Opportunity_ID

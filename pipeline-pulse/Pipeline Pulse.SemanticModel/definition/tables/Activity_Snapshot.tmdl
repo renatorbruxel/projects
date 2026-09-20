@@ -1,0 +1,88 @@
+table 'Activity_Snapshot'
+	lineageTag: acs-001
+
+	column 'Snapshot_Date'
+		dataType: dateTime
+		lineageTag: acs-002
+		summarizeBy: none
+		sourceColumn: Snapshot_Date
+		formatString: yyyy-MM-dd
+
+	column 'Region'
+		dataType: string
+		lineageTag: acs-003
+		summarizeBy: none
+		sourceColumn: Region
+
+	column 'Seller_Email'
+		dataType: string
+		lineageTag: acs-004
+		summarizeBy: none
+		sourceColumn: Seller_Email
+
+	column 'Activity_Type'
+		dataType: string
+		lineageTag: acs-005
+		summarizeBy: none
+		sourceColumn: Activity_Type
+
+	column 'Activity_Count'
+		dataType: int64
+		lineageTag: acs-006
+		summarizeBy: sum
+		sourceColumn: Activity_Count
+
+	column 'Opps_Touched'
+		dataType: int64
+		lineageTag: acs-007
+		summarizeBy: sum
+		sourceColumn: Opps_Touched
+
+	partition 'Activity_Snapshot-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						Snapshot_Date = date,
+						Region = text,
+						Seller_Email = text,
+						Activity_Type = text,
+						Activity_Count = Int64.Type,
+						Opps_Touched = Int64.Type
+					],
+					{
+						{#date(2026,9,12),"Americas","alice.chen@vantara-fictional.demo","Call",4,2},
+						{#date(2026,9,12),"Americas","alice.chen@vantara-fictional.demo","Meeting",2,2},
+						{#date(2026,9,12),"Americas","alice.chen@vantara-fictional.demo","Email",3,2},
+						{#date(2026,9,12),"Americas","bob.turner@vantara-fictional.demo","Call",3,2},
+						{#date(2026,9,12),"Americas","bob.turner@vantara-fictional.demo","Meeting",4,3},
+						{#date(2026,9,12),"Americas","carol.patel@vantara-fictional.demo","Call",2,2},
+						{#date(2026,9,12),"Americas","carol.patel@vantara-fictional.demo","Email",3,2},
+						{#date(2026,9,12),"Americas","dan.nguyen@vantara-fictional.demo","Call",3,2},
+						{#date(2026,9,12),"Americas","dan.nguyen@vantara-fictional.demo","Meeting",1,1},
+						{#date(2026,9,12),"EMEA","emma.fischer@vantara-fictional.demo","Meeting",5,3},
+						{#date(2026,9,12),"EMEA","emma.fischer@vantara-fictional.demo","Call",3,2},
+						{#date(2026,9,12),"EMEA","felix.martin@vantara-fictional.demo","Call",4,3},
+						{#date(2026,9,12),"EMEA","felix.martin@vantara-fictional.demo","Meeting",3,2},
+						{#date(2026,9,12),"EMEA","gina.rossi@vantara-fictional.demo","Meeting",3,2},
+						{#date(2026,9,12),"EMEA","gina.rossi@vantara-fictional.demo","Email",2,2},
+						{#date(2026,9,12),"APJ","henry.park@vantara-fictional.demo","Call",4,2},
+						{#date(2026,9,12),"APJ","henry.park@vantara-fictional.demo","Meeting",3,2},
+						{#date(2026,9,12),"APJ","iris.tanaka@vantara-fictional.demo","Meeting",5,3},
+						{#date(2026,9,12),"APJ","iris.tanaka@vantara-fictional.demo","Call",3,2},
+						{#date(2026,9,12),"APJ","james.lee@vantara-fictional.demo","Meeting",3,2},
+						{#date(2026,9,12),"APJ","james.lee@vantara-fictional.demo","Email",2,2},
+						{#date(2026,9,5),"Americas","alice.chen@vantara-fictional.demo","Call",3,2},
+						{#date(2026,9,5),"Americas","bob.turner@vantara-fictional.demo","Meeting",3,2},
+						{#date(2026,9,5),"Americas","carol.patel@vantara-fictional.demo","Call",2,1},
+						{#date(2026,9,5),"EMEA","emma.fischer@vantara-fictional.demo","Meeting",4,2},
+						{#date(2026,9,5),"EMEA","felix.martin@vantara-fictional.demo","Call",3,2},
+						{#date(2026,9,5),"EMEA","gina.rossi@vantara-fictional.demo","Meeting",2,2},
+						{#date(2026,9,5),"APJ","henry.park@vantara-fictional.demo","Call",3,2},
+						{#date(2026,9,5),"APJ","iris.tanaka@vantara-fictional.demo","Meeting",4,2},
+						{#date(2026,9,5),"APJ","james.lee@vantara-fictional.demo","Call",2,1}
+					}
+				)
+			in
+				Source

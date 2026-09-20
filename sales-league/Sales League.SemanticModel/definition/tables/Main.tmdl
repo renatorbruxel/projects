@@ -1,0 +1,184 @@
+table Main
+	lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678901
+
+	column Opportunity_ID
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678902
+		summarizeBy: none
+
+	column Opportunity_Name
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678903
+		summarizeBy: none
+
+	column Account_Name
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678904
+		summarizeBy: none
+
+	column Seller_Name
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678905
+		summarizeBy: none
+
+	column Seller_Email
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678906
+		summarizeBy: none
+
+	column Manager_Name
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678907
+		summarizeBy: none
+
+	column Manager_Email
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678908
+		summarizeBy: none
+
+	column Region_VP_Email
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678909
+		summarizeBy: none
+
+	column Region
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678910
+		summarizeBy: none
+
+	column Sub_Region
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678911
+		summarizeBy: none
+
+	column Business_Group
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678912
+		summarizeBy: none
+
+	column Stage
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678913
+		summarizeBy: none
+
+	column Is_Won_Loss_Open
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678914
+		summarizeBy: none
+
+	column ARR_USD
+		dataType: double
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678915
+		formatString: $#,0
+
+	column ARR_Closed_Won
+		dataType: double
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678916
+		formatString: $#,0
+
+	column Close_Date
+		dataType: dateTime
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678917
+		formatString: yyyy-mm-dd
+		summarizeBy: none
+
+	column Date_Read
+		dataType: dateTime
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678918
+		formatString: yyyy-mm-dd
+		summarizeBy: none
+
+	column Last_Updated
+		dataType: dateTime
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678919
+		formatString: yyyy-mm-dd
+		summarizeBy: none
+
+	column Is_Overdue
+		dataType: boolean
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678920
+
+	column Incorrect_Hygiene
+		dataType: boolean
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678921
+
+	column Region_Key
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678922
+		summarizeBy: none
+
+	column Quarter
+		dataType: string
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678930
+		summarizeBy: none
+		isDataTypeInferred: false
+		expression
+			= "Q" & QUARTER([Close_Date]) & " FY" & YEAR([Close_Date])
+
+	column Is_Current_Quarter
+		dataType: boolean
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678931
+		expression
+			= IF(QUARTER([Close_Date]) = QUARTER(TODAY()) && YEAR([Close_Date]) = YEAR(TODAY()), TRUE(), FALSE())
+
+	partition Main-Partition
+		mode: import
+		source
+			type: m
+			expression
+				= let
+				    Source = #table(
+				        type table [
+				            Opportunity_ID = text,
+				            Opportunity_Name = text,
+				            Account_Name = text,
+				            Seller_Name = text,
+				            Seller_Email = text,
+				            Manager_Name = text,
+				            Manager_Email = text,
+				            Region_VP_Email = text,
+				            Region = text,
+				            Sub_Region = text,
+				            Business_Group = text,
+				            Stage = text,
+				            Is_Won_Loss_Open = text,
+				            ARR_USD = number,
+				            ARR_Closed_Won = number,
+				            Close_Date = date,
+				            Date_Read = date,
+				            Last_Updated = date,
+				            Is_Overdue = logical,
+				            Incorrect_Hygiene = logical,
+				            Region_Key = text
+				        ],
+				        {
+				            {"OPP-1001","Nexus Cloud Expansion","Nexus Corp","Alex Chen","a.chen@vantara-fictional.demo","Diego Torres","d.torres@vantara-fictional.demo","v.ross@vantara-fictional.demo","Americas","North America","Core Platform","Closed Won","Won",420000,420000,#date(2026,3,15),#date(2026,3,15),#date(2026,3,15),false,false,"AMR"},
+				            {"OPP-1002","Nexus Security Add-On","Nexus Corp","Alex Chen","a.chen@vantara-fictional.demo","Diego Torres","d.torres@vantara-fictional.demo","v.ross@vantara-fictional.demo","Americas","North America","Security Suite","Negotiate","Open",150000,0,#date(2026,9,30),#date(2026,9,10),#date(2026,9,10),false,false,"AMR"},
+				            {"OPP-1003","Stratos AI Platform","Stratos Industries","Jordan Rivera","j.rivera@vantara-fictional.demo","Diego Torres","d.torres@vantara-fictional.demo","v.ross@vantara-fictional.demo","Americas","North America","Analytics Pro","Closed Won","Won",680000,680000,#date(2026,1,20),#date(2026,1,20),#date(2026,1,20),false,false,"AMR"},
+				            {"OPP-1004","Stratos Data Services Renewal","Stratos Industries","Jordan Rivera","j.rivera@vantara-fictional.demo","Diego Torres","d.torres@vantara-fictional.demo","v.ross@vantara-fictional.demo","Americas","North America","Data Services","Proposal","Open",220000,0,#date(2026,12,15),#date(2026,9,10),#date(2026,9,10),true,false,"AMR"},
+				            {"OPP-1005","Meridian Bank Data Suite","Meridian Financial","Morgan Blake","m.blake@vantara-fictional.demo","Diego Torres","d.torres@vantara-fictional.demo","v.ross@vantara-fictional.demo","Americas","LATAM","Data Services","Closed Lost","Lost",310000,0,#date(2026,2,28),#date(2026,2,28),#date(2026,2,28),false,false,"AMR"},
+				            {"OPP-1006","Meridian Security Bundle","Meridian Financial","Morgan Blake","m.blake@vantara-fictional.demo","Diego Torres","d.torres@vantara-fictional.demo","v.ross@vantara-fictional.demo","Americas","LATAM","Security Suite","Discovery","Open",195000,0,#date(2026,11,30),#date(2026,9,10),#date(2026,9,10),false,true,"AMR"},
+				            {"OPP-1007","Summit Analytics Pro","Summit Logistics","Taylor Kim","t.kim@vantara-fictional.demo","Diego Torres","d.torres@vantara-fictional.demo","v.ross@vantara-fictional.demo","Americas","Canada","Analytics Pro","Closed Won","Won",540000,540000,#date(2026,6,30),#date(2026,6,30),#date(2026,6,30),false,false,"AMR"},
+				            {"OPP-1008","Summit Platform Upsell","Summit Logistics","Taylor Kim","t.kim@vantara-fictional.demo","Diego Torres","d.torres@vantara-fictional.demo","v.ross@vantara-fictional.demo","Americas","Canada","Core Platform","Qualify","Open",280000,0,#date(2026,12,31),#date(2026,9,10),#date(2026,9,10),false,false,"AMR"},
+				            {"OPP-2001","Crestline Core Platform","Crestline Group","Sam Patel","s.patel@vantara-fictional.demo","Leila Dubois","l.dubois@vantara-fictional.demo","b.hartmann@vantara-fictional.demo","EMEA","UK & Ireland","Core Platform","Closed Won","Won",390000,390000,#date(2026,3,31),#date(2026,3,31),#date(2026,3,31),false,false,"EME"},
+				            {"OPP-2002","Crestline Analytics Expansion","Crestline Group","Sam Patel","s.patel@vantara-fictional.demo","Leila Dubois","l.dubois@vantara-fictional.demo","b.hartmann@vantara-fictional.demo","EMEA","UK & Ireland","Analytics Pro","Negotiate","Open",175000,0,#date(2026,9,30),#date(2026,9,10),#date(2026,9,10),false,false,"EME"},
+				            {"OPP-2003","Aero Systems Security","Aero Systems","Chris Muller","c.muller@vantara-fictional.demo","Leila Dubois","l.dubois@vantara-fictional.demo","b.hartmann@vantara-fictional.demo","EMEA","DACH","Security Suite","Closed Won","Won",520000,520000,#date(2026,6,15),#date(2026,6,15),#date(2026,6,15),false,false,"EME"},
+				            {"OPP-2004","Aero Systems Data Services","Aero Systems","Chris Muller","c.muller@vantara-fictional.demo","Leila Dubois","l.dubois@vantara-fictional.demo","b.hartmann@vantara-fictional.demo","EMEA","DACH","Data Services","Proposal","Open",240000,0,#date(2026,12,20),#date(2026,9,10),#date(2026,9,10),false,false,"EME"},
+				            {"OPP-2005","Viken Energy Platform","Viken Energy","Nina Larsson","n.larsson@vantara-fictional.demo","Leila Dubois","l.dubois@vantara-fictional.demo","b.hartmann@vantara-fictional.demo","EMEA","Nordics","Core Platform","Closed Lost","Lost",460000,0,#date(2026,1,31),#date(2026,1,31),#date(2026,1,31),false,false,"EME"},
+				            {"OPP-2006","Viken Analytics Pro","Viken Energy","Nina Larsson","n.larsson@vantara-fictional.demo","Leila Dubois","l.dubois@vantara-fictional.demo","b.hartmann@vantara-fictional.demo","EMEA","Nordics","Analytics Pro","Discovery","Open",330000,0,#date(2026,11,15),#date(2026,9,10),#date(2026,9,10),false,true,"EME"},
+				            {"OPP-2007","Arcadia Retail Data Suite","Arcadia Retail","Priya Sharma","p.sharma@vantara-fictional.demo","Leila Dubois","l.dubois@vantara-fictional.demo","b.hartmann@vantara-fictional.demo","EMEA","Southern Europe","Data Services","Closed Won","Won",290000,290000,#date(2026,9,15),#date(2026,9,15),#date(2026,9,15),false,false,"EME"},
+				            {"OPP-2008","Arcadia Security Bundle","Arcadia Retail","Priya Sharma","p.sharma@vantara-fictional.demo","Leila Dubois","l.dubois@vantara-fictional.demo","b.hartmann@vantara-fictional.demo","EMEA","Southern Europe","Security Suite","Qualify","Open",210000,0,#date(2026,12,31),#date(2026,9,10),#date(2026,9,10),false,false,"EME"},
+				            {"OPP-3001","Pacific Fintech Core","Pacific Fintech","Wei Zhang","w.zhang@vantara-fictional.demo","Maya Singh","m.singh@vantara-fictional.demo","y.suzuki@vantara-fictional.demo","APJ","Greater China","Core Platform","Closed Won","Won",610000,610000,#date(2026,3,25),#date(2026,3,25),#date(2026,3,25),false,false,"APJ"},
+				            {"OPP-3002","Pacific Fintech Analytics","Pacific Fintech","Wei Zhang","w.zhang@vantara-fictional.demo","Maya Singh","m.singh@vantara-fictional.demo","y.suzuki@vantara-fictional.demo","APJ","Greater China","Analytics Pro","Negotiate","Open",200000,0,#date(2026,9,30),#date(2026,9,10),#date(2026,9,10),false,false,"APJ"},
+				            {"OPP-3003","Sakura Tech Security","Sakura Technology","Hana Tanaka","h.tanaka@vantara-fictional.demo","Maya Singh","m.singh@vantara-fictional.demo","y.suzuki@vantara-fictional.demo","APJ","Japan","Security Suite","Closed Won","Won",350000,350000,#date(2026,6,30),#date(2026,6,30),#date(2026,6,30),false,false,"APJ"},
+				            {"OPP-3004","Sakura Data Services","Sakura Technology","Hana Tanaka","h.tanaka@vantara-fictional.demo","Maya Singh","m.singh@vantara-fictional.demo","y.suzuki@vantara-fictional.demo","APJ","Japan","Data Services","Proposal","Open",185000,0,#date(2026,12,10),#date(2026,9,10),#date(2026,9,10),true,false,"APJ"},
+				            {"OPP-3005","IndraNet Platform Deal","IndraNet","Raj Nair","r.nair@vantara-fictional.demo","Maya Singh","m.singh@vantara-fictional.demo","y.suzuki@vantara-fictional.demo","APJ","India & SEA","Core Platform","Closed Won","Won",480000,480000,#date(2026,3,31),#date(2026,3,31),#date(2026,3,31),false,false,"APJ"},
+				            {"OPP-3006","IndraNet Analytics Add-On","IndraNet","Raj Nair","r.nair@vantara-fictional.demo","Maya Singh","m.singh@vantara-fictional.demo","y.suzuki@vantara-fictional.demo","APJ","India & SEA","Analytics Pro","Discovery","Open",140000,0,#date(2026,11,30),#date(2026,9,10),#date(2026,9,10),false,false,"APJ"},
+				            {"OPP-3007","Kokoro Cloud Security","Kokoro Cloud","Kai Yamamoto","k.yamamoto@vantara-fictional.demo","Maya Singh","m.singh@vantara-fictional.demo","y.suzuki@vantara-fictional.demo","APJ","ANZ","Security Suite","Closed Won","Won",570000,570000,#date(2026,6,30),#date(2026,6,30),#date(2026,6,30),false,false,"APJ"},
+				            {"OPP-3008","Kokoro Cloud Platform","Kokoro Cloud","Kai Yamamoto","k.yamamoto@vantara-fictional.demo","Maya Singh","m.singh@vantara-fictional.demo","y.suzuki@vantara-fictional.demo","APJ","ANZ","Core Platform","Proposal","Open",320000,0,#date(2026,12,15),#date(2026,9,10),#date(2026,9,10),false,true,"APJ"},
+				            {"OPP-1009","Harbor Tech Platform","Harbor Technology","Alex Chen","a.chen@vantara-fictional.demo","Diego Torres","d.torres@vantara-fictional.demo","v.ross@vantara-fictional.demo","Americas","North America","Core Platform","Closed Won","Won",260000,260000,#date(2025,12,20),#date(2025,12,20),#date(2025,12,20),false,false,"AMR"}
+				        }
+				    )
+				in
+				    Source
+

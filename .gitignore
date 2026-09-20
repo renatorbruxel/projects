@@ -1,12 +1,19 @@
-# Whitelist approach — only track README files and folder structure
-# Everything else (real project files) stays local only
+# Whitelist approach — portfolio subfolders are fully tracked
+# Root-level Philips files (PBIP, HTML, ABF) stay local only
 
-# Exclude everything
+# Exclude everything by default
 *
 
 # Allow directories to be traversed
 !*/
 
-# Allow only these files
+# Always allow
 !.gitignore
 !README.md
+
+# Allow all content inside the 5 portfolio project subfolders
+!weekly-checkin-portal/**
+!funnel-management/**
+!net-new-tracker/**
+!pipeline-pulse/**
+!sales-league/**

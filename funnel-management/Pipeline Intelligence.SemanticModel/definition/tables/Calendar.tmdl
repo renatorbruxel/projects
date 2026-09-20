@@ -1,0 +1,60 @@
+table 'Calendar'
+	lineageTag: cal-001
+
+	column Date
+		dataType: dateTime
+		isHidden
+		lineageTag: cal-c-001
+		summarizeBy: none
+		sourceColumn: [Date]
+
+	column Year
+		dataType: int64
+		lineageTag: cal-c-002
+		summarizeBy: none
+		expression = YEAR([Date])
+
+	column Quarter
+		dataType: string
+		lineageTag: cal-c-003
+		summarizeBy: none
+		expression = "Q" & FORMAT(QUARTER([Date]), "0") & " FY" & RIGHT(TEXT(YEAR([Date]), "0000"), 2)
+
+	column Month
+		dataType: int64
+		lineageTag: cal-c-004
+		summarizeBy: none
+		expression = MONTH([Date])
+
+	column MonthName
+		dataType: string
+		lineageTag: cal-c-005
+		summarizeBy: none
+		expression = FORMAT([Date], "MMM")
+		sortByColumn: Month
+
+	column WeekNum
+		dataType: int64
+		lineageTag: cal-c-006
+		summarizeBy: none
+		expression = WEEKNUM([Date], 2)
+
+	column Days_Remaining_in_Quarter
+		dataType: int64
+		lineageTag: cal-c-007
+		summarizeBy: none
+		expression =
+			var qEnd =
+				SWITCH(
+					QUARTER([Date]),
+					1, DATE(YEAR([Date]), 3, 31),
+					2, DATE(YEAR([Date]), 6, 30),
+					3, DATE(YEAR([Date]), 9, 30),
+					DATE(YEAR([Date]), 12, 31)
+				)
+			return INT(qEnd - [Date])
+
+	partition 'Calendar-calc'
+		mode: calculated
+		source
+			= CALENDAR(DATE(2025, 1, 1), DATE(2027, 12, 31))

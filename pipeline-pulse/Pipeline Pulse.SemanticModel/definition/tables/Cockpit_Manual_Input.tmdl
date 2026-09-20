@@ -1,0 +1,62 @@
+table 'Cockpit_Manual_Input'
+	lineageTag: cmi-001
+
+	column 'Region'
+		dataType: string
+		lineageTag: cmi-002
+		summarizeBy: none
+		sourceColumn: Region
+
+	column 'Quarter'
+		dataType: string
+		lineageTag: cmi-003
+		summarizeBy: none
+		sourceColumn: Quarter
+
+	column 'Adjustment_ARR'
+		dataType: double
+		lineageTag: cmi-004
+		summarizeBy: sum
+		sourceColumn: Adjustment_ARR
+		formatString: $#,0
+
+	column 'Reason'
+		dataType: string
+		lineageTag: cmi-005
+		summarizeBy: none
+		sourceColumn: Reason
+
+	column 'Updated_By'
+		dataType: string
+		lineageTag: cmi-006
+		summarizeBy: none
+		sourceColumn: Updated_By
+
+	column 'Updated_Date'
+		dataType: dateTime
+		lineageTag: cmi-007
+		summarizeBy: none
+		sourceColumn: Updated_Date
+		formatString: yyyy-MM-dd
+
+	partition 'Cockpit_Manual_Input-partition-0' = m
+		mode: import
+		source =
+			let
+				Source = #table(
+					type table [
+						Region = text,
+						Quarter = text,
+						Adjustment_ARR = number,
+						Reason = text,
+						Updated_By = text,
+						Updated_Date = date
+					],
+					{
+						{"Americas","Q3 2026",150000,"Late-stage deal pulled forward from Q4","ops.lead@vantara-fictional.demo",#date(2026,9,15)},
+						{"EMEA","Q3 2026",-80000,"Deal slip – ASML procurement delay","ops.lead@vantara-fictional.demo",#date(2026,9,12)},
+						{"APJ","Q4 2026",200000,"NTT accelerated timeline confirmed by field","ops.lead@vantara-fictional.demo",#date(2026,9,16)}
+					}
+				)
+			in
+				Source

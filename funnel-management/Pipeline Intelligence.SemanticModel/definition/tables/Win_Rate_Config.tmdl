@@ -1,0 +1,64 @@
+table 'Win_Rate_Config'
+	lineageTag: wnr-001
+
+	column Region
+		dataType: string
+		lineageTag: wnr-c-001
+		summarizeBy: none
+		sourceColumn: Region
+
+	column Product_Line
+		dataType: string
+		lineageTag: wnr-c-002
+		summarizeBy: none
+		sourceColumn: Product_Line
+
+	column Target_Win_Rate
+		dataType: double
+		lineageTag: wnr-c-003
+		summarizeBy: average
+		sourceColumn: Target_Win_Rate
+		formatString: 0.0%
+
+	column Stretch_Win_Rate
+		dataType: double
+		lineageTag: wnr-c-004
+		summarizeBy: average
+		sourceColumn: Stretch_Win_Rate
+		formatString: 0.0%
+
+	column Coverage_Multiplier
+		dataType: double
+		lineageTag: wnr-c-005
+		summarizeBy: average
+		sourceColumn: Coverage_Multiplier
+		formatString: 0.0x
+
+	partition 'Win_Rate_Config-partition'
+		mode: import
+		source
+			type: m
+			expression
+				= let
+					Source = Table.FromRecords(
+						{
+							[Region = "Americas", Product_Line = "Data Intelligence", Target_Win_Rate = 0.38, Stretch_Win_Rate = 0.45, Coverage_Multiplier = 3.0],
+							[Region = "Americas", Product_Line = "Analytics Cloud", Target_Win_Rate = 0.35, Stretch_Win_Rate = 0.42, Coverage_Multiplier = 3.2],
+							[Region = "Americas", Product_Line = "Storage Platform", Target_Win_Rate = 0.40, Stretch_Win_Rate = 0.48, Coverage_Multiplier = 2.8],
+							[Region = "EMEA", Product_Line = "Data Intelligence", Target_Win_Rate = 0.36, Stretch_Win_Rate = 0.43, Coverage_Multiplier = 3.1],
+							[Region = "EMEA", Product_Line = "Analytics Cloud", Target_Win_Rate = 0.33, Stretch_Win_Rate = 0.40, Coverage_Multiplier = 3.3],
+							[Region = "EMEA", Product_Line = "Storage Platform", Target_Win_Rate = 0.38, Stretch_Win_Rate = 0.45, Coverage_Multiplier = 2.9],
+							[Region = "APJ", Product_Line = "Data Intelligence", Target_Win_Rate = 0.34, Stretch_Win_Rate = 0.41, Coverage_Multiplier = 3.2],
+							[Region = "APJ", Product_Line = "Analytics Cloud", Target_Win_Rate = 0.32, Stretch_Win_Rate = 0.39, Coverage_Multiplier = 3.4],
+							[Region = "APJ", Product_Line = "Storage Platform", Target_Win_Rate = 0.37, Stretch_Win_Rate = 0.44, Coverage_Multiplier = 3.0]
+						},
+						type table [
+							Region = text,
+							Product_Line = text,
+							Target_Win_Rate = number,
+							Stretch_Win_Rate = number,
+							Coverage_Multiplier = number
+						]
+					)
+				in
+					Source
