@@ -9,6 +9,7 @@
 
 # Always allow
 !.gitignore
+!.gitattributes
 !README.md
 !index.html
 !portfolio-deep-dive.html
@@ -23,6 +24,11 @@
 # Review documentation and verification code
 !docs/**
 !tests/**
+!data/**
+!assets/**
+!scripts/**
+!notebooks/**
+!downloads/**
 # Never publish local secrets or generated source exports
 **/.env
 **/.env.*

@@ -19,6 +19,8 @@ My contribution is to establish shared definitions, connect fragmented inputs, i
 
 ## Explore the existing prototypes
 
+The [shared Kaggle dataset](./data/index.html) is available for inspection and [download as a ZIP](./downloads/crm-sales-opportunities-portfolio-v1.zip). It contains 8,800 fictional CRM opportunities, preserved original CSVs, clean tables, a JSON model and reproducible checks. See the [data guide](./data/crm/README.md) for the CC0 license, source years and project coverage. The data explorer uses this source; the existing scenario panels are a separate layer pending migration.
+
 **Current review status: Needs revision.** Source provenance and production readiness remain unverified; the [final audit](./docs/FINAL_PORTFOLIO_AUDIT.md) records the release conditions.
 
 Start with the [portfolio index](./index.html). Hosted links below point to existing demos and may show an earlier revision until an approved release is published.
@@ -53,7 +55,7 @@ Read the [final audit](./docs/FINAL_PORTFOLIO_AUDIT.md) for the actual checks pe
 
 ## Architecture and metric scope
 
-Each HTML file contains its own markup, styles, JavaScript and embedded scenario values. Browser controls operate on local state or fixed examples. There is no shared governed dataset connecting the five demos. Some sections are independent illustrative scenarios; their periods and denominators must be read before comparing values.
+Each original HTML file contains its own markup, styles, JavaScript and embedded scenario values. The new shared CRM foundation provides common tables and a reusable adapter for all five projects. Existing scenario panels have not yet been migrated to it; their periods and denominators must be read before comparing values. The data explorer calculates its preview directly from the downloadable records.
 
 The examples cover attainment, gap to target, pipeline coverage, movement, classification, velocity and unit economics. Relevant formulas and limitations are documented in each project. Illustrative thresholds are assumptions, not approved commercial or compensation policies.
 

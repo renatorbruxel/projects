@@ -1,0 +1,22 @@
+field,type,origin,definition
+opportunity_id,string,source,Unique source opportunity ID; primary key
+account_id,string|null,derived,Stable ID of known account; null when absent
+account,string|null,source,Fictional account name
+seller_id,string,derived,Stable seller dimension ID
+sales_agent,string,source,Fictional seller name
+manager,string,joined,Seller manager
+regional_office,string,joined,"Seller office: Central, East, West; not account headquarters"
+product_id,string,derived,Stable product ID
+product,string,normalized,Product name; GTXPro normalized to GTX Pro
+product_series,string,joined,Product family
+account_sector,string|null,joined/normalized,Sector; technolgy corrected to technology
+account_country,string|null,joined,Account headquarters; not seller sales region
+deal_stage,enum,source,"Prospecting, Engaging, Won or Lost"
+engage_date,date|null,source,Date entering Engaging; YYYY-MM-DD
+close_date,date|null,source,Actual Won/Lost date; absent for open rows
+close_value,integer|null,source,Source deal revenue units; USD used as display assumption; null for open rows
+close_quarter,string|null,derived,Calendar YYYY-Qn from actual close date
+close_month,string|null,derived,Calendar YYYY-MM from actual close date
+close_week_start,date|null,derived,Monday of actual close-date week
+sales_cycle_days,integer|null,derived,Close date minus engagement date for completed deals
+purchase_type_observed,string|null,derived,First observed or repeat purchase in the extract; Won only; not verified Net New

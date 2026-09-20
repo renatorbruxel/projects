@@ -1,0 +1,12 @@
+{
+  "opportunities": 8800,
+  "won_deals": 4238,
+  "lost_deals": 2473,
+  "open_deals": 2089,
+  "won_deal_value": 10005534,
+  "closed_win_rate": 0.6315005215318135,
+  "median_won_cycle_days": 57.0,
+  "accounts_observed": 85,
+  "sellers_with_opportunities": 30,
+  "missing_account": 1425
+}

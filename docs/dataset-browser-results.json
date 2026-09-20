@@ -1,0 +1,19 @@
+{
+  "pages": 1,
+  "desktop_width": 1440,
+  "mobile_width": 390,
+  "js_errors": [],
+  "checks": [
+    "source totals",
+    "pagination",
+    "combined filters",
+    "empty state",
+    "reset",
+    "weekly view",
+    "seller view",
+    "search",
+    "mobile overflow",
+    "ZIP download SHA-256"
+  ],
+  "download_sha256": "05b5cd6e9f32dd876235e1c8043452608f4e292463e78c7919b15b1fbcf6d922"
+}

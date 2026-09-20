@@ -1,0 +1,40 @@
+const fs=require('node:fs'), path=require('node:path'), http=require('node:http'), assert=require('node:assert/strict'), crypto=require('node:crypto');
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const root=path.resolve(__dirname,'..');
+const output=process.env.REVIEW_SCREENSHOTS_DIR||require('node:os').tmpdir();
+const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.csv':'text/csv','.zip':'application/zip'};
+(async()=>{
+ fs.mkdirSync(output,{recursive:true});
+ const server=http.createServer((req,res)=>{const file=path.resolve(root,'.'+decodeURIComponent(req.url.split('?')[0]));if(!file.startsWith(root+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){res.writeHead(404);res.end();return;}res.setHeader('Content-Type',mime[path.extname(file)]||'application/octet-stream');fs.createReadStream(file).pipe(res);});
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ const browser=await chromium.launch();
+ try {
+  const page=await browser.newPage({viewport:{width:1440,height:1050},reducedMotion:'reduce',acceptDownloads:true});
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(`http://127.0.0.1:${server.address().port}/data/index.html`);
+  assert.equal(await page.locator('#metric-rows').textContent(),'8,800');
+  assert.equal(await page.locator('#metric-value').textContent(),'$10,005,534');
+  assert.equal(await page.locator('#metric-win').textContent(),'63.2%');
+  await page.screenshot({path:path.join(output,'dataset-desktop.png')});
+  await page.locator('#data-next').click();assert.match(await page.locator('#data-count').textContent(),/^31–60/);
+  await page.selectOption('#data-quarter','2017-Q4');await page.selectOption('#data-stage','Engaging');
+  assert.equal(await page.locator('#metric-rows').textContent(),'0');assert.equal(await page.locator('#metric-win').textContent(),'N/A');
+  await page.locator('#data-reset').click();
+  await page.locator('#view-weekly').click();assert.match(await page.locator('#data-table thead').textContent(),/Week starting/);
+  await page.locator('#view-sellers').click();assert.match(await page.locator('#data-count').textContent(),/of 30 rows/);
+  await page.locator('#view-records').click();
+  await page.locator('#data-search').fill('no-such-id-123456');assert.equal(await page.locator('#metric-rows').textContent(),'0');
+  await page.locator('#data-reset').click();
+  await page.setViewportSize({width:390,height:844});
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),390,'Mobile document overflow');
+  await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:path.join(output,'dataset-mobile.png')});
+  await page.locator('#metric-rows').scrollIntoViewIfNeeded();await page.screenshot({path:path.join(output,'dataset-mobile-records.png')});
+  const [download]=await Promise.all([page.waitForEvent('download'),page.locator('a[download][href$=".zip"]').click()]);
+  const target=path.join(output,'downloaded-crm.zip');await download.saveAs(target);
+  const sha=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+  assert.equal(sha(target),sha(path.join(root,'downloads/crm-sales-opportunities-portfolio-v1.zip')));
+  assert.deepEqual(errors,[]);
+  fs.writeFileSync(path.join(output,'dataset-browser-results.json'),JSON.stringify({pages:1,desktop_width:1440,mobile_width:390,js_errors:errors,checks:['source totals','pagination','combined filters','empty state','reset','weekly view','seller view','search','mobile overflow','ZIP download SHA-256'],download_sha256:sha(target)},null,2)+'\n');
+  console.log('PASS: dataset browser totals, filters, pagination, empty states, weekly/seller views, mobile layout, and real ZIP download.');
+ } finally {await browser.close();await new Promise(resolve=>server.close(resolve));}
+})();

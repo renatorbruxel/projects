@@ -50,6 +50,7 @@ def main():
     node = shutil.which('node')
     check(node is not None, 'Node.js is required for JavaScript regression checks.')
     subprocess.run([node, str(ROOT/'tests/check_frontend.cjs')], check=True)
+    subprocess.run([sys.executable, str(ROOT/'tests/check_crm_data.py')], check=True)
     check_local_links()
     source = (ROOT/'portfolio-deep-dive.html').read_text()
     blocks = [unescape(re.sub(r'<[^>]*>', '', x)) for x in re.findall(r'<pre>(.*?)</pre>',source,re.S)]
