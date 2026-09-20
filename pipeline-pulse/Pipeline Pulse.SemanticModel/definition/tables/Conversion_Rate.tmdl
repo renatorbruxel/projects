@@ -38,7 +38,7 @@ table 'Conversion_Rate'
 		summarizeBy: average
 		sourceColumn: Avg_Days_in_Stage
 
-	partition 'Conversion_Rate-partition-0' = m
+	partition Conversion_Rate = m
 		mode: import
 		source =
 			let

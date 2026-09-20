@@ -39,7 +39,7 @@ table 'Cockpit_Manual_Input'
 		sourceColumn: Updated_Date
 		formatString: yyyy-MM-dd
 
-	partition 'Cockpit_Manual_Input-partition-0' = m
+	partition Cockpit_Manual_Input = m
 		mode: import
 		source =
 			let

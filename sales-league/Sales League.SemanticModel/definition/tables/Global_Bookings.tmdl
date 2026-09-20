@@ -28,33 +28,31 @@ table Global_Bookings
 
 	partition Global_Bookings-Partition
 		mode: import
-		source
-			type: m
-			expression
-				= let
-				    Source = #table(
-				        type table [
-				            Global_Key = text,
-				            Region = text,
-				            Booked_ARR = number,
-				            Fiscal_Year = text,
-				            Quarter = text
-				        ],
-				        {
-				            {"AMR-E1001","Americas",680000,"FY2026","Q1 FY2026"},
-				            {"AMR-E1002","Americas",680000,"FY2026","Q1 FY2026"},
-				            {"AMR-E1003","Americas",0,"FY2026","Q1 FY2026"},
-				            {"AMR-E1004","Americas",540000,"FY2026","Q2 FY2026"},
-				            {"EME-E2001","EMEA",390000,"FY2026","Q1 FY2026"},
-				            {"EME-E2002","EMEA",520000,"FY2026","Q2 FY2026"},
-				            {"EME-E2003","EMEA",0,"FY2026","Q1 FY2026"},
-				            {"EME-E2004","EMEA",290000,"FY2026","Q3 FY2026"},
-				            {"APJ-E3001","APJ",610000,"FY2026","Q1 FY2026"},
-				            {"APJ-E3002","APJ",350000,"FY2026","Q2 FY2026"},
-				            {"APJ-E3003","APJ",480000,"FY2026","Q1 FY2026"},
-				            {"APJ-E3004","APJ",570000,"FY2026","Q2 FY2026"}
-				        }
-				    )
-				in
-				    Source
+		source =
+			let
+			    Source = #table(
+			        type table [
+			            Global_Key = text,
+			            Region = text,
+			            Booked_ARR = number,
+			            Fiscal_Year = text,
+			            Quarter = text
+			        ],
+			        {
+			            {"AMR-E1001","Americas",680000,"FY2026","Q1 FY2026"},
+			            {"AMR-E1002","Americas",680000,"FY2026","Q1 FY2026"},
+			            {"AMR-E1003","Americas",0,"FY2026","Q1 FY2026"},
+			            {"AMR-E1004","Americas",540000,"FY2026","Q2 FY2026"},
+			            {"EME-E2001","EMEA",390000,"FY2026","Q1 FY2026"},
+			            {"EME-E2002","EMEA",520000,"FY2026","Q2 FY2026"},
+			            {"EME-E2003","EMEA",0,"FY2026","Q1 FY2026"},
+			            {"EME-E2004","EMEA",290000,"FY2026","Q3 FY2026"},
+			            {"APJ-E3001","APJ",610000,"FY2026","Q1 FY2026"},
+			            {"APJ-E3002","APJ",350000,"FY2026","Q2 FY2026"},
+			            {"APJ-E3003","APJ",480000,"FY2026","Q1 FY2026"},
+			            {"APJ-E3004","APJ",570000,"FY2026","Q2 FY2026"}
+			        }
+			    )
+			in
+			    Source
 

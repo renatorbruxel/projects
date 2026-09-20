@@ -18,23 +18,21 @@ table BU_Leaders
 
 	partition BU_Leaders-Partition
 		mode: import
-		source
-			type: m
-			expression
-				= let
-				    Source = #table(
-				        type table [
-				            Email = text,
-				            Name = text,
-				            Business_Group = text
-				        ],
-				        {
-				            {"r.okafor@vantara-fictional.demo","Rachelle Okafor","Core Platform"},
-				            {"t.vasquez@vantara-fictional.demo","Tomas Vasquez","Data Services"},
-				            {"f.winters@vantara-fictional.demo","Felix Winters","Security Suite"},
-				            {"c.brennan@vantara-fictional.demo","Claire Brennan","Analytics Pro"}
-				        }
-				    )
-				in
-				    Source
+		source =
+			let
+			    Source = #table(
+			        type table [
+			            Email = text,
+			            Name = text,
+			            Business_Group = text
+			        ],
+			        {
+			            {"r.okafor@vantara-fictional.demo","Rachelle Okafor","Core Platform"},
+			            {"t.vasquez@vantara-fictional.demo","Tomas Vasquez","Data Services"},
+			            {"f.winters@vantara-fictional.demo","Felix Winters","Security Suite"},
+			            {"c.brennan@vantara-fictional.demo","Claire Brennan","Analytics Pro"}
+			        }
+			    )
+			in
+			    Source
 

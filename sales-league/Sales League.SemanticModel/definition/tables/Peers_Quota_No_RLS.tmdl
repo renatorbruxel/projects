@@ -28,33 +28,31 @@ table Peers_Quota_No_RLS
 
 	partition Peers_Quota_No_RLS-Partition
 		mode: import
-		source
-			type: m
-			expression
-				= let
-				    Source = #table(
-				        type table [
-				            Seller_Email = text,
-				            Region = text,
-				            AOP_EUR = number,
-				            Attainment_Pct = number,
-				            Peer_Band = text
-				        ],
-				        {
-				            {"a.chen@vantara-fictional.demo","Americas",750000,0.91,"Senior"},
-				            {"j.rivera@vantara-fictional.demo","Americas",1000000,0.68,"Senior"},
-				            {"m.blake@vantara-fictional.demo","Americas",700000,0.00,"Mid"},
-				            {"t.kim@vantara-fictional.demo","Americas",850000,0.64,"Senior"},
-				            {"s.patel@vantara-fictional.demo","EMEA",386100,1.01,"Mid"},
-				            {"c.muller@vantara-fictional.demo","EMEA",850000,0.61,"Senior"},
-				            {"n.larsson@vantara-fictional.demo","EMEA",616000,0.00,"Mid"},
-				            {"p.sharma@vantara-fictional.demo","EMEA",700000,0.41,"Mid"},
-				            {"w.zhang@vantara-fictional.demo","APJ",1200000,0.51,"Elite"},
-				            {"h.tanaka@vantara-fictional.demo","APJ",742500,0.47,"Mid"},
-				            {"r.nair@vantara-fictional.demo","APJ",850000,0.56,"Senior"},
-				            {"k.yamamoto@vantara-fictional.demo","APJ",793000,0.72,"Senior"}
-				        }
-				    )
-				in
-				    Source
+		source =
+			let
+			    Source = #table(
+			        type table [
+			            Seller_Email = text,
+			            Region = text,
+			            AOP_EUR = number,
+			            Attainment_Pct = number,
+			            Peer_Band = text
+			        ],
+			        {
+			            {"a.chen@vantara-fictional.demo","Americas",750000,0.91,"Senior"},
+			            {"j.rivera@vantara-fictional.demo","Americas",1000000,0.68,"Senior"},
+			            {"m.blake@vantara-fictional.demo","Americas",700000,0.00,"Mid"},
+			            {"t.kim@vantara-fictional.demo","Americas",850000,0.64,"Senior"},
+			            {"s.patel@vantara-fictional.demo","EMEA",386100,1.01,"Mid"},
+			            {"c.muller@vantara-fictional.demo","EMEA",850000,0.61,"Senior"},
+			            {"n.larsson@vantara-fictional.demo","EMEA",616000,0.00,"Mid"},
+			            {"p.sharma@vantara-fictional.demo","EMEA",700000,0.41,"Mid"},
+			            {"w.zhang@vantara-fictional.demo","APJ",1200000,0.51,"Elite"},
+			            {"h.tanaka@vantara-fictional.demo","APJ",742500,0.47,"Mid"},
+			            {"r.nair@vantara-fictional.demo","APJ",850000,0.56,"Senior"},
+			            {"k.yamamoto@vantara-fictional.demo","APJ",793000,0.72,"Senior"}
+			        }
+			    )
+			in
+			    Source
 

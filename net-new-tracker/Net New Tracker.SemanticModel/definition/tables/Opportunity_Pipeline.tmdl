@@ -47,7 +47,7 @@ table Opportunity_Pipeline
 		summarizeBy: none
 		sourceColumn: Forecast_Category
 
-	partition 'Opportunity_Pipeline-Partition'
+	partition Opportunity_Pipeline = m
 		mode: import
 		source
 			let

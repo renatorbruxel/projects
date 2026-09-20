@@ -328,7 +328,7 @@ table '_Measures'
 		isHidden
 		sourceColumn: _Placeholder
 
-	partition '_Measures-partition-0' = m
+	partition _Measures = m
 		mode: import
 		source =
 			let

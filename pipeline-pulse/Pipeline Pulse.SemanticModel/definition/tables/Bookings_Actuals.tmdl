@@ -80,7 +80,7 @@ table 'Bookings_Actuals'
 		summarizeBy: none
 		sourceColumn: AKey
 
-	partition 'Bookings_Actuals-partition-0' = m
+	partition Bookings_Actuals = m
 		mode: import
 		source =
 			let

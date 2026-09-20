@@ -69,7 +69,7 @@ table 'Pipeline_Snapshot'
 		summarizeBy: none
 		sourceColumn: Territory
 
-	partition 'Pipeline_Snapshot-partition-0' = m
+	partition Pipeline_Snapshot = m
 		mode: import
 		source =
 			let

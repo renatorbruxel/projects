@@ -32,7 +32,7 @@ table 'Dimension_Key'
 		summarizeBy: none
 		sourceColumn: Market
 
-	partition 'Dimension_Key-partition-0' = m
+	partition Dimension_Key = m
 		mode: import
 		source =
 			let

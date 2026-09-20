@@ -31,26 +31,24 @@ table 'Product_Lines'
 		summarizeBy: none
 		sourceColumn: Product_Sort
 
-	partition 'Product_Lines-partition'
+	partition Product_Lines = m
 		mode: import
-		source
-			type: m
-			expression
-				= let
-					Source = Table.FromRecords(
-						{
-							[Product_Line = "Data Intelligence", Product_Category = "Core Platform", ARR_Tier = "Enterprise", Typical_Sales_Cycle_Days = 180, Product_Sort = 1],
-							[Product_Line = "Analytics Cloud", Product_Category = "Analytics", ARR_Tier = "Mid-Market", Typical_Sales_Cycle_Days = 120, Product_Sort = 2],
-							[Product_Line = "Storage Platform", Product_Category = "Infrastructure", ARR_Tier = "Enterprise", Typical_Sales_Cycle_Days = 150, Product_Sort = 3],
-							[Product_Line = "All", Product_Category = "All", ARR_Tier = "All", Typical_Sales_Cycle_Days = 0, Product_Sort = 99]
-						},
-						type table [
-							Product_Line = text,
-							Product_Category = text,
-							ARR_Tier = text,
-							Typical_Sales_Cycle_Days = Int64.Type,
-							Product_Sort = Int64.Type
-						]
-					)
-				in
-					Source
+		source =
+			let
+				Source = Table.FromRecords(
+					{
+						[Product_Line = "Data Intelligence", Product_Category = "Core Platform", ARR_Tier = "Enterprise", Typical_Sales_Cycle_Days = 180, Product_Sort = 1],
+						[Product_Line = "Analytics Cloud", Product_Category = "Analytics", ARR_Tier = "Mid-Market", Typical_Sales_Cycle_Days = 120, Product_Sort = 2],
+						[Product_Line = "Storage Platform", Product_Category = "Infrastructure", ARR_Tier = "Enterprise", Typical_Sales_Cycle_Days = 150, Product_Sort = 3],
+						[Product_Line = "All", Product_Category = "All", ARR_Tier = "All", Typical_Sales_Cycle_Days = 0, Product_Sort = 99]
+					},
+					type table [
+						Product_Line = text,
+						Product_Category = text,
+						ARR_Tier = text,
+						Typical_Sales_Cycle_Days = Int64.Type,
+						Product_Sort = Int64.Type
+					]
+				)
+			in
+				Source

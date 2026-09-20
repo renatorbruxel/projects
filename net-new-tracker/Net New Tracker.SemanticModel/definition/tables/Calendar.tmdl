@@ -42,8 +42,8 @@ table Calendar
 
 	partition Calendar
 		mode: calculated
-		source
-			= ADDCOLUMNS(
+		source =
+			ADDCOLUMNS(
 			    CALENDAR(DATE(2023, 1, 1), DATE(2027, 12, 31)),
 			    "Year", YEAR([Date]),
 			    "Quarter", "Q" & FORMAT(CEILING(MONTH([Date]) / 3, 1), "0"),

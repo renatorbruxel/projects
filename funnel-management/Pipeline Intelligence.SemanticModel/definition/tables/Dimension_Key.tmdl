@@ -31,42 +31,40 @@ table 'Dimension_Key'
 		summarizeBy: none
 		sourceColumn: Market
 
-	partition 'Dimension_Key-partition'
+	partition Dimension_Key = m
 		mode: import
-		source
-			type: m
-			expression
-				= let
-					Source = Table.FromRecords(
-						{
-							[AKey = "AmericasNAMData IntelligenceEnterprise", Region = "Americas", Sub_Region = "NAM", Product_Line = "Data Intelligence", Market = "Enterprise"],
-							[AKey = "AmericasNAMAnalytics CloudMid-Market", Region = "Americas", Sub_Region = "NAM", Product_Line = "Analytics Cloud", Market = "Mid-Market"],
-							[AKey = "AmericasNAMStorage PlatformEnterprise", Region = "Americas", Sub_Region = "NAM", Product_Line = "Storage Platform", Market = "Enterprise"],
-							[AKey = "AmericasLATAMData IntelligenceCommercial", Region = "Americas", Sub_Region = "LATAM", Product_Line = "Data Intelligence", Market = "Commercial"],
-							[AKey = "AmericasLATAMAnalytics CloudCommercial", Region = "Americas", Sub_Region = "LATAM", Product_Line = "Analytics Cloud", Market = "Commercial"],
-							[AKey = "EMEAWEUData IntelligenceEnterprise", Region = "EMEA", Sub_Region = "WEU", Product_Line = "Data Intelligence", Market = "Enterprise"],
-							[AKey = "EMEAWEUStorage PlatformEnterprise", Region = "EMEA", Sub_Region = "WEU", Product_Line = "Storage Platform", Market = "Enterprise"],
-							[AKey = "EMEAWEUAnalytics CloudMid-Market", Region = "EMEA", Sub_Region = "WEU", Product_Line = "Analytics Cloud", Market = "Mid-Market"],
-							[AKey = "EMEAWEUData IntelligenceCommercial", Region = "EMEA", Sub_Region = "WEU", Product_Line = "Data Intelligence", Market = "Commercial"],
-							[AKey = "EMEACEEStorage PlatformEnterprise", Region = "EMEA", Sub_Region = "CEE", Product_Line = "Storage Platform", Market = "Enterprise"],
-							[AKey = "EMEACEEAnalytics CloudEnterprise", Region = "EMEA", Sub_Region = "CEE", Product_Line = "Analytics Cloud", Market = "Enterprise"],
-							[AKey = "APJSEAData IntelligenceEnterprise", Region = "APJ", Sub_Region = "SEA", Product_Line = "Data Intelligence", Market = "Enterprise"],
-							[AKey = "APJSEAStorage PlatformMid-Market", Region = "APJ", Sub_Region = "SEA", Product_Line = "Storage Platform", Market = "Mid-Market"],
-							[AKey = "APJANZAnalytics CloudEnterprise", Region = "APJ", Sub_Region = "ANZ", Product_Line = "Analytics Cloud", Market = "Enterprise"],
-							[AKey = "APJANZData IntelligenceCommercial", Region = "APJ", Sub_Region = "ANZ", Product_Line = "Data Intelligence", Market = "Commercial"],
-							[AKey = "APJSEAStorage PlatformCommercial", Region = "APJ", Sub_Region = "SEA", Product_Line = "Storage Platform", Market = "Commercial"],
-							[AKey = "APJANZAnalytics CloudMid-Market", Region = "APJ", Sub_Region = "ANZ", Product_Line = "Analytics Cloud", Market = "Mid-Market"],
-							[AKey = "AmericasAllAllAll", Region = "Americas", Sub_Region = "All", Product_Line = "All", Market = "All"],
-							[AKey = "EMEAAllAllAll", Region = "EMEA", Sub_Region = "All", Product_Line = "All", Market = "All"],
-							[AKey = "APJAllAllAll", Region = "APJ", Sub_Region = "All", Product_Line = "All", Market = "All"]
-						},
-						type table [
-							AKey = text,
-							Region = text,
-							Sub_Region = text,
-							Product_Line = text,
-							Market = text
-						]
-					)
-				in
-					Source
+		source =
+			let
+				Source = Table.FromRecords(
+					{
+						[AKey = "AmericasNAMData IntelligenceEnterprise", Region = "Americas", Sub_Region = "NAM", Product_Line = "Data Intelligence", Market = "Enterprise"],
+						[AKey = "AmericasNAMAnalytics CloudMid-Market", Region = "Americas", Sub_Region = "NAM", Product_Line = "Analytics Cloud", Market = "Mid-Market"],
+						[AKey = "AmericasNAMStorage PlatformEnterprise", Region = "Americas", Sub_Region = "NAM", Product_Line = "Storage Platform", Market = "Enterprise"],
+						[AKey = "AmericasLATAMData IntelligenceCommercial", Region = "Americas", Sub_Region = "LATAM", Product_Line = "Data Intelligence", Market = "Commercial"],
+						[AKey = "AmericasLATAMAnalytics CloudCommercial", Region = "Americas", Sub_Region = "LATAM", Product_Line = "Analytics Cloud", Market = "Commercial"],
+						[AKey = "EMEAWEUData IntelligenceEnterprise", Region = "EMEA", Sub_Region = "WEU", Product_Line = "Data Intelligence", Market = "Enterprise"],
+						[AKey = "EMEAWEUStorage PlatformEnterprise", Region = "EMEA", Sub_Region = "WEU", Product_Line = "Storage Platform", Market = "Enterprise"],
+						[AKey = "EMEAWEUAnalytics CloudMid-Market", Region = "EMEA", Sub_Region = "WEU", Product_Line = "Analytics Cloud", Market = "Mid-Market"],
+						[AKey = "EMEAWEUData IntelligenceCommercial", Region = "EMEA", Sub_Region = "WEU", Product_Line = "Data Intelligence", Market = "Commercial"],
+						[AKey = "EMEACEEStorage PlatformEnterprise", Region = "EMEA", Sub_Region = "CEE", Product_Line = "Storage Platform", Market = "Enterprise"],
+						[AKey = "EMEACEEAnalytics CloudEnterprise", Region = "EMEA", Sub_Region = "CEE", Product_Line = "Analytics Cloud", Market = "Enterprise"],
+						[AKey = "APJSEAData IntelligenceEnterprise", Region = "APJ", Sub_Region = "SEA", Product_Line = "Data Intelligence", Market = "Enterprise"],
+						[AKey = "APJSEAStorage PlatformMid-Market", Region = "APJ", Sub_Region = "SEA", Product_Line = "Storage Platform", Market = "Mid-Market"],
+						[AKey = "APJANZAnalytics CloudEnterprise", Region = "APJ", Sub_Region = "ANZ", Product_Line = "Analytics Cloud", Market = "Enterprise"],
+						[AKey = "APJANZData IntelligenceCommercial", Region = "APJ", Sub_Region = "ANZ", Product_Line = "Data Intelligence", Market = "Commercial"],
+						[AKey = "APJSEAStorage PlatformCommercial", Region = "APJ", Sub_Region = "SEA", Product_Line = "Storage Platform", Market = "Commercial"],
+						[AKey = "APJANZAnalytics CloudMid-Market", Region = "APJ", Sub_Region = "ANZ", Product_Line = "Analytics Cloud", Market = "Mid-Market"],
+						[AKey = "AmericasAllAllAll", Region = "Americas", Sub_Region = "All", Product_Line = "All", Market = "All"],
+						[AKey = "EMEAAllAllAll", Region = "EMEA", Sub_Region = "All", Product_Line = "All", Market = "All"],
+						[AKey = "APJAllAllAll", Region = "APJ", Sub_Region = "All", Product_Line = "All", Market = "All"]
+					},
+					type table [
+						AKey = text,
+						Region = text,
+						Sub_Region = text,
+						Product_Line = text,
+						Market = text
+					]
+				)
+			in
+				Source

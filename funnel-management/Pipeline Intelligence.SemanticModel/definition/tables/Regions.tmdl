@@ -31,28 +31,26 @@ table 'Regions'
 		summarizeBy: none
 		sourceColumn: Sub_Region_Sort
 
-	partition 'Regions-partition'
+	partition Regions = m
 		mode: import
-		source
-			type: m
-			expression
-				= let
-					Source = Table.FromRecords(
-						{
-							[Region = "Americas", Sub_Region = "NAM", Region_Lead = "Chris Alvarez", Region_Sort = 1, Sub_Region_Sort = 1],
-							[Region = "Americas", Sub_Region = "LATAM", Region_Lead = "Chris Alvarez", Region_Sort = 1, Sub_Region_Sort = 2],
-							[Region = "EMEA", Sub_Region = "WEU", Region_Lead = "Nadia Schreiber", Region_Sort = 2, Sub_Region_Sort = 1],
-							[Region = "EMEA", Sub_Region = "CEE", Region_Lead = "Nadia Schreiber", Region_Sort = 2, Sub_Region_Sort = 2],
-							[Region = "APJ", Sub_Region = "ANZ", Region_Lead = "Thomas Nguyen", Region_Sort = 3, Sub_Region_Sort = 1],
-							[Region = "APJ", Sub_Region = "SEA", Region_Lead = "Thomas Nguyen", Region_Sort = 3, Sub_Region_Sort = 2]
-						},
-						type table [
-							Region = text,
-							Sub_Region = text,
-							Region_Lead = text,
-							Region_Sort = Int64.Type,
-							Sub_Region_Sort = Int64.Type
-						]
-					)
-				in
-					Source
+		source =
+			let
+				Source = Table.FromRecords(
+					{
+						[Region = "Americas", Sub_Region = "NAM", Region_Lead = "Chris Alvarez", Region_Sort = 1, Sub_Region_Sort = 1],
+						[Region = "Americas", Sub_Region = "LATAM", Region_Lead = "Chris Alvarez", Region_Sort = 1, Sub_Region_Sort = 2],
+						[Region = "EMEA", Sub_Region = "WEU", Region_Lead = "Nadia Schreiber", Region_Sort = 2, Sub_Region_Sort = 1],
+						[Region = "EMEA", Sub_Region = "CEE", Region_Lead = "Nadia Schreiber", Region_Sort = 2, Sub_Region_Sort = 2],
+						[Region = "APJ", Sub_Region = "ANZ", Region_Lead = "Thomas Nguyen", Region_Sort = 3, Sub_Region_Sort = 1],
+						[Region = "APJ", Sub_Region = "SEA", Region_Lead = "Thomas Nguyen", Region_Sort = 3, Sub_Region_Sort = 2]
+					},
+					type table [
+						Region = text,
+						Sub_Region = text,
+						Region_Lead = text,
+						Region_Sort = Int64.Type,
+						Sub_Region_Sort = Int64.Type
+					]
+				)
+			in
+				Source

@@ -23,23 +23,21 @@ table Region_Leaders
 
 	partition Region_Leaders-Partition
 		mode: import
-		source
-			type: m
-			expression
-				= let
-				    Source = #table(
-				        type table [
-				            Email = text,
-				            Name = text,
-				            Region = text,
-				            Region_Key = text
-				        ],
-				        {
-				            {"v.ross@vantara-fictional.demo","Victoria Ross","Americas","AMR"},
-				            {"b.hartmann@vantara-fictional.demo","Boris Hartmann","EMEA","EME"},
-				            {"y.suzuki@vantara-fictional.demo","Yuki Suzuki","APJ","APJ"}
-				        }
-				    )
-				in
-				    Source
+		source =
+			let
+			    Source = #table(
+			        type table [
+			            Email = text,
+			            Name = text,
+			            Region = text,
+			            Region_Key = text
+			        ],
+			        {
+			            {"v.ross@vantara-fictional.demo","Victoria Ross","Americas","AMR"},
+			            {"b.hartmann@vantara-fictional.demo","Boris Hartmann","EMEA","EME"},
+			            {"y.suzuki@vantara-fictional.demo","Yuki Suzuki","APJ","APJ"}
+			        }
+			    )
+			in
+			    Source
 

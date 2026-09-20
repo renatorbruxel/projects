@@ -39,7 +39,7 @@ table 'Regions'
 		sourceColumn: FY26_ARR_Target
 		formatString: $#,0,,\M
 
-	partition 'Regions-partition-0' = m
+	partition Regions = m
 		mode: import
 		source =
 			let

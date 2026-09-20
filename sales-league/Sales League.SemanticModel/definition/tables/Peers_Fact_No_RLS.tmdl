@@ -36,35 +36,33 @@ table Peers_Fact_No_RLS
 
 	partition Peers_Fact_No_RLS-Partition
 		mode: import
-		source
-			type: m
-			expression
-				= let
-				    Source = #table(
-				        type table [
-				            Seller_Email = text,
-				            Region = text,
-				            Total_Booked = number,
-				            Win_Rate = number,
-				            Funnel_Hygiene_Score = number,
-				            Acc_Points = number,
-				            Global_Ranking = Int64.Type
-				        ],
-				        {
-				            {"a.chen@vantara-fictional.demo","Americas",680000,0.28,0.82,90,4},
-				            {"j.rivera@vantara-fictional.demo","Americas",680000,0.32,0.76,88,5},
-				            {"m.blake@vantara-fictional.demo","Americas",0,0.18,0.55,43,11},
-				            {"t.kim@vantara-fictional.demo","Americas",540000,0.35,0.88,115,1},
-				            {"s.patel@vantara-fictional.demo","EMEA",390000,0.27,0.79,82,7},
-				            {"c.muller@vantara-fictional.demo","EMEA",520000,0.31,0.84,96,3},
-				            {"n.larsson@vantara-fictional.demo","EMEA",0,0.15,0.48,36,12},
-				            {"p.sharma@vantara-fictional.demo","EMEA",290000,0.22,0.72,62,9},
-				            {"w.zhang@vantara-fictional.demo","APJ",610000,0.38,0.91,126,1},
-				            {"h.tanaka@vantara-fictional.demo","APJ",350000,0.25,0.67,64,8},
-				            {"r.nair@vantara-fictional.demo","APJ",480000,0.30,0.73,76,6},
-				            {"k.yamamoto@vantara-fictional.demo","APJ",570000,0.33,0.80,100,2}
-				        }
-				    )
-				in
-				    Source
+		source =
+			let
+			    Source = #table(
+			        type table [
+			            Seller_Email = text,
+			            Region = text,
+			            Total_Booked = number,
+			            Win_Rate = number,
+			            Funnel_Hygiene_Score = number,
+			            Acc_Points = number,
+			            Global_Ranking = Int64.Type
+			        ],
+			        {
+			            {"a.chen@vantara-fictional.demo","Americas",680000,0.28,0.82,90,4},
+			            {"j.rivera@vantara-fictional.demo","Americas",680000,0.32,0.76,88,5},
+			            {"m.blake@vantara-fictional.demo","Americas",0,0.18,0.55,43,11},
+			            {"t.kim@vantara-fictional.demo","Americas",540000,0.35,0.88,115,1},
+			            {"s.patel@vantara-fictional.demo","EMEA",390000,0.27,0.79,82,7},
+			            {"c.muller@vantara-fictional.demo","EMEA",520000,0.31,0.84,96,3},
+			            {"n.larsson@vantara-fictional.demo","EMEA",0,0.15,0.48,36,12},
+			            {"p.sharma@vantara-fictional.demo","EMEA",290000,0.22,0.72,62,9},
+			            {"w.zhang@vantara-fictional.demo","APJ",610000,0.38,0.91,126,1},
+			            {"h.tanaka@vantara-fictional.demo","APJ",350000,0.25,0.67,64,8},
+			            {"r.nair@vantara-fictional.demo","APJ",480000,0.30,0.73,76,6},
+			            {"k.yamamoto@vantara-fictional.demo","APJ",570000,0.33,0.80,100,2}
+			        }
+			    )
+			in
+			    Source
 

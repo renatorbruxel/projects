@@ -87,7 +87,7 @@ table Net_New_Transactions
 		summarizeBy: none
 		expression: = IF([Classification] = "Net New", TRUE(), FALSE())
 
-	partition 'Net_New_Transactions-Partition'
+	partition Net_New_Transactions = m
 		mode: import
 		source
 			let

@@ -87,8 +87,6 @@ table _Measures
 
 	partition _Measures-Partition
 		mode: import
-		source
-			type: m
-			expression
-				= #table({}, {{}})
+		source =
+			#table({}, {{}})
 

@@ -32,27 +32,25 @@ table 'Conversion_Rate'
 		summarizeBy: none
 		sourceColumn: Stage_Sort
 
-	partition 'Conversion_Rate-partition'
+	partition Conversion_Rate = m
 		mode: import
-		source
-			type: m
-			expression
-				= let
-					Source = Table.FromRecords(
-						{
-							[From_Stage = "Qualify", To_Stage = "Develop", Avg_Conv_Rate = 0.72, Avg_Days_in_Stage = 21, Stage_Sort = 1],
-							[From_Stage = "Develop", To_Stage = "Validate", Avg_Conv_Rate = 0.65, Avg_Days_in_Stage = 28, Stage_Sort = 2],
-							[From_Stage = "Validate", To_Stage = "Propose", Avg_Conv_Rate = 0.58, Avg_Days_in_Stage = 21, Stage_Sort = 3],
-							[From_Stage = "Propose", To_Stage = "Negotiate", Avg_Conv_Rate = 0.70, Avg_Days_in_Stage = 14, Stage_Sort = 4],
-							[From_Stage = "Negotiate", To_Stage = "Closed Won", Avg_Conv_Rate = 0.82, Avg_Days_in_Stage = 14, Stage_Sort = 5]
-						},
-						type table [
-							From_Stage = text,
-							To_Stage = text,
-							Avg_Conv_Rate = number,
-							Avg_Days_in_Stage = Int64.Type,
-							Stage_Sort = Int64.Type
-						]
-					)
-				in
-					Source
+		source =
+			let
+				Source = Table.FromRecords(
+					{
+						[From_Stage = "Qualify", To_Stage = "Develop", Avg_Conv_Rate = 0.72, Avg_Days_in_Stage = 21, Stage_Sort = 1],
+						[From_Stage = "Develop", To_Stage = "Validate", Avg_Conv_Rate = 0.65, Avg_Days_in_Stage = 28, Stage_Sort = 2],
+						[From_Stage = "Validate", To_Stage = "Propose", Avg_Conv_Rate = 0.58, Avg_Days_in_Stage = 21, Stage_Sort = 3],
+						[From_Stage = "Propose", To_Stage = "Negotiate", Avg_Conv_Rate = 0.70, Avg_Days_in_Stage = 14, Stage_Sort = 4],
+						[From_Stage = "Negotiate", To_Stage = "Closed Won", Avg_Conv_Rate = 0.82, Avg_Days_in_Stage = 14, Stage_Sort = 5]
+					},
+					type table [
+						From_Stage = text,
+						To_Stage = text,
+						Avg_Conv_Rate = number,
+						Avg_Days_in_Stage = Int64.Type,
+						Stage_Sort = Int64.Type
+					]
+				)
+			in
+				Source

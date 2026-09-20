@@ -26,7 +26,7 @@ table Regions
 		summarizeBy: none
 		sourceColumn: Market_ID
 
-	partition 'Regions-Partition'
+	partition Regions = m
 		mode: import
 		source
 			let

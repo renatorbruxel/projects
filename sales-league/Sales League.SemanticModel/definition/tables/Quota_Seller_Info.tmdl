@@ -66,41 +66,39 @@ table Quota_Seller_Info
 
 	partition Quota_Seller_Info-Partition
 		mode: import
-		source
-			type: m
-			expression
-				= let
-				    Source = #table(
-				        type table [
-				            Seller_Email = text,
-				            Seller_Name = text,
-				            Preferred_Name = text,
-				            Job_Title = text,
-				            Region = text,
-				            Sub_Region = text,
-				            Market = text,
-				            Manager_Email = text,
-				            Manager_Name = text,
-				            Player = text,
-				            Player_Consent = logical,
-				            Quota_Seller_Key = text,
-				            Is_Active = logical
-				        ],
-				        {
-				            {"a.chen@vantara-fictional.demo","Alex Chen","Alex","Enterprise Account Executive","Americas","North America","North America","d.torres@vantara-fictional.demo","Diego Torres","Yes",true,"AMR-E1001",true},
-				            {"j.rivera@vantara-fictional.demo","Jordan Rivera","Jordan","Enterprise Account Executive","Americas","North America","North America","d.torres@vantara-fictional.demo","Diego Torres","Yes",true,"AMR-E1002",true},
-				            {"m.blake@vantara-fictional.demo","Morgan Blake","Morgan","Senior Account Executive","Americas","LATAM","LATAM","d.torres@vantara-fictional.demo","Diego Torres","Yes",true,"AMR-E1003",true},
-				            {"t.kim@vantara-fictional.demo","Taylor Kim","Taylor","Enterprise Account Executive","Americas","Canada","Canada","d.torres@vantara-fictional.demo","Diego Torres","Yes",true,"AMR-E1004",true},
-				            {"s.patel@vantara-fictional.demo","Sam Patel","Sam","Enterprise Account Executive","EMEA","UK & Ireland","UK & Ireland","l.dubois@vantara-fictional.demo","Leila Dubois","Yes",true,"EME-E2001",true},
-				            {"c.muller@vantara-fictional.demo","Chris Muller","Chris","Enterprise Account Executive","EMEA","DACH","DACH","l.dubois@vantara-fictional.demo","Leila Dubois","Yes",true,"EME-E2002",true},
-				            {"n.larsson@vantara-fictional.demo","Nina Larsson","Nina","Senior Account Executive","EMEA","Nordics","Nordics","l.dubois@vantara-fictional.demo","Leila Dubois","Yes",true,"EME-E2003",true},
-				            {"p.sharma@vantara-fictional.demo","Priya Sharma","Priya","Enterprise Account Executive","EMEA","Southern Europe","Southern Europe","l.dubois@vantara-fictional.demo","Leila Dubois","Yes",true,"EME-E2004",true},
-				            {"w.zhang@vantara-fictional.demo","Wei Zhang","Wei","Enterprise Account Executive","APJ","Greater China","Greater China","m.singh@vantara-fictional.demo","Maya Singh","Yes",true,"APJ-E3001",true},
-				            {"h.tanaka@vantara-fictional.demo","Hana Tanaka","Hana","Senior Account Executive","APJ","Japan","Japan","m.singh@vantara-fictional.demo","Maya Singh","Yes",true,"APJ-E3002",true},
-				            {"r.nair@vantara-fictional.demo","Raj Nair","Raj","Enterprise Account Executive","APJ","India & SEA","India & SEA","m.singh@vantara-fictional.demo","Maya Singh","Yes",true,"APJ-E3003",true},
-				            {"k.yamamoto@vantara-fictional.demo","Kai Yamamoto","Kai","Enterprise Account Executive","APJ","ANZ","ANZ","m.singh@vantara-fictional.demo","Maya Singh","Yes",true,"APJ-E3004",true}
-				        }
-				    )
-				in
-				    Source
+		source =
+			let
+			    Source = #table(
+			        type table [
+			            Seller_Email = text,
+			            Seller_Name = text,
+			            Preferred_Name = text,
+			            Job_Title = text,
+			            Region = text,
+			            Sub_Region = text,
+			            Market = text,
+			            Manager_Email = text,
+			            Manager_Name = text,
+			            Player = text,
+			            Player_Consent = logical,
+			            Quota_Seller_Key = text,
+			            Is_Active = logical
+			        ],
+			        {
+			            {"a.chen@vantara-fictional.demo","Alex Chen","Alex","Enterprise Account Executive","Americas","North America","North America","d.torres@vantara-fictional.demo","Diego Torres","Yes",true,"AMR-E1001",true},
+			            {"j.rivera@vantara-fictional.demo","Jordan Rivera","Jordan","Enterprise Account Executive","Americas","North America","North America","d.torres@vantara-fictional.demo","Diego Torres","Yes",true,"AMR-E1002",true},
+			            {"m.blake@vantara-fictional.demo","Morgan Blake","Morgan","Senior Account Executive","Americas","LATAM","LATAM","d.torres@vantara-fictional.demo","Diego Torres","Yes",true,"AMR-E1003",true},
+			            {"t.kim@vantara-fictional.demo","Taylor Kim","Taylor","Enterprise Account Executive","Americas","Canada","Canada","d.torres@vantara-fictional.demo","Diego Torres","Yes",true,"AMR-E1004",true},
+			            {"s.patel@vantara-fictional.demo","Sam Patel","Sam","Enterprise Account Executive","EMEA","UK & Ireland","UK & Ireland","l.dubois@vantara-fictional.demo","Leila Dubois","Yes",true,"EME-E2001",true},
+			            {"c.muller@vantara-fictional.demo","Chris Muller","Chris","Enterprise Account Executive","EMEA","DACH","DACH","l.dubois@vantara-fictional.demo","Leila Dubois","Yes",true,"EME-E2002",true},
+			            {"n.larsson@vantara-fictional.demo","Nina Larsson","Nina","Senior Account Executive","EMEA","Nordics","Nordics","l.dubois@vantara-fictional.demo","Leila Dubois","Yes",true,"EME-E2003",true},
+			            {"p.sharma@vantara-fictional.demo","Priya Sharma","Priya","Enterprise Account Executive","EMEA","Southern Europe","Southern Europe","l.dubois@vantara-fictional.demo","Leila Dubois","Yes",true,"EME-E2004",true},
+			            {"w.zhang@vantara-fictional.demo","Wei Zhang","Wei","Enterprise Account Executive","APJ","Greater China","Greater China","m.singh@vantara-fictional.demo","Maya Singh","Yes",true,"APJ-E3001",true},
+			            {"h.tanaka@vantara-fictional.demo","Hana Tanaka","Hana","Senior Account Executive","APJ","Japan","Japan","m.singh@vantara-fictional.demo","Maya Singh","Yes",true,"APJ-E3002",true},
+			            {"r.nair@vantara-fictional.demo","Raj Nair","Raj","Enterprise Account Executive","APJ","India & SEA","India & SEA","m.singh@vantara-fictional.demo","Maya Singh","Yes",true,"APJ-E3003",true},
+			            {"k.yamamoto@vantara-fictional.demo","Kai Yamamoto","Kai","Enterprise Account Executive","APJ","ANZ","ANZ","m.singh@vantara-fictional.demo","Maya Singh","Yes",true,"APJ-E3004",true}
+			        }
+			    )
+			in
+			    Source
 

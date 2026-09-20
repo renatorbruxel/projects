@@ -44,7 +44,7 @@ table 'Calendar_Full'
 		summarizeBy: none
 		expression = WEEKDAY([Date], 2) = 6
 
-	partition 'Calendar_Full-calc'
+	partition Calendar_Full = calculated
 		mode: calculated
-		source
-			= CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))
+		source =
+			CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))

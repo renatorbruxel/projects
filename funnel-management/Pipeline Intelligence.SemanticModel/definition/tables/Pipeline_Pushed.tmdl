@@ -58,33 +58,31 @@ table 'Pipeline_Pushed'
 		summarizeBy: sum
 		expression = INT([New_Close_Date] - [Original_Close_Date])
 
-	partition 'Pipeline_Pushed-partition'
+	partition Pipeline_Pushed = m
 		mode: import
-		source
-			type: m
-			expression
-				= let
-					Source = Table.FromRecords(
-						{
-							[Opportunity_ID = "OP-1001", Opportunity_Name = "Accenture Digital Platform", Seller_Name = "Sarah Chen", ARR_USD = 1250000.0, Original_Close_Date = #date(2026, 6, 30), New_Close_Date = #date(2026, 9, 30), Push_Reason = "Legal review extended", AKey = "AmericasNAMData IntelligenceEnterprise"],
-							[Opportunity_ID = "OP-1002", Opportunity_Name = "Salesforce CRM Integration", Seller_Name = "Marcus Williams", ARR_USD = 485000.0, Original_Close_Date = #date(2026, 6, 30), New_Close_Date = #date(2026, 9, 30), Push_Reason = "Procurement delay", AKey = "AmericasNAMAnalytics CloudMid-Market"],
-							[Opportunity_ID = "OP-2001", Opportunity_Name = "SAP Enterprise License", Seller_Name = "Klaus Weber", ARR_USD = 1750000.0, Original_Close_Date = #date(2026, 6, 30), New_Close_Date = #date(2026, 9, 30), Push_Reason = "Executive sponsor change", AKey = "EMEAWEUData IntelligenceEnterprise"],
-							[Opportunity_ID = "OP-2003", Opportunity_Name = "Capgemini Analytics Tooling", Seller_Name = "James Bennett", ARR_USD = 285000.0, Original_Close_Date = #date(2026, 9, 30), New_Close_Date = #date(2026, 12, 15), Push_Reason = "Budget reallocation", AKey = "EMEAWEUAnalytics CloudMid-Market"],
-							[Opportunity_ID = "OP-3001", Opportunity_Name = "Infosys Cloud Migration", Seller_Name = "Raj Patel", ARR_USD = 560000.0, Original_Close_Date = #date(2026, 6, 30), New_Close_Date = #date(2026, 10, 31), Push_Reason = "Technical validation extended", AKey = "APJSEAData IntelligenceEnterprise"],
-							[Opportunity_ID = "OP-3005", Opportunity_Name = "KDDI Cloud Services", Seller_Name = "Soo-Jin Park", ARR_USD = 125000.0, Original_Close_Date = #date(2026, 9, 30), New_Close_Date = #date(2026, 12, 31), Push_Reason = "Customer budget cycle", AKey = "APJSEAStorage PlatformCommercial"],
-							[Opportunity_ID = "OP-1007", Opportunity_Name = "Coca-Cola LATAM Rollout", Seller_Name = "Ana Lima", ARR_USD = 175000.0, Original_Close_Date = #date(2026, 9, 30), New_Close_Date = #date(2026, 11, 30), Push_Reason = "Stakeholder alignment", AKey = "AmericasLATAMAnalytics CloudCommercial"],
-							[Opportunity_ID = "OP-2006", Opportunity_Name = "Allianz Analytics Upgrade", Seller_Name = "Petra Kovacs", ARR_USD = 380000.0, Original_Close_Date = #date(2026, 9, 30), New_Close_Date = #date(2026, 11, 30), Push_Reason = "Competitive re-evaluation", AKey = "EMEACEEAnalytics CloudEnterprise"]
-						},
-						type table [
-							Opportunity_ID = text,
-							Opportunity_Name = text,
-							Seller_Name = text,
-							ARR_USD = number,
-							Original_Close_Date = date,
-							New_Close_Date = date,
-							Push_Reason = text,
-							AKey = text
-						]
-					)
-				in
-					Source
+		source =
+			let
+				Source = Table.FromRecords(
+					{
+						[Opportunity_ID = "OP-1001", Opportunity_Name = "Accenture Digital Platform", Seller_Name = "Sarah Chen", ARR_USD = 1250000.0, Original_Close_Date = #date(2026, 6, 30), New_Close_Date = #date(2026, 9, 30), Push_Reason = "Legal review extended", AKey = "AmericasNAMData IntelligenceEnterprise"],
+						[Opportunity_ID = "OP-1002", Opportunity_Name = "Salesforce CRM Integration", Seller_Name = "Marcus Williams", ARR_USD = 485000.0, Original_Close_Date = #date(2026, 6, 30), New_Close_Date = #date(2026, 9, 30), Push_Reason = "Procurement delay", AKey = "AmericasNAMAnalytics CloudMid-Market"],
+						[Opportunity_ID = "OP-2001", Opportunity_Name = "SAP Enterprise License", Seller_Name = "Klaus Weber", ARR_USD = 1750000.0, Original_Close_Date = #date(2026, 6, 30), New_Close_Date = #date(2026, 9, 30), Push_Reason = "Executive sponsor change", AKey = "EMEAWEUData IntelligenceEnterprise"],
+						[Opportunity_ID = "OP-2003", Opportunity_Name = "Capgemini Analytics Tooling", Seller_Name = "James Bennett", ARR_USD = 285000.0, Original_Close_Date = #date(2026, 9, 30), New_Close_Date = #date(2026, 12, 15), Push_Reason = "Budget reallocation", AKey = "EMEAWEUAnalytics CloudMid-Market"],
+						[Opportunity_ID = "OP-3001", Opportunity_Name = "Infosys Cloud Migration", Seller_Name = "Raj Patel", ARR_USD = 560000.0, Original_Close_Date = #date(2026, 6, 30), New_Close_Date = #date(2026, 10, 31), Push_Reason = "Technical validation extended", AKey = "APJSEAData IntelligenceEnterprise"],
+						[Opportunity_ID = "OP-3005", Opportunity_Name = "KDDI Cloud Services", Seller_Name = "Soo-Jin Park", ARR_USD = 125000.0, Original_Close_Date = #date(2026, 9, 30), New_Close_Date = #date(2026, 12, 31), Push_Reason = "Customer budget cycle", AKey = "APJSEAStorage PlatformCommercial"],
+						[Opportunity_ID = "OP-1007", Opportunity_Name = "Coca-Cola LATAM Rollout", Seller_Name = "Ana Lima", ARR_USD = 175000.0, Original_Close_Date = #date(2026, 9, 30), New_Close_Date = #date(2026, 11, 30), Push_Reason = "Stakeholder alignment", AKey = "AmericasLATAMAnalytics CloudCommercial"],
+						[Opportunity_ID = "OP-2006", Opportunity_Name = "Allianz Analytics Upgrade", Seller_Name = "Petra Kovacs", ARR_USD = 380000.0, Original_Close_Date = #date(2026, 9, 30), New_Close_Date = #date(2026, 11, 30), Push_Reason = "Competitive re-evaluation", AKey = "EMEACEEAnalytics CloudEnterprise"]
+					},
+					type table [
+						Opportunity_ID = text,
+						Opportunity_Name = text,
+						Seller_Name = text,
+						ARR_USD = number,
+						Original_Close_Date = date,
+						New_Close_Date = date,
+						Push_Reason = text,
+						AKey = text
+					]
+				)
+			in
+				Source

@@ -88,9 +88,7 @@ table '_Measures'
 		lineageTag: e7866be8-d040-28d1-58e7-fdd38700d472
 		displayFolder: Pipeline
 
-	partition '_Measures-partition'
+	partition _Measures = m
 		mode: import
-		source
-			type: m
-			expression
-				= #table({"Placeholder"}, {{""}})
+		source =
+			#table({"Placeholder"}, {{""}})

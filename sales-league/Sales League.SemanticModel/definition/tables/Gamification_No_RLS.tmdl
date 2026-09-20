@@ -80,44 +80,42 @@ table Gamification_No_RLS
 
 	partition Gamification_No_RLS-Partition
 		mode: import
-		source
-			type: m
-			expression
-				= let
-				    Source = #table(
-				        type table [
-				            Email = text,
-				            Date_Read = date,
-				            Seller_Name = text,
-				            Funnel_Hygiene_Score = number,
-				            Total_ARR = number,
-				            Total_Open = Int64.Type,
-				            Total_Booked = number,
-				            Total_Lost = number,
-				            Win_Rate = number,
-				            Funnel_Size = number,
-				            Acc_Points = number,
-				            Global_Ranking = Int64.Type,
-				            Regional_Ranking = Int64.Type,
-				            Market = text,
-				            Region = text,
-				            Player = text
-				        ],
-				        {
-				            {"a.chen@vantara-fictional.demo",#date(2026,9,12),"Alex Chen",0.82,570000,2,680000,0,0.28,420000,90,4,2,"North America","Americas","Yes"},
-				            {"j.rivera@vantara-fictional.demo",#date(2026,9,12),"Jordan Rivera",0.76,900000,1,680000,0,0.32,220000,88,5,3,"North America","Americas","Yes"},
-				            {"m.blake@vantara-fictional.demo",#date(2026,9,12),"Morgan Blake",0.55,505000,1,0,310000,0.18,195000,43,11,4,"LATAM","Americas","Yes"},
-				            {"t.kim@vantara-fictional.demo",#date(2026,9,12),"Taylor Kim",0.88,820000,1,540000,0,0.35,280000,115,1,1,"Canada","Americas","Yes"},
-				            {"s.patel@vantara-fictional.demo",#date(2026,9,12),"Sam Patel",0.79,565000,1,390000,0,0.27,175000,82,7,2,"UK & Ireland","EMEA","Yes"},
-				            {"c.muller@vantara-fictional.demo",#date(2026,9,12),"Chris Muller",0.84,760000,1,520000,0,0.31,240000,96,3,1,"DACH","EMEA","Yes"},
-				            {"n.larsson@vantara-fictional.demo",#date(2026,9,12),"Nina Larsson",0.48,790000,1,0,460000,0.15,330000,36,12,4,"Nordics","EMEA","Yes"},
-				            {"p.sharma@vantara-fictional.demo",#date(2026,9,12),"Priya Sharma",0.72,500000,1,290000,0,0.22,210000,62,9,3,"Southern Europe","EMEA","Yes"},
-				            {"w.zhang@vantara-fictional.demo",#date(2026,9,12),"Wei Zhang",0.91,810000,1,610000,0,0.38,200000,126,1,1,"Greater China","APJ","Yes"},
-				            {"h.tanaka@vantara-fictional.demo",#date(2026,9,12),"Hana Tanaka",0.67,535000,1,350000,0,0.25,185000,64,8,2,"Japan","APJ","Yes"},
-				            {"r.nair@vantara-fictional.demo",#date(2026,9,12),"Raj Nair",0.73,620000,1,480000,0,0.30,140000,76,6,3,"India & SEA","APJ","Yes"},
-				            {"k.yamamoto@vantara-fictional.demo",#date(2026,9,12),"Kai Yamamoto",0.80,890000,1,570000,0,0.33,320000,100,2,2,"ANZ","APJ","Yes"}
-				        }
-				    )
-				in
-				    Source
+		source =
+			let
+			    Source = #table(
+			        type table [
+			            Email = text,
+			            Date_Read = date,
+			            Seller_Name = text,
+			            Funnel_Hygiene_Score = number,
+			            Total_ARR = number,
+			            Total_Open = Int64.Type,
+			            Total_Booked = number,
+			            Total_Lost = number,
+			            Win_Rate = number,
+			            Funnel_Size = number,
+			            Acc_Points = number,
+			            Global_Ranking = Int64.Type,
+			            Regional_Ranking = Int64.Type,
+			            Market = text,
+			            Region = text,
+			            Player = text
+			        ],
+			        {
+			            {"a.chen@vantara-fictional.demo",#date(2026,9,12),"Alex Chen",0.82,570000,2,680000,0,0.28,420000,90,4,2,"North America","Americas","Yes"},
+			            {"j.rivera@vantara-fictional.demo",#date(2026,9,12),"Jordan Rivera",0.76,900000,1,680000,0,0.32,220000,88,5,3,"North America","Americas","Yes"},
+			            {"m.blake@vantara-fictional.demo",#date(2026,9,12),"Morgan Blake",0.55,505000,1,0,310000,0.18,195000,43,11,4,"LATAM","Americas","Yes"},
+			            {"t.kim@vantara-fictional.demo",#date(2026,9,12),"Taylor Kim",0.88,820000,1,540000,0,0.35,280000,115,1,1,"Canada","Americas","Yes"},
+			            {"s.patel@vantara-fictional.demo",#date(2026,9,12),"Sam Patel",0.79,565000,1,390000,0,0.27,175000,82,7,2,"UK & Ireland","EMEA","Yes"},
+			            {"c.muller@vantara-fictional.demo",#date(2026,9,12),"Chris Muller",0.84,760000,1,520000,0,0.31,240000,96,3,1,"DACH","EMEA","Yes"},
+			            {"n.larsson@vantara-fictional.demo",#date(2026,9,12),"Nina Larsson",0.48,790000,1,0,460000,0.15,330000,36,12,4,"Nordics","EMEA","Yes"},
+			            {"p.sharma@vantara-fictional.demo",#date(2026,9,12),"Priya Sharma",0.72,500000,1,290000,0,0.22,210000,62,9,3,"Southern Europe","EMEA","Yes"},
+			            {"w.zhang@vantara-fictional.demo",#date(2026,9,12),"Wei Zhang",0.91,810000,1,610000,0,0.38,200000,126,1,1,"Greater China","APJ","Yes"},
+			            {"h.tanaka@vantara-fictional.demo",#date(2026,9,12),"Hana Tanaka",0.67,535000,1,350000,0,0.25,185000,64,8,2,"Japan","APJ","Yes"},
+			            {"r.nair@vantara-fictional.demo",#date(2026,9,12),"Raj Nair",0.73,620000,1,480000,0,0.30,140000,76,6,3,"India & SEA","APJ","Yes"},
+			            {"k.yamamoto@vantara-fictional.demo",#date(2026,9,12),"Kai Yamamoto",0.80,890000,1,570000,0,0.33,320000,100,2,2,"ANZ","APJ","Yes"}
+			        }
+			    )
+			in
+			    Source
 

@@ -45,31 +45,29 @@ table 'Booking_Details'
 		summarizeBy: none
 		sourceColumn: Is_Renewal
 
-	partition 'Booking_Details-partition'
+	partition Booking_Details = m
 		mode: import
-		source
-			type: m
-			expression
-				= let
-					Source = Table.FromRecords(
-						{
-							[Booking_Detail_ID = "BD-001", Opportunity_ID = "OP-3007", Booking_Date = #date(2026, 8, 30), Booking_ARR = 680000.0, Booking_Type = "New ARR", Product_Line = "Data Intelligence", Is_Renewal = false],
-							[Booking_Detail_ID = "BD-002", Opportunity_ID = "OP-3007", Booking_Date = #date(2026, 8, 30), Booking_ARR = 68000.0, Booking_Type = "Professional Services", Product_Line = "Data Intelligence", Is_Renewal = false],
-							[Booking_Detail_ID = "BD-003", Opportunity_ID = "OP-1004", Booking_Date = #date(2026, 9, 15), Booking_ARR = 320000.0, Booking_Type = "Expansion ARR", Product_Line = "Analytics Cloud", Is_Renewal = false],
-							[Booking_Detail_ID = "BD-004", Opportunity_ID = "OP-2005", Booking_Date = #date(2026, 9, 15), Booking_ARR = 1100000.0, Booking_Type = "New ARR", Product_Line = "Storage Platform", Is_Renewal = false],
-							[Booking_Detail_ID = "BD-005", Opportunity_ID = "OP-3002", Booking_Date = #date(2026, 9, 30), Booking_ARR = 290000.0, Booking_Type = "Renewal ARR", Product_Line = "Storage Platform", Is_Renewal = true],
-							[Booking_Detail_ID = "BD-006", Opportunity_ID = "OP-3003", Booking_Date = #date(2026, 9, 30), Booking_ARR = 975000.0, Booking_Type = "New ARR", Product_Line = "Analytics Cloud", Is_Renewal = false],
-							[Booking_Detail_ID = "BD-007", Opportunity_ID = "OP-2004", Booking_Date = #date(2026, 9, 30), Booking_ARR = 420000.0, Booking_Type = "New ARR", Product_Line = "Data Intelligence", Is_Renewal = false]
-						},
-						type table [
-							Booking_Detail_ID = text,
-							Opportunity_ID = text,
-							Booking_Date = date,
-							Booking_ARR = number,
-							Booking_Type = text,
-							Product_Line = text,
-							Is_Renewal = logical
-						]
-					)
-				in
-					Source
+		source =
+			let
+				Source = Table.FromRecords(
+					{
+						[Booking_Detail_ID = "BD-001", Opportunity_ID = "OP-3007", Booking_Date = #date(2026, 8, 30), Booking_ARR = 680000.0, Booking_Type = "New ARR", Product_Line = "Data Intelligence", Is_Renewal = false],
+						[Booking_Detail_ID = "BD-002", Opportunity_ID = "OP-3007", Booking_Date = #date(2026, 8, 30), Booking_ARR = 68000.0, Booking_Type = "Professional Services", Product_Line = "Data Intelligence", Is_Renewal = false],
+						[Booking_Detail_ID = "BD-003", Opportunity_ID = "OP-1004", Booking_Date = #date(2026, 9, 15), Booking_ARR = 320000.0, Booking_Type = "Expansion ARR", Product_Line = "Analytics Cloud", Is_Renewal = false],
+						[Booking_Detail_ID = "BD-004", Opportunity_ID = "OP-2005", Booking_Date = #date(2026, 9, 15), Booking_ARR = 1100000.0, Booking_Type = "New ARR", Product_Line = "Storage Platform", Is_Renewal = false],
+						[Booking_Detail_ID = "BD-005", Opportunity_ID = "OP-3002", Booking_Date = #date(2026, 9, 30), Booking_ARR = 290000.0, Booking_Type = "Renewal ARR", Product_Line = "Storage Platform", Is_Renewal = true],
+						[Booking_Detail_ID = "BD-006", Opportunity_ID = "OP-3003", Booking_Date = #date(2026, 9, 30), Booking_ARR = 975000.0, Booking_Type = "New ARR", Product_Line = "Analytics Cloud", Is_Renewal = false],
+						[Booking_Detail_ID = "BD-007", Opportunity_ID = "OP-2004", Booking_Date = #date(2026, 9, 30), Booking_ARR = 420000.0, Booking_Type = "New ARR", Product_Line = "Data Intelligence", Is_Renewal = false]
+					},
+					type table [
+						Booking_Detail_ID = text,
+						Opportunity_ID = text,
+						Booking_Date = date,
+						Booking_ARR = number,
+						Booking_Type = text,
+						Product_Line = text,
+						Is_Renewal = logical
+					]
+				)
+			in
+				Source

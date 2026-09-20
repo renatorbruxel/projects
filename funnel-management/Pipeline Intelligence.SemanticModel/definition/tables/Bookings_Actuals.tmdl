@@ -80,41 +80,39 @@ table 'Bookings_Actuals'
 		summarizeBy: none
 		sourceColumn: AKey
 
-	partition 'Bookings_Actuals-partition'
+	partition Bookings_Actuals = m
 		mode: import
-		source
-			type: m
-			expression
-				= let
-					Source = Table.FromRecords(
-						{
-							[Region = "Americas", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 3, 31), AOP_Bookings = 95000000.0, Q1FC_Bookings = 93000000.0, Q2FC_Bookings = 90000000.0, Q3FC_Bookings = 88000000.0, Q4FC_Bookings = 87000000.0, Actual_Bookings = 92000000.0, AKey = "AmericasAllAllAll"],
-							[Region = "Americas", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 6, 30), AOP_Bookings = 95000000.0, Q1FC_Bookings = 97000000.0, Q2FC_Bookings = 91000000.0, Q3FC_Bookings = 89000000.0, Q4FC_Bookings = 88000000.0, Actual_Bookings = 88000000.0, AKey = "AmericasAllAllAll"],
-							[Region = "Americas", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 9, 30), AOP_Bookings = 95000000.0, Q1FC_Bookings = 98000000.0, Q2FC_Bookings = 95000000.0, Q3FC_Bookings = 82000000.0, Q4FC_Bookings = 90000000.0, Actual_Bookings = 78000000.0, AKey = "AmericasAllAllAll"],
-							[Region = "Americas", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 12, 31), AOP_Bookings = 95000000.0, Q1FC_Bookings = 100000000.0, Q2FC_Bookings = 98000000.0, Q3FC_Bookings = 94000000.0, Q4FC_Bookings = 92000000.0, Actual_Bookings = 0.0, AKey = "AmericasAllAllAll"],
-							[Region = "EMEA", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 3, 31), AOP_Bookings = 65000000.0, Q1FC_Bookings = 66000000.0, Q2FC_Bookings = 64000000.0, Q3FC_Bookings = 62000000.0, Q4FC_Bookings = 61000000.0, Actual_Bookings = 68000000.0, AKey = "EMEAAllAllAll"],
-							[Region = "EMEA", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 6, 30), AOP_Bookings = 65000000.0, Q1FC_Bookings = 67000000.0, Q2FC_Bookings = 63000000.0, Q3FC_Bookings = 61000000.0, Q4FC_Bookings = 60000000.0, Actual_Bookings = 61000000.0, AKey = "EMEAAllAllAll"],
-							[Region = "EMEA", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 9, 30), AOP_Bookings = 65000000.0, Q1FC_Bookings = 68000000.0, Q2FC_Bookings = 65000000.0, Q3FC_Bookings = 56000000.0, Q4FC_Bookings = 62000000.0, Actual_Bookings = 52000000.0, AKey = "EMEAAllAllAll"],
-							[Region = "EMEA", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 12, 31), AOP_Bookings = 65000000.0, Q1FC_Bookings = 69000000.0, Q2FC_Bookings = 66000000.0, Q3FC_Bookings = 64000000.0, Q4FC_Bookings = 63000000.0, Actual_Bookings = 0.0, AKey = "EMEAAllAllAll"],
-							[Region = "APJ", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 3, 31), AOP_Bookings = 40000000.0, Q1FC_Bookings = 41000000.0, Q2FC_Bookings = 39000000.0, Q3FC_Bookings = 38000000.0, Q4FC_Bookings = 37000000.0, Actual_Bookings = 42000000.0, AKey = "APJAllAllAll"],
-							[Region = "APJ", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 6, 30), AOP_Bookings = 40000000.0, Q1FC_Bookings = 42000000.0, Q2FC_Bookings = 40000000.0, Q3FC_Bookings = 38000000.0, Q4FC_Bookings = 37000000.0, Actual_Bookings = 38000000.0, AKey = "APJAllAllAll"],
-							[Region = "APJ", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 9, 30), AOP_Bookings = 40000000.0, Q1FC_Bookings = 43000000.0, Q2FC_Bookings = 41000000.0, Q3FC_Bookings = 35000000.0, Q4FC_Bookings = 38000000.0, Actual_Bookings = 31000000.0, AKey = "APJAllAllAll"],
-							[Region = "APJ", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 12, 31), AOP_Bookings = 40000000.0, Q1FC_Bookings = 44000000.0, Q2FC_Bookings = 42000000.0, Q3FC_Bookings = 40000000.0, Q4FC_Bookings = 39000000.0, Actual_Bookings = 0.0, AKey = "APJAllAllAll"]
-						},
-						type table [
-							Region = text,
-							Sub_Region = text,
-							Product_Line = text,
-							Market = text,
-							Booking_Date = date,
-							AOP_Bookings = number,
-							Q1FC_Bookings = number,
-							Q2FC_Bookings = number,
-							Q3FC_Bookings = number,
-							Q4FC_Bookings = number,
-							Actual_Bookings = number,
-							AKey = text
-						]
-					)
-				in
-					Source
+		source =
+			let
+				Source = Table.FromRecords(
+					{
+						[Region = "Americas", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 3, 31), AOP_Bookings = 95000000.0, Q1FC_Bookings = 93000000.0, Q2FC_Bookings = 90000000.0, Q3FC_Bookings = 88000000.0, Q4FC_Bookings = 87000000.0, Actual_Bookings = 92000000.0, AKey = "AmericasAllAllAll"],
+						[Region = "Americas", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 6, 30), AOP_Bookings = 95000000.0, Q1FC_Bookings = 97000000.0, Q2FC_Bookings = 91000000.0, Q3FC_Bookings = 89000000.0, Q4FC_Bookings = 88000000.0, Actual_Bookings = 88000000.0, AKey = "AmericasAllAllAll"],
+						[Region = "Americas", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 9, 30), AOP_Bookings = 95000000.0, Q1FC_Bookings = 98000000.0, Q2FC_Bookings = 95000000.0, Q3FC_Bookings = 82000000.0, Q4FC_Bookings = 90000000.0, Actual_Bookings = 78000000.0, AKey = "AmericasAllAllAll"],
+						[Region = "Americas", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 12, 31), AOP_Bookings = 95000000.0, Q1FC_Bookings = 100000000.0, Q2FC_Bookings = 98000000.0, Q3FC_Bookings = 94000000.0, Q4FC_Bookings = 92000000.0, Actual_Bookings = 0.0, AKey = "AmericasAllAllAll"],
+						[Region = "EMEA", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 3, 31), AOP_Bookings = 65000000.0, Q1FC_Bookings = 66000000.0, Q2FC_Bookings = 64000000.0, Q3FC_Bookings = 62000000.0, Q4FC_Bookings = 61000000.0, Actual_Bookings = 68000000.0, AKey = "EMEAAllAllAll"],
+						[Region = "EMEA", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 6, 30), AOP_Bookings = 65000000.0, Q1FC_Bookings = 67000000.0, Q2FC_Bookings = 63000000.0, Q3FC_Bookings = 61000000.0, Q4FC_Bookings = 60000000.0, Actual_Bookings = 61000000.0, AKey = "EMEAAllAllAll"],
+						[Region = "EMEA", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 9, 30), AOP_Bookings = 65000000.0, Q1FC_Bookings = 68000000.0, Q2FC_Bookings = 65000000.0, Q3FC_Bookings = 56000000.0, Q4FC_Bookings = 62000000.0, Actual_Bookings = 52000000.0, AKey = "EMEAAllAllAll"],
+						[Region = "EMEA", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 12, 31), AOP_Bookings = 65000000.0, Q1FC_Bookings = 69000000.0, Q2FC_Bookings = 66000000.0, Q3FC_Bookings = 64000000.0, Q4FC_Bookings = 63000000.0, Actual_Bookings = 0.0, AKey = "EMEAAllAllAll"],
+						[Region = "APJ", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 3, 31), AOP_Bookings = 40000000.0, Q1FC_Bookings = 41000000.0, Q2FC_Bookings = 39000000.0, Q3FC_Bookings = 38000000.0, Q4FC_Bookings = 37000000.0, Actual_Bookings = 42000000.0, AKey = "APJAllAllAll"],
+						[Region = "APJ", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 6, 30), AOP_Bookings = 40000000.0, Q1FC_Bookings = 42000000.0, Q2FC_Bookings = 40000000.0, Q3FC_Bookings = 38000000.0, Q4FC_Bookings = 37000000.0, Actual_Bookings = 38000000.0, AKey = "APJAllAllAll"],
+						[Region = "APJ", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 9, 30), AOP_Bookings = 40000000.0, Q1FC_Bookings = 43000000.0, Q2FC_Bookings = 41000000.0, Q3FC_Bookings = 35000000.0, Q4FC_Bookings = 38000000.0, Actual_Bookings = 31000000.0, AKey = "APJAllAllAll"],
+						[Region = "APJ", Sub_Region = "All", Product_Line = "All", Market = "All", Booking_Date = #date(2026, 12, 31), AOP_Bookings = 40000000.0, Q1FC_Bookings = 44000000.0, Q2FC_Bookings = 42000000.0, Q3FC_Bookings = 40000000.0, Q4FC_Bookings = 39000000.0, Actual_Bookings = 0.0, AKey = "APJAllAllAll"]
+					},
+					type table [
+						Region = text,
+						Sub_Region = text,
+						Product_Line = text,
+						Market = text,
+						Booking_Date = date,
+						AOP_Bookings = number,
+						Q1FC_Bookings = number,
+						Q2FC_Bookings = number,
+						Q3FC_Bookings = number,
+						Q4FC_Bookings = number,
+						Actual_Bookings = number,
+						AKey = text
+					]
+				)
+			in
+				Source

@@ -18,24 +18,22 @@ table Admins
 
 	partition Admins-Partition
 		mode: import
-		source
-			type: m
-			expression
-				= let
-				    Source = #table(
-				        type table [
-				            Email = text,
-				            Name = text,
-				            Access_Level = text
-				        ],
-				        {
-				            {"admin.ops@vantara-fictional.demo","Operations Admin","Full"},
-				            {"v.ross@vantara-fictional.demo","Victoria Ross","Regional VP"},
-				            {"b.hartmann@vantara-fictional.demo","Boris Hartmann","Regional VP"},
-				            {"y.suzuki@vantara-fictional.demo","Yuki Suzuki","Regional VP"},
-				            {"sales.ops@vantara-fictional.demo","Sales Operations","Full"}
-				        }
-				    )
-				in
-				    Source
+		source =
+			let
+			    Source = #table(
+			        type table [
+			            Email = text,
+			            Name = text,
+			            Access_Level = text
+			        ],
+			        {
+			            {"admin.ops@vantara-fictional.demo","Operations Admin","Full"},
+			            {"v.ross@vantara-fictional.demo","Victoria Ross","Regional VP"},
+			            {"b.hartmann@vantara-fictional.demo","Boris Hartmann","Regional VP"},
+			            {"y.suzuki@vantara-fictional.demo","Yuki Suzuki","Regional VP"},
+			            {"sales.ops@vantara-fictional.demo","Sales Operations","Full"}
+			        }
+			    )
+			in
+			    Source
 

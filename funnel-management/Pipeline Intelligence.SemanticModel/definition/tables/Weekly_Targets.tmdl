@@ -28,30 +28,28 @@ table 'Weekly_Targets'
 		sourceColumn: Weekly_Pipeline_Target
 		formatString: $#,0
 
-	partition 'Weekly_Targets-partition'
+	partition Weekly_Targets = m
 		mode: import
-		source
-			type: m
-			expression
-				= let
-					Source = Table.FromRecords(
-						{
-							[Week_Start = #date(2026, 9, 7), Region = "Americas", Weekly_Booking_Target = 7300000.0, Weekly_Pipeline_Target = 29200000.0],
-							[Week_Start = #date(2026, 9, 7), Region = "EMEA", Weekly_Booking_Target = 5000000.0, Weekly_Pipeline_Target = 20000000.0],
-							[Week_Start = #date(2026, 9, 7), Region = "APJ", Weekly_Booking_Target = 3100000.0, Weekly_Pipeline_Target = 12400000.0],
-							[Week_Start = #date(2026, 9, 14), Region = "Americas", Weekly_Booking_Target = 7300000.0, Weekly_Pipeline_Target = 29200000.0],
-							[Week_Start = #date(2026, 9, 14), Region = "EMEA", Weekly_Booking_Target = 5000000.0, Weekly_Pipeline_Target = 20000000.0],
-							[Week_Start = #date(2026, 9, 14), Region = "APJ", Weekly_Booking_Target = 3100000.0, Weekly_Pipeline_Target = 12400000.0],
-							[Week_Start = #date(2026, 9, 21), Region = "Americas", Weekly_Booking_Target = 7300000.0, Weekly_Pipeline_Target = 29200000.0],
-							[Week_Start = #date(2026, 9, 21), Region = "EMEA", Weekly_Booking_Target = 5000000.0, Weekly_Pipeline_Target = 20000000.0],
-							[Week_Start = #date(2026, 9, 21), Region = "APJ", Weekly_Booking_Target = 3100000.0, Weekly_Pipeline_Target = 12400000.0]
-						},
-						type table [
-							Week_Start = date,
-							Region = text,
-							Weekly_Booking_Target = number,
-							Weekly_Pipeline_Target = number
-						]
-					)
-				in
-					Source
+		source =
+			let
+				Source = Table.FromRecords(
+					{
+						[Week_Start = #date(2026, 9, 7), Region = "Americas", Weekly_Booking_Target = 7300000.0, Weekly_Pipeline_Target = 29200000.0],
+						[Week_Start = #date(2026, 9, 7), Region = "EMEA", Weekly_Booking_Target = 5000000.0, Weekly_Pipeline_Target = 20000000.0],
+						[Week_Start = #date(2026, 9, 7), Region = "APJ", Weekly_Booking_Target = 3100000.0, Weekly_Pipeline_Target = 12400000.0],
+						[Week_Start = #date(2026, 9, 14), Region = "Americas", Weekly_Booking_Target = 7300000.0, Weekly_Pipeline_Target = 29200000.0],
+						[Week_Start = #date(2026, 9, 14), Region = "EMEA", Weekly_Booking_Target = 5000000.0, Weekly_Pipeline_Target = 20000000.0],
+						[Week_Start = #date(2026, 9, 14), Region = "APJ", Weekly_Booking_Target = 3100000.0, Weekly_Pipeline_Target = 12400000.0],
+						[Week_Start = #date(2026, 9, 21), Region = "Americas", Weekly_Booking_Target = 7300000.0, Weekly_Pipeline_Target = 29200000.0],
+						[Week_Start = #date(2026, 9, 21), Region = "EMEA", Weekly_Booking_Target = 5000000.0, Weekly_Pipeline_Target = 20000000.0],
+						[Week_Start = #date(2026, 9, 21), Region = "APJ", Weekly_Booking_Target = 3100000.0, Weekly_Pipeline_Target = 12400000.0]
+					},
+					type table [
+						Week_Start = date,
+						Region = text,
+						Weekly_Booking_Target = number,
+						Weekly_Pipeline_Target = number
+					]
+				)
+			in
+				Source

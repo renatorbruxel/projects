@@ -102,48 +102,46 @@ table Quota
 
 	partition Quota-Partition
 		mode: import
-		source
-			type: m
-			expression
-				= let
-				    Source = #table(
-				        type table [
-				            Employee_ID = text,
-				            Seller_Name = text,
-				            Seller_Email = text,
-				            Manager_Email = text,
-				            Business_Unit = text,
-				            Product_Line = text,
-				            Currency = text,
-				            Q1_Local = number,
-				            Q2_Local = number,
-				            Q3_Local = number,
-				            Q4_Local = number,
-				            AOP_Local = number,
-				            EUR_FX = number,
-				            Q1_EUR = number,
-				            Q2_EUR = number,
-				            Q3_EUR = number,
-				            Q4_EUR = number,
-				            AOP_EUR = number,
-				            Region = text,
-				            Sub_Region = text
-				        ],
-				        {
-				            {"E1001","Alex Chen","a.chen@vantara-fictional.demo","d.torres@vantara-fictional.demo","Enterprise Sales","Core Platform","USD",187500,187500,187500,187500,750000,1.0,187500,187500,187500,187500,750000,"Americas","North America"},
-				            {"E1002","Jordan Rivera","j.rivera@vantara-fictional.demo","d.torres@vantara-fictional.demo","Enterprise Sales","Analytics Pro","USD",250000,250000,250000,250000,1000000,1.0,250000,250000,250000,250000,1000000,"Americas","North America"},
-				            {"E1003","Morgan Blake","m.blake@vantara-fictional.demo","d.torres@vantara-fictional.demo","Enterprise Sales","Data Services","USD",175000,175000,175000,175000,700000,1.0,175000,175000,175000,175000,700000,"Americas","LATAM"},
-				            {"E1004","Taylor Kim","t.kim@vantara-fictional.demo","d.torres@vantara-fictional.demo","Enterprise Sales","Analytics Pro","USD",212500,212500,212500,212500,850000,1.0,212500,212500,212500,212500,850000,"Americas","Canada"},
-				            {"E2001","Sam Patel","s.patel@vantara-fictional.demo","l.dubois@vantara-fictional.demo","Enterprise Sales","Core Platform","GBP",82500,82500,82500,82500,330000,1.17,96525,96525,96525,96525,386100,"EMEA","UK & Ireland"},
-				            {"E2002","Chris Muller","c.muller@vantara-fictional.demo","l.dubois@vantara-fictional.demo","Enterprise Sales","Security Suite","EUR",212500,212500,212500,212500,850000,1.0,212500,212500,212500,212500,850000,"EMEA","DACH"},
-				            {"E2003","Nina Larsson","n.larsson@vantara-fictional.demo","l.dubois@vantara-fictional.demo","Enterprise Sales","Core Platform","SEK",1750000,1750000,1750000,1750000,7000000,0.088,154000,154000,154000,154000,616000,"EMEA","Nordics"},
-				            {"E2004","Priya Sharma","p.sharma@vantara-fictional.demo","l.dubois@vantara-fictional.demo","Enterprise Sales","Data Services","EUR",175000,175000,175000,175000,700000,1.0,175000,175000,175000,175000,700000,"EMEA","Southern Europe"},
-				            {"E3001","Wei Zhang","w.zhang@vantara-fictional.demo","m.singh@vantara-fictional.demo","Enterprise Sales","Core Platform","USD",300000,300000,300000,300000,1200000,1.0,300000,300000,300000,300000,1200000,"APJ","Greater China"},
-				            {"E3002","Hana Tanaka","h.tanaka@vantara-fictional.demo","m.singh@vantara-fictional.demo","Enterprise Sales","Security Suite","JPY",28125000,28125000,28125000,28125000,112500000,0.0066,185625,185625,185625,185625,742500,"APJ","Japan"},
-				            {"E3003","Raj Nair","r.nair@vantara-fictional.demo","m.singh@vantara-fictional.demo","Enterprise Sales","Core Platform","USD",212500,212500,212500,212500,850000,1.0,212500,212500,212500,212500,850000,"APJ","India & SEA"},
-				            {"E3004","Kai Yamamoto","k.yamamoto@vantara-fictional.demo","m.singh@vantara-fictional.demo","Enterprise Sales","Security Suite","AUD",325000,325000,325000,325000,1300000,0.61,198250,198250,198250,198250,793000,"APJ","ANZ"}
-				        }
-				    )
-				in
-				    Source
+		source =
+			let
+			    Source = #table(
+			        type table [
+			            Employee_ID = text,
+			            Seller_Name = text,
+			            Seller_Email = text,
+			            Manager_Email = text,
+			            Business_Unit = text,
+			            Product_Line = text,
+			            Currency = text,
+			            Q1_Local = number,
+			            Q2_Local = number,
+			            Q3_Local = number,
+			            Q4_Local = number,
+			            AOP_Local = number,
+			            EUR_FX = number,
+			            Q1_EUR = number,
+			            Q2_EUR = number,
+			            Q3_EUR = number,
+			            Q4_EUR = number,
+			            AOP_EUR = number,
+			            Region = text,
+			            Sub_Region = text
+			        ],
+			        {
+			            {"E1001","Alex Chen","a.chen@vantara-fictional.demo","d.torres@vantara-fictional.demo","Enterprise Sales","Core Platform","USD",187500,187500,187500,187500,750000,1.0,187500,187500,187500,187500,750000,"Americas","North America"},
+			            {"E1002","Jordan Rivera","j.rivera@vantara-fictional.demo","d.torres@vantara-fictional.demo","Enterprise Sales","Analytics Pro","USD",250000,250000,250000,250000,1000000,1.0,250000,250000,250000,250000,1000000,"Americas","North America"},
+			            {"E1003","Morgan Blake","m.blake@vantara-fictional.demo","d.torres@vantara-fictional.demo","Enterprise Sales","Data Services","USD",175000,175000,175000,175000,700000,1.0,175000,175000,175000,175000,700000,"Americas","LATAM"},
+			            {"E1004","Taylor Kim","t.kim@vantara-fictional.demo","d.torres@vantara-fictional.demo","Enterprise Sales","Analytics Pro","USD",212500,212500,212500,212500,850000,1.0,212500,212500,212500,212500,850000,"Americas","Canada"},
+			            {"E2001","Sam Patel","s.patel@vantara-fictional.demo","l.dubois@vantara-fictional.demo","Enterprise Sales","Core Platform","GBP",82500,82500,82500,82500,330000,1.17,96525,96525,96525,96525,386100,"EMEA","UK & Ireland"},
+			            {"E2002","Chris Muller","c.muller@vantara-fictional.demo","l.dubois@vantara-fictional.demo","Enterprise Sales","Security Suite","EUR",212500,212500,212500,212500,850000,1.0,212500,212500,212500,212500,850000,"EMEA","DACH"},
+			            {"E2003","Nina Larsson","n.larsson@vantara-fictional.demo","l.dubois@vantara-fictional.demo","Enterprise Sales","Core Platform","SEK",1750000,1750000,1750000,1750000,7000000,0.088,154000,154000,154000,154000,616000,"EMEA","Nordics"},
+			            {"E2004","Priya Sharma","p.sharma@vantara-fictional.demo","l.dubois@vantara-fictional.demo","Enterprise Sales","Data Services","EUR",175000,175000,175000,175000,700000,1.0,175000,175000,175000,175000,700000,"EMEA","Southern Europe"},
+			            {"E3001","Wei Zhang","w.zhang@vantara-fictional.demo","m.singh@vantara-fictional.demo","Enterprise Sales","Core Platform","USD",300000,300000,300000,300000,1200000,1.0,300000,300000,300000,300000,1200000,"APJ","Greater China"},
+			            {"E3002","Hana Tanaka","h.tanaka@vantara-fictional.demo","m.singh@vantara-fictional.demo","Enterprise Sales","Security Suite","JPY",28125000,28125000,28125000,28125000,112500000,0.0066,185625,185625,185625,185625,742500,"APJ","Japan"},
+			            {"E3003","Raj Nair","r.nair@vantara-fictional.demo","m.singh@vantara-fictional.demo","Enterprise Sales","Core Platform","USD",212500,212500,212500,212500,850000,1.0,212500,212500,212500,212500,850000,"APJ","India & SEA"},
+			            {"E3004","Kai Yamamoto","k.yamamoto@vantara-fictional.demo","m.singh@vantara-fictional.demo","Enterprise Sales","Security Suite","AUD",325000,325000,325000,325000,1300000,0.61,198250,198250,198250,198250,793000,"APJ","ANZ"}
+			        }
+			    )
+			in
+			    Source
 

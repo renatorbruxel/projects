@@ -68,7 +68,7 @@ table 'Calendar'
 		summarizeBy: none
 		expression = "Q" & QUARTER([Date]) & " " & YEAR([Date])
 
-	partition 'Calendar-calc'
+	partition Calendar = calculated
 		mode: calculated
-		source
-			= CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))
+		source =
+			CALENDAR(DATE(2024, 1, 1), DATE(2027, 12, 31))

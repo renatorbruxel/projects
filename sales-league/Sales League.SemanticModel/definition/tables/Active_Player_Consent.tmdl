@@ -24,32 +24,30 @@ table Active_Player_Consent
 
 	partition Active_Player_Consent-Partition
 		mode: import
-		source
-			type: m
-			expression
-				= let
-				    Source = #table(
-				        type table [
-				            Email = text,
-				            Date_Read = date,
-				            Consent_Given = logical,
-				            Consent_Date = date
-				        ],
-				        {
-				            {"a.chen@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,10)},
-				            {"j.rivera@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,10)},
-				            {"m.blake@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,11)},
-				            {"t.kim@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,11)},
-				            {"s.patel@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,12)},
-				            {"c.muller@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,12)},
-				            {"n.larsson@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,13)},
-				            {"p.sharma@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,13)},
-				            {"w.zhang@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,14)},
-				            {"h.tanaka@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,14)},
-				            {"r.nair@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,15)},
-				            {"k.yamamoto@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,15)}
-				        }
-				    )
-				in
-				    Source
+		source =
+			let
+			    Source = #table(
+			        type table [
+			            Email = text,
+			            Date_Read = date,
+			            Consent_Given = logical,
+			            Consent_Date = date
+			        ],
+			        {
+			            {"a.chen@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,10)},
+			            {"j.rivera@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,10)},
+			            {"m.blake@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,11)},
+			            {"t.kim@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,11)},
+			            {"s.patel@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,12)},
+			            {"c.muller@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,12)},
+			            {"n.larsson@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,13)},
+			            {"p.sharma@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,13)},
+			            {"w.zhang@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,14)},
+			            {"h.tanaka@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,14)},
+			            {"r.nair@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,15)},
+			            {"k.yamamoto@vantara-fictional.demo",#date(2026,9,12),true,#date(2026,1,15)}
+			        }
+			    )
+			in
+			    Source
 

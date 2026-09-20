@@ -58,31 +58,29 @@ table 'Pipeline_PullIn'
 		summarizeBy: sum
 		expression = INT([Original_Close_Date] - [New_Close_Date])
 
-	partition 'Pipeline_PullIn-partition'
+	partition Pipeline_PullIn = m
 		mode: import
-		source
-			type: m
-			expression
-				= let
-					Source = Table.FromRecords(
-						{
-							[Opportunity_ID = "OP-1003", Opportunity_Name = "Microsoft Azure Expansion", Seller_Name = "Jennifer Park", ARR_USD = 2300000.0, Original_Close_Date = #date(2026, 12, 31), New_Close_Date = #date(2026, 12, 15), Pull_Reason = "Customer accelerated decision", AKey = "AmericasNAMStorage PlatformEnterprise"],
-							[Opportunity_ID = "OP-1004", Opportunity_Name = "Adobe Analytics Suite", Seller_Name = "David Torres", ARR_USD = 320000.0, Original_Close_Date = #date(2026, 9, 30), New_Close_Date = #date(2026, 9, 15), Pull_Reason = "Competitive pressure - fast close", AKey = "AmericasNAMAnalytics CloudMid-Market"],
-							[Opportunity_ID = "OP-2004", Opportunity_Name = "Orange Telecom Platform", Seller_Name = "Sofia Martinez", ARR_USD = 420000.0, Original_Close_Date = #date(2026, 10, 31), New_Close_Date = #date(2026, 9, 30), Pull_Reason = "Q3 budget available", AKey = "EMEAWEUData IntelligenceCommercial"],
-							[Opportunity_ID = "OP-2005", Opportunity_Name = "Deutsche Telekom Data Hub", Seller_Name = "Hans Mueller", ARR_USD = 1100000.0, Original_Close_Date = #date(2026, 9, 30), New_Close_Date = #date(2026, 9, 15), Pull_Reason = "Executive push to close Q3", AKey = "EMEACEEStorage PlatformEnterprise"],
-							[Opportunity_ID = "OP-3003", Opportunity_Name = "Fujitsu Enterprise Suite", Seller_Name = "Kenji Yamamoto", ARR_USD = 975000.0, Original_Close_Date = #date(2026, 10, 31), New_Close_Date = #date(2026, 9, 30), Pull_Reason = "Fiscal year alignment with customer", AKey = "APJANZAnalytics CloudEnterprise"],
-							[Opportunity_ID = "OP-3002", Opportunity_Name = "TCS Platform Expansion", Seller_Name = "Priya Singh", ARR_USD = 290000.0, Original_Close_Date = #date(2026, 10, 31), New_Close_Date = #date(2026, 9, 30), Pull_Reason = "Contract expedited", AKey = "APJSEAStorage PlatformMid-Market"]
-						},
-						type table [
-							Opportunity_ID = text,
-							Opportunity_Name = text,
-							Seller_Name = text,
-							ARR_USD = number,
-							Original_Close_Date = date,
-							New_Close_Date = date,
-							Pull_Reason = text,
-							AKey = text
-						]
-					)
-				in
-					Source
+		source =
+			let
+				Source = Table.FromRecords(
+					{
+						[Opportunity_ID = "OP-1003", Opportunity_Name = "Microsoft Azure Expansion", Seller_Name = "Jennifer Park", ARR_USD = 2300000.0, Original_Close_Date = #date(2026, 12, 31), New_Close_Date = #date(2026, 12, 15), Pull_Reason = "Customer accelerated decision", AKey = "AmericasNAMStorage PlatformEnterprise"],
+						[Opportunity_ID = "OP-1004", Opportunity_Name = "Adobe Analytics Suite", Seller_Name = "David Torres", ARR_USD = 320000.0, Original_Close_Date = #date(2026, 9, 30), New_Close_Date = #date(2026, 9, 15), Pull_Reason = "Competitive pressure - fast close", AKey = "AmericasNAMAnalytics CloudMid-Market"],
+						[Opportunity_ID = "OP-2004", Opportunity_Name = "Orange Telecom Platform", Seller_Name = "Sofia Martinez", ARR_USD = 420000.0, Original_Close_Date = #date(2026, 10, 31), New_Close_Date = #date(2026, 9, 30), Pull_Reason = "Q3 budget available", AKey = "EMEAWEUData IntelligenceCommercial"],
+						[Opportunity_ID = "OP-2005", Opportunity_Name = "Deutsche Telekom Data Hub", Seller_Name = "Hans Mueller", ARR_USD = 1100000.0, Original_Close_Date = #date(2026, 9, 30), New_Close_Date = #date(2026, 9, 15), Pull_Reason = "Executive push to close Q3", AKey = "EMEACEEStorage PlatformEnterprise"],
+						[Opportunity_ID = "OP-3003", Opportunity_Name = "Fujitsu Enterprise Suite", Seller_Name = "Kenji Yamamoto", ARR_USD = 975000.0, Original_Close_Date = #date(2026, 10, 31), New_Close_Date = #date(2026, 9, 30), Pull_Reason = "Fiscal year alignment with customer", AKey = "APJANZAnalytics CloudEnterprise"],
+						[Opportunity_ID = "OP-3002", Opportunity_Name = "TCS Platform Expansion", Seller_Name = "Priya Singh", ARR_USD = 290000.0, Original_Close_Date = #date(2026, 10, 31), New_Close_Date = #date(2026, 9, 30), Pull_Reason = "Contract expedited", AKey = "APJSEAStorage PlatformMid-Market"]
+					},
+					type table [
+						Opportunity_ID = text,
+						Opportunity_Name = text,
+						Seller_Name = text,
+						ARR_USD = number,
+						Original_Close_Date = date,
+						New_Close_Date = date,
+						Pull_Reason = text,
+						AKey = text
+					]
+				)
+			in
+				Source

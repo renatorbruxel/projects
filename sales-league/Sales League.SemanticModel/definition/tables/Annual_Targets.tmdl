@@ -23,24 +23,22 @@ table Annual_Targets
 
 	partition Annual_Targets-Partition
 		mode: import
-		source
-			type: m
-			expression
-				= let
-				    Source = #table(
-				        type table [
-				            Region = text,
-				            Fiscal_Year = text,
-				            AOP_Target = number,
-				            Stretch_Target = number
-				        ],
-				        {
-				            {"Americas","FY2026",3300000,3630000},
-				            {"EMEA","FY2026",3152100,3467310},
-				            {"APJ","FY2026",3385500,3724050},
-				            {"Global","FY2026",9837600,10821360}
-				        }
-				    )
-				in
-				    Source
+		source =
+			let
+			    Source = #table(
+			        type table [
+			            Region = text,
+			            Fiscal_Year = text,
+			            AOP_Target = number,
+			            Stretch_Target = number
+			        ],
+			        {
+			            {"Americas","FY2026",3300000,3630000},
+			            {"EMEA","FY2026",3152100,3467310},
+			            {"APJ","FY2026",3385500,3724050},
+			            {"Global","FY2026",9837600,10821360}
+			        }
+			    )
+			in
+			    Source
 

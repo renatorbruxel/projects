@@ -39,7 +39,7 @@ table Calendar
 		summarizeBy: none
 		expression = WEEKNUM([Date], 2)
 
-	partition 'Calendar-calc'
+	partition Calendar = calculated
 		mode: calculated
-		source
-			= CALENDAR(DATE(2025, 1, 1), DATE(2027, 12, 31))
+		source =
+			CALENDAR(DATE(2025, 1, 1), DATE(2027, 12, 31))
