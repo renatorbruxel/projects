@@ -1,2 +1,2 @@
-database Net_New_Tracker
-	compatibilityLevel: 1601
+database
+	compatibilityLevel: 1606
