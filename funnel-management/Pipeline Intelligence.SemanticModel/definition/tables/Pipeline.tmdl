@@ -111,6 +111,7 @@ table 'Pipeline'
 		dataType: string
 		lineageTag: pip-c-018
 		summarizeBy: none
+		type: calculated
 		expression = [Region] & [Sub_Region] & [Product_Line] & [Market]
 
 	partition 'Pipeline-partition'
